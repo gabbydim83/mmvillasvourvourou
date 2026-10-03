@@ -30,7 +30,7 @@
     "@type":"LodgingBusiness",
     "name":"M&M Villas Vourvourou",
     "url":"https://www.mmvillasvourvourou.com/",
-    "logo":"https://www.mmvillasvourvourou.com/Assets/Images/mm-villas-logo.png",
+    "logo":"https://www.mmvillasvourvourou.com/Assets/Images/logo.png",
     "image":[
       "https://www.mmvillasvourvourou.com/Assets/Images/large-villa/3.webp",
       "https://www.mmvillasvourvourou.com/Assets/Images/large-villa/7.webp",
@@ -324,6 +324,149 @@
       .footer-grid{grid-template-columns:1fr}.footer-brand{grid-column:auto;display:block}.footer-brand img{margin-bottom:20px}.footer-bottom{display:block}.footer-bottom span{display:block;margin:6px 0}
       .sticky-book{display:block}footer{padding-bottom:90px}.lightbox{padding:18px}.lightbox-prev{left:8px}.lightbox-next{right:8px}
     }
+
+
+    /* ===== 2026 refined presentation layer ===== */
+    :root{
+      --radius:18px;
+      --radius-lg:28px;
+      --shadow-soft:0 16px 45px rgba(25,27,22,.09);
+      --shadow-hover:0 24px 65px rgba(25,27,22,.15);
+    }
+    body{background:linear-gradient(180deg,#f8f5ef 0%,var(--ivory) 100%)}
+    .section{position:relative}
+    .btn{border-radius:999px;min-height:50px;padding-inline:24px;box-shadow:0 7px 18px rgba(26,28,23,.08)}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(26,28,23,.14)}
+
+    /* logo + glass header */
+    .site-header{height:88px}
+    .site-header.scrolled{background:rgba(249,246,240,.88);backdrop-filter:blur(20px) saturate(135%);-webkit-backdrop-filter:blur(20px) saturate(135%);border-bottom:1px solid rgba(29,29,27,.07)}
+    .brand{height:70px;width:166px;padding:8px 12px;border-radius:16px;background:rgba(255,255,255,.91);box-shadow:0 12px 32px rgba(0,0,0,.13);border:1px solid rgba(255,255,255,.42)}
+    .brand img{width:100%;height:100%;object-fit:contain;object-position:center}
+    .nav{gap:23px}
+    .nav a{font-size:.72rem;letter-spacing:.095em}
+    .nav-owner-mobile{display:none}
+    .owner-panel-btn{min-height:42px;padding:0 15px;border:1px solid rgba(255,255,255,.48);background:rgba(14,15,13,.15);color:inherit;backdrop-filter:blur(10px);box-shadow:none}
+    .owner-panel-btn:hover{background:rgba(255,255,255,.16)}
+    .scrolled .owner-panel-btn{border-color:rgba(29,29,27,.22);background:rgba(255,255,255,.58);color:var(--ink)}
+    .lang-toggle{border-radius:999px;backdrop-filter:blur(10px)}
+    .lang-menu{border-radius:14px;padding:8px;box-shadow:0 20px 55px rgba(24,25,21,.16)}
+    .lang-option{border-radius:9px}
+
+    /* hero depth */
+    .hero::after{background:linear-gradient(90deg,rgba(14,16,13,.67) 0%,rgba(14,16,13,.37) 40%,rgba(14,16,13,.08) 74%),linear-gradient(0deg,rgba(9,10,8,.58) 0%,transparent 55%)}
+    .hero-content{padding-bottom:70px}
+    .hero-kicker{display:inline-flex;padding:8px 12px;border:1px solid rgba(255,255,255,.23);border-radius:999px;background:rgba(0,0,0,.12);backdrop-filter:blur(8px)}
+    .hero h1{max-width:940px;text-shadow:0 8px 35px rgba(0,0,0,.27)}
+    .hero-facts{width:max-content;max-width:100%;padding:13px 17px;border-radius:999px;background:rgba(10,12,10,.19);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.13)}
+
+    /* cards and stay selector */
+    .guest-tabs{max-width:720px;border:1px solid var(--line);background:rgba(255,255,255,.55);padding:6px;border-radius:999px;gap:5px}
+    .guest-tab{padding:14px 16px;margin:0;border:0;border-radius:999px}
+    .guest-tab.active{background:var(--ink);color:#fff;border:0;box-shadow:0 8px 22px rgba(29,29,27,.16)}
+    .selector-card{border-radius:var(--radius-lg);box-shadow:var(--shadow-soft);border:1px solid rgba(29,29,27,.07)}
+    .selector-media img{transition:opacity .35s ease,transform .8s cubic-bezier(.2,.75,.25,1)}
+    .selector-card:hover{box-shadow:var(--shadow-hover)}
+    .selector-copy{padding:62px 58px}
+    .stat-line span{padding:8px 11px;background:rgba(255,255,255,.72);border:1px solid rgba(29,29,27,.08);border-radius:999px}
+    .selector-note{border-left:0;padding:14px 16px;border-radius:12px;background:rgba(111,166,160,.11)}
+
+    /* estate + villa imagery */
+    .estate{background:radial-gradient(circle at 85% 10%,rgba(216,204,186,.12),transparent 28%),var(--olive-dark)}
+    .estate-media img,.story-media img,.outdoor-hero,.compare{border-radius:var(--radius-lg)}
+    .estate-media img,.story-media img{box-shadow:0 24px 55px rgba(17,19,15,.14)}
+    .feature{padding:16px 14px;border:1px solid rgba(29,29,27,.08);border-radius:14px;background:rgba(255,255,255,.42);transition:.25s ease}
+    .feature:hover{transform:translateY(-2px);background:rgba(255,255,255,.75);box-shadow:0 12px 26px rgba(29,29,27,.07)}
+    .soft-note{border-radius:14px;border:1px solid rgba(111,166,160,.16)}
+
+    /* smart planner */
+    .booking{background:radial-gradient(circle at 0% 0%,rgba(255,255,255,.42),transparent 34%),linear-gradient(135deg,#d9cdbb 0%,#cec1ad 100%)}
+    .booking-shell{grid-template-columns:.92fr 1.08fr;gap:58px}
+    .booking-intro{position:sticky;top:120px}
+    .planner-brand{display:inline-flex;align-items:center;justify-content:center;width:176px;min-height:88px;margin-bottom:26px;padding:10px 14px;border-radius:18px;background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.58);box-shadow:0 16px 35px rgba(44,39,31,.09);backdrop-filter:blur(10px)}
+    .planner-brand img{max-width:100%;max-height:68px;object-fit:contain}
+    .booking-form{padding:38px;border-radius:24px;border:1px solid rgba(255,255,255,.58);box-shadow:0 22px 55px rgba(39,35,28,.12)}
+    .field input,.field select,.field textarea{border-radius:12px;padding:14px 15px;border-color:rgba(29,29,27,.13);transition:.2s ease}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--olive);box-shadow:0 0 0 4px rgba(102,113,90,.1)}
+    .recommendation{border-left:0;border-radius:15px;padding:16px 18px;background:linear-gradient(135deg,rgba(102,113,90,.1),rgba(111,166,160,.1));border:1px solid rgba(102,113,90,.13)}
+
+    .stay-calendar{margin-top:29px;padding:20px;border-radius:22px;background:rgba(255,253,248,.79);border:1px solid rgba(255,255,255,.58);box-shadow:0 18px 45px rgba(39,35,28,.10);backdrop-filter:blur(12px)}
+    .calendar-top{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:17px}
+    .calendar-overline{display:block;margin-bottom:3px;font-size:.67rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--olive)}
+    .calendar-top strong{font-family:var(--serif);font-size:1.7rem;line-height:1.1;text-transform:capitalize}
+    .calendar-nav{display:flex;gap:7px}
+    .calendar-nav button{width:38px;height:38px;border:1px solid rgba(29,29,27,.12);border-radius:50%;background:rgba(255,255,255,.68);color:var(--ink);font-size:1.25rem;display:grid;place-items:center;transition:.2s ease}
+    .calendar-nav button:hover{background:var(--ink);color:#fff;transform:translateY(-1px)}
+    .calendar-weekdays,.calendar-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+    .calendar-weekdays{margin-bottom:7px}
+    .calendar-weekdays span{text-align:center;font-size:.61rem;text-transform:uppercase;letter-spacing:.075em;font-weight:800;color:rgba(29,29,27,.48)}
+    .calendar-day{position:relative;aspect-ratio:1;border:0;border-radius:11px;background:transparent;color:var(--ink);font-size:.78rem;display:grid;place-items:center;transition:.17s ease}
+    .calendar-day:not(.blank):not(:disabled):hover{background:rgba(102,113,90,.11)}
+    .calendar-day.blank{pointer-events:none}
+    .calendar-day:disabled{opacity:.25;cursor:not-allowed}
+    .calendar-day.in-range{background:rgba(111,166,160,.17);border-radius:6px}
+    .calendar-day.selected{background:var(--ink);color:#fff;border-radius:50%;font-weight:800;box-shadow:0 7px 16px rgba(29,29,27,.18)}
+    .calendar-day.today::after{content:"";position:absolute;bottom:5px;width:3px;height:3px;border-radius:50%;background:var(--olive)}
+    .calendar-day.selected.today::after{background:#fff}
+    .calendar-selection{display:grid;grid-template-columns:1fr 1fr .65fr;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(29,29,27,.08)}
+    .calendar-selection>div{padding:10px 11px;border-radius:12px;background:rgba(255,255,255,.58)}
+    .calendar-selection span{display:block;font-size:.59rem;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-soft);margin-bottom:2px}
+    .calendar-selection strong{display:block;font-size:.78rem;line-height:1.25}
+    .calendar-nights{text-align:center}
+    .calendar-nights strong{font-family:var(--serif);font-size:1.4rem}
+    .calendar-hint{margin:12px 2px 0;font-size:.72rem;color:var(--ink-soft)}
+
+    /* destination image requested */
+    .location-panel{background:linear-gradient(180deg,rgba(23,29,25,.24),rgba(23,29,25,.78)),url("Assets/Images/Beach.webp") center/cover no-repeat,var(--olive-dark);border-radius:var(--radius-lg);box-shadow:var(--shadow-soft)}
+    .location-panel::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(0,0,0,.18),transparent 58%);pointer-events:none}
+    .location-panel h3{max-width:410px;text-shadow:0 5px 22px rgba(0,0,0,.2)}
+    .location-panel p{color:rgba(255,255,255,.9)}
+    .location-fact{padding:24px 10px;border-radius:14px;transition:.2s ease}
+    .location-fact:hover{background:rgba(255,255,255,.48);padding-left:16px}
+
+    /* amenities + gallery */
+    .amenity-grid{gap:10px;background:transparent;border:0}
+    .amenity{border:1px solid var(--line);border-radius:15px;min-height:136px;transition:.25s ease}
+    .amenity:hover{transform:translateY(-4px);box-shadow:var(--shadow-soft);border-color:rgba(102,113,90,.22)}
+    .amenities-extra{border:1px solid var(--line);border-radius:15px;margin-top:2px}
+    .filter-btn{border-radius:999px;padding:10px 14px}
+    .gallery-grid{gap:11px}
+    .gallery-item{border-radius:16px;box-shadow:0 8px 22px rgba(26,27,23,.06)}
+    .gallery-item:hover{box-shadow:0 15px 35px rgba(26,27,23,.13)}
+
+    /* reviews with Beach.webp background */
+    .reviews{position:relative;background:linear-gradient(90deg,rgba(246,242,234,.94) 0%,rgba(246,242,234,.84) 48%,rgba(246,242,234,.54) 100%),url("Assets/Images/Beach.webp") center 54%/cover no-repeat;overflow:hidden}
+    .reviews::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.24));pointer-events:none}
+    .reviews .shell{position:relative;z-index:1}
+    .review-placeholder{border:1px solid rgba(255,255,255,.58);background:rgba(255,253,248,.77);backdrop-filter:blur(14px);border-radius:20px;box-shadow:0 20px 50px rgba(30,31,27,.11);padding:32px}
+
+    /* footer logo treatment */
+    footer{background:radial-gradient(circle at 15% 20%,rgba(102,113,90,.18),transparent 28%),#151613}
+    .footer-brand img{width:155px;max-height:120px;object-fit:contain;background:rgba(255,255,255,.94);padding:12px 14px;border-radius:16px;box-shadow:0 15px 35px rgba(0,0,0,.18)}
+
+    @media(max-width:1180px){
+      .nav{gap:15px}.nav a{font-size:.67rem}.brand{width:148px}.owner-panel-btn{padding-inline:12px}
+    }
+    @media(max-width:1040px){
+      .site-header{height:var(--header-h)}
+      .owner-panel-btn{display:none}
+      .nav.mobile-open .nav-owner-mobile{display:block;margin-top:8px;padding-top:22px;border-top:1px solid var(--line);width:100%}
+      .booking-intro{position:static}
+    }
+    @media(max-width:720px){
+      .brand{height:56px;width:124px;padding:6px 8px;border-radius:12px}
+      .hero-facts{width:100%;border-radius:18px;padding:12px 14px}
+      .guest-tabs{border-radius:18px;padding:5px}.guest-tab{border-radius:13px;padding:12px 7px}
+      .selector-card{border-radius:20px}.selector-copy{padding:32px 22px}
+      .planner-brand{width:148px;min-height:75px}.booking-form{padding:23px;border-radius:19px}
+      .stay-calendar{padding:15px;border-radius:18px}.calendar-days,.calendar-weekdays{gap:3px}.calendar-day{font-size:.72rem;border-radius:8px}
+      .calendar-selection{grid-template-columns:1fr 1fr}.calendar-nights{grid-column:1/-1;text-align:left}.calendar-nights strong{font-size:1rem}
+      .location-panel{border-radius:20px}.outdoor-hero,.compare{border-radius:20px}
+      .amenity-grid{gap:8px}.amenity{border-radius:13px}
+      .gallery-item{border-radius:12px}
+      .footer-brand img{width:138px}
+    }
+
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-bg{animation:none}.reveal{opacity:1;transform:none;transition:none}*{transition:none!important}}
   </style>
 </head>
@@ -331,7 +474,7 @@
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <a href="#top" class="brand" aria-label="M&M Villas Vourvourou">
-        <img src="Assets/Images/mm-villas-logo.png" alt="M&M Villas Vourvourou logo" />
+        <img src="Assets/Images/logo.png" alt="M&M Villas Vourvourou logo" onerror="this.onerror=null;this.src='Assets/Images/mm-villas-logo.png'" />
       </a>
       <nav class="nav" id="mainNav" aria-label="Primary navigation">
         <a href="#estate" data-i18n="nav.estate">The Estate</a>
@@ -339,6 +482,7 @@
         <a href="#garden-villa" data-i18n="nav.garden">Garden Villa</a>
         <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
         <a href="#location" data-i18n="nav.location">Location</a>
+        <a class="nav-owner-mobile" href="owner.html" data-i18n="nav.owner">Owner Panel</a>
       </nav>
       <div class="header-actions">
         <div class="lang-wrap">
@@ -348,6 +492,7 @@
           </button>
           <div class="lang-menu" id="langMenu"></div>
         </div>
+        <a class="btn owner-panel-btn" href="owner.html" data-i18n="nav.owner" aria-label="Owner Panel">Owner Panel</a>
         <a class="btn header-book" href="#booking" data-i18n="nav.book">Book your stay</a>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
@@ -473,11 +618,33 @@
 
     <section class="section booking" id="booking">
       <div class="shell booking-shell">
-        <div class="reveal">
+        <div class="reveal booking-intro">
+          <div class="planner-brand" aria-hidden="true"><img src="Assets/Images/logo.png" alt="" onerror="this.onerror=null;this.src='Assets/Images/mm-villas-logo.png'" /></div>
           <p class="eyebrow" data-i18n="booking.eyebrow">Smart stay planner</p>
           <h2 data-i18n="booking.title">Tell us who’s travelling.</h2>
           <p class="lead" data-i18n="booking.subtitle">We’ll suggest the setup that fits your group before you send a request.</p>
           <p data-i18n="booking.body">The recommendation is based on group size. You can still ask for a different configuration, more privacy, or selected Garden Villa dates.</p>
+
+          <div class="stay-calendar" id="stayCalendar">
+            <div class="calendar-top">
+              <div>
+                <span class="calendar-overline" id="calendarOverline">Choose your dates</span>
+                <strong id="calendarMonth">Month</strong>
+              </div>
+              <div class="calendar-nav">
+                <button type="button" id="calendarPrev" aria-label="Previous month">‹</button>
+                <button type="button" id="calendarNext" aria-label="Next month">›</button>
+              </div>
+            </div>
+            <div class="calendar-weekdays" id="calendarWeekdays"></div>
+            <div class="calendar-days" id="calendarDays"></div>
+            <div class="calendar-selection">
+              <div><span id="calendarCheckinLabel">Check-in</span><strong id="calendarCheckin">—</strong></div>
+              <div><span id="calendarCheckoutLabel">Check-out</span><strong id="calendarCheckout">—</strong></div>
+              <div class="calendar-nights"><span id="calendarNightsLabel">Nights</span><strong id="calendarNights">—</strong></div>
+            </div>
+            <p class="calendar-hint" id="calendarHint">Select arrival and departure directly in the calendar or use the fields in the form.</p>
+          </div>
         </div>
         <form class="booking-form reveal" id="bookingForm">
           <div class="form-grid">
@@ -609,7 +776,7 @@
     <div class="shell">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img src="Assets/Images/mm-villas-logo.png" alt="M&M Villas Vourvourou" />
+          <img src="Assets/Images/logo.png" alt="M&M Villas Vourvourou" onerror="this.onerror=null;this.src='Assets/Images/mm-villas-logo.png'" />
           <div><h3>M&M Villas Vourvourou</h3><p data-i18n="footer.text">A flexible private estate in Vourvourou for families, friends and groups travelling together.</p></div>
         </div>
         <div class="footer-col"><h4 data-i18n="footer.explore">Explore</h4><a href="#estate" data-i18n="nav.estate">The Estate</a><a href="#main-villa" data-i18n="nav.main">Main Villa</a><a href="#garden-villa" data-i18n="nav.garden">Garden Villa</a><a href="#gallery" data-i18n="nav.gallery">Gallery</a></div>
@@ -647,7 +814,7 @@
     const I18N = {
       en:{
         meta:{title:'M&M Villas Vourvourou | Flexible Private Estate in Halkidiki',description:'A flexible private estate in Vourvourou for one family or groups of up to 12 guests, with a Main Villa, Garden Villa, large garden and outdoor living.'},
-        nav:{estate:'The Estate',main:'Main Villa',garden:'Garden Villa',gallery:'Gallery',location:'Location',book:'Book your stay'},
+        nav:{estate:'The Estate',main:'Main Villa',garden:'Garden Villa',gallery:'Gallery',location:'Location',owner:'Owner Panel',book:'Book your stay'},
         hero:{kicker:'Vourvourou · Halkidiki · Greece',title:'One private estate.<br>Your stay, your way.',subtitle:'From one family to a group of twelve, M&M Villas adapts to the way you travel.',find:'Find your stay',explore:'Explore the estate',factBeach:'400 m to the nearest beach',factGuests:'Up to 12 guests',factLand:'1,500 m² private setting'},
         common:{guests:'guests'},
         selector:{eyebrow:'A stay that adapts',title:'How many are travelling?',subtitle:'Tell us your group size and we’ll show you the most natural way to enjoy M&M Villas.'},
@@ -822,6 +989,7 @@
       renderLanguageMenu();
       updateStay(selectedRange);
       updateBookingRecommendation();
+      renderStayCalendar();
       document.getElementById('amenitiesToggle').textContent=t(document.getElementById('amenitiesExtra').classList.contains('open')?'amenities.less':'amenities.more');
       document.getElementById('galleryMore').textContent=t(galleryExpanded?'gallery.less':'gallery.more');
       const u=new URL(location.href);u.searchParams.set('lang',currentLang);history.replaceState({},'',u);
@@ -866,6 +1034,84 @@
       return {title:t('booking.recEstate'),note:t('booking.tooMany')};
     }
     function updateBookingRecommendation(){const r=bookingRecData();document.getElementById('bookingRecommendation').textContent=r.title;document.getElementById('bookingRecommendationNote').textContent=r.note}
+
+
+
+    const CALENDAR_TEXT={
+      en:{choose:'Choose your dates',checkin:'Check-in',checkout:'Check-out',nights:'Nights',hint:'Select arrival and departure directly in the calendar or use the fields in the form.'},
+      ro:{choose:'Alege datele sejurului',checkin:'Sosire',checkout:'Plecare',nights:'Nopți',hint:'Selectează sosirea și plecarea direct în calendar sau folosește câmpurile din formular.'},
+      el:{choose:'Επιλέξτε ημερομηνίες',checkin:'Άφιξη',checkout:'Αναχώρηση',nights:'Νύχτες',hint:'Επιλέξτε άφιξη και αναχώρηση απευθείας στο ημερολόγιο ή χρησιμοποιήστε τα πεδία της φόρμας.'},
+      de:{choose:'Reisedaten wählen',checkin:'Anreise',checkout:'Abreise',nights:'Nächte',hint:'Wählen Sie An- und Abreise direkt im Kalender oder verwenden Sie die Felder im Formular.'},
+      bg:{choose:'Изберете дати',checkin:'Пристигане',checkout:'Заминаване',nights:'Нощувки',hint:'Изберете пристигане и заминаване директно от календара или използвайте полетата във формата.'},
+      sr:{choose:'Izaberite datume',checkin:'Dolazak',checkout:'Odlazak',nights:'Noći',hint:'Izaberite dolazak i odlazak direktno u kalendaru ili koristite polja u formularu.'}
+    };
+    let calendarCursor=new Date();
+    calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth(),1);
+    const localISO=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    const parseISO=v=>v?new Date(v+'T00:00:00'):null;
+    const dayStart=d=>new Date(d.getFullYear(),d.getMonth(),d.getDate());
+    const calendarLocale=()=>({en:'en-GB',ro:'ro-RO',el:'el-GR',de:'de-DE',bg:'bg-BG',sr:'sr-RS'}[currentLang]||'en-GB');
+    function formatCalendarDate(d){return d?new Intl.DateTimeFormat(calendarLocale(),{day:'numeric',month:'short'}).format(d):'—'}
+    function syncDateConstraints(){
+      const arrival=document.getElementById('arrival'),departure=document.getElementById('departure');
+      const tomorrow=dayStart(new Date());tomorrow.setDate(tomorrow.getDate()+1);
+      arrival.min=localISO(tomorrow);
+      if(arrival.value){const d=parseISO(arrival.value);d.setDate(d.getDate()+1);departure.min=localISO(d)}else departure.min=localISO(tomorrow);
+    }
+    function renderStayCalendar(){
+      const grid=document.getElementById('calendarDays');
+      if(!grid)return;
+      const label=document.getElementById('calendarMonth');
+      const weekdays=document.getElementById('calendarWeekdays');
+      const copy=CALENDAR_TEXT[currentLang]||CALENDAR_TEXT.en;
+      document.getElementById('calendarOverline').textContent=copy.choose;
+      document.getElementById('calendarCheckinLabel').textContent=copy.checkin;
+      document.getElementById('calendarCheckoutLabel').textContent=copy.checkout;
+      document.getElementById('calendarNightsLabel').textContent=copy.nights;
+      document.getElementById('calendarHint').textContent=copy.hint;
+
+      const y=calendarCursor.getFullYear(),m=calendarCursor.getMonth();
+      const first=new Date(y,m,1),last=new Date(y,m+1,0);
+      label.textContent=new Intl.DateTimeFormat(calendarLocale(),{month:'long',year:'numeric'}).format(first);
+      weekdays.innerHTML='';
+      const monday=new Date(2026,0,5); // known Monday; labels only
+      for(let i=0;i<7;i++){const s=document.createElement('span');const d=new Date(monday);d.setDate(monday.getDate()+i);s.textContent=new Intl.DateTimeFormat(calendarLocale(),{weekday:'narrow'}).format(d);weekdays.appendChild(s)}
+
+      const arrival=parseISO(document.getElementById('arrival').value);
+      const departure=parseISO(document.getElementById('departure').value);
+      const today=dayStart(new Date());
+      const tomorrow=new Date(today);tomorrow.setDate(tomorrow.getDate()+1);
+      const offset=(first.getDay()+6)%7;
+      grid.innerHTML='';
+      for(let i=0;i<offset;i++){const b=document.createElement('button');b.type='button';b.className='calendar-day blank';b.disabled=true;b.tabIndex=-1;grid.appendChild(b)}
+      for(let day=1;day<=last.getDate();day++){
+        const date=new Date(y,m,day),iso=localISO(date);
+        const b=document.createElement('button');b.type='button';b.className='calendar-day';b.textContent=day;b.dataset.date=iso;
+        if(date<tomorrow)b.disabled=true;
+        if(date.getTime()===today.getTime())b.classList.add('today');
+        if(arrival&&date.getTime()===arrival.getTime())b.classList.add('selected');
+        if(departure&&date.getTime()===departure.getTime())b.classList.add('selected');
+        if(arrival&&departure&&date>arrival&&date<departure)b.classList.add('in-range');
+        b.addEventListener('click',()=>chooseCalendarDate(date));
+        grid.appendChild(b);
+      }
+      const ci=document.getElementById('calendarCheckin'),co=document.getElementById('calendarCheckout'),n=document.getElementById('calendarNights');
+      ci.textContent=formatCalendarDate(arrival);co.textContent=formatCalendarDate(departure);
+      n.textContent=arrival&&departure?String(Math.max(1,Math.round((departure-arrival)/86400000))):'—';
+      const now=new Date(),earliest=new Date(now.getFullYear(),now.getMonth(),1);
+      document.getElementById('calendarPrev').disabled=calendarCursor<=earliest;
+    }
+    function chooseCalendarDate(date){
+      const arrivalEl=document.getElementById('arrival'),departureEl=document.getElementById('departure');
+      const arrival=parseISO(arrivalEl.value),departure=parseISO(departureEl.value);
+      if(!arrival || departure || date<=arrival){
+        arrivalEl.value=localISO(date);departureEl.value='';
+      }else{
+        departureEl.value=localISO(date);
+      }
+      syncDateConstraints();renderStayCalendar();
+    }
+
 
     const galleryImages=[];
     function addGallery(src,cats,label){galleryImages.push({src,cats,label})}
@@ -937,9 +1183,12 @@
       document.querySelectorAll('.guest-tab').forEach(b=>b.addEventListener('click',()=>updateStay(b.dataset.range)));
       document.getElementById('adults').addEventListener('change',updateBookingRecommendation);document.getElementById('children').addEventListener('change',updateBookingRecommendation);
 
-      const tomorrow=new Date(Date.now()+86400000),after=new Date(Date.now()+5*86400000);
-      const iso=d=>d.toISOString().slice(0,10);document.getElementById('arrival').min=iso(tomorrow);document.getElementById('departure').min=iso(after);
-      document.getElementById('arrival').addEventListener('change',e=>{const d=new Date(e.target.value);if(!isNaN(d)){d.setDate(d.getDate()+1);document.getElementById('departure').min=iso(d)}});
+      syncDateConstraints();
+      document.getElementById('arrival').addEventListener('change',()=>{const d=parseISO(document.getElementById('arrival').value);if(d){calendarCursor=new Date(d.getFullYear(),d.getMonth(),1);const dep=parseISO(document.getElementById('departure').value);if(dep&&dep<=d)document.getElementById('departure').value=''}syncDateConstraints();renderStayCalendar()});
+      document.getElementById('departure').addEventListener('change',()=>{syncDateConstraints();renderStayCalendar()});
+      document.getElementById('calendarPrev').addEventListener('click',()=>{calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth()-1,1);renderStayCalendar()});
+      document.getElementById('calendarNext').addEventListener('click',()=>{calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth()+1,1);renderStayCalendar()});
+      renderStayCalendar();
 
       document.getElementById('bookingForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('requestPreview').textContent=buildRequestText();document.getElementById('requestDialog').showModal();document.body.classList.add('modal-open')});
       document.getElementById('closeDialog').addEventListener('click',()=>{document.getElementById('requestDialog').close();document.body.classList.remove('modal-open')});
