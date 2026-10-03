@@ -434,11 +434,78 @@
     .gallery-item{border-radius:16px;box-shadow:0 8px 22px rgba(26,27,23,.06)}
     .gallery-item:hover{box-shadow:0 15px 35px rgba(26,27,23,.13)}
 
-    /* reviews with Beach.webp background */
-    .reviews{position:relative;background:linear-gradient(90deg,rgba(246,242,234,.94) 0%,rgba(246,242,234,.84) 48%,rgba(246,242,234,.54) 100%),url("Assets/Images/Beach.webp") center 54%/cover no-repeat;overflow:hidden}
-    .reviews::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.24));pointer-events:none}
-    .reviews .shell{position:relative;z-index:1}
-    .review-placeholder{border:1px solid rgba(255,255,255,.58);background:rgba(255,253,248,.77);backdrop-filter:blur(14px);border-radius:20px;box-shadow:0 20px 50px rgba(30,31,27,.11);padding:32px}
+    /* guest review carousel — one review at a time */
+    .planner-reviews{
+      position:relative;
+      margin-top:24px;
+      min-height:545px;
+      padding:25px;
+      border-radius:24px;
+      overflow:hidden;
+      color:#fff;
+      background:
+        linear-gradient(135deg,rgba(20,25,21,.78),rgba(20,25,21,.48)),
+        url("Assets/Images/Beach.webp") center/cover no-repeat,
+        var(--olive-dark);
+      box-shadow:0 20px 52px rgba(39,35,28,.15);
+      border:1px solid rgba(255,255,255,.2);
+      isolation:isolate;
+    }
+    .planner-reviews::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(0,0,0,.12));
+      pointer-events:none;
+      z-index:-1;
+    }
+    .review-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:18px}
+    .review-head .eyebrow{color:rgba(255,255,255,.7);margin-bottom:7px}
+    .review-head h3{font-size:clamp(2rem,3vw,2.8rem);margin:0;color:#fff}
+    .review-score{
+      flex:0 0 auto;
+      min-width:106px;
+      padding:12px 13px;
+      border-radius:16px;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.22);
+      backdrop-filter:blur(9px);
+      text-align:center;
+    }
+    .review-score strong{display:block;font-family:var(--serif);font-size:2rem;line-height:1}
+    .review-score span{display:block;margin-top:5px;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+    .review-stage{position:relative;min-height:370px}
+    .review-card{
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      opacity:0;
+      transform:translateX(18px);
+      transition:opacity .45s ease,transform .45s ease;
+      pointer-events:none;
+    }
+    .review-card.active{opacity:1;transform:none;pointer-events:auto}
+    .review-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:11px;font-size:.72rem;color:rgba(255,255,255,.78)}
+    .review-author{font-weight:800;color:#fff;letter-spacing:.02em}
+    .review-country{display:inline-flex;align-items:center;gap:6px}
+    .review-title{font-family:var(--serif);font-size:1.6rem;line-height:1.1;margin-bottom:11px;color:#fff}
+    .review-text{margin:0;color:rgba(255,255,255,.92);font-size:.9rem;line-height:1.65}
+    .review-controls{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px}
+    .review-dots{display:flex;gap:7px;flex-wrap:wrap}
+    .review-dot{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.3);transition:.2s ease}
+    .review-dot.active{width:24px;border-radius:999px;background:#fff}
+    .review-arrows{display:flex;gap:8px}
+    .review-arrow{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;display:grid;place-items:center;font-size:1.15rem;transition:.2s ease}
+    .review-arrow:hover{background:#fff;color:var(--ink)}
+    .review-progress{position:absolute;left:0;bottom:0;height:3px;width:100%;background:rgba(255,255,255,.18)}
+    .review-progress span{display:block;height:100%;width:0;background:#fff}
+    .review-progress.running span{animation:reviewTimer 7s linear forwards}
+    @keyframes reviewTimer{from{width:0}to{width:100%}}
+
+    /* old bottom review block is no longer needed because reviews now live below the calendar */
+    .reviews{display:none}
 
     /* footer logo treatment */
     footer{background:radial-gradient(circle at 15% 20%,rgba(102,113,90,.18),transparent 28%),#151613}
@@ -461,6 +528,7 @@
       .planner-brand{width:148px;min-height:75px}.booking-form{padding:23px;border-radius:19px}
       .stay-calendar{padding:15px;border-radius:18px}.calendar-days,.calendar-weekdays{gap:3px}.calendar-day{font-size:.72rem;border-radius:8px}
       .calendar-selection{grid-template-columns:1fr 1fr}.calendar-nights{grid-column:1/-1;text-align:left}.calendar-nights strong{font-size:1rem}
+      .planner-reviews{min-height:590px;padding:20px;border-radius:20px}.review-head{display:block}.review-score{margin-top:14px;width:max-content}.review-stage{min-height:410px}.review-text{font-size:.84rem}.review-controls{margin-top:14px}
       .location-panel{border-radius:20px}.outdoor-hero,.compare{border-radius:20px}
       .amenity-grid{gap:8px}.amenity{border-radius:13px}
       .gallery-item{border-radius:12px}
@@ -645,6 +713,30 @@
             </div>
             <p class="calendar-hint" id="calendarHint">Select arrival and departure directly in the calendar or use the fields in the form.</p>
           </div>
+
+          <section class="planner-reviews" id="plannerReviews" aria-labelledby="plannerReviewsTitle">
+            <div class="review-head">
+              <div>
+                <p class="eyebrow" data-i18n="reviews.eyebrow">Guest voices</p>
+                <h3 id="plannerReviewsTitle" data-i18n="reviews.title">What guests remember.</h3>
+              </div>
+              <div class="review-score" aria-label="Guest rating 9.8 out of 10">
+                <strong>9.8</strong>
+                <span data-i18n="reviews.score">Exceptional · /10</span>
+              </div>
+            </div>
+
+            <div class="review-stage" id="reviewStage" aria-live="polite"></div>
+
+            <div class="review-controls">
+              <div class="review-dots" id="reviewDots" aria-label="Guest reviews"></div>
+              <div class="review-arrows">
+                <button class="review-arrow" id="reviewPrev" type="button" aria-label="Previous review">‹</button>
+                <button class="review-arrow" id="reviewNext" type="button" aria-label="Next review">›</button>
+              </div>
+            </div>
+            <div class="review-progress" id="reviewProgress" aria-hidden="true"><span></span></div>
+          </section>
         </div>
         <form class="booking-form reveal" id="bookingForm">
           <div class="form-grid">
@@ -762,14 +854,6 @@
         <div class="gallery-more"><button class="btn btn-outline" id="galleryMore" type="button" data-i18n="gallery.more">Show more photos</button></div>
       </div>
     </section>
-
-    <section class="section reviews" id="reviews">
-      <div class="shell reveal">
-        <p class="eyebrow" data-i18n="reviews.eyebrow">Guest voices</p>
-        <h2 data-i18n="reviews.title">What guests remember.</h2>
-        <div class="review-placeholder" data-i18n="reviews.placeholder">Verified guest reviews will be added here once the final selection is provided. No placeholder testimonials are being invented for this first version.</div>
-      </div>
-    </section>
   </main>
 
   <footer>
@@ -832,7 +916,7 @@
         location:{eyebrow:'Vourvourou · Sithonia',title:'Beach in front. Mountain behind.',text:'Enjoy the relaxed Vourvourou setting with the nearest beach within walking distance, Karidi Beach only a short drive away and views toward Diaporos from the property.',f1:'to the nearest beach',f2:'to Karidi Beach',f3:'maximum advertised guest capacity across both villas',f4:'private villas within one flexible estate',mapnote:'An exact interactive map can be connected once the final public location pin is confirmed.'},
         amenities:{eyebrow:'Comfort without clutter',title:'Everything you need for an easy stay.',subtitle:'The essentials are shown first. The complete amenity list stays one click away.',a1:'Private parking',a2:'Large garden',a3:'BBQ facilities',a4:'Outdoor dining',a5:'Air conditioning',a6:'Family friendly',a7:'Pets welcome',a8:'Laundry',a9:'Hydromassage cabin',a10:'Equipped kitchens',x1:'Private bathrooms',x2:'Terrace / sun terrace',x3:'Outdoor furniture',x4:'Picnic area',x5:'Heating',x6:'Soundproof rooms',x7:'Non-smoking rooms',x8:'Luggage storage',x9:'Express check-in / check-out',x10:'Shared lounge / TV area',x11:'Bar area',x12:'Outdoor shower',more:'View all amenities',less:'Show fewer amenities'},
         gallery:{eyebrow:'The property in detail',title:'Gallery',all:'All',main:'Main Villa',garden:'Garden Villa',bedrooms:'Bedrooms',bathrooms:'Bathrooms',outdoors:'Outdoors',evening:'Evening',more:'Show more photos',less:'Show fewer photos'},
-        reviews:{eyebrow:'Guest voices',title:'What guests remember.',placeholder:'Verified guest reviews will be added here once the final selection is provided. No placeholder testimonials are being invented for this first version.'},
+        reviews:{eyebrow:'Guest voices',title:'What guests remember.',score:'Exceptional · /10'},
         footer:{text:'A flexible private estate in Vourvourou for families, friends and groups travelling together.',explore:'Explore',plan:'Plan your stay',amenities:'Amenities',rights:'All rights reserved.'},
         dialog:{eyebrow:'Booking request preview',title:'Your request is ready.',text:'This first website version prepares the request on the front end. We’ll connect it to the owner panel / booking channel in the next implementation step.',copy:'Copy request',close:'Close',copied:'Copied'},
         request:{title:'M&M Villas Vourvourou — booking request',arrival:'Arrival',departure:'Departure',adults:'Adults',children:'Children',total:'Total guests',recommended:'Recommended setup',message:'Message'}
@@ -857,7 +941,7 @@
         location:{eyebrow:'Vourvourou · Sithonia',title:'Plaja în față. Muntele în spate.',text:'Bucurați-vă de atmosfera relaxată din Vourvourou, cu cea mai apropiată plajă la distanță de mers pe jos, Karidi Beach la doar câteva minute și vedere spre Diaporos din proprietate.',f1:'până la cea mai apropiată plajă',f2:'până la Karidi Beach',f3:'capacitatea maximă promovată pentru ambele vile',f4:'vile private într-o singură proprietate flexibilă',mapnote:'Harta interactivă exactă va fi conectată după confirmarea pinului public final al proprietății.'},
         amenities:{eyebrow:'Confort fără aglomerație',title:'Tot ce trebuie pentru un sejur ușor.',subtitle:'Arătăm mai întâi facilitățile importante. Lista completă rămâne la un click distanță.',a1:'Parcare privată',a2:'Grădină mare',a3:'Facilități BBQ',a4:'Dining exterior',a5:'Aer condiționat',a6:'Potrivit pentru familii',a7:'Animale acceptate',a8:'Spălătorie',a9:'Cabină cu hidromasaj',a10:'Bucătării echipate',x1:'Băi private',x2:'Terasă / terasă însorită',x3:'Mobilier exterior',x4:'Zonă de picnic',x5:'Încălzire',x6:'Camere izolate fonic',x7:'Camere pentru nefumători',x8:'Cameră de bagaje',x9:'Check-in / check-out express',x10:'Lounge / zonă TV comună',x11:'Zonă de bar',x12:'Duș exterior',more:'Vezi toate facilitățile',less:'Arată mai puține'},
         gallery:{eyebrow:'Proprietatea în detaliu',title:'Galerie',all:'Toate',main:'Main Villa',garden:'Garden Villa',bedrooms:'Dormitoare',bathrooms:'Băi',outdoors:'Exterior',evening:'Seara',more:'Arată mai multe fotografii',less:'Arată mai puține'},
-        reviews:{eyebrow:'Vocile oaspeților',title:'Ce își amintesc oaspeții.',placeholder:'Review-urile verificate vor fi adăugate după selectarea lor finală. În această primă versiune nu inventăm testimoniale demonstrative.'},
+        reviews:{eyebrow:'Vocile oaspeților',title:'Ce își amintesc oaspeții.',score:'Excepțional · /10'},
         footer:{text:'O proprietate privată flexibilă în Vourvourou pentru familii, prieteni și grupuri care călătoresc împreună.',explore:'Descoperă',plan:'Planifică sejurul',amenities:'Facilități',rights:'Toate drepturile rezervate.'},
         dialog:{eyebrow:'Previzualizare cerere',title:'Cererea este pregătită.',text:'Această primă versiune pregătește cererea în browser. În etapa următoare o conectăm la owner panel / canalul de rezervări.',copy:'Copiază cererea',close:'Închide',copied:'Copiat'},
         request:{title:'M&M Villas Vourvourou — cerere de rezervare',arrival:'Sosire',departure:'Plecare',adults:'Adulți',children:'Copii',total:'Total oaspeți',recommended:'Configurație recomandată',message:'Mesaj'}
@@ -882,7 +966,7 @@
         location:{eyebrow:'Βουρβουρού · Σιθωνία',title:'Παραλία μπροστά. Βουνό πίσω.',text:'Απολαύστε τη χαλαρή ατμόσφαιρα της Βουρβουρού, με την κοντινότερη παραλία σε απόσταση περπατήματος, την παραλία Καρύδι λίγα λεπτά μακριά και θέα προς τον Διάπορο.',f1:'από την κοντινότερη παραλία',f2:'ως την παραλία Καρύδι',f3:'μέγιστη προβεβλημένη χωρητικότητα και για τις δύο βίλες',f4:'ιδιωτικές βίλες σε ένα ευέλικτο κτήμα',mapnote:'Ο ακριβής διαδραστικός χάρτης θα συνδεθεί μόλις επιβεβαιωθεί το τελικό δημόσιο pin.'},
         amenities:{eyebrow:'Άνεση χωρίς περιττά',title:'Όλα όσα χρειάζεστε για εύκολη διαμονή.',subtitle:'Πρώτα εμφανίζονται οι βασικές παροχές. Η πλήρης λίστα βρίσκεται ένα κλικ μακριά.',a1:'Ιδιωτικό πάρκινγκ',a2:'Μεγάλος κήπος',a3:'BBQ',a4:'Εξωτερική τραπεζαρία',a5:'Κλιματισμός',a6:'Για οικογένειες',a7:'Κατοικίδια δεκτά',a8:'Πλυντήριο',a9:'Καμπίνα υδρομασάζ',a10:'Εξοπλισμένες κουζίνες',x1:'Ιδιωτικά μπάνια',x2:'Βεράντα / ηλιόλουστη βεράντα',x3:'Έπιπλα εξωτερικού χώρου',x4:'Χώρος πικνίκ',x5:'Θέρμανση',x6:'Ηχομονωμένα δωμάτια',x7:'Δωμάτια μη καπνιστών',x8:'Φύλαξη αποσκευών',x9:'Express check-in / check-out',x10:'Κοινόχρηστο lounge / TV',x11:'Χώρος bar',x12:'Εξωτερικό ντους',more:'Όλες οι παροχές',less:'Λιγότερες παροχές'},
         gallery:{eyebrow:'Η ιδιοκτησία με λεπτομέρεια',title:'Φωτογραφίες',all:'Όλα',main:'Main Villa',garden:'Garden Villa',bedrooms:'Υπνοδωμάτια',bathrooms:'Μπάνια',outdoors:'Εξωτερικοί χώροι',evening:'Βράδυ',more:'Περισσότερες φωτογραφίες',less:'Λιγότερες φωτογραφίες'},
-        reviews:{eyebrow:'Οι επισκέπτες μας',title:'Τι θυμούνται οι επισκέπτες.',placeholder:'Οι επαληθευμένες κριτικές θα προστεθούν μόλις δοθεί η τελική επιλογή. Δεν χρησιμοποιούνται ψεύτικες δοκιμαστικές κριτικές.'},
+        reviews:{eyebrow:'Οι επισκέπτες μας',title:'Τι θυμούνται οι επισκέπτες.',score:'Εξαιρετικό · /10'},
         footer:{text:'Ένα ευέλικτο ιδιωτικό κτήμα στη Βουρβουρού για οικογένειες, φίλους και παρέες που ταξιδεύουν μαζί.',explore:'Ανακαλύψτε',plan:'Σχεδιάστε τη διαμονή',amenities:'Παροχές',rights:'Με επιφύλαξη παντός δικαιώματος.'},
         dialog:{eyebrow:'Προεπισκόπηση αιτήματος',title:'Το αίτημά σας είναι έτοιμο.',text:'Η πρώτη έκδοση ετοιμάζει το αίτημα στο browser. Στο επόμενο βήμα θα συνδεθεί με owner panel / κανάλι κρατήσεων.',copy:'Αντιγραφή',close:'Κλείσιμο',copied:'Αντιγράφηκε'},
         request:{title:'M&M Villas Vourvourou — αίτημα κράτησης',arrival:'Άφιξη',departure:'Αναχώρηση',adults:'Ενήλικες',children:'Παιδιά',total:'Σύνολο ατόμων',recommended:'Προτεινόμενη διάταξη',message:'Μήνυμα'}
@@ -907,7 +991,7 @@
         location:{eyebrow:'Vourvourou · Sithonia',title:'Strand vorne. Berg hinten.',text:'Genießen Sie die entspannte Lage in Vourvourou: der nächste Strand ist zu Fuß erreichbar, Karidi Beach nur wenige Minuten entfernt und vom Anwesen reicht der Blick in Richtung Diaporos.',f1:'zum nächsten Strand',f2:'zum Karidi Beach',f3:'maximal beworbene Kapazität beider Villen',f4:'private Villen in einem flexiblen Anwesen',mapnote:'Die exakte interaktive Karte wird verbunden, sobald der endgültige öffentliche Standort-Pin bestätigt ist.'},
         amenities:{eyebrow:'Komfort ohne Überladung',title:'Alles für einen unkomplizierten Aufenthalt.',subtitle:'Die wichtigsten Ausstattungen zuerst; die vollständige Liste ist nur einen Klick entfernt.',a1:'Privater Parkplatz',a2:'Großer Garten',a3:'BBQ',a4:'Outdoor-Essbereich',a5:'Klimaanlage',a6:'Familienfreundlich',a7:'Haustiere willkommen',a8:'Waschmöglichkeit',a9:'Hydromassagekabine',a10:'Ausgestattete Küchen',x1:'Private Bäder',x2:'Terrasse / Sonnenterrasse',x3:'Outdoor-Möbel',x4:'Picknickbereich',x5:'Heizung',x6:'Schallisolierte Zimmer',x7:'Nichtraucherzimmer',x8:'Gepäckaufbewahrung',x9:'Express Check-in / Check-out',x10:'Gemeinschaftslounge / TV',x11:'Barbereich',x12:'Außendusche',more:'Alle Ausstattungen',less:'Weniger anzeigen'},
         gallery:{eyebrow:'Das Anwesen im Detail',title:'Galerie',all:'Alle',main:'Main Villa',garden:'Garden Villa',bedrooms:'Schlafzimmer',bathrooms:'Bäder',outdoors:'Außenbereich',evening:'Abends',more:'Mehr Fotos',less:'Weniger Fotos'},
-        reviews:{eyebrow:'Stimmen der Gäste',title:'Was Gästen in Erinnerung bleibt.',placeholder:'Verifizierte Gästebewertungen werden nach der finalen Auswahl ergänzt. Für diese erste Version werden keine erfundenen Testbewertungen verwendet.'},
+        reviews:{eyebrow:'Stimmen der Gäste',title:'Was Gästen in Erinnerung bleibt.',score:'Außergewöhnlich · /10'},
         footer:{text:'Ein flexibles privates Anwesen in Vourvourou für Familien, Freunde und Gruppen, die gemeinsam reisen.',explore:'Entdecken',plan:'Aufenthalt planen',amenities:'Ausstattung',rights:'Alle Rechte vorbehalten.'},
         dialog:{eyebrow:'Vorschau der Buchungsanfrage',title:'Ihre Anfrage ist vorbereitet.',text:'Diese erste Version bereitet die Anfrage im Browser vor. Im nächsten Schritt verbinden wir sie mit Owner Panel / Buchungskanal.',copy:'Anfrage kopieren',close:'Schließen',copied:'Kopiert'},
         request:{title:'M&M Villas Vourvourou — Buchungsanfrage',arrival:'Anreise',departure:'Abreise',adults:'Erwachsene',children:'Kinder',total:'Gäste gesamt',recommended:'Empfohlene Konfiguration',message:'Nachricht'}
@@ -932,7 +1016,7 @@
         location:{eyebrow:'Вурвуру · Ситония',title:'Плаж отпред. Планина отзад.',text:'Насладете се на спокойната атмосфера на Вурвуру: най-близкият плаж е на пешеходно разстояние, Karidi Beach е само на няколко минути, а от имота се открива гледка към Диапорос.',f1:'до най-близкия плаж',f2:'до Karidi Beach',f3:'максимално рекламиран капацитет за двете вили',f4:'частни вили в едно гъвкаво имение',mapnote:'Точната интерактивна карта ще бъде свързана след потвърждаване на крайния публичен pin.'},
         amenities:{eyebrow:'Комфорт без претрупване',title:'Всичко необходимо за лесен престой.',subtitle:'Първо показваме най-важното, а пълният списък е на един клик.',a1:'Частен паркинг',a2:'Голяма градина',a3:'BBQ',a4:'Хранене на открито',a5:'Климатик',a6:'Подходящо за семейства',a7:'Домашни любимци',a8:'Пералня',a9:'Хидромасажна кабина',a10:'Оборудвани кухни',x1:'Самостоятелни бани',x2:'Тераса / слънчева тераса',x3:'Външни мебели',x4:'Пикник зона',x5:'Отопление',x6:'Шумоизолирани стаи',x7:'Стаи за непушачи',x8:'Съхранение на багаж',x9:'Express check-in / check-out',x10:'Общ lounge / TV',x11:'Бар зона',x12:'Външен душ',more:'Всички удобства',less:'Покажи по-малко'},
         gallery:{eyebrow:'Имотът в детайли',title:'Галерия',all:'Всички',main:'Main Villa',garden:'Garden Villa',bedrooms:'Спални',bathrooms:'Бани',outdoors:'Навън',evening:'Вечер',more:'Още снимки',less:'По-малко снимки'},
-        reviews:{eyebrow:'Гласът на гостите',title:'Какво помнят гостите.',placeholder:'Проверените отзиви ще бъдат добавени след финалния подбор. В тази първа версия не използваме измислени тестови отзиви.'},
+        reviews:{eyebrow:'Гласът на гостите',title:'Какво помнят гостите.',score:'Изключително · /10'},
         footer:{text:'Гъвкаво частно имение във Вурвуру за семейства, приятели и групи, които пътуват заедно.',explore:'Разгледайте',plan:'Планирайте престоя',amenities:'Удобства',rights:'Всички права запазени.'},
         dialog:{eyebrow:'Преглед на запитването',title:'Вашето запитване е готово.',text:'Първата версия подготвя запитването в браузъра. В следващия етап ще го свържем с owner panel / канал за резервации.',copy:'Копирай',close:'Затвори',copied:'Копирано'},
         request:{title:'M&M Villas Vourvourou — запитване за резервация',arrival:'Пристигане',departure:'Заминаване',adults:'Възрастни',children:'Деца',total:'Общо гости',recommended:'Препоръчана конфигурация',message:'Съобщение'}
@@ -957,7 +1041,7 @@
         location:{eyebrow:'Vourvourou · Sitonija',title:'Plaža ispred. Planina iza.',text:'Uživajte u opuštenom Vourvourou okruženju: najbliža plaža je na pešačkoj udaljenosti, Karidi Beach je samo nekoliko minuta dalje, a sa imanja se pruža pogled prema Diaporosu.',f1:'do najbliže plaže',f2:'do Karidi Beach',f3:'maksimalni oglašeni kapacitet obe vile',f4:'privatne vile u jednom fleksibilnom imanju',mapnote:'Tačna interaktivna mapa biće povezana nakon potvrde konačnog javnog pina lokacije.'},
         amenities:{eyebrow:'Komfor bez viška',title:'Sve što vam treba za lak boravak.',subtitle:'Najvažnije pogodnosti prikazujemo prve, a potpuna lista je udaljena jedan klik.',a1:'Privatan parking',a2:'Veliki vrt',a3:'BBQ',a4:'Obroci napolju',a5:'Klima uređaj',a6:'Za porodice',a7:'Ljubimci dobrodošli',a8:'Veš mašina',a9:'Hidromasažna kabina',a10:'Opremljene kuhinje',x1:'Privatna kupatila',x2:'Terasa / sunčana terasa',x3:'Spoljni nameštaj',x4:'Piknik zona',x5:'Grejanje',x6:'Zvučno izolovane sobe',x7:'Sobe za nepušače',x8:'Ostava za prtljag',x9:'Express check-in / check-out',x10:'Zajednički lounge / TV',x11:'Bar zona',x12:'Spoljni tuš',more:'Sve pogodnosti',less:'Prikaži manje'},
         gallery:{eyebrow:'Imanje u detaljima',title:'Galerija',all:'Sve',main:'Main Villa',garden:'Garden Villa',bedrooms:'Spavaće sobe',bathrooms:'Kupatila',outdoors:'Spolja',evening:'Veče',more:'Prikaži još fotografija',less:'Prikaži manje'},
-        reviews:{eyebrow:'Utisci gostiju',title:'Šta gosti pamte.',placeholder:'Proverene recenzije biće dodate kada se izabere finalni set. U ovoj prvoj verziji ne koristimo izmišljene probne recenzije.'},
+        reviews:{eyebrow:'Utisci gostiju',title:'Šta gosti pamte.',score:'Izuzetno · /10'},
         footer:{text:'Fleksibilno privatno imanje u Vourvourou za porodice, prijatelje i grupe koje putuju zajedno.',explore:'Istražite',plan:'Planirajte boravak',amenities:'Pogodnosti',rights:'Sva prava zadržana.'},
         dialog:{eyebrow:'Pregled upita',title:'Vaš upit je spreman.',text:'Ova prva verzija priprema upit u browseru. U sledećoj fazi povezaćemo ga sa owner panelom / kanalom za rezervacije.',copy:'Kopiraj upit',close:'Zatvori',copied:'Kopirano'},
         request:{title:'M&M Villas Vourvourou — upit za rezervaciju',arrival:'Dolazak',departure:'Odlazak',adults:'Odrasli',children:'Deca',total:'Ukupno gostiju',recommended:'Preporučena postavka',message:'Poruka'}
@@ -1113,6 +1197,99 @@
     }
 
 
+    const GUEST_REVIEWS=[
+      {
+        author:'Laurenti',country:'România',flag:'🇷🇴',stay:'Vilă Deluxe · 4 nopți · iulie 2026 · Familie',
+        title:'Excepţional',score:'10',
+        text:`We had such an amazing stay at this place! First off, Kostas and Niki are incredible hosts—their warm hospitality and helpfulness made a huge difference, and they were always there whenever we needed anything. They share some locations with us and we visited them and loved them. They also told us to visit Diaporos and we recommended it, it was incredible.The location is wonderful and felt completely safe, just like at home. There was another family staying next to us and the were kind and didn't bother us at all. Our kids played together perfectly. We loved using the outdoor barbecue, and relaxing together to watch the match on the TV made for a perfect evening. Everything was clean, beautiful, and so welcoming. We couldn't have asked for a better experience!`
+      },
+      {
+        author:'Gregg',country:'Bulgaria',flag:'🇧🇬',stay:'Vilă cu vedere la mare · 6 nopți · iulie 2026 · Familie',
+        title:'An absolute gem of a place!',score:'10',
+        text:`The location is absolutely perfect—peaceful, easily accessible, and surrounded by beautiful nature. The highlights of the outdoor area are definitely the gorgeous, lush gardens, which are beautifully lit at night. Walking through the garden, we loved seeing the fruit trees, especially the apple and pear trees, which add such a charming, natural touch to the estate.  The outdoor showers are incredibly stylish and refreshing after a long day out.Inside, the decoration is exceptional! The interior design is a stunning blend of minimalist Cycladic style and boho-chic aesthetics, with beautiful wooden details, arches, and high-quality finishes. Every single corner is curated with taste and was spotlessly clean.  Highly recommended for a relaxing, high-end stay. We cannot wait to come back!`
+      },
+      {
+        author:'Pradon',country:'România',flag:'🇷🇴',stay:'Vilă Deluxe · 5 nopți · aprilie 2026 · Călător neînsoțit',
+        title:'Paradise',score:'10',
+        text:`We travel often with my family and I can say that yes, it is the cleanest villa I have ever stayed in. The hostess welcomed us with a smile and we felt at home from the first moment! The beaches of Vourvourou at this time have very few people and it is like being in paradise in just 3 minutes we were at the famous walnut! In the afternoon we had our barbecue in the yard and we didn't want to go to any tavern, everything was so beautiful! We recommend this villa and we will definitely return! Kostas and Niki thank you for your hospitality`
+      },
+      {
+        author:'Beiko',country:'Ucraina',flag:'🇺🇦',stay:'Vilă cu vedere la mare · 4 nopți · octombrie 2025 · Grup',
+        title:'Ideal for families with children',score:'10',
+        text:`Τhe decoration on the walls is reminiscent of a Greek island and the layout with the bedrooms, bathrooms and outdoor showers is one of the smartest layouts I have ever seen. If you visit this particular villa with 3 families, I recommend that anyone who manages to get the third bedroom on the ground floor with the outdoor shower and toilet, you will have your own privacy😉 especially when you are 3 families. The outdoor showers are really awesome and the garden yard is really huge and beautiful.From the balcony you can see Diaporos islands and Kostas recommend us boats to visit them ,nice experience. Kostas and Niki are really kind and helpful. Recommend this villa m&m for families with kids`
+      },
+      {
+        author:'Casey',country:'Austria',flag:'🇦🇹',stay:'Vilă cu vedere la mare · 7 nopți · august 2025 · Familie',
+        title:'Excepţional',score:'10',
+        text:`We had a very good time in this place.  Most of the times, houses like that are in the middle of nowhere and we usually feel unsafe but this location was great. The beach is only 3 minutes away by car, and the place is quiet and safe. The house has beautiful decorations and everything felt cozy. The mattress and the pillows were so comfy. The garden is big and beautiful, and from the house we could see the mountains and the Diaporos islands. Our kids played a lot and were very happy. We stayed in the garden every night until very late. It was peaceful. We will miss it when we're back at our place. We really wished we could stay all summer.`
+      },
+      {
+        author:'Anonymous',country:'Australia',flag:'🇦🇺',stay:'Vilă cu vedere la mare · 6 nopți · iulie 2025 · Familie',
+        title:'Excepţional',score:'10',
+        text:`⭐️⭐️⭐️⭐️⭐️  We had an absolutely wonderful stay at this summer villa! The house was beautifully decorated, spotless, and felt instantly welcoming and comfortable. The peaceful location was ideal — close to stunning beaches yet quiet enough to truly relax and unwind. The garden was perfect for enjoying morning coffee or evening drinks, and the kids loved having space to play safely. The host was warm, friendly, and attentive, making sure we had everything we needed for a carefree holiday. Overall, it was a memorable experience that combined comfort, style, and true hospitality. Highly`
+      },
+      {
+        author:'Poutelesi',country:'Bulgaria',flag:'🇧🇬',stay:'Vilă cu vedere la mare · 5 nopți · iunie 2025 · Familie',
+        title:'Our perfect vocation 🏝️🌞',score:'10',
+        text:`We stayed here for the first 6 days of our family vocation and we couldn't be more happy. Our stay was perfectly balanced between relaxing and heaving fun. The villa is sooo big, especially for me and my husband. We had so much room. The decoration was modern with some fun touches and beautiful summer colours,  plants and many windows that made the rooms very bright 🌞 Everything was perfectly clean and the guests really tried making us feel as comfy as back home. We absolutely loved the garden and we really hope having the chance to visit next year with some friends and our kids. We really enjoyed the view from all the deferment points of the villa. Watching the sunset from there was perfect after a long day at the beach. About the beaches, the location was perfect because it was both quite but also very close to some of the most beautiful beaches.`
+      }
+    ];
+
+    let reviewIndex=0;
+    let reviewTimer=null;
+    const REVIEW_INTERVAL=7000;
+
+    function reviewCardMarkup(r,index){
+      return `<article class="review-card ${index===reviewIndex?'active':''}" data-review-index="${index}">
+        <div class="review-meta">
+          <span class="review-author">${r.author}</span>
+          <span class="review-country">${r.flag} ${r.country}</span>
+          <span>★ ${r.score}/10</span>
+          <span>${r.stay}</span>
+        </div>
+        <div class="review-title">${r.title}</div>
+        <p class="review-text">${r.text}</p>
+      </article>`;
+    }
+
+    function renderGuestReviews(){
+      const stage=document.getElementById('reviewStage');
+      const dots=document.getElementById('reviewDots');
+      if(!stage||!dots)return;
+      stage.innerHTML=GUEST_REVIEWS.map(reviewCardMarkup).join('');
+      dots.innerHTML=GUEST_REVIEWS.map((_,i)=>`<button type="button" class="review-dot ${i===reviewIndex?'active':''}" data-review-dot="${i}" aria-label="Review ${i+1}"></button>`).join('');
+      dots.querySelectorAll('.review-dot').forEach(b=>b.addEventListener('click',()=>showReview(Number(b.dataset.reviewDot),true)));
+      restartReviewProgress();
+    }
+
+    function showReview(index,restart=false){
+      reviewIndex=(index+GUEST_REVIEWS.length)%GUEST_REVIEWS.length;
+      document.querySelectorAll('.review-card').forEach((card,i)=>card.classList.toggle('active',i===reviewIndex));
+      document.querySelectorAll('.review-dot').forEach((dot,i)=>dot.classList.toggle('active',i===reviewIndex));
+      if(restart)startReviewAutoplay();
+      else restartReviewProgress();
+    }
+
+    function restartReviewProgress(){
+      const p=document.getElementById('reviewProgress');
+      if(!p)return;
+      p.classList.remove('running');
+      void p.offsetWidth;
+      p.classList.add('running');
+    }
+
+    function startReviewAutoplay(){
+      clearInterval(reviewTimer);
+      restartReviewProgress();
+      reviewTimer=setInterval(()=>showReview(reviewIndex+1,false),REVIEW_INTERVAL);
+    }
+
+    function pauseReviewAutoplay(){
+      clearInterval(reviewTimer);
+      reviewTimer=null;
+      document.getElementById('reviewProgress')?.classList.remove('running');
+    }
+
     const galleryImages=[];
     function addGallery(src,cats,label){galleryImages.push({src,cats,label})}
     [1,2,3,4,5,6,7,8,9,10].forEach(n=>addGallery(`Assets/Images/large-villa/${n}.webp`,['main','outdoor',...(n<=2?['night']:[])],`Main Villa · ${n}`));
@@ -1184,6 +1361,16 @@
       document.getElementById('adults').addEventListener('change',updateBookingRecommendation);document.getElementById('children').addEventListener('change',updateBookingRecommendation);
 
       syncDateConstraints();
+      renderGuestReviews();
+      startReviewAutoplay();
+      const reviewWrap=document.getElementById('plannerReviews');
+      document.getElementById('reviewPrev').addEventListener('click',()=>showReview(reviewIndex-1,true));
+      document.getElementById('reviewNext').addEventListener('click',()=>showReview(reviewIndex+1,true));
+      reviewWrap.addEventListener('mouseenter',pauseReviewAutoplay);
+      reviewWrap.addEventListener('mouseleave',startReviewAutoplay);
+      reviewWrap.addEventListener('focusin',pauseReviewAutoplay);
+      reviewWrap.addEventListener('focusout',e=>{if(!reviewWrap.contains(e.relatedTarget))startReviewAutoplay()});
+
       document.getElementById('arrival').addEventListener('change',()=>{const d=parseISO(document.getElementById('arrival').value);if(d){calendarCursor=new Date(d.getFullYear(),d.getMonth(),1);const dep=parseISO(document.getElementById('departure').value);if(dep&&dep<=d)document.getElementById('departure').value=''}syncDateConstraints();renderStayCalendar()});
       document.getElementById('departure').addEventListener('change',()=>{syncDateConstraints();renderStayCalendar()});
       document.getElementById('calendarPrev').addEventListener('click',()=>{calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth()-1,1);renderStayCalendar()});
