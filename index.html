@@ -94,8 +94,9 @@
     .btn-ghost-light{border-color:rgba(255,255,255,.55);color:#fff;background:rgba(0,0,0,.08);backdrop-filter:blur(5px)}
     .arrow{transition:transform .25s ease}
     .btn:hover .arrow{transform:translateX(4px)}
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease}
-    .reveal.in{opacity:1;transform:none}
+    .reveal{opacity:1;transform:none}
+    .motion-ready .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
+    .motion-ready .reveal.in{opacity:1;transform:none}
 
     /* header */
     .site-header{position:fixed;z-index:60;top:0;left:0;right:0;height:var(--header-h);display:flex;align-items:center;color:#fff;transition:background .3s ease,color .3s ease,box-shadow .3s ease,backdrop-filter .3s ease}
@@ -924,6 +925,97 @@
       .guest-reviews-section .review-stage{min-height:300px}
     }
 
+  
+    /* ===== Hero correction: image first, copy low and restrained ===== */
+    .hero{
+      min-height:100svh;
+      align-items:flex-end;
+    }
+    .hero::after{
+      background:
+        linear-gradient(0deg,rgba(8,10,8,.62) 0%,rgba(8,10,8,.26) 24%,rgba(8,10,8,.06) 46%,transparent 68%),
+        linear-gradient(90deg,rgba(8,10,8,.16) 0%,transparent 55%);
+    }
+    .hero-content{
+      width:min(1220px,calc(100% - 40px));
+      padding:120px 0 24px;
+    }
+    .hero-kicker{
+      margin-bottom:8px;
+      padding:0;
+      border:0;
+      background:none;
+      backdrop-filter:none;
+      font-size:.66rem;
+      letter-spacing:.18em;
+      opacity:.88;
+    }
+    .hero h1{
+      max-width:650px;
+      margin-bottom:9px;
+      font-size:clamp(2.45rem,4.6vw,4.7rem);
+      line-height:.94;
+      text-shadow:0 4px 22px rgba(0,0,0,.28);
+    }
+    .hero-sub{
+      max-width:540px;
+      margin-bottom:12px;
+      font-size:clamp(.92rem,1.15vw,1.05rem);
+      line-height:1.45;
+      color:rgba(255,255,255,.88);
+    }
+    .hero-cta{display:none!important}
+    .hero-facts{
+      margin-top:10px;
+      width:max-content;
+      max-width:100%;
+      padding:8px 11px;
+      gap:6px 14px;
+      border-radius:10px;
+      background:rgba(8,10,8,.20);
+      border:1px solid rgba(255,255,255,.10);
+      font-size:.62rem;
+      letter-spacing:.07em;
+      backdrop-filter:blur(7px);
+    }
+    .hero-facts span:not(:first-child)::before{width:10px}
+
+    @media(max-width:720px){
+      .hero{
+        min-height:100svh;
+      }
+      .hero-content{
+        width:calc(100% - 24px);
+        padding:92px 0 16px;
+      }
+      .hero-kicker{
+        margin-bottom:6px;
+        font-size:.56rem;
+        letter-spacing:.14em;
+      }
+      .hero h1{
+        max-width:92%;
+        margin-bottom:7px;
+        font-size:clamp(2.05rem,10vw,3.15rem);
+        line-height:.94;
+      }
+      .hero-sub{
+        max-width:92%;
+        margin-bottom:9px;
+        font-size:.82rem;
+        line-height:1.38;
+      }
+      .hero-facts{
+        margin-top:7px;
+        padding:6px 8px;
+        gap:4px 8px;
+        border-radius:8px;
+        font-size:.52rem;
+        line-height:1.25;
+      }
+      .hero-facts span:not(:first-child)::before{display:none}
+    }
+
   </style>
 </head>
 <body>
@@ -960,10 +1052,6 @@
         <div class="hero-kicker" data-i18n="hero.kicker">Vourvourou · Halkidiki · Greece</div>
         <h1 id="heroTitle" data-i18n-html="hero.title">One private estate.<br>Your stay, your way.</h1>
         <p class="hero-sub" data-i18n="hero.subtitle">From one family to a group of twelve, M&M Villas adapts to the way you travel.</p>
-        <div class="hero-cta">
-          <a class="btn btn-light" href="#find-stay"><span data-i18n="hero.find">Find your stay</span><span class="arrow">→</span></a>
-          <a class="btn btn-ghost-light" href="#estate"><span data-i18n="hero.explore">Explore the estate</span><span class="arrow">→</span></a>
-        </div>
         <div class="hero-facts">
           <span data-i18n="hero.factBeach">400 m to the nearest beach</span>
           <span data-i18n="hero.factGuests">Up to 12 guests</span>
@@ -1549,7 +1637,7 @@
       document.getElementById('calendarCheckinLabel').textContent=copy.checkin;
       document.getElementById('calendarCheckoutLabel').textContent=copy.checkout;
       document.getElementById('calendarNightsLabel').textContent=copy.nights;
-      document.getElementById('calendarHint').textContent=copy.hint;
+      const calendarHint=document.getElementById('calendarHint');if(calendarHint)calendarHint.textContent=copy.hint;
 
       const y=calendarCursor.getFullYear(),m=calendarCursor.getMonth();
       const first=new Date(y,m,1),last=new Date(y,m+1,0);
@@ -1752,6 +1840,7 @@
     }
 
     document.addEventListener('DOMContentLoaded',()=>{
+      document.body.classList.add('motion-ready');
       document.getElementById('year').textContent=new Date().getFullYear();
       fillSelects();renderLanguageMenu();applyLanguage(currentLang);renderGallery();initReveal();updateBookingRecommendation();
 
