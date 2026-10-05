@@ -1833,9 +1833,231 @@
       }
     }
 
-</style>
+
+
+    /* ===== V8 — hero/mobile/gallery refinement ===== */
+    @media(min-width:1101px){
+      .hero-v4 .hero-content{justify-content:flex-start !important;align-items:flex-end !important;padding-left:18px !important;}
+      .hero-v4 .hero-copy{margin-left:0 !important;margin-right:auto !important;max-width:760px !important;text-align:left !important;}
+      .hero-v4 .hero-cta,.hero-v4 .hero-facts{justify-content:flex-start !important;}
+    }
+
+    /* Detail mosaic refinements */
+    .detail-mosaic .detail-shot.a img{object-position:right center !important;}
+    .detail-mosaic .detail-shot.d img{object-position:center bottom !important;}
+
+    /* Hide the second four-image collage entirely */
+    .estate-cinema{display:none !important;}
+
+    /* Main Villa seven-image strip — no labels, black separators */
+    .visual-chapter-main .visual-chapter-grid{
+      background:#000;
+      gap:3px !important;
+      padding:3px;
+      width:min(1420px,calc(100% - 30px));
+    }
+    .visual-chapter-main figcaption{display:none !important;}
+    .visual-chapter-main .vc-shot,
+    .visual-chapter-main .vc-shot img{border-radius:0 !important;}
+
+    /* Outdoor info cards refined */
+    .experience-grid{align-items:stretch;}
+    .experience{background:#fff;border:1px solid rgba(0,0,0,.08);padding:24px 22px;min-height:100%;}
+    .experience h3{font-size:1.05rem;margin-bottom:10px;letter-spacing:.01em;}
+    .experience p{margin:0;color:var(--ink-soft);font-size:.96rem;line-height:1.6;}
+
+    /* Beach section redesigned */
+    .beach-story{padding:96px 0 0;background:#0d1313;color:#fff;}
+    .beach-feature{position:relative;min-height:640px;overflow:hidden;}
+    .beach-feature img{width:100%;height:100%;display:block;object-fit:cover;object-position:center center;}
+    .beach-feature::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,12,12,.78) 0%,rgba(8,12,12,.46) 35%,rgba(8,12,12,.10) 68%,rgba(8,12,12,.04) 100%),linear-gradient(180deg,rgba(8,12,12,.04) 0%,rgba(8,12,12,.42) 100%);}
+    .beach-feature-copy{position:absolute;z-index:2;left:min(4vw,54px);bottom:min(4vw,48px);max-width:540px;}
+    .beach-feature-copy .eyebrow{color:rgba(255,255,255,.78);}
+    .beach-feature-copy h2{max-width:540px;margin-bottom:14px;}
+    .beach-feature-copy p{font-size:1.05rem;line-height:1.7;color:rgba(255,255,255,.82);}
+    .beach-mini-carousel{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px 4px 0;}
+    .beach-mini-carousel figure{margin:0;height:230px;overflow:hidden;background:#111;}
+    .beach-mini-carousel img{width:100%;height:100%;object-fit:cover;display:block;}
+
+    /* Gallery filter rail restored for mobile */
+    @media(max-width:720px){
+      .site-header,
+      .site-header.scrolled{background:rgba(15,17,14,.98) !important;color:#fff !important;backdrop-filter:none !important;box-shadow:none !important;}
+      .lang-toggle{border-color:rgba(255,255,255,.24) !important;background:rgba(255,255,255,.06) !important;color:#fff !important;}
+      .nav.mobile-open{background:#11140f !important;color:#fff !important;padding-top:26px !important;}
+      .nav.mobile-open a{color:#fff !important;}
+      .hero-v4{padding-top:var(--header-h) !important;background:#10110f !important;}
+      .hero-v4 .hero-canvas{aspect-ratio:16 / 9 !important;background:#10110f !important;}
+      .hero-v4 .hero-canvas::after{background:none !important;}
+      .hero-v4 .hero-content{padding:18px 14px 24px !important;background:#10110f !important;}
+      .hero-v4 .hero-copy{max-width:none !important;width:100% !important;}
+      .hero-v4 .hero-cta{display:grid !important;grid-template-columns:1fr 1fr !important;gap:8px !important;margin-top:0 !important;}
+      .hero-v4 .hero-facts{margin-top:16px !important;display:grid !important;grid-template-columns:1fr 1fr !important;}
+      .estate-media img{object-fit:contain !important;background:#111 !important;}
+      .story-media .side img:last-child{object-position:center bottom !important;}
+      .experience-grid{grid-template-columns:1fr !important;gap:12px !important;}
+      .experience{padding:18px 16px !important;}
+      .beach-story{padding-top:62px !important;}
+      .beach-feature{min-height:430px !important;}
+      .beach-feature-copy{left:14px !important;right:14px !important;bottom:18px !important;max-width:none !important;}
+      .beach-feature-copy h2{font-size:clamp(2.25rem,10vw,3.2rem) !important;max-width:100% !important;}
+      .beach-feature-copy p{font-size:.94rem !important;line-height:1.55 !important;}
+      .beach-mini-carousel{display:flex !important;overflow-x:auto !important;gap:6px !important;padding:6px 6px 0 !important;scroll-snap-type:x proximity;}
+      .beach-mini-carousel figure{min-width:72vw !important;height:170px !important;scroll-snap-align:start;}
+      .gallery-filters{display:flex !important;flex-wrap:nowrap !important;overflow-x:auto !important;gap:7px !important;padding:0 0 8px !important;scroll-snap-type:x proximity !important;}
+      .gallery-filters .filter-btn{width:auto !important;flex:0 0 auto !important;white-space:nowrap !important;min-width:max-content !important;padding:10px 14px !important;}
+      .gallery-filters .filter-btn:first-child{grid-column:auto !important;}
+    }
+
+  
+
+    /* ===== V9 — final refinement of hero, Main Villa, reviews, outdoors and beach ===== */
+    @media(min-width:1101px){
+      .hero-v4 .hero-content{padding-left:16px !important;padding-right:24px !important;}
+      .hero-v4 .hero-copy{max-width:760px !important;text-align:left !important;margin-left:0 !important;margin-right:auto !important;}
+      .hero-v4 .hero-kicker,.hero-v4 h1,.hero-v4 .hero-sub,.hero-v4 .hero-cta,.hero-v4 .hero-facts{margin-left:0 !important;margin-right:auto !important;text-align:left !important;}
+      .hero-v4 .hero-cta{justify-content:flex-start !important;}
+      .hero-v4 .hero-facts{justify-content:flex-start !important;}
+    }
+
+    /* Main Villa photo essay: pure photography, no labels or click affordance. */
+    .visual-chapter-main .vc-shot::after{display:none !important;}
+    .visual-chapter-main .vc-shot{cursor:default !important;}
+    .visual-chapter-main figcaption{display:none !important;}
+
+    /* Outdoor story cards: quieter on desktop, swipe rail on phones. */
+    .experience{position:relative;overflow:hidden;}
+    .experience-number{display:block;margin-bottom:14px;font-family:var(--serif);font-size:1.55rem;line-height:1;color:var(--olive);}
+    @media(max-width:720px){
+      .experience-grid{
+        display:flex !important;
+        overflow-x:auto !important;
+        gap:8px !important;
+        margin-top:18px !important;
+        padding:0 0 8px !important;
+        scroll-snap-type:x mandatory;
+        scrollbar-width:none;
+        -webkit-overflow-scrolling:touch;
+      }
+      .experience-grid::-webkit-scrollbar{display:none;}
+      .experience{
+        flex:0 0 76vw !important;
+        min-height:150px !important;
+        padding:18px 17px !important;
+        scroll-snap-align:start;
+        border-radius:14px;
+        background:#fff;
+      }
+      .experience h3{font-size:1.18rem !important;margin-bottom:8px !important;}
+      .experience p{font-size:.8rem !important;line-height:1.5 !important;}
+      .experience-number{font-size:1.25rem;margin-bottom:10px;}
+    }
+
+    /* Mobile hero: photograph first, text second, both clean and separate. */
+    @media(max-width:720px){
+      .hero-v4{padding-top:var(--header-h) !important;background:#0f110f !important;}
+      .hero-v4 .hero-canvas{position:relative !important;width:100% !important;height:auto !important;aspect-ratio:16/9 !important;background:#0f110f !important;overflow:hidden !important;}
+      .hero-v4 .hero-slide{width:100% !important;height:100% !important;object-fit:contain !important;object-position:center center !important;transform:none !important;}
+      .hero-v4 .hero-canvas::after{display:none !important;}
+      .hero-v4 .hero-content{position:relative !important;inset:auto !important;display:block !important;width:100% !important;min-height:0 !important;padding:18px 14px 24px !important;background:#0f110f !important;}
+      .hero-v4 .hero-copy{width:100% !important;max-width:none !important;text-align:left !important;}
+      .hero-v4 .hero-kicker{font-size:.55rem !important;margin-bottom:8px !important;color:rgba(255,255,255,.68) !important;}
+      .hero-v4 h1{font-size:clamp(2.15rem,10vw,3rem) !important;line-height:.95 !important;margin:0 0 9px !important;max-width:100% !important;white-space:normal !important;}
+      .hero-v4 .hero-sub{font-size:.84rem !important;line-height:1.45 !important;margin-bottom:14px !important;max-width:100% !important;color:rgba(255,255,255,.78) !important;}
+      .hero-v4 .hero-cta{display:grid !important;grid-template-columns:1fr 1fr !important;gap:7px !important;}
+      .hero-v4 .hero-cta .btn{width:100% !important;min-height:39px !important;padding:0 8px !important;font-size:.56rem !important;}
+      .hero-v4 .hero-facts{display:grid !important;grid-template-columns:1fr 1fr !important;gap:5px 10px !important;margin-top:14px !important;font-size:.52rem !important;}
+      .hero-slide-ui{right:12px !important;bottom:10px !important;}
+
+      /* Main Villa seven photos stay compact: two-row horizontal editorial rail. */
+      .visual-chapter-main{padding:3px 0 50px !important;background:#000 !important;}
+      .visual-chapter-main .visual-chapter-grid{
+        display:grid !important;
+        grid-template-columns:none !important;
+        grid-template-rows:165px 165px !important;
+        grid-auto-columns:66vw !important;
+        grid-auto-flow:column !important;
+        width:100% !important;
+        max-width:none !important;
+        overflow-x:auto !important;
+        overflow-y:hidden !important;
+        gap:3px !important;
+        padding:3px !important;
+        margin:0 !important;
+        scroll-snap-type:x proximity;
+        scrollbar-width:none;
+        -webkit-overflow-scrolling:touch;
+        background:#000 !important;
+      }
+      .visual-chapter-main .visual-chapter-grid::-webkit-scrollbar{display:none;}
+      .visual-chapter-main .vc-shot{display:block !important;grid-column:auto !important;grid-row:auto !important;min-width:0 !important;scroll-snap-align:start;}
+      .visual-chapter-main .vc-shot:nth-child(1){grid-row:1 / span 2 !important;}
+      .visual-chapter-main .vc-shot:nth-child(2){grid-row:1 !important;}
+      .visual-chapter-main .vc-shot:nth-child(3){grid-row:2 !important;}
+      .visual-chapter-main .vc-shot:nth-child(4){grid-row:1 !important;}
+      .visual-chapter-main .vc-shot:nth-child(5){grid-row:2 !important;}
+      .visual-chapter-main .vc-shot:nth-child(6){grid-row:1 !important;}
+      .visual-chapter-main .vc-shot:nth-child(7){grid-row:2 !important;display:block !important;}
+      .visual-chapter-main .vc-shot img{width:100% !important;height:100% !important;object-fit:cover !important;}
+
+      /* Keep the full estate image intact on phones. */
+      .estate-media{background:#111 !important;}
+      .estate-media img{object-fit:contain !important;object-position:center center !important;background:#111 !important;}
+    }
+
+
+
+    /* ===== V10 — hero position correction only ===== */
+    @media(min-width:721px){
+      .hero-v4 .hero-content{
+        justify-content:flex-end !important;
+        align-items:flex-start !important;
+        padding-left:18px !important;
+        padding-right:24px !important;
+        padding-bottom:42px !important;
+      }
+      .hero-v4 .hero-copy{
+        margin-left:0 !important;
+        margin-right:auto !important;
+        text-align:left !important;
+        max-width:760px !important;
+      }
+      .hero-v4 .hero-kicker,
+      .hero-v4 h1,
+      .hero-v4 .hero-sub,
+      .hero-v4 .hero-cta,
+      .hero-v4 .hero-facts{
+        text-align:left !important;
+        margin-left:0 !important;
+        margin-right:auto !important;
+      }
+      .hero-v4 .hero-cta,
+      .hero-v4 .hero-facts{justify-content:flex-start !important;}
+    }
+
+    @media(max-width:720px){
+      .hero-v4 .hero-content{
+        position:relative !important;
+        inset:auto !important;
+        display:block !important;
+        width:100% !important;
+        min-height:0 !important;
+        padding:18px 14px 24px !important;
+        background:#0b0d0b !important;
+      }
+      .hero-v4 .hero-copy{
+        width:100% !important;
+        max-width:none !important;
+        text-align:left !important;
+      }
+      .hero-v4 h1{
+        white-space:normal !important;
+      }
+    }
+
+  </style>
 </head>
-<body data-build="v7-client-refinement-2026-10-05">
+<body data-build="v10-hero-position-2026-10-05">
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <a href="#top" class="brand" aria-label="M&M Villas Vourvourou">
@@ -1877,7 +2099,7 @@
       <div class="hero-content">
         <div class="hero-copy">
           <div class="hero-kicker" data-i18n="hero.kicker">Vourvourou · Halkidiki · Greece</div>
-          <h1 id="heroTitle" data-i18n-html="hero.title">One private estate. Your stay, your way.</h1>
+          <h1 id="heroTitle" data-i18n-html="hero.title">One private estate.<br>Your stay, your way.</h1>
           <p class="hero-sub" data-i18n="hero.subtitle">From one family to a group of twelve, M&M Villas adapts to the way you travel.</p>
           <div class="hero-cta">
             <a class="btn btn-light" href="#find-stay"><span data-i18n="hero.find">Find your stay</span><span class="arrow">→</span></a>
@@ -1905,7 +2127,7 @@
           <figure class="detail-shot a"><img src="Assets/Images/large-villa/35.webp" alt="Bright Main Villa living space with arches and timber details" loading="eager"></figure>
           <figure class="detail-shot b"><img src="Assets/Images/large-villa/21.webp" alt="Main Villa bathroom detail" loading="lazy"></figure>
           <figure class="detail-shot c"><img src="Assets/Images/large-villa/42.webp" alt="Sunny Main Villa terrace detail" loading="lazy"></figure>
-          <figure class="detail-shot d"><img src="Assets/Images/large-villa/37.webp" alt="Main Villa kitchen with warm natural finishes" loading="lazy"></figure>
+          <figure class="detail-shot d"><img src="Assets/Images/large-villa/39.webp" alt="Main Villa warm interior detail" loading="lazy"></figure>
         </div>
       </div>
     </section>
@@ -1952,40 +2174,17 @@
           <p class="quote-line" data-i18n="estate.quote">One family can enjoy its own private villa — just a few steps from the rest of the group.</p>
           <a class="btn btn-light" href="#booking"><span data-i18n="estate.cta">Check the entire estate</span><span class="arrow">→</span></a>
         </div>
-        <div class="estate-media reveal"><img src="Assets/Images/large-villa/7.webp" alt="M&M Villas garden and estate overview" loading="lazy" /></div>
-      </div>
-    </section>
-
-    <section class="estate-cinema" aria-label="M&M Villas visual story">
-      <div class="estate-cinema-grid">
-        <figure class="reveal">
-          <img src="Assets/Images/large-villa/80.webp" alt="M&M Villas and garden in daylight" loading="lazy">
-          
-        </figure>
-        <figure class="reveal">
-          <div class="stack-shot terrace-fit">
-            <img src="Assets/Images/large-villa/40.webp" alt="Main Villa terrace detail" loading="lazy">
-            
-          </div>
-          <div class="stack-shot">
-            <img src="Assets/Images/large-villa/35.webp" alt="Main Villa interior living space" loading="lazy">
-            
-          </div>
-        </figure>
-        <figure class="reveal">
-          <img src="Assets/Images/large-villa/82.webp" alt="M&M Villas outdoor living and barbecue area" loading="lazy">
-          
-        </figure>
+        <div class="estate-media reveal"><img src="Assets/Images/large-villa/82.webp" alt="M&M Villas outdoor barbecue and terrace area" loading="lazy" /></div>
       </div>
     </section>
 
     <section class="section story" id="main-villa">
       <div class="shell story-grid">
         <div class="story-media reveal">
-          <img src="Assets/Images/large-villa/15.webp" alt="Main Villa living space" loading="lazy" />
+          <img src="Assets/Images/large-villa/1.webp" alt="Main Villa living space" loading="lazy" />
           <div class="side">
-            <img src="Assets/Images/large-villa/24.webp" alt="Main Villa bedroom" loading="lazy" />
-            <img src="Assets/Images/large-villa/26.webp" alt="Main Villa bathroom" loading="lazy" />
+            <img src="Assets/Images/large-villa/6.webp" alt="Main Villa interior detail" loading="lazy" />
+            <img src="Assets/Images/large-villa/75.webp" alt="Main Villa terrace and outdoor dining" loading="lazy" />
           </div>
         </div>
         <div class="story-copy reveal">
@@ -2009,13 +2208,13 @@
 
     <section class="visual-chapter visual-chapter-main" aria-label="Main Villa details">
       <div class="visual-chapter-grid">
-        <figure class="vc-shot vc-wide reveal"><img src="Assets/Images/large-villa/35.webp" alt="Main Villa bright living space" loading="lazy"><figcaption>M&M · living</figcaption></figure>
-        <figure class="vc-shot vc-tall reveal"><img src="Assets/Images/large-villa/32.webp" alt="Main Villa bedroom opening toward the terrace" loading="lazy"><figcaption>M&M · bedroom</figcaption></figure>
-        <figure class="vc-shot reveal"><img src="Assets/Images/large-villa/37.webp" alt="Main Villa kitchen detail" loading="lazy"><figcaption>M&M · kitchen</figcaption></figure>
-        <figure class="vc-shot reveal"><img src="Assets/Images/large-villa/21.webp" alt="Main Villa bathroom detail" loading="lazy"><figcaption>M&M · bathroom</figcaption></figure>
-        <figure class="vc-shot vc-landscape reveal"><img src="Assets/Images/large-villa/42.webp" alt="Main Villa terrace" loading="lazy"><figcaption>M&M · terrace</figcaption></figure>
-        <figure class="vc-shot reveal"><img src="Assets/Images/large-villa/13.webp" alt="Main Villa kitchen styling detail" loading="lazy"><figcaption>M&M · details</figcaption></figure>
-        <figure class="vc-shot reveal"><img src="Assets/Images/large-villa/29.webp" alt="Main Villa bedroom detail" loading="lazy"><figcaption>M&M · rest</figcaption></figure>
+        <figure class="vc-shot vc-wide reveal"><img src="Assets/Images/large-villa/35.webp" alt="Main Villa bright living space" loading="lazy"></figure>
+        <figure class="vc-shot vc-tall reveal"><img src="Assets/Images/large-villa/32.webp" alt="Main Villa bedroom opening toward the terrace" loading="lazy"></figure>
+        <figure class="vc-shot reveal"><img src="Assets/Images/large-villa/37.webp" alt="Main Villa kitchen detail" loading="lazy"></figure>
+        <figure class="vc-shot reveal"><img src="Assets/Images/large-villa/21.webp" alt="Main Villa bathroom detail" loading="lazy"></figure>
+        <figure class="vc-shot vc-landscape reveal"><img src="Assets/Images/large-villa/42.webp" alt="Main Villa terrace" loading="lazy"></figure>
+        <figure class="vc-shot reveal"><img src="Assets/Images/large-villa/13.webp" alt="Main Villa kitchen styling detail" loading="lazy"></figure>
+        <figure class="vc-shot reveal"><img src="Assets/Images/large-villa/29.webp" alt="Main Villa bedroom detail" loading="lazy"></figure>
       </div>
     </section>
 
@@ -2159,10 +2358,10 @@
           <div class="outdoor-badge"><strong>1,500 m²</strong><span data-i18n="outdoor.badge">private outdoor setting</span></div>
         </div>
         <div class="experience-grid">
-          <div class="experience reveal"><h3 data-i18n="outdoor.e1t">Gather</h3><p data-i18n="outdoor.e1">Generous outdoor dining for families and groups.</p></div>
-          <div class="experience reveal"><h3 data-i18n="outdoor.e2t">Cook outside</h3><p data-i18n="outdoor.e2">BBQ space for relaxed lunches and summer evenings.</p></div>
-          <div class="experience reveal"><h3 data-i18n="outdoor.e3t">Slow down</h3><p data-i18n="outdoor.e3">Garden, terraces and seating areas around the estate.</p></div>
-          <div class="experience reveal"><h3 data-i18n="outdoor.e4t">Stay flexible</h3><p data-i18n="outdoor.e4">Two separate villas, connected by the same private setting.</p></div>
+          <div class="experience reveal"><span class="experience-number">01</span><h3 data-i18n="outdoor.e1t">Gather</h3><p data-i18n="outdoor.e1">Generous outdoor dining for families and groups.</p></div>
+          <div class="experience reveal"><span class="experience-number">02</span><h3 data-i18n="outdoor.e2t">Cook outside</h3><p data-i18n="outdoor.e2">BBQ space for relaxed lunches and summer evenings.</p></div>
+          <div class="experience reveal"><span class="experience-number">03</span><h3 data-i18n="outdoor.e3t">Slow down</h3><p data-i18n="outdoor.e3">Garden, terraces and seating areas around the estate.</p></div>
+          <div class="experience reveal"><span class="experience-number">04</span><h3 data-i18n="outdoor.e4t">Stay flexible</h3><p data-i18n="outdoor.e4">Two separate villas, connected by the same private setting.</p></div>
         </div>
         <div class="outdoor-reel reveal" aria-label="Outdoor life at M&M Villas">
           <figure><img src="Assets/Images/outdoor/83.webp" alt="M&M Villas estate and private garden" loading="lazy"></figure>
@@ -2216,12 +2415,15 @@
 
 
     <section class="beach-story" id="karidi" aria-label="Karidi Beach near M&M Villas">
-      <div class="shell beach-story-head reveal">
-        <div><p class="eyebrow">Karydi · Vourvourou</p><h2>Turquoise water, just minutes away.</h2></div>
-        <p class="lead">One of Vourvourou’s most recognisable bays is close enough to become part of your everyday holiday rhythm.</p>
+      <div class="beach-feature reveal">
+        <img src="Assets/Images/beach/Beach.webp" alt="Karydi Beach aerial view" loading="lazy">
+        <div class="beach-feature-copy">
+          <p class="eyebrow" id="beachEyebrow">Karydi · Vourvourou</p>
+          <h2 id="beachTitle">Turquoise water, just minutes away.</h2>
+          <p id="beachText">One of Vourvourou’s most recognisable bays is close enough to become part of your everyday holiday rhythm.</p>
+        </div>
       </div>
-      <div class="beach-ribbon reveal">
-        <figure><img src="Assets/Images/beach/Beach.webp" alt="Karydi Beach aerial view" loading="lazy"></figure>
+      <div class="beach-mini-carousel reveal" aria-label="Karidi Beach views">
         <figure><img src="Assets/Images/beach/Beach1.webp" alt="Karydi Beach turquoise water" loading="lazy"></figure>
         <figure><img src="Assets/Images/beach/Beach2.webp" alt="Karydi Beach and Vourvourou coast" loading="lazy"></figure>
         <figure><img src="Assets/Images/beach/Beach3.webp" alt="Karydi Beach shoreline" loading="lazy"></figure>
@@ -2317,7 +2519,7 @@
       en:{
         meta:{title:'M&M Villas Vourvourou | Flexible Private Estate in Halkidiki',description:'A flexible private estate in Vourvourou for one family or groups of up to 12 guests, with a Main Villa, Garden Villa, large garden and outdoor living.'},
         nav:{estate:'The Estate',main:'Main Villa',garden:'Garden Villa',gallery:'Gallery',location:'Location',owner:'Owner Panel',book:'Book now'},
-        hero:{kicker:'Vourvourou · Halkidiki · Greece',title:'One private estate. Your stay, your way.',subtitle:'From one family to a group of twelve, M&M Villas adapts to the way you travel.',find:'Find your stay',explore:'Explore the estate',factBeach:'400 m to the nearest beach',factGuests:'Up to 12 guests',factLand:'1,500 m² private setting'},details:{eyebrow:'The character of M&M',title:'A stay told through light, texture and little details.',text:'White arches, warm timber, woven textures, garden greens and spaces that open naturally toward the outdoors give M&M Villas its own relaxed Mediterranean identity.',quote:'Not a catalogue of rooms — a place with a rhythm of its own.',signature:'M&M Villas · Vourvourou'},
+        hero:{kicker:'Vourvourou · Halkidiki · Greece',title:'One private estate.<br>Your stay, your way.',subtitle:'From one family to a group of twelve, M&M Villas adapts to the way you travel.',find:'Find your stay',explore:'Explore the estate',factBeach:'400 m to the nearest beach',factGuests:'Up to 12 guests',factLand:'1,500 m² private setting'},details:{eyebrow:'The character of M&M',title:'A stay told through light, texture and little details.',text:'White arches, warm timber, woven textures, garden greens and spaces that open naturally toward the outdoors give M&M Villas its own relaxed Mediterranean identity.',quote:'Not a catalogue of rooms — a place with a rhythm of its own.',signature:'M&M Villas · Vourvourou'},
         common:{guests:'guests'},
         selector:{eyebrow:'A stay that adapts',title:'How many are travelling?',subtitle:'Tell us your group size and we’ll show you the most natural way to enjoy M&M Villas.'},
         stay:{
@@ -2342,7 +2544,7 @@
       ro:{
         meta:{title:'M&M Villas Vourvourou | Proprietate privată flexibilă în Halkidiki',description:'O proprietate privată flexibilă în Vourvourou, potrivită pentru o familie sau grupuri de până la 12 persoane, cu Main Villa, Garden Villa, grădină mare și spații exterioare.'},
         nav:{estate:'Proprietatea',main:'Main Villa',garden:'Garden Villa',gallery:'Galerie',location:'Locație',owner:'Owner Panel',book:'Rezervă acum'},
-        hero:{kicker:'Vourvourou · Halkidiki · Grecia',title:'O proprietate privată. Vacanța voastră, așa cum vi se potrivește.',subtitle:'De la o familie la un grup de douăsprezece persoane, M&M Villas se adaptează modului în care călătoriți.',find:'Găsește varianta potrivită',explore:'Descoperă proprietatea',factBeach:'400 m până la cea mai apropiată plajă',factGuests:'Până la 12 oaspeți',factLand:'1.500 m² proprietate privată'},details:{eyebrow:'Caracterul M&M',title:'O vacanță spusă prin lumină, texturi și mici detalii.',text:'Arcade albe, lemn cald, texturi împletite, verdele grădinii și spații care se deschid firesc spre exterior dau M&M Villas o identitate mediteraneană relaxată și personală.',quote:'Nu un catalog de camere — ci un loc cu propriul său ritm.',signature:'M&M Villas · Vourvourou'},
+        hero:{kicker:'Vourvourou · Halkidiki · Grecia',title:'O proprietate privată.<br>Vacanța voastră, așa cum vi se potrivește.',subtitle:'De la o familie la un grup de douăsprezece persoane, M&M Villas se adaptează modului în care călătoriți.',find:'Găsește varianta potrivită',explore:'Descoperă proprietatea',factBeach:'400 m până la cea mai apropiată plajă',factGuests:'Până la 12 oaspeți',factLand:'1.500 m² proprietate privată'},details:{eyebrow:'Caracterul M&M',title:'O vacanță spusă prin lumină, texturi și mici detalii.',text:'Arcade albe, lemn cald, texturi împletite, verdele grădinii și spații care se deschid firesc spre exterior dau M&M Villas o identitate mediteraneană relaxată și personală.',quote:'Nu un catalog de camere — ci un loc cu propriul său ritm.',signature:'M&M Villas · Vourvourou'},
         common:{guests:'oaspeți'},
         selector:{eyebrow:'Un sejur care se adaptează',title:'Câte persoane călătoriți?',subtitle:'Spune-ne mărimea grupului și îți arătăm cea mai potrivită variantă pentru M&M Villas.'},
         stay:{
@@ -2392,7 +2594,7 @@
       de:{
         meta:{title:'M&M Villas Vourvourou | Flexibles privates Anwesen in Chalkidiki',description:'Ein flexibles privates Anwesen in Vourvourou für eine Familie oder Gruppen bis 12 Personen mit Main Villa, Garden Villa, großem Garten und Outdoor-Bereichen.'},
         nav:{estate:'Das Anwesen',main:'Main Villa',garden:'Garden Villa',gallery:'Galerie',location:'Lage',owner:'Owner Panel',book:'Jetzt buchen'},
-        hero:{kicker:'Vourvourou · Chalkidiki · Griechenland',title:'Ein privates Anwesen. Ihr Aufenthalt, auf Ihre Art.',subtitle:'Von einer Familie bis zu einer Gruppe von zwölf Personen passt sich M&M Villas Ihrer Reise an.',find:'Passenden Aufenthalt finden',explore:'Anwesen entdecken',factBeach:'400 m zum nächsten Strand',factGuests:'Bis zu 12 Gäste',factLand:'1.500 m² privates Grundstück'},details:{eyebrow:'Der Charakter von M&M',title:'Ein Aufenthalt erzählt durch Licht, Texturen und kleine Details.',text:'Weiße Bögen, warmes Holz, geflochtene Texturen, Gartengrün und Räume, die sich ganz natürlich nach draußen öffnen, verleihen M&M Villas seine entspannte mediterrane Identität.',quote:'Kein Katalog von Zimmern — sondern ein Ort mit seinem eigenen Rhythmus.',signature:'M&M Villas · Vourvourou'},
+        hero:{kicker:'Vourvourou · Chalkidiki · Griechenland',title:'Ein privates Anwesen.<br>Ihr Aufenthalt, auf Ihre Art.',subtitle:'Von einer Familie bis zu einer Gruppe von zwölf Personen passt sich M&M Villas Ihrer Reise an.',find:'Passenden Aufenthalt finden',explore:'Anwesen entdecken',factBeach:'400 m zum nächsten Strand',factGuests:'Bis zu 12 Gäste',factLand:'1.500 m² privates Grundstück'},details:{eyebrow:'Der Charakter von M&M',title:'Ein Aufenthalt erzählt durch Licht, Texturen und kleine Details.',text:'Weiße Bögen, warmes Holz, geflochtene Texturen, Gartengrün und Räume, die sich ganz natürlich nach draußen öffnen, verleihen M&M Villas seine entspannte mediterrane Identität.',quote:'Kein Katalog von Zimmern — sondern ein Ort mit seinem eigenen Rhythmus.',signature:'M&M Villas · Vourvourou'},
         common:{guests:'Gäste'},
         selector:{eyebrow:'Ein Aufenthalt, der sich anpasst',title:'Wie viele Personen reisen?',subtitle:'Nennen Sie uns Ihre Gruppengröße und wir zeigen Ihnen die passende Konfiguration für M&M Villas.'},
         stay:{
@@ -2442,7 +2644,7 @@
       sr:{
         meta:{title:'M&M Villas Vourvourou | Fleksibilno privatno imanje na Halkidikiju',description:'Fleksibilno privatno imanje u Vourvourou za jednu porodicu ili grupe do 12 gostiju, sa Main Villa, Garden Villa, velikim vrtom i spoljnim prostorima.'},
         nav:{estate:'Imanje',main:'Main Villa',garden:'Garden Villa',gallery:'Galerija',location:'Lokacija',owner:'Owner Panel',book:'Rezerviši sada'},
-        hero:{kicker:'Vourvourou · Halkidiki · Grčka',title:'Jedno privatno imanje. Vaš boravak, na vaš način.',subtitle:'Od jedne porodice do grupe od dvanaest osoba, M&M Villas se prilagođava načinu na koji putujete.',find:'Pronađite svoj boravak',explore:'Istražite imanje',factBeach:'400 m do najbliže plaže',factGuests:'Do 12 gostiju',factLand:'1.500 m² privatnog prostora'},details:{eyebrow:'Karakter M&M-a',title:'Boravak ispričan kroz svetlost, teksture i male detalje.',text:'Beli lukovi, toplo drvo, pletene teksture, zelenilo vrta i prostori koji se prirodno otvaraju ka spolja daju M&M Villas-u opušten mediteranski identitet.',quote:'Ne katalog soba — već mesto sa sopstvenim ritmom.',signature:'M&M Villas · Vourvourou'},
+        hero:{kicker:'Vourvourou · Halkidiki · Grčka',title:'Jedno privatno imanje.<br>Vaš boravak, na vaš način.',subtitle:'Od jedne porodice do grupe od dvanaest osoba, M&M Villas se prilagođava načinu na koji putujete.',find:'Pronađite svoj boravak',explore:'Istražite imanje',factBeach:'400 m do najbliže plaže',factGuests:'Do 12 gostiju',factLand:'1.500 m² privatnog prostora'},details:{eyebrow:'Karakter M&M-a',title:'Boravak ispričan kroz svetlost, teksture i male detalje.',text:'Beli lukovi, toplo drvo, pletene teksture, zelenilo vrta i prostori koji se prirodno otvaraju ka spolja daju M&M Villas-u opušten mediteranski identitet.',quote:'Ne katalog soba — već mesto sa sopstvenim ritmom.',signature:'M&M Villas · Vourvourou'},
         common:{guests:'gostiju'},
         selector:{eyebrow:'Boravak koji se prilagođava',title:'Koliko vas putuje?',subtitle:'Recite nam veličinu grupe i pokazaćemo vam najprirodniju opciju za M&M Villas.'},
         stay:{
@@ -2489,11 +2691,13 @@
       const f=document.getElementById('activeFlag');f.style.display='';f.src='Assets/Icons/'+LANGS[currentLang].flag;
       f.onerror=()=>f.style.display='none';
       renderLanguageMenu();
+      applyBeachLanguage();
       updateStay(selectedRange);
       updateBookingRecommendation();
       renderStayCalendar();
       document.getElementById('amenitiesToggle').textContent=t(document.getElementById('amenitiesExtra').classList.contains('open')?'amenities.less':'amenities.more');
       document.getElementById('galleryMore').textContent=t(galleryExpanded?'gallery.less':'gallery.more');
+      if(document.getElementById('reviewStage')) renderGuestReviews();
       const u=new URL(location.href);u.searchParams.set('lang',currentLang);history.replaceState({},'',u);
     }
 
@@ -2654,6 +2858,21 @@
     }
 
 
+
+    const BEACH_TEXT={
+      en:{eyebrow:'Karydi · Vourvourou',title:'Turquoise water, just minutes away.',text:'One of Vourvourou’s most recognisable bays is close enough to become part of your everyday holiday rhythm.'},
+      ro:{eyebrow:'Karydi · Vourvourou',title:'Apă turcoaz, la doar câteva minute.',text:'Unul dintre cele mai cunoscute golfuri din Vourvourou este suficient de aproape încât să devină parte din ritmul zilnic al vacanței.'},
+      el:{eyebrow:'Καρυδή · Βουρβουρού',title:'Τιρκουάζ νερά, μόλις λίγα λεπτά μακριά.',text:'Ένας από τους πιο αναγνωρίσιμους όρμους της Βουρβουρού βρίσκεται τόσο κοντά ώστε να γίνει μέρος της καθημερινής σας εμπειρίας στις διακοπές.'},
+      de:{eyebrow:'Karydi · Vourvourou',title:'Türkisblaues Wasser, nur wenige Minuten entfernt.',text:'Eine der bekanntesten Buchten von Vourvourou liegt so nah, dass sie ganz selbstverständlich Teil Ihres Urlaubsalltags werden kann.'},
+      bg:{eyebrow:'Кариди · Вурвуру',title:'Тюркоазена вода, само на няколко минути.',text:'Един от най-разпознаваемите заливи на Вурвуру е достатъчно близо, за да стане естествена част от всеки ден на почивката ви.'},
+      sr:{eyebrow:'Karidi · Vurvuru',title:'Tirkizna voda, na samo nekoliko minuta.',text:'Jedan od najprepoznatljivijih zaliva Vurvurua dovoljno je blizu da lako postane deo svakog dana vašeg odmora.'}
+    };
+    function applyBeachLanguage(){
+      const copy=BEACH_TEXT[currentLang]||BEACH_TEXT.en;
+      const e=document.getElementById('beachEyebrow'),t1=document.getElementById('beachTitle'),p=document.getElementById('beachText');
+      if(e)e.textContent=copy.eyebrow;if(t1)t1.textContent=copy.title;if(p)p.textContent=copy.text;
+    }
+
     const GUEST_REVIEWS=[
       {
         author:'Laurenti',country:'România',flag:'🇷🇴',stay:'Vilă Deluxe · 4 nopți · iulie 2026 · Familie',
@@ -2692,20 +2911,117 @@
       }
     ];
 
+
+
+    const REVIEW_TRANSLATIONS=[
+      {
+        en:{title:'Exceptional',text:`We had such an amazing stay at this place! First off, Kostas and Niki are incredible hosts—their warm hospitality and helpfulness made a huge difference, and they were always there whenever we needed anything. They shared places with us that we visited and loved. They also recommended Diaporos, which was incredible. The location is wonderful and felt completely safe, just like at home. There was another family staying next to us; they were kind and never bothered us, and our children played together perfectly. We loved using the outdoor barbecue, and relaxing together to watch the match on TV made for a perfect evening. Everything was clean, beautiful and so welcoming. We couldn't have asked for a better experience!`},
+        ro:{title:'Excepțional',text:`Am avut un sejur extraordinar! Kostas și Niki sunt gazde incredibile — ospitalitatea și disponibilitatea lor au făcut o diferență enormă și au fost mereu acolo când am avut nevoie. Ne-au recomandat mai multe locuri pe care le-am vizitat și ne-au plăcut foarte mult, inclusiv Diaporos, care a fost incredibil. Locația este minunată și ne-am simțit complet în siguranță, ca acasă. Lângă noi a stat o altă familie, foarte amabilă și discretă, iar copiii noștri s-au jucat perfect împreună. Ne-a plăcut mult grătarul exterior, iar o seară relaxantă în care am urmărit meciul la TV a fost perfectă. Totul a fost curat, frumos și primitor. Nu ne-am fi putut dori o experiență mai bună!`},
+        de:{title:'Außergewöhnlich',text:`Wir hatten einen fantastischen Aufenthalt! Kostas und Niki sind großartige Gastgeber – ihre herzliche Gastfreundschaft und Hilfsbereitschaft haben einen großen Unterschied gemacht, und sie waren immer da, wenn wir etwas brauchten. Sie empfahlen uns mehrere Orte, die wir besucht und geliebt haben, darunter Diaporos, das einfach unglaublich war. Die Lage ist wunderbar und fühlte sich vollkommen sicher an, fast wie zu Hause. Neben uns wohnte eine andere Familie, die sehr freundlich und rücksichtsvoll war, und unsere Kinder spielten wunderbar zusammen. Wir haben den Grill im Freien sehr genossen, und gemeinsam ein Spiel im Fernsehen anzusehen, war der perfekte Abschluss eines Abends. Alles war sauber, schön und unglaublich einladend. Wir hätten uns keine bessere Erfahrung wünschen können!`},
+        el:{title:'Εξαιρετικό',text:`Περάσαμε υπέροχα! Ο Κώστας και η Νίκη είναι καταπληκτικοί οικοδεσπότες — η ζεστή φιλοξενία και η προθυμία τους έκαναν πραγματικά τη διαφορά και ήταν πάντα διαθέσιμοι όταν τους χρειαζόμασταν. Μας πρότειναν μέρη που επισκεφθήκαμε και αγαπήσαμε, ανάμεσά τους και το Διάπορο, που ήταν απίστευτο. Η τοποθεσία είναι υπέροχη και νιώθαμε απόλυτα ασφαλείς, σαν στο σπίτι μας. Δίπλα μας έμενε άλλη μία οικογένεια, πολύ ευγενική και διακριτική, και τα παιδιά μας έπαιξαν υπέροχα μαζί. Απολαύσαμε πολύ το εξωτερικό BBQ και μια χαλαρή βραδιά βλέποντας τον αγώνα στην τηλεόραση ήταν ιδανική. Όλα ήταν καθαρά, όμορφα και πολύ φιλόξενα. Δεν θα μπορούσαμε να ζητήσουμε καλύτερη εμπειρία!`},
+        bg:{title:'Изключително',text:`Прекарахме невероятно! Костас и Ники са прекрасни домакини — топлото им гостоприемство и готовността им да помогнат направиха огромна разлика и винаги бяха насреща, когато имахме нужда. Препоръчаха ни места, които посетихме и много харесахме, включително Диапорос, който беше невероятен. Мястото е чудесно и се чувствахме напълно сигурни, почти като у дома. До нас беше отседнало друго семейство, много любезно и ненатрапчиво, а децата ни играеха чудесно заедно. Много ни хареса външното барбекю, а спокойната вечер пред телевизора с мача беше перфектна. Всичко беше чисто, красиво и изключително приветливо. Не бихме могли да желаем по-добро преживяване!`},
+        sr:{title:'Izuzetno',text:`Imali smo fantastičan boravak! Kostas i Niki su sjajni domaćini — njihovo srdačno gostoprimstvo i spremnost da pomognu napravili su veliku razliku i uvek su bili tu kada nam je nešto trebalo. Preporučili su nam mesta koja smo posetili i zavoleli, uključujući Diaporos, koji je bio neverovatan. Lokacija je divna i osećali smo se potpuno bezbedno, gotovo kao kod kuće. Pored nas je boravila još jedna porodica, veoma ljubazna i nenametljiva, a naša deca su se odlično igrala zajedno. Uživali smo u spoljašnjem roštilju, a opušteno gledanje utakmice na TV-u bilo je savršeno veče. Sve je bilo čisto, lepo i izuzetno prijatno. Nismo mogli da poželimo bolje iskustvo!`}
+      },
+      {
+        en:{title:'An absolute gem of a place!',text:`The location is absolutely perfect—peaceful, easy to reach and surrounded by beautiful nature. The lush gardens are a highlight and look especially beautiful when illuminated at night. We loved the fruit trees, especially the apple and pear trees, which give the estate a charming natural feel. The outdoor showers are stylish and refreshing after a day out. Inside, the decoration is exceptional: a beautiful blend of minimalist Cycladic style and boho-chic details, with wood, arches and high-quality finishes. Every corner feels carefully designed and everything was spotlessly clean. Highly recommended for a relaxing, high-end stay. We cannot wait to return!`},
+        ro:{title:'Un loc cu adevărat special!',text:`Locația este absolut perfectă — liniștită, ușor accesibilă și înconjurată de natură frumoasă. Grădinile bogate sunt unul dintre punctele forte și arată spectaculos când sunt iluminate seara. Ne-au plăcut pomii fructiferi, mai ales merii și perii, care dau proprietății un farmec natural aparte. Dușurile exterioare sunt elegante și foarte plăcute după o zi petrecută afară. La interior, decorul este excepțional: un amestec reușit de stil cicladic minimalist și boho-chic, cu lemn, arcade și finisaje de calitate. Fiecare colț pare atent gândit, iar curățenia a fost impecabilă. Recomandăm cu căldură pentru un sejur relaxant și premium. Abia așteptăm să revenim!`},
+        de:{title:'Ein echtes Juwel!',text:`Die Lage ist einfach perfekt – ruhig, gut erreichbar und von wunderschöner Natur umgeben. Die üppigen Gärten sind ein echtes Highlight und wirken abends mit der Beleuchtung besonders stimmungsvoll. Uns gefielen die Obstbäume sehr, besonders Apfel- und Birnbäume, die dem Anwesen einen natürlichen Charme verleihen. Die Außenduschen sind stilvoll und nach einem Tag unterwegs wunderbar erfrischend. Innen ist die Einrichtung außergewöhnlich: eine gelungene Mischung aus minimalistischem Kykladen-Stil und Boho-Chic mit Holzdetails, Bögen und hochwertigen Oberflächen. Jede Ecke ist geschmackvoll gestaltet und alles war makellos sauber. Sehr zu empfehlen für einen entspannten, hochwertigen Aufenthalt. Wir können es kaum erwarten, wiederzukommen!`},
+        el:{title:'Ένα πραγματικό διαμάντι!',text:`Η τοποθεσία είναι πραγματικά ιδανική — ήσυχη, εύκολα προσβάσιμη και μέσα σε πανέμορφη φύση. Οι καταπράσινοι κήποι είναι από τα μεγάλα πλεονεκτήματα και φωτισμένοι τη νύχτα είναι ακόμη πιο εντυπωσιακοί. Μας άρεσαν πολύ τα οπωροφόρα δέντρα, ιδιαίτερα οι μηλιές και οι αχλαδιές, που προσθέτουν φυσική γοητεία στο κτήμα. Τα εξωτερικά ντους είναι κομψά και δροσιστικά μετά από μια γεμάτη μέρα. Στο εσωτερικό, η διακόσμηση είναι εξαιρετική: ένας πολύ όμορφος συνδυασμός μινιμαλιστικού κυκλαδίτικου ύφους και boho-chic, με ξύλο, καμάρες και ποιοτικά τελειώματα. Κάθε γωνιά είναι προσεγμένη και όλα ήταν πεντακάθαρα. Το προτείνουμε ανεπιφύλακτα για μια χαλαρωτική και ποιοτική διαμονή. Ανυπομονούμε να επιστρέψουμε!`},
+        bg:{title:'Истинско бижу!',text:`Местоположението е просто перфектно — спокойно, лесно достъпно и заобиколено от красива природа. Зелените градини са голям акцент и вечер изглеждат особено впечатляващо с осветлението. Много ни харесаха плодните дървета, особено ябълките и крушите, които придават естествен чар на имота. Външните душове са стилни и освежаващи след цял ден навън. Вътре декорацията е изключителна: прекрасна комбинация от минималистичен цикладски стил и бохо-шик, с дървени детайли, арки и качествени завършващи елементи. Всеки ъгъл е внимателно оформен и всичко беше безупречно чисто. Горещо препоръчваме за спокойна и висококачествена почивка. Нямаме търпение да се върнем!`},
+        sr:{title:'Pravi dragulj!',text:`Lokacija je zaista savršena — mirna, lako dostupna i okružena prelepom prirodom. Bujne bašte su jedan od najvećih aduta, a noću, kada su osvetljene, izgledaju posebno lepo. Oduševila su nas voćna stabla, naročito jabuke i kruške, koja imanju daju poseban prirodni šarm. Spoljašnji tuševi su elegantni i osvežavajući posle celog dana napolju. Enterijer je izuzetan: vrlo lep spoj minimalističkog kikladskog stila i boho-chic detalja, sa drvetom, lukovima i kvalitetnim završnim obradama. Svaki kutak je pažljivo uređen i sve je bilo besprekorno čisto. Topla preporuka za opušten i kvalitetan boravak. Jedva čekamo da se vratimo!`}
+      },
+      {
+        en:{title:'Paradise',text:`We travel often as a family and I can honestly say this is the cleanest villa I have ever stayed in. The hostess welcomed us with a smile and we felt at home from the very first moment. At this time of year the beaches of Vourvourou have very few people, and it feels like paradise. In just three minutes we were at the famous Karidi Beach. In the afternoon we had a barbecue in the garden and did not even want to go to a tavern because everything was so beautiful. We recommend this villa and will definitely return. Kostas and Niki, thank you for your hospitality!`},
+        ro:{title:'Paradis',text:`Călătorim des în familie și pot spune sincer că aceasta este cea mai curată vilă în care am stat vreodată. Gazda ne-a întâmpinat cu zâmbetul pe buze și ne-am simțit ca acasă din primul moment. În această perioadă plajele din Vourvourou sunt foarte liniștite și senzația este de adevărat paradis. În doar trei minute am ajuns la faimoasa plajă Karidi. După-amiaza am făcut grătar în curte și nici nu ne-am mai dorit să mergem la tavernă, pentru că totul era atât de frumos. Recomandăm vila și vom reveni cu siguranță. Kostas și Niki, vă mulțumim pentru ospitalitate!`},
+        de:{title:'Paradies',text:`Wir reisen oft als Familie, und ich kann ehrlich sagen, dass dies die sauberste Villa ist, in der ich je übernachtet habe. Die Gastgeberin empfing uns mit einem Lächeln und wir fühlten uns vom ersten Moment an wie zu Hause. Zu dieser Jahreszeit sind die Strände von Vourvourou angenehm ruhig und es fühlt sich wie im Paradies an. In nur drei Minuten waren wir am berühmten Karidi Beach. Am Nachmittag haben wir im Garten gegrillt und wollten gar nicht mehr in eine Taverne gehen, weil alles so schön war. Wir empfehlen diese Villa sehr und werden auf jeden Fall wiederkommen. Kostas und Niki, vielen Dank für eure Gastfreundschaft!`},
+        el:{title:'Παράδεισος',text:`Ταξιδεύουμε συχνά ως οικογένεια και μπορώ να πω ειλικρινά ότι αυτή είναι η πιο καθαρή βίλα στην οποία έχουμε μείνει ποτέ. Η οικοδέσποινα μας υποδέχθηκε με χαμόγελο και από την πρώτη στιγμή νιώσαμε σαν στο σπίτι μας. Αυτή την εποχή οι παραλίες της Βουρβουρού έχουν πολύ λίγο κόσμο και η αίσθηση είναι πραγματικά παραδεισένια. Σε μόλις τρία λεπτά βρεθήκαμε στη διάσημη παραλία Καρυδή. Το απόγευμα κάναμε BBQ στον κήπο και δεν θέλαμε καν να πάμε σε ταβέρνα, γιατί όλα ήταν τόσο όμορφα. Προτείνουμε ανεπιφύλακτα τη βίλα και σίγουρα θα επιστρέψουμε. Κώστα και Νίκη, σας ευχαριστούμε για τη φιλοξενία!`},
+        bg:{title:'Рай',text:`Пътуваме често със семейството си и мога честно да кажа, че това е най-чистата вила, в която сме отсядали. Домакинята ни посрещна с усмивка и още от първия момент се почувствахме като у дома. По това време плажовете на Вурвуру са много спокойни и усещането е като в рай. Само за три минути стигнахме до известния плаж Кариди. Следобед си направихме барбекю в градината и дори не ни се ходеше до таверна, защото всичко беше толкова красиво. Препоръчваме тази вила и със сигурност ще се върнем. Костас и Ники, благодарим ви за гостоприемството!`},
+        sr:{title:'Raj',text:`Često putujemo kao porodica i mogu iskreno da kažem da je ovo najčistija vila u kojoj smo ikada boravili. Domaćica nas je dočekala sa osmehom i od prvog trenutka smo se osećali kao kod kuće. U ovo doba godine plaže Vurvurua su veoma mirne i zaista deluje kao raj. Za samo tri minuta stigli smo do poznate plaže Karidi. Popodne smo pravili roštilj u dvorištu i nismo ni želeli da idemo u tavernu jer je sve bilo tako lepo. Preporučujemo ovu vilu i sigurno ćemo se vratiti. Kostas i Niki, hvala vam na gostoprimstvu!`}
+      },
+      {
+        en:{title:'Ideal for families with children',text:`The wall decoration is reminiscent of a Greek island, and the layout with the bedrooms, bathrooms and outdoor showers is one of the smartest I have seen. If you visit with three families, the ground-floor third bedroom with its outdoor shower and toilet gives excellent privacy. The outdoor showers are fantastic and the garden is huge and beautiful. From the balcony you can see the Diaporos islands, and Kostas recommended boats so we could visit them — a great experience. Kostas and Niki are very kind and helpful. I recommend M&M Villas for families with children.`},
+        ro:{title:'Ideal pentru familii cu copii',text:`Decorul pereților amintește de o insulă grecească, iar organizarea dormitoarelor, băilor și dușurilor exterioare este una dintre cele mai inteligente pe care le-am întâlnit. Dacă veniți trei familii, al treilea dormitor de la parter, cu duș exterior și toaletă, oferă foarte multă intimitate. Dușurile exterioare sunt excelente, iar grădina este foarte mare și frumoasă. De pe balcon se văd insulele Diaporos, iar Kostas ne-a recomandat bărci pentru a le vizita — o experiență minunată. Kostas și Niki sunt foarte amabili și de ajutor. Recomand M&M Villas familiilor cu copii.`},
+        de:{title:'Ideal für Familien mit Kindern',text:`Die Wandgestaltung erinnert an eine griechische Insel, und die Aufteilung mit Schlafzimmern, Bädern und Außenduschen gehört zu den cleversten, die ich erlebt habe. Wenn man mit drei Familien reist, bietet das dritte Schlafzimmer im Erdgeschoss mit eigener Außendusche und Toilette viel Privatsphäre. Die Außenduschen sind großartig und der Garten ist riesig und wunderschön. Vom Balkon sieht man die Diaporos-Inseln, und Kostas empfahl uns Boote, mit denen wir sie besuchen konnten – ein tolles Erlebnis. Kostas und Niki sind sehr freundlich und hilfsbereit. Ich empfehle M&M Villas besonders Familien mit Kindern.`},
+        el:{title:'Ιδανικό για οικογένειες με παιδιά',text:`Η διακόσμηση στους τοίχους θυμίζει ελληνικό νησί και η διαρρύθμιση με τα υπνοδωμάτια, τα μπάνια και τα εξωτερικά ντους είναι από τις πιο έξυπνες που έχω δει. Αν επισκεφθείτε το κατάλυμα με τρεις οικογένειες, το τρίτο υπνοδωμάτιο στο ισόγειο, με εξωτερικό ντους και τουαλέτα, προσφέρει εξαιρετική ιδιωτικότητα. Τα εξωτερικά ντους είναι υπέροχα και ο κήπος πολύ μεγάλος και όμορφος. Από το μπαλκόνι φαίνονται τα νησάκια του Διαπόρου και ο Κώστας μας πρότεινε βάρκες για να τα επισκεφθούμε — εξαιρετική εμπειρία. Ο Κώστας και η Νίκη είναι πολύ ευγενικοί και εξυπηρετικοί. Προτείνω το M&M Villas σε οικογένειες με παιδιά.`},
+        bg:{title:'Идеално за семейства с деца',text:`Декорацията по стените напомня за гръцки остров, а разпределението на спалните, баните и външните душове е едно от най-умните, които съм виждал. Ако сте три семейства, третата спалня на приземния етаж с външен душ и тоалетна дава отлична уединеност. Външните душове са страхотни, а градината е огромна и красива. От балкона се виждат островите Диапорос, а Костас ни препоръча лодки, за да ги посетим — чудесно преживяване. Костас и Ники са много любезни и отзивчиви. Препоръчвам M&M Villas на семейства с деца.`},
+        sr:{title:'Idealno za porodice sa decom',text:`Dekoracija na zidovima podseća na grčko ostrvo, a raspored spavaćih soba, kupatila i spoljašnjih tuševa jedan je od najpametnijih koje sam video. Ako dolazite sa tri porodice, treća spavaća soba u prizemlju, sa spoljašnjim tušem i toaletom, pruža odličnu privatnost. Spoljašnji tuševi su sjajni, a bašta ogromna i prelepa. Sa balkona se vide ostrva Diaporos, a Kostas nam je preporučio čamce kako bismo ih posetili — odlično iskustvo. Kostas i Niki su veoma ljubazni i spremni da pomognu. Preporučujem M&M Villas porodicama sa decom.`}
+      },
+      {
+        en:{title:'Exceptional',text:`We had a very good time here. Places like this are often far from everything and can sometimes feel isolated, but this location was excellent. The beach is only about three minutes away by car, and the area is quiet and safe. The house is beautifully decorated and feels cosy. The mattress and pillows were very comfortable. The garden is large and beautiful, and from the house we could see the mountains and the Diaporos islands. Our children played a lot and were very happy. We stayed in the garden late every evening because it was so peaceful. We will miss it when we are back home — we wished we could stay all summer.`},
+        ro:{title:'Excepțional',text:`Ne-am simțit foarte bine aici. De multe ori casele de acest tip sunt departe de orice și pot părea izolate, dar această locație a fost excelentă. Plaja este la aproximativ trei minute cu mașina, iar zona este liniștită și sigură. Casa este frumos decorată și foarte primitoare. Salteaua și pernele au fost extrem de confortabile. Grădina este mare și frumoasă, iar din casă se văd munții și insulele Diaporos. Copiii noștri s-au jucat mult și au fost foarte fericiți. În fiecare seară am stat în grădină până târziu, pentru că era atât de liniște. O să ne fie dor când revenim acasă — ne-am fi dorit să rămânem toată vara.`},
+        de:{title:'Außergewöhnlich',text:`Wir hatten hier eine sehr schöne Zeit. Häuser dieser Art liegen oft weit außerhalb und können manchmal etwas abgeschieden wirken, aber diese Lage war hervorragend. Der Strand ist nur etwa drei Autominuten entfernt, und die Gegend ist ruhig und sicher. Das Haus ist wunderschön eingerichtet und sehr gemütlich. Matratze und Kissen waren äußerst bequem. Der Garten ist groß und schön, und vom Haus aus konnten wir die Berge und die Diaporos-Inseln sehen. Unsere Kinder haben viel gespielt und waren sehr glücklich. Wir saßen jeden Abend bis spät in der Nacht im Garten, weil es so friedlich war. Wir werden den Ort vermissen, wenn wir wieder zu Hause sind – am liebsten wären wir den ganzen Sommer geblieben.`},
+        el:{title:'Εξαιρετικό',text:`Περάσαμε πολύ όμορφα εδώ. Συνήθως τέτοια σπίτια βρίσκονται αρκετά απομονωμένα, όμως η συγκεκριμένη τοποθεσία ήταν εξαιρετική. Η παραλία απέχει περίπου τρία λεπτά με το αυτοκίνητο και η περιοχή είναι ήσυχη και ασφαλής. Το σπίτι είναι πολύ όμορφα διακοσμημένο και αποπνέει ζεστασιά. Το στρώμα και τα μαξιλάρια ήταν πολύ άνετα. Ο κήπος είναι μεγάλος και πανέμορφος και από το σπίτι βλέπαμε τα βουνά και τα νησάκια του Διαπόρου. Τα παιδιά μας έπαιξαν πολύ και ήταν πολύ χαρούμενα. Κάθε βράδυ μέναμε στον κήπο μέχρι αργά, γιατί η ατμόσφαιρα ήταν τόσο ήρεμη. Θα μας λείψει πολύ όταν επιστρέψουμε σπίτι — θα θέλαμε να μπορούσαμε να μείνουμε όλο το καλοκαίρι.`},
+        bg:{title:'Изключително',text:`Прекарахме чудесно тук. Често подобни къщи са далеч от всичко и могат да изглеждат изолирани, но това място беше отлично. Плажът е само на около три минути с кола, а районът е тих и безопасен. Къщата е красиво декорирана и много уютна. Матракът и възглавниците бяха изключително удобни. Градината е голяма и красива, а от къщата се виждат планините и островите Диапорос. Децата ни играха много и бяха много щастливи. Всяка вечер оставахме в градината до късно, защото беше толкова спокойно. Ще ни липсва, когато се приберем — искаше ни се да останем цялото лято.`},
+        sr:{title:'Izuzetno',text:`Bilo nam je veoma lepo ovde. Ovakve kuće su često daleko od svega i ponekad mogu delovati izolovano, ali ova lokacija je bila odlična. Plaža je udaljena samo oko tri minuta kolima, a kraj je miran i bezbedan. Kuća je lepo uređena i veoma prijatna. Dušek i jastuci su bili izuzetno udobni. Bašta je velika i prelepa, a iz kuće smo mogli da vidimo planine i ostrva Diaporos. Naša deca su se mnogo igrala i bila veoma srećna. Svake večeri smo ostajali u bašti do kasno jer je bilo tako mirno. Nedostajaće nam kada se vratimo kući — voleli bismo da smo mogli da ostanemo celo leto.`}
+      },
+      {
+        en:{title:'Exceptional',text:`⭐️⭐️⭐️⭐️⭐️ We had an absolutely wonderful stay at this summer villa! The house was beautifully decorated, spotless and immediately felt welcoming and comfortable. The peaceful location was ideal — close to stunning beaches yet quiet enough to truly relax. The garden was perfect for morning coffee or evening drinks, and the children loved having safe space to play. The host was warm, friendly and attentive, making sure we had everything we needed for a carefree holiday. Overall, it was a memorable experience combining comfort, style and genuine hospitality.`},
+        ro:{title:'Excepțional',text:`⭐️⭐️⭐️⭐️⭐️ Am avut un sejur absolut minunat în această vilă de vară! Casa este frumos decorată, impecabil de curată și transmite din primul moment o atmosferă primitoare și confortabilă. Locația liniștită este ideală — aproape de plaje superbe, dar suficient de retrasă pentru o relaxare adevărată. Grădina a fost perfectă pentru cafeaua de dimineață sau băuturile de seară, iar copiii au adorat spațiul sigur în care se puteau juca. Gazda a fost caldă, prietenoasă și atentă, asigurându-se că avem tot ce ne trebuie pentru o vacanță fără griji. Per total, a fost o experiență memorabilă, cu mult confort, stil și ospitalitate autentică.`},
+        de:{title:'Außergewöhnlich',text:`⭐️⭐️⭐️⭐️⭐️ Wir hatten einen absolut wunderbaren Aufenthalt in dieser Sommervilla! Das Haus ist wunderschön eingerichtet, makellos sauber und fühlte sich sofort einladend und komfortabel an. Die ruhige Lage ist ideal – nahe an traumhaften Stränden und gleichzeitig ruhig genug, um wirklich abzuschalten. Der Garten war perfekt für den Morgenkaffee oder einen Drink am Abend, und die Kinder liebten den sicheren Platz zum Spielen. Der Gastgeber war herzlich, freundlich und aufmerksam und sorgte dafür, dass uns für einen unbeschwerten Urlaub nichts fehlte. Insgesamt war es ein unvergessliches Erlebnis mit viel Komfort, Stil und echter Gastfreundschaft.`},
+        el:{title:'Εξαιρετικό',text:`⭐️⭐️⭐️⭐️⭐️ Περάσαμε υπέροχα σε αυτή τη θερινή βίλα! Το σπίτι ήταν πανέμορφα διακοσμημένο, πεντακάθαρο και από την πρώτη στιγμή ένιωθες άνετα και ευπρόσδεκτα. Η ήσυχη τοποθεσία ήταν ιδανική — κοντά σε εκπληκτικές παραλίες αλλά αρκετά ήρεμη για πραγματική χαλάρωση. Ο κήπος ήταν τέλειος για πρωινό καφέ ή ποτό το βράδυ, ενώ τα παιδιά λάτρεψαν τον ασφαλή χώρο για παιχνίδι. Ο οικοδεσπότης ήταν ζεστός, φιλικός και προσεκτικός, φροντίζοντας να έχουμε όλα όσα χρειαζόμασταν για ξέγνοιαστες διακοπές. Συνολικά, ήταν μια αξέχαστη εμπειρία που συνδύαζε άνεση, στυλ και αυθεντική φιλοξενία.`},
+        bg:{title:'Изключително',text:`⭐️⭐️⭐️⭐️⭐️ Имахме прекрасен престой в тази лятна вила! Къщата беше красиво декорирана, безупречно чиста и още от първия момент се усещаше приветлива и комфортна. Спокойното местоположение е идеално — близо до прекрасни плажове, но достатъчно тихо за истинска почивка. Градината беше чудесна за сутрешно кафе или вечерни напитки, а децата много харесаха безопасното пространство за игра. Домакинът беше топъл, приятелски настроен и внимателен и се погрижи да имаме всичко необходимо за безгрижна ваканция. Като цяло това беше незабравимо преживяване, съчетаващо комфорт, стил и истинско гостоприемство.`},
+        sr:{title:'Izuzetno',text:`⭐️⭐️⭐️⭐️⭐️ Imali smo divan boravak u ovoj letnjoj vili! Kuća je lepo uređena, besprekorno čista i odmah deluje prijatno i udobno. Mirna lokacija je idealna — blizu prelepih plaža, a opet dovoljno tiha za pravo opuštanje. Bašta je bila savršena za jutarnju kafu ili večernje piće, a deca su uživala u bezbednom prostoru za igru. Domaćin je bio srdačan, prijateljski nastrojen i pažljiv i pobrinuo se da imamo sve što nam je potrebno za bezbrižan odmor. Sve u svemu, bilo je to nezaboravno iskustvo koje spaja udobnost, stil i iskreno gostoprimstvo.`}
+      },
+      {
+        en:{title:'Our perfect vacation 🏝️🌞',text:`We spent the first six days of our family vacation here and could not have been happier. The stay had the perfect balance between relaxing and having fun. The villa is very spacious, especially for just my husband and me, and we had plenty of room. The decor is modern, with playful details, beautiful summer colours, plants and many windows that make the rooms very bright. Everything was perfectly clean and the hosts made us feel as comfortable as at home. We absolutely loved the garden and hope to return next year with friends and our children. We enjoyed the views from different parts of the villa, and watching the sunset was perfect after a long day at the beach. The location is peaceful and also very close to some of the most beautiful beaches.`},
+        ro:{title:'Vacanța noastră perfectă 🏝️🌞',text:`Am petrecut aici primele șase zile din vacanța noastră de familie și nu puteam fi mai fericiți. Sejurul a avut echilibrul perfect între relaxare și distracție. Vila este foarte spațioasă, mai ales pentru mine și soțul meu, și am avut mai mult decât suficient loc. Decorul este modern, cu detalii vesele, culori frumoase de vară, plante și multe ferestre care fac camerele foarte luminoase. Totul a fost perfect curat, iar gazdele au făcut tot posibilul să ne simțim ca acasă. Am iubit grădina și sperăm să revenim anul viitor împreună cu prieteni și copiii noștri. Ne-au plăcut priveliștile din diferite puncte ale vilei, iar apusul a fost perfect după o zi lungă la plajă. Locația este liniștită și, în același timp, foarte aproape de unele dintre cele mai frumoase plaje.`},
+        de:{title:'Unser perfekter Urlaub 🏝️🌞',text:`Wir verbrachten die ersten sechs Tage unseres Familienurlaubs hier und hätten nicht glücklicher sein können. Der Aufenthalt war perfekt ausgewogen zwischen Entspannung und Spaß. Die Villa ist sehr großzügig, besonders für meinen Mann und mich, und wir hatten reichlich Platz. Die Einrichtung ist modern, mit verspielten Details, schönen Sommerfarben, Pflanzen und vielen Fenstern, die die Räume sehr hell machen. Alles war perfekt sauber und die Gastgeber gaben uns das Gefühl, zu Hause zu sein. Wir haben den Garten geliebt und hoffen, nächstes Jahr mit Freunden und unseren Kindern wiederzukommen. Die Ausblicke von verschiedenen Punkten der Villa waren wunderschön, und der Sonnenuntergang war nach einem langen Strandtag perfekt. Die Lage ist ruhig und gleichzeitig sehr nah an einigen der schönsten Strände.`},
+        el:{title:'Οι τέλειες διακοπές μας 🏝️🌞',text:`Περάσαμε εδώ τις πρώτες έξι ημέρες των οικογενειακών μας διακοπών και δεν θα μπορούσαμε να είμαστε πιο ευχαριστημένοι. Η διαμονή είχε την τέλεια ισορροπία ανάμεσα στη χαλάρωση και τη διασκέδαση. Η βίλα είναι πολύ ευρύχωρη και είχαμε άφθονο χώρο. Η διακόσμηση είναι μοντέρνα, με παιχνιδιάρικες λεπτομέρειες, όμορφα καλοκαιρινά χρώματα, φυτά και πολλά παράθυρα που κάνουν τα δωμάτια πολύ φωτεινά. Όλα ήταν απόλυτα καθαρά και οι οικοδεσπότες μας έκαναν να νιώσουμε σαν στο σπίτι μας. Λατρέψαμε τον κήπο και ελπίζουμε να επιστρέψουμε την επόμενη χρονιά με φίλους και τα παιδιά μας. Απολαύσαμε τη θέα από διαφορετικά σημεία της βίλας, ενώ το ηλιοβασίλεμα ήταν ιδανικό μετά από μια γεμάτη μέρα στην παραλία. Η τοποθεσία είναι ήσυχη και παράλληλα πολύ κοντά σε μερικές από τις ομορφότερες παραλίες.`},
+        bg:{title:'Нашата перфектна ваканция 🏝️🌞',text:`Прекарахме тук първите шест дни от семейната си ваканция и не можехме да бъдем по-доволни. Престоят беше перфектен баланс между почивка и забавление. Вилата е много просторна и имахме предостатъчно място. Интериорът е модерен, с весели детайли, красиви летни цветове, растения и много прозорци, които правят стаите светли. Всичко беше идеално чисто, а домакините направиха всичко възможно да се чувстваме като у дома. Влюбихме се в градината и се надяваме догодина да се върнем с приятели и децата си. Харесаха ни гледките от различните части на вилата, а залезът беше перфектен след дълъг ден на плажа. Мястото е спокойно и същевременно много близо до някои от най-красивите плажове.`},
+        sr:{title:'Naš savršen odmor 🏝️🌞',text:`Proveli smo ovde prvih šest dana porodičnog odmora i nismo mogli biti zadovoljniji. Boravak je imao savršen balans između odmora i zabave. Vila je veoma prostrana i imali smo više nego dovoljno prostora. Enterijer je moderan, sa vedrim detaljima, lepim letnjim bojama, biljkama i mnogo prozora koji prostorije čine veoma svetlim. Sve je bilo savršeno čisto, a domaćini su učinili da se osećamo kao kod kuće. Obožavali smo baštu i nadamo se da ćemo se sledeće godine vratiti sa prijateljima i decom. Uživali smo u pogledima iz različitih delova vile, a zalazak sunca bio je savršen posle dugog dana na plaži. Lokacija je mirna, a istovremeno veoma blizu nekih od najlepših plaža.`}
+      }
+    ];
+    function reviewLocalized(index,r){
+      const pack=REVIEW_TRANSLATIONS[index]||{};
+      return pack[currentLang]||pack.en||{title:r.title,text:r.text};
+    }
+
+    function reviewCountryLabel(name){
+      const map={
+        'România':{en:'Romania',ro:'România',el:'Ρουμανία',de:'Rumänien',bg:'Румъния',sr:'Rumunija'},
+        'Bulgaria':{en:'Bulgaria',ro:'Bulgaria',el:'Βουλγαρία',de:'Bulgarien',bg:'България',sr:'Bugarska'},
+        'Austria':{en:'Austria',ro:'Austria',el:'Αυστρία',de:'Österreich',bg:'Австрия',sr:'Austrija'},
+        'Australia':{en:'Australia',ro:'Australia',el:'Αυστραλία',de:'Australien',bg:'Австралия',sr:'Australija'},
+        'Ucraina':{en:'Ukraine',ro:'Ucraina',el:'Ουκρανία',de:'Ukraine',bg:'Украйна',sr:'Ukrajina'},
+        'Ukraine':{en:'Ukraine',ro:'Ucraina',el:'Ουκρανία',de:'Ukraine',bg:'Украйна',sr:'Ukrajina'}
+      };
+      return (map[name] && (map[name][currentLang] || map[name].en)) || name;
+    }
+    function reviewMetaText(text){
+      const maps={
+        en:{'Vilă Deluxe':'Deluxe Villa','Vilă cu vedere la mare':'Sea View Villa','nopți':'nights','iulie':'July','aprilie':'April','octombrie':'October','august':'August','iunie':'June','Familie':'Family','Grup':'Group','Călător neînsoțit':'Solo traveller'},
+        ro:{},
+        de:{'Vilă Deluxe':'Deluxe-Villa','Vilă cu vedere la mare':'Villa mit Meerblick','nopți':'Nächte','iulie':'Juli','aprilie':'April','octombrie':'Oktober','august':'August','iunie':'Juni','Familie':'Familie','Grup':'Gruppe','Călător neînsoțit':'Alleinreisender'},
+        el:{'Vilă Deluxe':'Deluxe βίλα','Vilă cu vedere la mare':'Βίλα με θέα στη θάλασσα','nopți':'διανυκτερεύσεις','iulie':'Ιούλιος','aprilie':'Απρίλιος','octombrie':'Οκτώβριος','august':'Αύγουστος','iunie':'Ιούνιος','Familie':'Οικογένεια','Grup':'Γκρουπ','Călător neînsoțit':'Μονοταξιδιώτης'},
+        bg:{'Vilă Deluxe':'Делукс вила','Vilă cu vedere la mare':'Вила с морски изглед','nopți':'нощувки','iulie':'юли','aprilie':'април','octombrie':'октомври','august':'август','iunie':'юни','Familie':'Семейство','Grup':'Група','Călător neînsoțit':'Самостоятелен пътешественик'},
+        sr:{'Vilă Deluxe':'Deluxe vila','Vilă cu vedere la mare':'Vila sa pogledom na more','nopți':'noći','iulie':'jul','aprilie':'april','octombrie':'oktobar','august':'avgust','iunie':'jun','Familie':'Porodica','Grup':'Grupa','Călător neînsoțit':'Solo putnik'}
+      };
+      const dict=maps[currentLang] || maps.en;
+      let out=text;
+      Object.keys(dict).sort((a,b)=>b.length-a.length).forEach(key=>{out=out.replaceAll(key,dict[key])});
+      return out;
+    }
+    function reviewTitleText(title){
+      if(!/Excep/i.test(title)) return title;
+      const map={en:'Exceptional',ro:'Excepțional',de:'Außergewöhnlich',el:'Εξαιρετικό',bg:'Изключително',sr:'Izuzetno'};
+      return map[currentLang] || map.en;
+    }
+
     let reviewIndex=0;
     let reviewTimer=null;
     const REVIEW_INTERVAL=7000;
 
     function reviewCardMarkup(r,index){
+      const localized=reviewLocalized(index,r);
       return `<article class="review-card ${index===reviewIndex?'active':''}" data-review-index="${index}">
         <div class="review-meta">
           <span class="review-author">${r.author}</span>
-          <span class="review-country">${r.flag} ${r.country}</span>
+          <span class="review-country">${r.flag} ${reviewCountryLabel(r.country)}</span>
           <span>★ ${r.score}/10</span>
-          <span>${r.stay}</span>
+          <span>${reviewMetaText(r.stay)}</span>
         </div>
-        <div class="review-title">${r.title}</div>
-        <p class="review-text">${r.text}</p>
+        <div class="review-title">${localized.title}</div>
+        <p class="review-text">${localized.text}</p>
       </article>`;
     }
 
