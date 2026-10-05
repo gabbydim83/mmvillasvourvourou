@@ -34,10 +34,10 @@
     "image":[
       "https://www.mmvillasvourvourou.com/Assets/Images/large-villa/3.webp",
       "https://www.mmvillasvourvourou.com/Assets/Images/large-villa/7.webp",
-      "https://www.mmvillasvourvourou.com/Assets/Images/small-villa/001.webp"
+      "https://www.mmvillasvourvourou.com/Assets/Images/small-villa/68.webp"
     ],
     "address":{"@type":"PostalAddress","addressLocality":"Vourvourou","postalCode":"630 78","addressRegion":"Halkidiki","addressCountry":"GR"},
-    "geo":{"@type":"GeoCoordinates","latitude":40.18741559112367,"longitude":23.774085841269006},
+    "geo":{"@type":"GeoCoordinates","latitude":40.187367911920354,"longitude":23.77400227579507},
     "telephone":"+306976717795",
     "petsAllowed":true,
     "amenityFeature":[
@@ -94,9 +94,8 @@
     .btn-ghost-light{border-color:rgba(255,255,255,.55);color:#fff;background:rgba(0,0,0,.08);backdrop-filter:blur(5px)}
     .arrow{transition:transform .25s ease}
     .btn:hover .arrow{transform:translateX(4px)}
-    .reveal{opacity:1;transform:none}
-    .motion-ready .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
-    .motion-ready .reveal.in{opacity:1;transform:none}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease}
+    .reveal.in{opacity:1;transform:none}
 
     /* header */
     .site-header{position:fixed;z-index:60;top:0;left:0;right:0;height:var(--header-h);display:flex;align-items:center;color:#fff;transition:background .3s ease,color .3s ease,box-shadow .3s ease,backdrop-filter .3s ease}
@@ -420,7 +419,7 @@
     .calendar-hint{margin:12px 2px 0;font-size:.72rem;color:var(--ink-soft)}
 
     /* destination image requested */
-    .location-panel{background:linear-gradient(180deg,rgba(23,29,25,.24),rgba(23,29,25,.78)),url("Assets/Images/Beach.webp") center/cover no-repeat,var(--olive-dark);border-radius:var(--radius-lg);box-shadow:var(--shadow-soft)}
+    .location-panel{background:linear-gradient(180deg,rgba(23,29,25,.24),rgba(23,29,25,.78)),url("Assets/Images/beach/Beach.webp") center/cover no-repeat,var(--olive-dark);border-radius:var(--radius-lg);box-shadow:var(--shadow-soft)}
     .location-panel::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(0,0,0,.18),transparent 58%);pointer-events:none}
     .location-panel h3{max-width:410px;text-shadow:0 5px 22px rgba(0,0,0,.2)}
     .location-panel p{color:rgba(255,255,255,.9)}
@@ -448,7 +447,7 @@
       color:#fff;
       background:
         linear-gradient(135deg,rgba(20,25,21,.78),rgba(20,25,21,.48)),
-        url("Assets/Images/Beach.webp") center/cover no-repeat,
+        url("Assets/Images/beach/Beach.webp") center/cover no-repeat,
         var(--olive-dark);
       box-shadow:0 20px 52px rgba(39,35,28,.15);
       border:1px solid rgba(255,255,255,.2);
@@ -706,7 +705,7 @@
       border-radius:26px;
       background:
         linear-gradient(135deg,rgba(20,25,21,.82),rgba(20,25,21,.50)),
-        url("Assets/Images/Beach.webp") center/cover no-repeat,
+        url("Assets/Images/beach/Beach.webp") center/cover no-repeat,
         var(--olive-dark);
     }
     .guest-reviews-section .review-stage{min-height:250px}
@@ -926,94 +925,48 @@
     }
 
   
-    /* ===== Hero correction: image first, copy low and restrained ===== */
-    .hero{
-      min-height:100svh;
-      align-items:flex-end;
-    }
-    .hero::after{
-      background:
-        linear-gradient(0deg,rgba(8,10,8,.62) 0%,rgba(8,10,8,.26) 24%,rgba(8,10,8,.06) 46%,transparent 68%),
-        linear-gradient(90deg,rgba(8,10,8,.16) 0%,transparent 55%);
-    }
-    .hero-content{
-      width:min(1220px,calc(100% - 40px));
-      padding:120px 0 24px;
-    }
-    .hero-kicker{
-      margin-bottom:8px;
-      padding:0;
-      border:0;
-      background:none;
-      backdrop-filter:none;
-      font-size:.66rem;
-      letter-spacing:.18em;
-      opacity:.88;
-    }
-    .hero h1{
-      max-width:650px;
-      margin-bottom:9px;
-      font-size:clamp(2.45rem,4.6vw,4.7rem);
-      line-height:.94;
-      text-shadow:0 4px 22px rgba(0,0,0,.28);
-    }
-    .hero-sub{
-      max-width:540px;
-      margin-bottom:12px;
-      font-size:clamp(.92rem,1.15vw,1.05rem);
-      line-height:1.45;
-      color:rgba(255,255,255,.88);
-    }
-    .hero-cta{display:none!important}
-    .hero-facts{
-      margin-top:10px;
-      width:max-content;
-      max-width:100%;
-      padding:8px 11px;
-      gap:6px 14px;
-      border-radius:10px;
-      background:rgba(8,10,8,.20);
-      border:1px solid rgba(255,255,255,.10);
-      font-size:.62rem;
-      letter-spacing:.07em;
-      backdrop-filter:blur(7px);
-    }
-    .hero-facts span:not(:first-child)::before{width:10px}
-
+    /* ===== V2 mobile-first polish ===== */
     @media(max-width:720px){
-      .hero{
-        min-height:100svh;
-      }
-      .hero-content{
-        width:calc(100% - 24px);
-        padding:92px 0 16px;
-      }
-      .hero-kicker{
-        margin-bottom:6px;
-        font-size:.56rem;
-        letter-spacing:.14em;
-      }
-      .hero h1{
-        max-width:92%;
-        margin-bottom:7px;
-        font-size:clamp(2.05rem,10vw,3.15rem);
-        line-height:.94;
-      }
-      .hero-sub{
-        max-width:92%;
-        margin-bottom:9px;
-        font-size:.82rem;
-        line-height:1.38;
-      }
-      .hero-facts{
-        margin-top:7px;
-        padding:6px 8px;
-        gap:4px 8px;
-        border-radius:8px;
-        font-size:.52rem;
-        line-height:1.25;
-      }
-      .hero-facts span:not(:first-child)::before{display:none}
+      body{overflow-x:hidden}
+      .site-header{height:70px}
+      .header-inner{height:70px}
+      .hero{min-height:100svh}
+      .hero-bg{object-position:55% center}
+      .hero::after{background:linear-gradient(180deg,rgba(10,11,9,.20) 0%,rgba(10,11,9,.22) 34%,rgba(10,11,9,.78) 100%)}
+      .hero-content{padding-top:118px;padding-bottom:88px}
+      .hero h1{font-size:clamp(2.85rem,13vw,4.2rem);line-height:.94;max-width:100%}
+      .hero-sub{font-size:.98rem;line-height:1.55;max-width:100%}
+      .hero-facts{font-size:.65rem;line-height:1.35;gap:8px 11px}
+      .section{padding:64px 0}
+      h2{font-size:clamp(2.55rem,12vw,3.75rem)}
+      .lead{font-size:1rem}
+      .story-media{min-height:0!important}
+      .story-media>img{aspect-ratio:4/3;object-fit:cover}
+      .story-media .side img{aspect-ratio:1/1;object-fit:cover}
+      .feature-list{grid-template-columns:1fr;gap:7px}
+      .feature{padding:11px 0}
+      .booking-heading{text-align:left}
+      .booking-card{width:100%;max-width:none}
+      .booking-request-btn{font-size:.75rem;letter-spacing:.06em}
+      .gallery-head{margin-bottom:20px}
+      .gallery-filters{display:flex;flex-wrap:nowrap;overflow-x:auto;padding:1px 1px 9px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+      .gallery-filters::-webkit-scrollbar{display:none}
+      .filter-btn{flex:0 0 auto;scroll-snap-align:start;white-space:nowrap}
+      .gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:168px;gap:7px}
+      .gallery-item{touch-action:manipulation}
+      .gallery-more .btn{width:100%}
+      .lightbox{padding:12px 10px 52px;touch-action:pan-y}
+      .lightbox img{max-width:100%;max-height:76svh;object-fit:contain}
+      .lightbox-prev,.lightbox-next{width:42px;height:42px;background:rgba(0,0,0,.42);border-radius:50%}
+      .sticky-book{padding-bottom:env(safe-area-inset-bottom)}
+      .sticky-book .btn{border-radius:16px;min-height:50px;font-size:.78rem;letter-spacing:.07em}
+      .directions-btn{min-height:52px}
+    }
+    @media(max-width:390px){
+      .shell,.hero-content{width:calc(100% - 24px)}
+      .hero h1{font-size:2.75rem}
+      .gallery-grid{grid-auto-rows:148px}
+      .location-panel h3{font-size:2.25rem}
     }
 
   </style>
@@ -1022,7 +975,7 @@
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <a href="#top" class="brand" aria-label="M&M Villas Vourvourou">
-        <img src="Assets/Images/logo.png" alt="M&M Villas Vourvourou logo" onerror="this.onerror=null;this.src='Assets/Images/mm-villas-logo.png'" />
+        <img src="Assets/Images/logo.png" alt="M&M Villas Vourvourou logo" onerror="this.onerror=null;this.src='Assets/Images/logo.png'" />
       </a>
       <nav class="nav" id="mainNav" aria-label="Primary navigation">
         <a href="#estate" data-i18n="nav.estate">The Estate</a>
@@ -1039,7 +992,7 @@
           </button>
           <div class="lang-menu" id="langMenu"></div>
         </div>
-        <a class="btn header-book" href="#booking" data-i18n="nav.book">Book your stay</a>
+        <a class="btn header-book" href="#booking" data-i18n="nav.book">Book now</a>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -1052,6 +1005,10 @@
         <div class="hero-kicker" data-i18n="hero.kicker">Vourvourou · Halkidiki · Greece</div>
         <h1 id="heroTitle" data-i18n-html="hero.title">One private estate.<br>Your stay, your way.</h1>
         <p class="hero-sub" data-i18n="hero.subtitle">From one family to a group of twelve, M&M Villas adapts to the way you travel.</p>
+        <div class="hero-cta">
+          <a class="btn btn-light" href="#find-stay"><span data-i18n="hero.find">Find your stay</span><span class="arrow">→</span></a>
+          <a class="btn btn-ghost-light" href="#estate"><span data-i18n="hero.explore">Explore the estate</span><span class="arrow">→</span></a>
+        </div>
         <div class="hero-facts">
           <span data-i18n="hero.factBeach">400 m to the nearest beach</span>
           <span data-i18n="hero.factGuests">Up to 12 guests</span>
@@ -1135,10 +1092,10 @@
     <section class="section story" id="garden-villa" style="background:var(--paper)">
       <div class="shell story-grid reverse">
         <div class="story-media reveal">
-          <img src="Assets/Images/small-villa/001.webp" alt="Garden Villa exterior" loading="lazy" />
+          <img src="Assets/Images/small-villa/68.webp" alt="Garden Villa exterior" loading="lazy" />
           <div class="side">
-            <img src="Assets/Images/small-villa/009.webp" alt="Garden Villa interior" loading="lazy" />
-            <img src="Assets/Images/small-villa/014.webp" alt="Garden Villa bathroom" loading="lazy" />
+            <img src="Assets/Images/small-villa/52.webp" alt="Garden Villa interior" loading="lazy" />
+            <img src="Assets/Images/small-villa/57.webp" alt="Garden Villa bathroom" loading="lazy" />
           </div>
         </div>
         <div class="story-copy reveal">
@@ -1161,8 +1118,8 @@
     <section class="section booking" id="booking">
       <div class="shell booking-compact">
         <div class="booking-heading reveal">
-          <p class="eyebrow" data-i18n="booking.eyebrow">Smart stay planner</p>
-          <h2 data-i18n="booking.title">Tell us who’s travelling.</h2>
+          <p class="eyebrow" data-i18n="booking.eyebrow">Direct booking</p>
+          <h2 data-i18n="booking.title">Book now.</h2>
           <p class="lead" data-i18n="booking.subtitle">Choose your dates and tell us your group size.</p>
         </div>
 
@@ -1201,7 +1158,7 @@
               <p id="bookingRecommendationNote"></p>
             </div>
             <button class="btn btn-primary booking-request-btn" type="submit">
-              <span data-i18n="booking.cta">Booking request</span><span class="arrow">→</span>
+              <span data-i18n="booking.cta">Book now on WhatsApp</span><span class="arrow">→</span>
             </button>
           </form>
         </div>
@@ -1241,7 +1198,7 @@
           <p class="lead" data-i18n="outdoor.subtitle">Morning coffee in the garden, family lunches, BBQ evenings and quiet corners surrounded by nature.</p>
         </div>
         <div class="outdoor-hero reveal">
-          <img src="Assets/Images/large-villa/7.webp" alt="M&M Villas outdoor setting" loading="lazy" />
+          <img src="Assets/Images/outdoor/83.webp" alt="M&M Villas private estate, garden and both villas" loading="lazy" />
           <div class="outdoor-badge"><strong>1,500 m²</strong><span data-i18n="outdoor.badge">private outdoor setting</span></div>
         </div>
         <div class="experience-grid">
@@ -1286,7 +1243,7 @@
             <span class="location-address-label" data-i18n="location.addressLabel">Address</span>
             <strong>Vourvourou 630 78, Greece</strong>
           </div>
-          <a class="btn btn-primary directions-btn" href="https://www.google.com/maps/dir/?api=1&destination=40.18741559112367,23.774085841269006" target="_blank" rel="noopener">
+          <a class="btn btn-primary directions-btn" href="https://www.google.com/maps/dir/?api=1&destination=40.187367911920354,23.77400227579507" target="_blank" rel="noopener">
             <span data-i18n="location.directions">Take me to the location</span><span class="arrow">→</span>
           </a>
         </div>
@@ -1328,6 +1285,7 @@
             <button class="filter-btn active" data-filter="all" data-i18n="gallery.all">All</button>
             <button class="filter-btn" data-filter="main" data-i18n="gallery.main">Main Villa</button>
             <button class="filter-btn" data-filter="garden" data-i18n="gallery.garden">Garden Villa</button>
+            <button class="filter-btn" data-filter="beach" data-i18n="gallery.beach">Karidi Beach</button>
             <button class="filter-btn" data-filter="bedroom" data-i18n="gallery.bedrooms">Bedrooms</button>
             <button class="filter-btn" data-filter="bathroom" data-i18n="gallery.bathrooms">Bathrooms</button>
             <button class="filter-btn" data-filter="outdoor" data-i18n="gallery.outdoors">Outdoors</button>
@@ -1344,18 +1302,18 @@
     <div class="shell">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img src="Assets/Images/logo.png" alt="M&M Villas Vourvourou" onerror="this.onerror=null;this.src='Assets/Images/mm-villas-logo.png'" />
+          <img src="Assets/Images/logo.png" alt="M&M Villas Vourvourou" onerror="this.onerror=null;this.src='Assets/Images/logo.png'" />
           <div><h3>M&M Villas Vourvourou</h3><p data-i18n="footer.text">A flexible private estate in Vourvourou for families, friends and groups travelling together.</p></div>
         </div>
         <div class="footer-col"><h4 data-i18n="footer.explore">Explore</h4><a href="#estate" data-i18n="nav.estate">The Estate</a><a href="#main-villa" data-i18n="nav.main">Main Villa</a><a href="#garden-villa" data-i18n="nav.garden">Garden Villa</a><a href="#gallery" data-i18n="nav.gallery">Gallery</a></div>
-        <div class="footer-col"><h4 data-i18n="footer.contact">Contact</h4><a href="tel:+306976717795">+30 697 671 7795</a><a href="https://wa.me/306976717795" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.google.com/maps/dir/?api=1&destination=40.18741559112367,23.774085841269006" target="_blank" rel="noopener" data-i18n="location.directions">Take me to the location</a><span class="footer-address">Vourvourou 630 78, Greece</span></div>
-        <div class="footer-col"><h4 data-i18n="footer.manage">Management</h4><a href="owner.html" data-i18n="nav.owner">Owner Panel</a><a href="#booking" data-i18n="nav.book">Book your stay</a><a href="https://www.mmvillasvourvourou.com/">mmvillasvourvourou.com</a></div>
+        <div class="footer-col"><h4 data-i18n="footer.contact">Contact</h4><a href="tel:+306976717795">+30 697 671 7795</a><a href="https://wa.me/306976717795" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.google.com/maps/dir/?api=1&destination=40.187367911920354,23.77400227579507" target="_blank" rel="noopener" data-i18n="location.directions">Take me to the location</a><span class="footer-address">Vourvourou 630 78, Greece</span></div>
+        <div class="footer-col"><h4 data-i18n="footer.manage">Management</h4><a href="owner.html" data-i18n="nav.owner">Owner Panel</a><a href="#booking" data-i18n="nav.book">Book now</a><a href="https://www.mmvillasvourvourou.com/">mmvillasvourvourou.com</a></div>
       </div>
       <div class="footer-bottom"><span>© <span id="year"></span> M&M Villas Vourvourou</span><span data-i18n="footer.rights">All rights reserved.</span></div>
     </div>
   </footer>
 
-  <div class="sticky-book"><a class="btn btn-primary" href="#booking" data-i18n="nav.book">Book your stay</a></div>
+  <div class="sticky-book"><a class="btn btn-primary" href="#booking" data-i18n="nav.book">Book now</a></div>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
@@ -1383,7 +1341,7 @@
     const I18N = {
       en:{
         meta:{title:'M&M Villas Vourvourou | Flexible Private Estate in Halkidiki',description:'A flexible private estate in Vourvourou for one family or groups of up to 12 guests, with a Main Villa, Garden Villa, large garden and outdoor living.'},
-        nav:{estate:'The Estate',main:'Main Villa',garden:'Garden Villa',gallery:'Gallery',location:'Location',owner:'Owner Panel',book:'Book your stay'},
+        nav:{estate:'The Estate',main:'Main Villa',garden:'Garden Villa',gallery:'Gallery',location:'Location',owner:'Owner Panel',book:'Book now'},
         hero:{kicker:'Vourvourou · Halkidiki · Greece',title:'One private estate.<br>Your stay, your way.',subtitle:'From one family to a group of twelve, M&M Villas adapts to the way you travel.',find:'Find your stay',explore:'Explore the estate',factBeach:'400 m to the nearest beach',factGuests:'Up to 12 guests',factLand:'1,500 m² private setting'},
         common:{guests:'guests'},
         selector:{eyebrow:'A stay that adapts',title:'How many are travelling?',subtitle:'Tell us your group size and we’ll show you the most natural way to enjoy M&M Villas.'},
@@ -1395,12 +1353,12 @@
         estate:{eyebrow:'For larger families & groups',title:'Together when you want.<br>Private when you need.',text:'Reserve both the Main Villa and Garden Villa as one private estate. Everyone stays close, while another family or couple can still enjoy a separate private space of their own.',guests:'guests',villas:'separate villas',land:'m² private setting',quote:'One family can enjoy its own private villa — just a few steps from the rest of the group.',cta:'Check the entire estate'},
         main:{eyebrow:'The heart of M&M Villas',title:'Main Villa',subtitle:'Space for everyone. Privacy for each family.',text:'Designed for up to 8 guests, the Main Villa combines generous shared spaces with 3 bedrooms and 3 bathrooms, making it especially comfortable for families and friends travelling together.',f1t:'Sleep',f1:'3 individual bedrooms',f2t:'Refresh',f2:'3 bathrooms + hydromassage cabin',f3t:'Cook & gather',f3:'Fully equipped kitchen',f4t:'Live outside',f4:'Terrace, garden & BBQ',note:'Need more separation? Add the Garden Villa and welcome a group of up to 12 guests within the same estate.',cta:'Explore Main Villa'},
         garden:{eyebrow:'A private extra space within the estate',title:'Garden Villa',subtitle:'More privacy when your group needs it.',text:'Just a few steps from the Main Villa, the Garden Villa gives another family, couple or generation their own comfortable space while keeping everyone together on the same property.',f1t:'Up to 4',f1:'A compact family stay',f2t:'Private space',f2:'Bedroom + open living area',f3t:'Independent',f3:'Kitchen area + private bathroom',f4t:'Outdoor living',f4:'Large terrace beside the garden',note:'Primarily designed as the perfect extension to the Main Villa. Standalone stays for 2–4 guests may be available on selected dates.',cta:'Ask about Garden Villa'},
-        booking:{eyebrow:'Smart stay planner',title:'Tell us who’s travelling.',subtitle:'Choose your dates and tell us your group size.',body:'',arrival:'Arrival',departure:'Departure',adults:'Adults',children:'Children',extra:'Anything we should know?',placeholder:'Pets, separate family space, special request...',recommended:'Recommended for your group',cta:'Booking request',chooseDatesFirst:'Please choose your arrival and departure dates first',recMain:'Main Villa',recEstate:'The Entire Estate',recSmall:'Main Villa / selected Garden Villa dates',recMainNote:'Best fit for 5–8 guests. Garden Villa can be added if you want more separation.',recEstateNote:'Best fit for 9–12 guests: both villas together as one private estate.',recSmallNote:'For 2–4 guests, Main Villa remains the primary option. Ask about Garden Villa availability for selected dates.',tooMany:'For groups above 12, send a custom request so the owner can confirm what is possible.'},
+        booking:{eyebrow:'Direct booking',title:'Book now.',subtitle:'Choose your dates and tell us your group size.',body:'',arrival:'Arrival',departure:'Departure',adults:'Adults',children:'Children',extra:'Anything we should know?',placeholder:'Pets, separate family space, special request...',recommended:'Recommended for your group',cta:'Book now on WhatsApp',chooseDatesFirst:'Please choose your arrival and departure dates first',recMain:'Main Villa',recEstate:'The Entire Estate',recSmall:'Main Villa / selected Garden Villa dates',recMainNote:'Best fit for 5–8 guests. Garden Villa can be added if you want more separation.',recEstateNote:'Best fit for 9–12 guests: both villas together as one private estate.',recSmallNote:'For 2–4 guests, Main Villa remains the primary option. Ask about Garden Villa availability for selected dates.',tooMany:'For groups above 12, send a custom request so the owner can confirm what is possible.'},
         outdoor:{eyebrow:'Outdoors at M&M Villas',title:'1,500 m² to enjoy your holiday your way.',subtitle:'Morning coffee in the garden, family lunches, BBQ evenings and quiet corners surrounded by nature.',badge:'private outdoor setting',e1t:'Gather',e1:'Generous outdoor dining for families and groups.',e2t:'Cook outside',e2:'BBQ space for relaxed lunches and summer evenings.',e3t:'Slow down',e3:'Garden, terraces and seating areas around the estate.',e4t:'Stay flexible',e4:'Two separate villas, connected by the same private setting.'},
         daynight:{eyebrow:'From day to night',title:'Sunny mornings. Warm summer evenings.',subtitle:'Move the slider to see how the estate changes as the lights come on.',day:'Day',night:'Night'},
         location:{eyebrow:'Vourvourou · Sithonia',title:'Beach in front. Mountain behind.',text:'Enjoy the relaxed Vourvourou setting with the nearest beach within walking distance, Karidi Beach only a short drive away and views toward Diaporos from the property.',f1:'to the nearest beach',f2:'to Karidi Beach',f3:'maximum advertised guest capacity across both villas',f4:'private villas within one flexible estate',mapnote:'Vourvourou 630 78, Greece',addressLabel:'Address',directions:'Take me to the location'},
         amenities:{eyebrow:'Comfort without clutter',title:'Everything you need for an easy stay.',subtitle:'The essentials are shown first. The complete amenity list stays one click away.',a1:'Private parking',a2:'Large garden',a3:'BBQ facilities',a4:'Outdoor dining',a5:'Air conditioning',a6:'Family friendly',a7:'Pets welcome',a8:'Laundry',a9:'Hydromassage cabin',a10:'Equipped kitchens',x1:'Private bathrooms',x2:'Terrace / sun terrace',x3:'Outdoor furniture',x4:'Picnic area',x5:'Heating',x6:'Soundproof rooms',x7:'Non-smoking rooms',x8:'Luggage storage',x9:'Express check-in / check-out',x10:'Shared lounge / TV area',x11:'Bar area',x12:'Outdoor shower',more:'View all amenities',less:'Show fewer amenities'},
-        gallery:{eyebrow:'The property in detail',title:'Gallery',all:'All',main:'Main Villa',garden:'Garden Villa',bedrooms:'Bedrooms',bathrooms:'Bathrooms',outdoors:'Outdoors',evening:'Evening',more:'Show more photos',less:'Show fewer photos'},
+        gallery:{eyebrow:'The property in detail',title:'Gallery',all:'All',main:'Main Villa',garden:'Garden Villa',beach:'Karidi Beach',bedrooms:'Bedrooms',bathrooms:'Bathrooms',outdoors:'Outdoors',evening:'Evening',more:'Show more photos',less:'Show fewer photos'},
         reviews:{eyebrow:'Guest voices',title:'What guests remember.',score:'Exceptional · /10'},
         footer:{text:'A flexible private estate in Vourvourou for families, friends and groups travelling together.',explore:'Explore',plan:'Plan your stay',contact:'Contact',manage:'Management',amenities:'Amenities',rights:'All rights reserved.'},
         dialog:{eyebrow:'Booking request preview',title:'Your request is ready.',text:'This first website version prepares the request on the front end. We’ll connect it to the owner panel / booking channel in the next implementation step.',copy:'Copy request',close:'Close',copied:'Copied'},
@@ -1408,7 +1366,7 @@
       },
       ro:{
         meta:{title:'M&M Villas Vourvourou | Proprietate privată flexibilă în Halkidiki',description:'O proprietate privată flexibilă în Vourvourou, potrivită pentru o familie sau grupuri de până la 12 persoane, cu Main Villa, Garden Villa, grădină mare și spații exterioare.'},
-        nav:{estate:'Proprietatea',main:'Main Villa',garden:'Garden Villa',gallery:'Galerie',location:'Locație',owner:'Owner Panel',book:'Rezervă sejurul'},
+        nav:{estate:'Proprietatea',main:'Main Villa',garden:'Garden Villa',gallery:'Galerie',location:'Locație',owner:'Owner Panel',book:'Rezervă acum'},
         hero:{kicker:'Vourvourou · Halkidiki · Grecia',title:'O proprietate privată.<br>Vacanța voastră, așa cum vi se potrivește.',subtitle:'De la o familie la un grup de douăsprezece persoane, M&M Villas se adaptează modului în care călătoriți.',find:'Găsește varianta potrivită',explore:'Descoperă proprietatea',factBeach:'400 m până la cea mai apropiată plajă',factGuests:'Până la 12 oaspeți',factLand:'1.500 m² proprietate privată'},
         common:{guests:'oaspeți'},
         selector:{eyebrow:'Un sejur care se adaptează',title:'Câte persoane călătoriți?',subtitle:'Spune-ne mărimea grupului și îți arătăm cea mai potrivită variantă pentru M&M Villas.'},
@@ -1420,12 +1378,12 @@
         estate:{eyebrow:'Pentru familii mari și grupuri',title:'Împreună când vreți.<br>Intimitate când aveți nevoie.',text:'Rezervați Main Villa și Garden Villa ca o singură proprietate privată. Toată lumea rămâne aproape, iar o altă familie sau un cuplu se poate bucura de propriul spațiu separat.',guests:'oaspeți',villas:'vile separate',land:'m² proprietate privată',quote:'O familie poate avea propria vilă privată — la doar câțiva pași de restul grupului.',cta:'Verifică întreaga proprietate'},
         main:{eyebrow:'Inima M&M Villas',title:'Main Villa',subtitle:'Spațiu pentru toți. Intimitate pentru fiecare familie.',text:'Concepută pentru până la 8 oaspeți, Main Villa combină spațiile comune generoase cu 3 dormitoare și 3 băi, fiind foarte confortabilă pentru familii și prieteni care călătoresc împreună.',f1t:'Odihnă',f1:'3 dormitoare individuale',f2t:'Confort',f2:'3 băi + cabină cu hidromasaj',f3t:'Gătit & timp împreună',f3:'Bucătărie complet echipată',f4t:'Viață în aer liber',f4:'Terasă, grădină & BBQ',note:'Aveți nevoie de mai multă separare? Adăugați Garden Villa și găzduiți până la 12 persoane în aceeași proprietate.',cta:'Descoperă Main Villa'},
         garden:{eyebrow:'Un spațiu privat suplimentar în proprietate',title:'Garden Villa',subtitle:'Mai multă intimitate atunci când grupul are nevoie.',text:'La doar câțiva pași de Main Villa, Garden Villa oferă unei alte familii, unui cuplu sau unei alte generații propriul spațiu confortabil, păstrând pe toată lumea în aceeași proprietate.',f1t:'Până la 4',f1:'O variantă compactă pentru familie',f2t:'Spațiu privat',f2:'Dormitor + mic living open-space',f3t:'Independentă',f3:'Zonă de bucătărie + baie proprie',f4t:'Terasă',f4:'Terasă generoasă lângă grădină',note:'Gândită în primul rând ca extensia perfectă pentru Main Villa. Sejururile separate pentru 2–4 persoane pot fi disponibile în anumite perioade.',cta:'Întreabă de Garden Villa'},
-        booking:{eyebrow:'Planificator inteligent',title:'Spune-ne cine călătorește.',subtitle:'Alege datele și spune-ne mărimea grupului.',body:'',arrival:'Sosire',departure:'Plecare',adults:'Adulți',children:'Copii',extra:'Mai trebuie să știm ceva?',placeholder:'Animale de companie, spațiu separat pentru o familie, cerere specială...',recommended:'Recomandat pentru grupul vostru',cta:'Cerere de rezervare',chooseDatesFirst:'Selectează mai întâi data sosirii și data plecării',recMain:'Main Villa',recEstate:'Întreaga proprietate',recSmall:'Main Villa / Garden Villa în date selectate',recMainNote:'Cea mai potrivită pentru 5–8 persoane. Garden Villa poate fi adăugată pentru mai multă separare.',recEstateNote:'Cea mai potrivită pentru 9–12 persoane: ambele vile împreună, ca o singură proprietate privată.',recSmallNote:'Pentru 2–4 persoane, Main Villa rămâne opțiunea principală. Întreabă de Garden Villa pentru perioadele în care este disponibilă separat.',tooMany:'Pentru grupuri de peste 12 persoane, trimite o cerere personalizată pentru confirmarea opțiunilor posibile.'},
+        booking:{eyebrow:'Rezervare directă',title:'Rezervă acum.',subtitle:'Alege datele și spune-ne mărimea grupului.',body:'',arrival:'Sosire',departure:'Plecare',adults:'Adulți',children:'Copii',extra:'Mai trebuie să știm ceva?',placeholder:'Animale de companie, spațiu separat pentru o familie, cerere specială...',recommended:'Recomandat pentru grupul vostru',cta:'Rezervă pe WhatsApp',chooseDatesFirst:'Selectează mai întâi data sosirii și data plecării',recMain:'Main Villa',recEstate:'Întreaga proprietate',recSmall:'Main Villa / Garden Villa în date selectate',recMainNote:'Cea mai potrivită pentru 5–8 persoane. Garden Villa poate fi adăugată pentru mai multă separare.',recEstateNote:'Cea mai potrivită pentru 9–12 persoane: ambele vile împreună, ca o singură proprietate privată.',recSmallNote:'Pentru 2–4 persoane, Main Villa rămâne opțiunea principală. Întreabă de Garden Villa pentru perioadele în care este disponibilă separat.',tooMany:'Pentru grupuri de peste 12 persoane, trimite o cerere personalizată pentru confirmarea opțiunilor posibile.'},
         outdoor:{eyebrow:'Exteriorul M&M Villas',title:'1.500 m² pentru o vacanță în ritmul vostru.',subtitle:'Cafea dimineața în grădină, mese cu familia, seri la BBQ și colțuri liniștite în natură.',badge:'spațiu exterior privat',e1t:'Stați împreună',e1:'Zone generoase de dining exterior pentru familii și grupuri.',e2t:'Gătiți afară',e2:'Spațiu BBQ pentru prânzuri relaxate și seri de vară.',e3t:'Încetiniți ritmul',e3:'Grădină, terase și zone de relaxare în jurul proprietății.',e4t:'Rămâneți flexibili',e4:'Două vile separate, unite de aceeași proprietate privată.'},
         daynight:{eyebrow:'De dimineață până seara',title:'Dimineți însorite. Seri calde de vară.',subtitle:'Mută sliderul pentru a vedea cum se schimbă proprietatea odată cu aprinderea luminilor.',day:'Zi',night:'Noapte'},
         location:{eyebrow:'Vourvourou · Sithonia',title:'Plaja în față. Muntele în spate.',text:'Bucurați-vă de atmosfera relaxată din Vourvourou, cu cea mai apropiată plajă la distanță de mers pe jos, Karidi Beach la doar câteva minute și vedere spre Diaporos din proprietate.',f1:'până la cea mai apropiată plajă',f2:'până la Karidi Beach',f3:'capacitatea maximă promovată pentru ambele vile',f4:'vile private într-o singură proprietate flexibilă',mapnote:'Vourvourou 630 78, Greece',addressLabel:'Adresă',directions:'Du-mă la locație'},
         amenities:{eyebrow:'Confort fără aglomerație',title:'Tot ce trebuie pentru un sejur ușor.',subtitle:'Arătăm mai întâi facilitățile importante. Lista completă rămâne la un click distanță.',a1:'Parcare privată',a2:'Grădină mare',a3:'Facilități BBQ',a4:'Dining exterior',a5:'Aer condiționat',a6:'Potrivit pentru familii',a7:'Animale acceptate',a8:'Spălătorie',a9:'Cabină cu hidromasaj',a10:'Bucătării echipate',x1:'Băi private',x2:'Terasă / terasă însorită',x3:'Mobilier exterior',x4:'Zonă de picnic',x5:'Încălzire',x6:'Camere izolate fonic',x7:'Camere pentru nefumători',x8:'Cameră de bagaje',x9:'Check-in / check-out express',x10:'Lounge / zonă TV comună',x11:'Zonă de bar',x12:'Duș exterior',more:'Vezi toate facilitățile',less:'Arată mai puține'},
-        gallery:{eyebrow:'Proprietatea în detaliu',title:'Galerie',all:'Toate',main:'Main Villa',garden:'Garden Villa',bedrooms:'Dormitoare',bathrooms:'Băi',outdoors:'Exterior',evening:'Seara',more:'Arată mai multe fotografii',less:'Arată mai puține'},
+        gallery:{eyebrow:'Proprietatea în detaliu',title:'Galerie',all:'Toate',main:'Main Villa',garden:'Garden Villa',beach:'Karidi Beach',bedrooms:'Dormitoare',bathrooms:'Băi',outdoors:'Exterior',evening:'Seara',more:'Arată mai multe fotografii',less:'Arată mai puține'},
         reviews:{eyebrow:'Vocile oaspeților',title:'Ce își amintesc oaspeții.',score:'Excepțional · /10'},
         footer:{text:'O proprietate privată flexibilă în Vourvourou pentru familii, prieteni și grupuri care călătoresc împreună.',explore:'Descoperă',plan:'Planifică sejurul',contact:'Contact',manage:'Administrare',amenities:'Facilități',rights:'Toate drepturile rezervate.'},
         dialog:{eyebrow:'Previzualizare cerere',title:'Cererea este pregătită.',text:'Această primă versiune pregătește cererea în browser. În etapa următoare o conectăm la owner panel / canalul de rezervări.',copy:'Copiază cererea',close:'Închide',copied:'Copiat'},
@@ -1433,7 +1391,7 @@
       },
       el:{
         meta:{title:'M&M Villas Vourvourou | Ευέλικτο ιδιωτικό κατάλυμα στη Χαλκιδική',description:'Ένα ευέλικτο ιδιωτικό κατάλυμα στη Βουρβουρού για μία οικογένεια ή παρέες έως 12 ατόμων, με Main Villa, Garden Villa, μεγάλο κήπο και υπαίθριους χώρους.'},
-        nav:{estate:'Το κτήμα',main:'Main Villa',garden:'Garden Villa',gallery:'Φωτογραφίες',location:'Τοποθεσία',owner:'Owner Panel',book:'Κράτηση'},
+        nav:{estate:'Το κτήμα',main:'Main Villa',garden:'Garden Villa',gallery:'Φωτογραφίες',location:'Τοποθεσία',owner:'Owner Panel',book:'Κράτηση τώρα'},
         hero:{kicker:'Βουρβουρού · Χαλκιδική · Ελλάδα',title:'Ένα ιδιωτικό κτήμα.<br>Η διαμονή σας, όπως τη θέλετε.',subtitle:'Από μία οικογένεια έως μια παρέα δώδεκα ατόμων, το M&M Villas προσαρμόζεται στον τρόπο που ταξιδεύετε.',find:'Βρείτε τη διαμονή σας',explore:'Ανακαλύψτε το κτήμα',factBeach:'400 μ. από την κοντινότερη παραλία',factGuests:'Έως 12 επισκέπτες',factLand:'1.500 m² ιδιωτικός χώρος'},
         common:{guests:'άτομα'},
         selector:{eyebrow:'Διαμονή που προσαρμόζεται',title:'Πόσα άτομα ταξιδεύετε;',subtitle:'Πείτε μας το μέγεθος της παρέας και θα σας δείξουμε την πιο φυσική επιλογή για το M&M Villas.'},
@@ -1445,12 +1403,12 @@
         estate:{eyebrow:'Για μεγάλες οικογένειες & παρέες',title:'Μαζί όταν το θέλετε.<br>Ιδιωτικά όταν το χρειάζεστε.',text:'Κλείστε τη Main Villa και τη Garden Villa ως ένα ιδιωτικό κτήμα. Όλοι μένουν κοντά, ενώ μια δεύτερη οικογένεια ή ένα ζευγάρι απολαμβάνει τον δικό του ξεχωριστό χώρο.',guests:'άτομα',villas:'ξεχωριστές βίλες',land:'m² ιδιωτικού χώρου',quote:'Μία οικογένεια μπορεί να έχει τη δική της ιδιωτική βίλα — λίγα μόλις βήματα από την υπόλοιπη παρέα.',cta:'Ελέγξτε ολόκληρο το κτήμα'},
         main:{eyebrow:'Η καρδιά του M&M Villas',title:'Main Villa',subtitle:'Χώρος για όλους. Ιδιωτικότητα για κάθε οικογένεια.',text:'Σχεδιασμένη για έως 8 επισκέπτες, η Main Villa συνδυάζει άνετους κοινόχρηστους χώρους με 3 υπνοδωμάτια και 3 μπάνια, ιδανικά για οικογένειες και φίλους που ταξιδεύουν μαζί.',f1t:'Ύπνος',f1:'3 ξεχωριστά υπνοδωμάτια',f2t:'Άνεση',f2:'3 μπάνια + καμπίνα υδρομασάζ',f3t:'Μαγείρεμα & παρέα',f3:'Πλήρως εξοπλισμένη κουζίνα',f4t:'Έξω',f4:'Βεράντα, κήπος & BBQ',note:'Χρειάζεστε περισσότερο διαχωρισμό; Προσθέστε τη Garden Villa και φιλοξενήστε έως 12 άτομα στο ίδιο κτήμα.',cta:'Ανακαλύψτε τη Main Villa'},
         garden:{eyebrow:'Ένας επιπλέον ιδιωτικός χώρος μέσα στο κτήμα',title:'Garden Villa',subtitle:'Περισσότερη ιδιωτικότητα όταν τη χρειάζεται η παρέα.',text:'Μόλις λίγα βήματα από τη Main Villa, η Garden Villa προσφέρει σε μια δεύτερη οικογένεια, ζευγάρι ή γενιά τον δικό της άνετο χώρο, ενώ όλοι παραμένουν στην ίδια ιδιοκτησία.',f1t:'Έως 4',f1:'Μια πιο compact οικογενειακή διαμονή',f2t:'Ιδιωτικός χώρος',f2:'Υπνοδωμάτιο + open living',f3t:'Ανεξάρτητη',f3:'Κουζίνα + ιδιωτικό μπάνιο',f4t:'Υπαίθρια ζωή',f4:'Μεγάλη βεράντα δίπλα στον κήπο',note:'Προορίζεται κυρίως ως ιδανική επέκταση της Main Villa. Αυτόνομες διαμονές για 2–4 άτομα ενδέχεται να είναι διαθέσιμες σε επιλεγμένες ημερομηνίες.',cta:'Ρωτήστε για τη Garden Villa'},
-        booking:{eyebrow:'Έξυπνος σχεδιασμός διαμονής',title:'Πείτε μας ποιοι ταξιδεύουν.',subtitle:'Επιλέξτε ημερομηνίες και αριθμό επισκεπτών.',body:'',arrival:'Άφιξη',departure:'Αναχώρηση',adults:'Ενήλικες',children:'Παιδιά',extra:'Κάτι άλλο που πρέπει να γνωρίζουμε;',placeholder:'Κατοικίδια, ξεχωριστός χώρος για οικογένεια, ειδικό αίτημα...',recommended:'Προτεινόμενο για την παρέα σας',cta:'Αίτημα κράτησης',chooseDatesFirst:'Επιλέξτε πρώτα ημερομηνία άφιξης και αναχώρησης',recMain:'Main Villa',recEstate:'Ολόκληρο το κτήμα',recSmall:'Main Villa / επιλεγμένες ημερομηνίες Garden Villa',recMainNote:'Ιδανικό για 5–8 άτομα. Η Garden Villa μπορεί να προστεθεί για περισσότερη ιδιωτικότητα.',recEstateNote:'Ιδανικό για 9–12 άτομα: και οι δύο βίλες μαζί ως ένα ιδιωτικό κτήμα.',recSmallNote:'Για 2–4 άτομα, η Main Villa παραμένει η κύρια επιλογή. Ρωτήστε για τη Garden Villa σε επιλεγμένες ημερομηνίες.',tooMany:'Για παρέες άνω των 12 ατόμων, στείλτε εξατομικευμένο αίτημα.'},
+        booking:{eyebrow:'Άμεση κράτηση',title:'Κάντε κράτηση τώρα.',subtitle:'Επιλέξτε ημερομηνίες και αριθμό επισκεπτών.',body:'',arrival:'Άφιξη',departure:'Αναχώρηση',adults:'Ενήλικες',children:'Παιδιά',extra:'Κάτι άλλο που πρέπει να γνωρίζουμε;',placeholder:'Κατοικίδια, ξεχωριστός χώρος για οικογένεια, ειδικό αίτημα...',recommended:'Προτεινόμενο για την παρέα σας',cta:'Κράτηση στο WhatsApp',chooseDatesFirst:'Επιλέξτε πρώτα ημερομηνία άφιξης και αναχώρησης',recMain:'Main Villa',recEstate:'Ολόκληρο το κτήμα',recSmall:'Main Villa / επιλεγμένες ημερομηνίες Garden Villa',recMainNote:'Ιδανικό για 5–8 άτομα. Η Garden Villa μπορεί να προστεθεί για περισσότερη ιδιωτικότητα.',recEstateNote:'Ιδανικό για 9–12 άτομα: και οι δύο βίλες μαζί ως ένα ιδιωτικό κτήμα.',recSmallNote:'Για 2–4 άτομα, η Main Villa παραμένει η κύρια επιλογή. Ρωτήστε για τη Garden Villa σε επιλεγμένες ημερομηνίες.',tooMany:'Για παρέες άνω των 12 ατόμων, στείλτε εξατομικευμένο αίτημα.'},
         outdoor:{eyebrow:'Υπαίθριοι χώροι',title:'1.500 m² για διακοπές στον δικό σας ρυθμό.',subtitle:'Πρωινός καφές στον κήπο, οικογενειακά γεύματα, βραδιές BBQ και ήσυχες γωνιές μέσα στη φύση.',badge:'ιδιωτικός εξωτερικός χώρος',e1t:'Μαζί',e1:'Άνετοι χώροι εξωτερικού φαγητού για οικογένειες και παρέες.',e2t:'Μαγείρεμα έξω',e2:'Χώρος BBQ για χαλαρά γεύματα και καλοκαιρινά βράδια.',e3t:'Χαλάρωση',e3:'Κήπος, βεράντες και καθιστικά γύρω από το κτήμα.',e4t:'Ευελιξία',e4:'Δύο ξεχωριστές βίλες, ενωμένες από τον ίδιο ιδιωτικό χώρο.'},
         daynight:{eyebrow:'Από μέρα σε νύχτα',title:'Ηλιόλουστα πρωινά. Ζεστά καλοκαιρινά βράδια.',subtitle:'Μετακινήστε τον δείκτη για να δείτε το κτήμα καθώς ανάβουν τα φώτα.',day:'Μέρα',night:'Νύχτα'},
         location:{eyebrow:'Βουρβουρού · Σιθωνία',title:'Παραλία μπροστά. Βουνό πίσω.',text:'Απολαύστε τη χαλαρή ατμόσφαιρα της Βουρβουρού, με την κοντινότερη παραλία σε απόσταση περπατήματος, την παραλία Καρύδι λίγα λεπτά μακριά και θέα προς τον Διάπορο.',f1:'από την κοντινότερη παραλία',f2:'ως την παραλία Καρύδι',f3:'μέγιστη προβεβλημένη χωρητικότητα και για τις δύο βίλες',f4:'ιδιωτικές βίλες σε ένα ευέλικτο κτήμα',mapnote:'Vourvourou 630 78, Greece',addressLabel:'Διεύθυνση',directions:'Οδηγίες προς την τοποθεσία'},
         amenities:{eyebrow:'Άνεση χωρίς περιττά',title:'Όλα όσα χρειάζεστε για εύκολη διαμονή.',subtitle:'Πρώτα εμφανίζονται οι βασικές παροχές. Η πλήρης λίστα βρίσκεται ένα κλικ μακριά.',a1:'Ιδιωτικό πάρκινγκ',a2:'Μεγάλος κήπος',a3:'BBQ',a4:'Εξωτερική τραπεζαρία',a5:'Κλιματισμός',a6:'Για οικογένειες',a7:'Κατοικίδια δεκτά',a8:'Πλυντήριο',a9:'Καμπίνα υδρομασάζ',a10:'Εξοπλισμένες κουζίνες',x1:'Ιδιωτικά μπάνια',x2:'Βεράντα / ηλιόλουστη βεράντα',x3:'Έπιπλα εξωτερικού χώρου',x4:'Χώρος πικνίκ',x5:'Θέρμανση',x6:'Ηχομονωμένα δωμάτια',x7:'Δωμάτια μη καπνιστών',x8:'Φύλαξη αποσκευών',x9:'Express check-in / check-out',x10:'Κοινόχρηστο lounge / TV',x11:'Χώρος bar',x12:'Εξωτερικό ντους',more:'Όλες οι παροχές',less:'Λιγότερες παροχές'},
-        gallery:{eyebrow:'Η ιδιοκτησία με λεπτομέρεια',title:'Φωτογραφίες',all:'Όλα',main:'Main Villa',garden:'Garden Villa',bedrooms:'Υπνοδωμάτια',bathrooms:'Μπάνια',outdoors:'Εξωτερικοί χώροι',evening:'Βράδυ',more:'Περισσότερες φωτογραφίες',less:'Λιγότερες φωτογραφίες'},
+        gallery:{eyebrow:'Η ιδιοκτησία με λεπτομέρεια',title:'Φωτογραφίες',all:'Όλα',main:'Main Villa',garden:'Garden Villa',beach:'Karidi Beach',bedrooms:'Υπνοδωμάτια',bathrooms:'Μπάνια',outdoors:'Εξωτερικοί χώροι',evening:'Βράδυ',more:'Περισσότερες φωτογραφίες',less:'Λιγότερες φωτογραφίες'},
         reviews:{eyebrow:'Οι επισκέπτες μας',title:'Τι θυμούνται οι επισκέπτες.',score:'Εξαιρετικό · /10'},
         footer:{text:'Ένα ευέλικτο ιδιωτικό κτήμα στη Βουρβουρού για οικογένειες, φίλους και παρέες που ταξιδεύουν μαζί.',explore:'Ανακαλύψτε',plan:'Σχεδιάστε τη διαμονή',contact:'Επικοινωνία',manage:'Διαχείριση',amenities:'Παροχές',rights:'Με επιφύλαξη παντός δικαιώματος.'},
         dialog:{eyebrow:'Προεπισκόπηση αιτήματος',title:'Το αίτημά σας είναι έτοιμο.',text:'Η πρώτη έκδοση ετοιμάζει το αίτημα στο browser. Στο επόμενο βήμα θα συνδεθεί με owner panel / κανάλι κρατήσεων.',copy:'Αντιγραφή',close:'Κλείσιμο',copied:'Αντιγράφηκε'},
@@ -1458,7 +1416,7 @@
       },
       de:{
         meta:{title:'M&M Villas Vourvourou | Flexibles privates Anwesen in Chalkidiki',description:'Ein flexibles privates Anwesen in Vourvourou für eine Familie oder Gruppen bis 12 Personen mit Main Villa, Garden Villa, großem Garten und Outdoor-Bereichen.'},
-        nav:{estate:'Das Anwesen',main:'Main Villa',garden:'Garden Villa',gallery:'Galerie',location:'Lage',owner:'Owner Panel',book:'Aufenthalt anfragen'},
+        nav:{estate:'Das Anwesen',main:'Main Villa',garden:'Garden Villa',gallery:'Galerie',location:'Lage',owner:'Owner Panel',book:'Jetzt buchen'},
         hero:{kicker:'Vourvourou · Chalkidiki · Griechenland',title:'Ein privates Anwesen.<br>Ihr Aufenthalt, auf Ihre Art.',subtitle:'Von einer Familie bis zu einer Gruppe von zwölf Personen passt sich M&M Villas Ihrer Reise an.',find:'Passenden Aufenthalt finden',explore:'Anwesen entdecken',factBeach:'400 m zum nächsten Strand',factGuests:'Bis zu 12 Gäste',factLand:'1.500 m² privates Grundstück'},
         common:{guests:'Gäste'},
         selector:{eyebrow:'Ein Aufenthalt, der sich anpasst',title:'Wie viele Personen reisen?',subtitle:'Nennen Sie uns Ihre Gruppengröße und wir zeigen Ihnen die passende Konfiguration für M&M Villas.'},
@@ -1470,12 +1428,12 @@
         estate:{eyebrow:'Für größere Familien & Gruppen',title:'Zusammen, wenn Sie möchten.<br>Privat, wenn Sie es brauchen.',text:'Buchen Sie Main Villa und Garden Villa als ein privates Anwesen. Alle bleiben nah beieinander, während eine weitere Familie oder ein Paar ihren eigenen separaten Bereich genießen kann.',guests:'Gäste',villas:'separate Villen',land:'m² privates Grundstück',quote:'Eine Familie kann ihre eigene private Villa genießen — nur wenige Schritte vom Rest der Gruppe entfernt.',cta:'Gesamtes Anwesen prüfen'},
         main:{eyebrow:'Das Herz von M&M Villas',title:'Main Villa',subtitle:'Platz für alle. Privatsphäre für jede Familie.',text:'Die Main Villa ist für bis zu 8 Gäste ausgelegt und kombiniert großzügige Gemeinschaftsbereiche mit 3 Schlafzimmern und 3 Bädern — ideal für Familien und Freunde, die gemeinsam reisen.',f1t:'Schlafen',f1:'3 separate Schlafzimmer',f2t:'Erfrischen',f2:'3 Bäder + Hydromassagekabine',f3t:'Kochen & zusammen sein',f3:'Voll ausgestattete Küche',f4t:'Draußen leben',f4:'Terrasse, Garten & BBQ',note:'Mehr Trennung gewünscht? Ergänzen Sie die Garden Villa und beherbergen Sie bis zu 12 Gäste im selben Anwesen.',cta:'Main Villa entdecken'},
         garden:{eyebrow:'Ein zusätzlicher privater Bereich im Anwesen',title:'Garden Villa',subtitle:'Mehr Privatsphäre, wenn Ihre Gruppe sie braucht.',text:'Nur wenige Schritte von der Main Villa entfernt bietet die Garden Villa einer weiteren Familie, einem Paar oder einer Generation einen eigenen komfortablen Bereich, während alle auf demselben Grundstück bleiben.',f1t:'Bis zu 4',f1:'Kompakter Familienaufenthalt',f2t:'Privater Bereich',f2:'Schlafzimmer + offener Wohnbereich',f3t:'Unabhängig',f3:'Küchenbereich + eigenes Bad',f4t:'Outdoor Living',f4:'Große Terrasse am Garten',note:'Primär als perfekte Ergänzung zur Main Villa gedacht. Separate Aufenthalte für 2–4 Gäste können an ausgewählten Daten verfügbar sein.',cta:'Garden Villa anfragen'},
-        booking:{eyebrow:'Intelligente Aufenthaltsplanung',title:'Wer reist mit?',subtitle:'Wählen Sie Reisedaten und Gruppengröße.',body:'',arrival:'Anreise',departure:'Abreise',adults:'Erwachsene',children:'Kinder',extra:'Noch etwas, das wir wissen sollten?',placeholder:'Haustiere, separater Familienbereich, besonderer Wunsch...',recommended:'Für Ihre Gruppe empfohlen',cta:'Buchungsanfrage',chooseDatesFirst:'Bitte wählen Sie zuerst Anreise und Abreise',recMain:'Main Villa',recEstate:'Das gesamte Anwesen',recSmall:'Main Villa / Garden Villa an ausgewählten Terminen',recMainNote:'Beste Wahl für 5–8 Gäste. Die Garden Villa kann für mehr Trennung ergänzt werden.',recEstateNote:'Beste Wahl für 9–12 Gäste: beide Villen gemeinsam als privates Anwesen.',recSmallNote:'Für 2–4 Gäste bleibt die Main Villa die Hauptoption. Fragen Sie nach der Garden Villa an ausgewählten Terminen.',tooMany:'Für Gruppen über 12 Personen senden Sie bitte eine individuelle Anfrage.'},
+        booking:{eyebrow:'Direktbuchung',title:'Jetzt buchen.',subtitle:'Wählen Sie Reisedaten und Gruppengröße.',body:'',arrival:'Anreise',departure:'Abreise',adults:'Erwachsene',children:'Kinder',extra:'Noch etwas, das wir wissen sollten?',placeholder:'Haustiere, separater Familienbereich, besonderer Wunsch...',recommended:'Für Ihre Gruppe empfohlen',cta:'Über WhatsApp buchen',chooseDatesFirst:'Bitte wählen Sie zuerst Anreise und Abreise',recMain:'Main Villa',recEstate:'Das gesamte Anwesen',recSmall:'Main Villa / Garden Villa an ausgewählten Terminen',recMainNote:'Beste Wahl für 5–8 Gäste. Die Garden Villa kann für mehr Trennung ergänzt werden.',recEstateNote:'Beste Wahl für 9–12 Gäste: beide Villen gemeinsam als privates Anwesen.',recSmallNote:'Für 2–4 Gäste bleibt die Main Villa die Hauptoption. Fragen Sie nach der Garden Villa an ausgewählten Terminen.',tooMany:'Für Gruppen über 12 Personen senden Sie bitte eine individuelle Anfrage.'},
         outdoor:{eyebrow:'Outdoor bei M&M Villas',title:'1.500 m² für Urlaub in Ihrem eigenen Rhythmus.',subtitle:'Morgenkaffee im Garten, Familienessen, BBQ-Abende und ruhige Ecken inmitten der Natur.',badge:'privater Außenbereich',e1t:'Zusammenkommen',e1:'Großzügige Outdoor-Essbereiche für Familien und Gruppen.',e2t:'Draußen kochen',e2:'BBQ-Bereich für entspannte Mittagessen und Sommerabende.',e3t:'Entschleunigen',e3:'Garten, Terrassen und Sitzbereiche rund um das Anwesen.',e4t:'Flexibel bleiben',e4:'Zwei separate Villen, verbunden durch dasselbe private Grundstück.'},
         daynight:{eyebrow:'Von Tag zu Nacht',title:'Sonnige Morgen. Warme Sommerabende.',subtitle:'Bewegen Sie den Regler und sehen Sie, wie sich das Anwesen am Abend verändert.',day:'Tag',night:'Nacht'},
         location:{eyebrow:'Vourvourou · Sithonia',title:'Strand vorne. Berg hinten.',text:'Genießen Sie die entspannte Lage in Vourvourou: der nächste Strand ist zu Fuß erreichbar, Karidi Beach nur wenige Minuten entfernt und vom Anwesen reicht der Blick in Richtung Diaporos.',f1:'zum nächsten Strand',f2:'zum Karidi Beach',f3:'maximal beworbene Kapazität beider Villen',f4:'private Villen in einem flexiblen Anwesen',mapnote:'Vourvourou 630 78, Greece',addressLabel:'Adresse',directions:'Route zur Unterkunft'},
         amenities:{eyebrow:'Komfort ohne Überladung',title:'Alles für einen unkomplizierten Aufenthalt.',subtitle:'Die wichtigsten Ausstattungen zuerst; die vollständige Liste ist nur einen Klick entfernt.',a1:'Privater Parkplatz',a2:'Großer Garten',a3:'BBQ',a4:'Outdoor-Essbereich',a5:'Klimaanlage',a6:'Familienfreundlich',a7:'Haustiere willkommen',a8:'Waschmöglichkeit',a9:'Hydromassagekabine',a10:'Ausgestattete Küchen',x1:'Private Bäder',x2:'Terrasse / Sonnenterrasse',x3:'Outdoor-Möbel',x4:'Picknickbereich',x5:'Heizung',x6:'Schallisolierte Zimmer',x7:'Nichtraucherzimmer',x8:'Gepäckaufbewahrung',x9:'Express Check-in / Check-out',x10:'Gemeinschaftslounge / TV',x11:'Barbereich',x12:'Außendusche',more:'Alle Ausstattungen',less:'Weniger anzeigen'},
-        gallery:{eyebrow:'Das Anwesen im Detail',title:'Galerie',all:'Alle',main:'Main Villa',garden:'Garden Villa',bedrooms:'Schlafzimmer',bathrooms:'Bäder',outdoors:'Außenbereich',evening:'Abends',more:'Mehr Fotos',less:'Weniger Fotos'},
+        gallery:{eyebrow:'Das Anwesen im Detail',title:'Galerie',all:'Alle',main:'Main Villa',garden:'Garden Villa',beach:'Karidi Beach',bedrooms:'Schlafzimmer',bathrooms:'Bäder',outdoors:'Außenbereich',evening:'Abends',more:'Mehr Fotos',less:'Weniger Fotos'},
         reviews:{eyebrow:'Stimmen der Gäste',title:'Was Gästen in Erinnerung bleibt.',score:'Außergewöhnlich · /10'},
         footer:{text:'Ein flexibles privates Anwesen in Vourvourou für Familien, Freunde und Gruppen, die gemeinsam reisen.',explore:'Entdecken',plan:'Aufenthalt planen',contact:'Kontakt',manage:'Verwaltung',amenities:'Ausstattung',rights:'Alle Rechte vorbehalten.'},
         dialog:{eyebrow:'Vorschau der Buchungsanfrage',title:'Ihre Anfrage ist vorbereitet.',text:'Diese erste Version bereitet die Anfrage im Browser vor. Im nächsten Schritt verbinden wir sie mit Owner Panel / Buchungskanal.',copy:'Anfrage kopieren',close:'Schließen',copied:'Kopiert'},
@@ -1483,7 +1441,7 @@
       },
       bg:{
         meta:{title:'M&M Villas Vourvourou | Гъвкаво частно имение в Халкидики',description:'Гъвкаво частно имение във Вурвуру за едно семейство или групи до 12 гости с Main Villa, Garden Villa, голяма градина и външни пространства.'},
-        nav:{estate:'Имението',main:'Main Villa',garden:'Garden Villa',gallery:'Галерия',location:'Локация',owner:'Owner Panel',book:'Заяви престой'},
+        nav:{estate:'Имението',main:'Main Villa',garden:'Garden Villa',gallery:'Галерия',location:'Локация',owner:'Owner Panel',book:'Резервирай сега'},
         hero:{kicker:'Вурвуру · Халкидики · Гърция',title:'Едно частно имение.<br>Вашият престой, по вашия начин.',subtitle:'От едно семейство до група от дванадесет души — M&M Villas се адаптира към начина, по който пътувате.',find:'Намерете вашия вариант',explore:'Разгледайте имението',factBeach:'400 м до най-близкия плаж',factGuests:'До 12 гости',factLand:'1 500 m² частно пространство'},
         common:{guests:'гости'},
         selector:{eyebrow:'Престой, който се адаптира',title:'Колко души пътувате?',subtitle:'Кажете ни размера на групата и ще ви покажем най-подходящата конфигурация за M&M Villas.'},
@@ -1495,12 +1453,12 @@
         estate:{eyebrow:'За големи семейства & групи',title:'Заедно, когато искате.<br>Насаме, когато имате нужда.',text:'Резервирайте Main Villa и Garden Villa като едно частно имение. Всички остават близо, а друго семейство или двойка могат да имат собствено отделно пространство.',guests:'гости',villas:'отделни вили',land:'m² частно пространство',quote:'Едно семейство може да има своя собствена вила — само на няколко крачки от останалата група.',cta:'Проверете цялото имение'},
         main:{eyebrow:'Сърцето на M&M Villas',title:'Main Villa',subtitle:'Място за всички. Уединение за всяко семейство.',text:'Main Villa е за до 8 гости и съчетава просторни общи части с 3 спални и 3 бани — много удобна за семейства и приятели, които пътуват заедно.',f1t:'Сън',f1:'3 отделни спални',f2t:'Комфорт',f2:'3 бани + хидромасажна кабина',f3t:'Готвене & заедно',f3:'Напълно оборудвана кухня',f4t:'Навън',f4:'Тераса, градина & BBQ',note:'Нуждаете се от повече разделение? Добавете Garden Villa и настанете до 12 гости в същото имение.',cta:'Разгледайте Main Villa'},
         garden:{eyebrow:'Допълнително лично пространство в имението',title:'Garden Villa',subtitle:'Повече уединение, когато групата има нужда.',text:'Само на няколко крачки от Main Villa, Garden Villa дава на второ семейство, двойка или поколение собствено удобно пространство, докато всички остават в един и същ имот.',f1t:'До 4',f1:'Компактен семеен престой',f2t:'Лично пространство',f2:'Спалня + отворена дневна зона',f3t:'Самостоятелна',f3:'Кухненска зона + собствена баня',f4t:'Навън',f4:'Голяма тераса до градината',note:'Предназначена основно като идеално допълнение към Main Villa. Самостоятелни престои за 2–4 гости може да са налични на избрани дати.',cta:'Попитайте за Garden Villa'},
-        booking:{eyebrow:'Умен план за престоя',title:'Кажете ни кой пътува.',subtitle:'Изберете дати и размер на групата.',body:'',arrival:'Пристигане',departure:'Заминаване',adults:'Възрастни',children:'Деца',extra:'Има ли нещо друго?',placeholder:'Домашни любимци, отделно семейно пространство, специална заявка...',recommended:'Препоръчано за вашата група',cta:'Запитване за резервация',chooseDatesFirst:'Първо изберете дата на пристигане и заминаване',recMain:'Main Villa',recEstate:'Цялото имение',recSmall:'Main Villa / Garden Villa на избрани дати',recMainNote:'Най-подходящо за 5–8 гости. Garden Villa може да се добави за повече уединение.',recEstateNote:'Най-подходящо за 9–12 гости: двете вили заедно като едно частно имение.',recSmallNote:'За 2–4 гости Main Villa остава основната опция. Попитайте за Garden Villa на избрани дати.',tooMany:'За групи над 12 души изпратете индивидуално запитване.'},
+        booking:{eyebrow:'Директна резервация',title:'Резервирайте сега.',subtitle:'Изберете дати и размер на групата.',body:'',arrival:'Пристигане',departure:'Заминаване',adults:'Възрастни',children:'Деца',extra:'Има ли нещо друго?',placeholder:'Домашни любимци, отделно семейно пространство, специална заявка...',recommended:'Препоръчано за вашата група',cta:'Резервирай в WhatsApp',chooseDatesFirst:'Първо изберете дата на пристигане и заминаване',recMain:'Main Villa',recEstate:'Цялото имение',recSmall:'Main Villa / Garden Villa на избрани дати',recMainNote:'Най-подходящо за 5–8 гости. Garden Villa може да се добави за повече уединение.',recEstateNote:'Най-подходящо за 9–12 гости: двете вили заедно като едно частно имение.',recSmallNote:'За 2–4 гости Main Villa остава основната опция. Попитайте за Garden Villa на избрани дати.',tooMany:'За групи над 12 души изпратете индивидуално запитване.'},
         outdoor:{eyebrow:'Навън в M&M Villas',title:'1 500 m² за почивка по вашия ритъм.',subtitle:'Сутрешно кафе в градината, семейни обеди, BBQ вечери и тихи кътчета сред природата.',badge:'частно външно пространство',e1t:'Заедно',e1:'Просторни външни зони за хранене за семейства и групи.',e2t:'Гответе навън',e2:'BBQ зона за спокойни обеди и летни вечери.',e3t:'Забавете ритъма',e3:'Градина, тераси и места за сядане около имението.',e4t:'Бъдете гъвкави',e4:'Две отделни вили, свързани от едно и също частно пространство.'},
         daynight:{eyebrow:'От ден към нощ',title:'Слънчеви сутрини. Топли летни вечери.',subtitle:'Преместете плъзгача и вижте как имението се променя вечер.',day:'Ден',night:'Нощ'},
         location:{eyebrow:'Вурвуру · Ситония',title:'Плаж отпред. Планина отзад.',text:'Насладете се на спокойната атмосфера на Вурвуру: най-близкият плаж е на пешеходно разстояние, Karidi Beach е само на няколко минути, а от имота се открива гледка към Диапорос.',f1:'до най-близкия плаж',f2:'до Karidi Beach',f3:'максимално рекламиран капацитет за двете вили',f4:'частни вили в едно гъвкаво имение',mapnote:'Vourvourou 630 78, Greece',addressLabel:'Адрес',directions:'Отведи ме до локацията'},
         amenities:{eyebrow:'Комфорт без претрупване',title:'Всичко необходимо за лесен престой.',subtitle:'Първо показваме най-важното, а пълният списък е на един клик.',a1:'Частен паркинг',a2:'Голяма градина',a3:'BBQ',a4:'Хранене на открито',a5:'Климатик',a6:'Подходящо за семейства',a7:'Домашни любимци',a8:'Пералня',a9:'Хидромасажна кабина',a10:'Оборудвани кухни',x1:'Самостоятелни бани',x2:'Тераса / слънчева тераса',x3:'Външни мебели',x4:'Пикник зона',x5:'Отопление',x6:'Шумоизолирани стаи',x7:'Стаи за непушачи',x8:'Съхранение на багаж',x9:'Express check-in / check-out',x10:'Общ lounge / TV',x11:'Бар зона',x12:'Външен душ',more:'Всички удобства',less:'Покажи по-малко'},
-        gallery:{eyebrow:'Имотът в детайли',title:'Галерия',all:'Всички',main:'Main Villa',garden:'Garden Villa',bedrooms:'Спални',bathrooms:'Бани',outdoors:'Навън',evening:'Вечер',more:'Още снимки',less:'По-малко снимки'},
+        gallery:{eyebrow:'Имотът в детайли',title:'Галерия',all:'Всички',main:'Main Villa',garden:'Garden Villa',beach:'Karidi Beach',bedrooms:'Спални',bathrooms:'Бани',outdoors:'Навън',evening:'Вечер',more:'Още снимки',less:'По-малко снимки'},
         reviews:{eyebrow:'Гласът на гостите',title:'Какво помнят гостите.',score:'Изключително · /10'},
         footer:{text:'Гъвкаво частно имение във Вурвуру за семейства, приятели и групи, които пътуват заедно.',explore:'Разгледайте',plan:'Планирайте престоя',contact:'Контакт',manage:'Управление',amenities:'Удобства',rights:'Всички права запазени.'},
         dialog:{eyebrow:'Преглед на запитването',title:'Вашето запитване е готово.',text:'Първата версия подготвя запитването в браузъра. В следващия етап ще го свържем с owner panel / канал за резервации.',copy:'Копирай',close:'Затвори',copied:'Копирано'},
@@ -1508,7 +1466,7 @@
       },
       sr:{
         meta:{title:'M&M Villas Vourvourou | Fleksibilno privatno imanje na Halkidikiju',description:'Fleksibilno privatno imanje u Vourvourou za jednu porodicu ili grupe do 12 gostiju, sa Main Villa, Garden Villa, velikim vrtom i spoljnim prostorima.'},
-        nav:{estate:'Imanje',main:'Main Villa',garden:'Garden Villa',gallery:'Galerija',location:'Lokacija',owner:'Owner Panel',book:'Pošalji upit'},
+        nav:{estate:'Imanje',main:'Main Villa',garden:'Garden Villa',gallery:'Galerija',location:'Lokacija',owner:'Owner Panel',book:'Rezerviši sada'},
         hero:{kicker:'Vourvourou · Halkidiki · Grčka',title:'Jedno privatno imanje.<br>Vaš boravak, na vaš način.',subtitle:'Od jedne porodice do grupe od dvanaest osoba, M&M Villas se prilagođava načinu na koji putujete.',find:'Pronađite svoj boravak',explore:'Istražite imanje',factBeach:'400 m do najbliže plaže',factGuests:'Do 12 gostiju',factLand:'1.500 m² privatnog prostora'},
         common:{guests:'gostiju'},
         selector:{eyebrow:'Boravak koji se prilagođava',title:'Koliko vas putuje?',subtitle:'Recite nam veličinu grupe i pokazaćemo vam najprirodniju opciju za M&M Villas.'},
@@ -1520,12 +1478,12 @@
         estate:{eyebrow:'Za veće porodice & grupe',title:'Zajedno kada želite.<br>Privatno kada vam treba.',text:'Rezervišite Main Villa i Garden Villa kao jedno privatno imanje. Svi ostaju blizu, dok druga porodica ili par mogu imati svoj zaseban prostor.',guests:'gostiju',villas:'odvojene vile',land:'m² privatnog prostora',quote:'Jedna porodica može imati svoju privatnu vilu — svega nekoliko koraka od ostatka grupe.',cta:'Proverite celo imanje'},
         main:{eyebrow:'Srce M&M Villas',title:'Main Villa',subtitle:'Prostor za sve. Privatnost za svaku porodicu.',text:'Main Villa je namenjena za do 8 gostiju i kombinuje prostrane zajedničke zone sa 3 spavaće sobe i 3 kupatila — veoma udobno za porodice i prijatelje koji putuju zajedno.',f1t:'Spavanje',f1:'3 odvojene spavaće sobe',f2t:'Osveženje',f2:'3 kupatila + hidromasažna kabina',f3t:'Kuvanje & druženje',f3:'Potpuno opremljena kuhinja',f4t:'Život napolju',f4:'Terasa, vrt & BBQ',note:'Treba vam više odvojenosti? Dodajte Garden Villa i smestite do 12 gostiju u istom imanju.',cta:'Istražite Main Villa'},
         garden:{eyebrow:'Dodatni privatni prostor u okviru imanja',title:'Garden Villa',subtitle:'Više privatnosti kada je grupi potrebno.',text:'Samo nekoliko koraka od Main Villa, Garden Villa daje drugoj porodici, paru ili generaciji sopstveni udoban prostor, dok svi ostaju na istom imanju.',f1t:'Do 4',f1:'Kompaktan porodični boravak',f2t:'Privatni prostor',f2:'Spavaća soba + otvoreni dnevni deo',f3t:'Samostalna',f3:'Kuhinjski deo + privatno kupatilo',f4t:'Napolju',f4:'Velika terasa uz vrt',note:'Pre svega zamišljena kao idealan dodatak Main Villa. Samostalni boravci za 2–4 gosta mogu biti dostupni u odabranim terminima.',cta:'Pitajte za Garden Villa'},
-        booking:{eyebrow:'Pametan planer boravka',title:'Recite nam ko putuje.',subtitle:'Izaberite datume i veličinu grupe.',body:'',arrival:'Dolazak',departure:'Odlazak',adults:'Odrasli',children:'Deca',extra:'Još nešto što treba da znamo?',placeholder:'Kućni ljubimci, odvojeni porodični prostor, poseban zahtev...',recommended:'Preporučeno za vašu grupu',cta:'Upit za rezervaciju',chooseDatesFirst:'Prvo izaberite datum dolaska i odlaska',recMain:'Main Villa',recEstate:'Celo imanje',recSmall:'Main Villa / Garden Villa u odabranim terminima',recMainNote:'Najbolje za 5–8 gostiju. Garden Villa može da se doda za više privatnosti.',recEstateNote:'Najbolje za 9–12 gostiju: obe vile zajedno kao jedno privatno imanje.',recSmallNote:'Za 2–4 gosta Main Villa ostaje glavni izbor. Pitajte za Garden Villa u odabranim terminima.',tooMany:'Za grupe veće od 12 osoba pošaljite poseban upit.'},
+        booking:{eyebrow:'Direktna rezervacija',title:'Rezervišite sada.',subtitle:'Izaberite datume i veličinu grupe.',body:'',arrival:'Dolazak',departure:'Odlazak',adults:'Odrasli',children:'Deca',extra:'Još nešto što treba da znamo?',placeholder:'Kućni ljubimci, odvojeni porodični prostor, poseban zahtev...',recommended:'Preporučeno za vašu grupu',cta:'Rezerviši preko WhatsApp-a',chooseDatesFirst:'Prvo izaberite datum dolaska i odlaska',recMain:'Main Villa',recEstate:'Celo imanje',recSmall:'Main Villa / Garden Villa u odabranim terminima',recMainNote:'Najbolje za 5–8 gostiju. Garden Villa može da se doda za više privatnosti.',recEstateNote:'Najbolje za 9–12 gostiju: obe vile zajedno kao jedno privatno imanje.',recSmallNote:'Za 2–4 gosta Main Villa ostaje glavni izbor. Pitajte za Garden Villa u odabranim terminima.',tooMany:'Za grupe veće od 12 osoba pošaljite poseban upit.'},
         outdoor:{eyebrow:'Spoljašnji prostor M&M Villas',title:'1.500 m² za odmor u vašem ritmu.',subtitle:'Jutarnja kafa u vrtu, porodični ručkovi, BBQ večeri i mirni uglovi okruženi prirodom.',badge:'privatni spoljni prostor',e1t:'Okupljanje',e1:'Prostrane zone za obroke napolju za porodice i grupe.',e2t:'Kuvajte napolju',e2:'BBQ prostor za opuštene ručkove i letnje večeri.',e3t:'Usporite',e3:'Vrt, terase i mesta za sedenje oko imanja.',e4t:'Budite fleksibilni',e4:'Dve odvojene vile povezane istim privatnim prostorom.'},
         daynight:{eyebrow:'Od dana do noći',title:'Sunčana jutra. Tople letnje večeri.',subtitle:'Pomeri klizač i pogledaj kako se imanje menja kada se upale svetla.',day:'Dan',night:'Noć'},
         location:{eyebrow:'Vourvourou · Sitonija',title:'Plaža ispred. Planina iza.',text:'Uživajte u opuštenom Vourvourou okruženju: najbliža plaža je na pešačkoj udaljenosti, Karidi Beach je samo nekoliko minuta dalje, a sa imanja se pruža pogled prema Diaporosu.',f1:'do najbliže plaže',f2:'do Karidi Beach',f3:'maksimalni oglašeni kapacitet obe vile',f4:'privatne vile u jednom fleksibilnom imanju',mapnote:'Vourvourou 630 78, Greece',addressLabel:'Adresa',directions:'Odvedi me do lokacije'},
         amenities:{eyebrow:'Komfor bez viška',title:'Sve što vam treba za lak boravak.',subtitle:'Najvažnije pogodnosti prikazujemo prve, a potpuna lista je udaljena jedan klik.',a1:'Privatan parking',a2:'Veliki vrt',a3:'BBQ',a4:'Obroci napolju',a5:'Klima uređaj',a6:'Za porodice',a7:'Ljubimci dobrodošli',a8:'Veš mašina',a9:'Hidromasažna kabina',a10:'Opremljene kuhinje',x1:'Privatna kupatila',x2:'Terasa / sunčana terasa',x3:'Spoljni nameštaj',x4:'Piknik zona',x5:'Grejanje',x6:'Zvučno izolovane sobe',x7:'Sobe za nepušače',x8:'Ostava za prtljag',x9:'Express check-in / check-out',x10:'Zajednički lounge / TV',x11:'Bar zona',x12:'Spoljni tuš',more:'Sve pogodnosti',less:'Prikaži manje'},
-        gallery:{eyebrow:'Imanje u detaljima',title:'Galerija',all:'Sve',main:'Main Villa',garden:'Garden Villa',bedrooms:'Spavaće sobe',bathrooms:'Kupatila',outdoors:'Spolja',evening:'Veče',more:'Prikaži još fotografija',less:'Prikaži manje'},
+        gallery:{eyebrow:'Imanje u detaljima',title:'Galerija',all:'Sve',main:'Main Villa',garden:'Garden Villa',beach:'Karidi Beach',bedrooms:'Spavaće sobe',bathrooms:'Kupatila',outdoors:'Spolja',evening:'Veče',more:'Prikaži još fotografija',less:'Prikaži manje'},
         reviews:{eyebrow:'Utisci gostiju',title:'Šta gosti pamte.',score:'Izuzetno · /10'},
         footer:{text:'Fleksibilno privatno imanje u Vourvourou za porodice, prijatelje i grupe koje putuju zajedno.',explore:'Istražite',plan:'Planirajte boravak',contact:'Kontakt',manage:'Upravljanje',amenities:'Pogodnosti',rights:'Sva prava zadržana.'},
         dialog:{eyebrow:'Pregled upita',title:'Vaš upit je spreman.',text:'Ova prva verzija priprema upit u browseru. U sledećoj fazi povezaćemo ga sa owner panelom / kanalom za rezervacije.',copy:'Kopiraj upit',close:'Zatvori',copied:'Kopirano'},
@@ -1637,7 +1595,7 @@
       document.getElementById('calendarCheckinLabel').textContent=copy.checkin;
       document.getElementById('calendarCheckoutLabel').textContent=copy.checkout;
       document.getElementById('calendarNightsLabel').textContent=copy.nights;
-      const calendarHint=document.getElementById('calendarHint');if(calendarHint)calendarHint.textContent=copy.hint;
+      document.getElementById('calendarHint').textContent=copy.hint;
 
       const y=calendarCursor.getFullYear(),m=calendarCursor.getMonth();
       const first=new Date(y,m,1),last=new Date(y,m+1,0);
@@ -1786,28 +1744,50 @@
 
     const galleryImages=[];
     function addGallery(src,cats,label){galleryImages.push({src,cats,label})}
-    [1,2,3,4,5,6,7,8,9,10].forEach(n=>addGallery(`Assets/Images/large-villa/${n}.webp`,['main','outdoor',...(n<=2?['night']:[])],`Main Villa · ${n}`));
-    addGallery('Assets/Images/large-villa/11.webp',['main','interior','kitchen'],'Main Villa · 11');
-    addGallery('Assets/Images/large-villa/12.webp',['main','bedroom'],'Main Villa · 12');
-    addGallery('Assets/Images/large-villa/13.webp',['main','kitchen'],'Main Villa · 13');
-    addGallery('Assets/Images/large-villa/14.webp',['main','interior'],'Main Villa · 14');
-    addGallery('Assets/Images/large-villa/15.webp',['main','interior'],'Main Villa · 15');
-    addGallery('Assets/Images/large-villa/16.webp',['main','kitchen'],'Main Villa · 16');
-    addGallery('Assets/Images/large-villa/17.webp',['main','kitchen'],'Main Villa · 17');
-    [18,19,20].forEach(n=>addGallery(`Assets/Images/large-villa/${n}.webp`,['main','bedroom'],`Main Villa · ${n}`));
-    addGallery('Assets/Images/large-villa/21.webp',['main','bathroom'],'Main Villa · 21');
-    [22,23,24,25].forEach(n=>addGallery(`Assets/Images/large-villa/${n}.webp`,['main','bedroom'],`Main Villa · ${n}`));
-    addGallery('Assets/Images/large-villa/26.webp',['main','bathroom'],'Main Villa · 26');
-    addGallery('Assets/Images/large-villa/27.webp',['main','interior'],'Main Villa · 27');
-    [28,29,30,31,32].forEach(n=>addGallery(`Assets/Images/large-villa/${n}.webp`,['main','bedroom'],`Main Villa · ${n}`));
-    ['001','002','003','004','005','006','007'].forEach(n=>addGallery(`Assets/Images/small-villa/${n}.webp`,['garden','outdoor',...(['002','003','007'].includes(n)?['night']:[])],`Garden Villa · ${n}`));
-    addGallery('Assets/Images/small-villa/008.webp',['garden','interior','outdoor'],'Garden Villa · 008');
-    addGallery('Assets/Images/small-villa/009.webp',['garden','interior'],'Garden Villa · 009');
-    addGallery('Assets/Images/small-villa/010.webp',['garden','bedroom'],'Garden Villa · 010');
-    addGallery('Assets/Images/small-villa/011.webp',['garden','kitchen'],'Garden Villa · 011');
-    addGallery('Assets/Images/small-villa/012.webp',['garden','interior','kitchen'],'Garden Villa · 012');
-    addGallery('Assets/Images/small-villa/013.webp',['garden','bedroom'],'Garden Villa · 013');
-    addGallery('Assets/Images/small-villa/014.webp',['garden','bathroom'],'Garden Villa · 014');
+
+    // MAIN VILLA — 53 photos: 1–44 and 74–82. The numbering intentionally skips 84.
+    const largeNumbers=[...Array.from({length:44},(_,i)=>i+1),74,75,76,77,78,79,80,81,82];
+    const largeOutdoor=new Set([1,2,3,4,5,6,7,8,9,10,39,40,41,42,43,44,74,75,76,77,78,79,80,81,82]);
+    const largeNight=new Set([1,2,74,78,81]);
+    const largeBedrooms=new Set([18,19,20,22,23,24,25,28,29,30,31,32]);
+    const largeBathrooms=new Set([21,26,27]);
+    const largeKitchens=new Set([13,16,17,34,37]);
+    largeNumbers.forEach(n=>{
+      const cats=['main'];
+      if(largeOutdoor.has(n)) cats.push('outdoor');
+      if(largeNight.has(n)) cats.push('night');
+      if(largeBedrooms.has(n)) cats.push('bedroom','interior');
+      if(largeBathrooms.has(n)) cats.push('bathroom','interior');
+      if(largeKitchens.has(n)) cats.push('kitchen','interior');
+      if(!cats.includes('outdoor')&&!cats.includes('bedroom')&&!cats.includes('bathroom')&&!cats.includes('kitchen')) cats.push('interior');
+      addGallery(`Assets/Images/large-villa/${n}.webp`,cats,`Main Villa · ${n}`);
+    });
+
+    // GARDEN VILLA — 29 photos: 45–73.
+    const smallNumbers=Array.from({length:29},(_,i)=>i+45);
+    const smallBedrooms=new Set([45,46,47,48,49,50,51,52,53]);
+    const smallKitchens=new Set([51,52,54,55]);
+    const smallBathrooms=new Set([56,57]);
+    const smallOutdoor=new Set([58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73]);
+    const smallNight=new Set([60,61,62,65,66,70,72]);
+    smallNumbers.forEach(n=>{
+      const cats=['garden'];
+      if(smallBedrooms.has(n)) cats.push('bedroom','interior');
+      if(smallKitchens.has(n)) cats.push('kitchen','interior');
+      if(smallBathrooms.has(n)) cats.push('bathroom','interior');
+      if(smallOutdoor.has(n)) cats.push('outdoor');
+      if(smallNight.has(n)) cats.push('night');
+      if(cats.length===1) cats.push('interior');
+      addGallery(`Assets/Images/small-villa/${n}.webp`,[...new Set(cats)],`Garden Villa · ${n}`);
+    });
+
+    // SHARED OUTDOOR / ESTATE — 3 photos: 83, 85, 86. The numbering skips 84.
+    addGallery('Assets/Images/outdoor/83.webp',['outdoor'],'M&M Villas estate · 83');
+    addGallery('Assets/Images/outdoor/85.webp',['outdoor','night'],'M&M Villas estate · 85');
+    addGallery('Assets/Images/outdoor/86.webp',['outdoor','night'],'M&M Villas estate · 86');
+
+    // KARIDI BEACH — 4 photos.
+    ['Beach','Beach1','Beach2','Beach3'].forEach((name,i)=>addGallery(`Assets/Images/beach/${name}.webp`,['beach'],`Karidi Beach · ${i+1}`));
 
     function renderGallery(){
       const grid=document.getElementById('galleryGrid');
@@ -1816,7 +1796,7 @@
       grid.innerHTML=shown.map((x,i)=>`<button class="gallery-item" data-src="${x.src}" data-label="${x.label}" aria-label="${x.label}"><img src="${x.src}" alt="${x.label}" loading="lazy"></button>`).join('');
       document.getElementById('galleryMore').style.display=filtered.length>12?'inline-flex':'none';
       document.getElementById('galleryMore').textContent=t(galleryExpanded?'gallery.less':'gallery.more');
-      grid.querySelectorAll('.gallery-item').forEach(b=>b.addEventListener('click',()=>openLightbox(b.dataset.src,b.dataset.label)));
+      grid.querySelectorAll('.gallery-item').forEach(b=>{const img=b.querySelector('img');img.addEventListener('error',()=>b.remove(),{once:true});b.addEventListener('click',()=>openLightbox(b.dataset.src,b.dataset.label));});
     }
 
     let lightboxList=[],lightboxIndex=0;
@@ -1840,7 +1820,6 @@
     }
 
     document.addEventListener('DOMContentLoaded',()=>{
-      document.body.classList.add('motion-ready');
       document.getElementById('year').textContent=new Date().getFullYear();
       fillSelects();renderLanguageMenu();applyLanguage(currentLang);renderGallery();initReveal();updateBookingRecommendation();
 
@@ -1896,6 +1875,9 @@
 
       document.getElementById('lightboxClose').addEventListener('click',closeLightbox);document.getElementById('lightboxPrev').addEventListener('click',()=>moveLightbox(-1));document.getElementById('lightboxNext').addEventListener('click',()=>moveLightbox(1));
       document.getElementById('lightbox').addEventListener('click',e=>{if(e.target.id==='lightbox')closeLightbox()});
+      let lightboxTouchX=null;
+      document.getElementById('lightbox').addEventListener('touchstart',e=>{lightboxTouchX=e.changedTouches[0].clientX},{passive:true});
+      document.getElementById('lightbox').addEventListener('touchend',e=>{if(lightboxTouchX===null)return;const dx=e.changedTouches[0].clientX-lightboxTouchX;lightboxTouchX=null;if(Math.abs(dx)>48)moveLightbox(dx>0?-1:1)},{passive:true});
       document.addEventListener('keydown',e=>{if(document.getElementById('lightbox').classList.contains('open')){if(e.key==='Escape')closeLightbox();if(e.key==='ArrowLeft')moveLightbox(-1);if(e.key==='ArrowRight')moveLightbox(1)}});
     });
   </script>
