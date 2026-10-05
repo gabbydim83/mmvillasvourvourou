@@ -1686,9 +1686,156 @@
       }
     }
 
+
+    /* ===== V7 — first client refinement pass ===== */
+
+    /* Desktop hero copy: truly anchored to the left edge. */
+    @media(min-width:1101px){
+      .hero-v4 .hero-content{
+        padding-left:14px !important;
+        padding-right:20px !important;
+        padding-bottom:42px !important;
+        margin:0 !important;
+        width:100% !important;
+      }
+      .hero-v4 .hero-copy{
+        margin:0 !important;
+        text-align:left !important;
+        max-width:1180px !important;
+      }
+      .hero-v4 .hero-kicker,
+      .hero-v4 .hero-sub,
+      .hero-v4 .hero-cta,
+      .hero-v4 .hero-facts{margin-left:0 !important;margin-right:auto !important}
+      .hero-v4 h1{
+        max-width:none !important;
+        white-space:nowrap;
+        text-align:left !important;
+      }
+    }
+
+    /* Character of M&M: edge-to-edge asymmetric photo wall, black separators only. */
+    .detail-story{overflow:hidden}
+    .detail-mosaic{
+      width:100vw !important;
+      max-width:none !important;
+      margin-left:calc(50% - 50vw) !important;
+      margin-right:calc(50% - 50vw) !important;
+      display:grid !important;
+      grid-template-columns:1.42fr .72fr 1.06fr !important;
+      grid-template-rows:min(28vw,390px) min(28vw,390px) !important;
+      gap:3px !important;
+      padding:3px 0 !important;
+      background:#111 !important;
+    }
+    .detail-mosaic .detail-shot{
+      margin:0 !important;
+      border-radius:0 !important;
+      background:#111 !important;
+      cursor:default !important;
+    }
+    .detail-mosaic .detail-shot img{width:100%;height:100%;object-fit:cover;border-radius:0 !important}
+    .detail-mosaic .detail-shot.a{grid-column:1 !important;grid-row:1 / span 2 !important}
+    .detail-mosaic .detail-shot.b{grid-column:2 !important;grid-row:1 !important}
+    .detail-mosaic .detail-shot.c{grid-column:3 !important;grid-row:1 / span 2 !important}
+    .detail-mosaic .detail-shot.d{grid-column:2 !important;grid-row:2 !important}
+    .detail-mosaic .detail-shot::after{display:none !important}
+    .detail-tag{display:none !important}
+
+    /* Estate cinema: photographs only, no captions or visual click affordance. */
+    .estate-cinema{background:#111 !important}
+    .estate-cinema-grid{gap:3px !important;width:100% !important}
+    .estate-cinema figure:nth-child(2){gap:3px !important}
+    .cinema-caption{display:none !important}
+    .estate-cinema figure,.estate-cinema .stack-shot{cursor:default !important}
+
+    /* Gallery filter controls: restrained and balanced. */
+    .gallery-filters{align-items:stretch}
+
+    /* Mobile hero: never crop the client's hero photographs. */
+    @media(max-width:720px){
+      .hero-v4{
+        min-height:0 !important;
+        height:auto !important;
+        padding-top:58px !important;
+        overflow:visible !important;
+        background:#151813 !important;
+      }
+      .hero-v4 .hero-canvas{
+        position:relative !important;
+        inset:auto !important;
+        width:100% !important;
+        height:auto !important;
+        aspect-ratio:16 / 9 !important;
+        background:#151813 !important;
+        overflow:hidden !important;
+      }
+      .hero-v4 .hero-slide{
+        width:100% !important;
+        height:100% !important;
+        object-fit:contain !important;
+        object-position:center center !important;
+        transform:none !important;
+      }
+      .hero-v4 .hero-canvas::after{
+        background:linear-gradient(180deg,rgba(8,10,8,0) 0%,rgba(8,10,8,.04) 72%,rgba(8,10,8,.18) 100%) !important;
+      }
+      .hero-v4 .hero-content{
+        position:relative !important;
+        inset:auto !important;
+        width:100% !important;
+        min-height:0 !important;
+        padding:17px 13px 24px !important;
+        display:block !important;
+        background:#151813 !important;
+      }
+      .hero-v4 .hero-copy{width:100% !important;max-width:none !important;text-align:left !important}
+      .hero-v4 h1{max-width:100% !important;white-space:normal !important}
+      .hero-slide-ui{right:12px !important;bottom:10px !important}
+
+      .detail-story{padding-bottom:60px !important}
+      .detail-mosaic{
+        grid-template-columns:1.15fr .85fr !important;
+        grid-template-rows:185px 185px 210px !important;
+        gap:3px !important;
+        padding:3px 0 !important;
+      }
+      .detail-mosaic .detail-shot.a{grid-column:1 !important;grid-row:1 / span 2 !important}
+      .detail-mosaic .detail-shot.b{grid-column:2 !important;grid-row:1 !important}
+      .detail-mosaic .detail-shot.d{grid-column:2 !important;grid-row:2 !important}
+      .detail-mosaic .detail-shot.c{grid-column:1 / span 2 !important;grid-row:3 !important}
+
+      .estate-cinema{padding:3px 0 !important}
+      .estate-cinema-grid{width:100% !important;gap:3px !important}
+      .estate-cinema-grid>figure:nth-child(2){gap:3px !important}
+
+      .gallery-filters{
+        display:grid !important;
+        grid-template-columns:1fr 1fr !important;
+        gap:6px !important;
+        overflow:visible !important;
+        padding:0 !important;
+        scroll-snap-type:none !important;
+      }
+      .gallery-filters .filter-btn{
+        width:100% !important;
+        min-width:0 !important;
+        padding:9px 8px !important;
+        white-space:normal !important;
+        line-height:1.2 !important;
+      }
+      .gallery-filters .filter-btn:first-child{grid-column:1 / -1 !important}
+
+      /* Karidi: the final image becomes a cinematic full-width row on phones. */
+      .gallery-grid[data-active-filter="beach"] .gallery-item:last-child{
+        grid-column:1 / -1 !important;
+        min-height:205px !important;
+      }
+    }
+
 </style>
 </head>
-<body data-build="v6-refined-2026-10-05">
+<body data-build="v7-client-refinement-2026-10-05">
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <a href="#top" class="brand" aria-label="M&M Villas Vourvourou">
@@ -1755,12 +1902,10 @@
           <p class="lead" data-i18n="details.text">White arches, warm timber, woven textures, garden greens and spaces that open naturally toward the outdoors give M&M Villas its own relaxed Mediterranean identity.</p>
         </div>
         <div class="detail-mosaic reveal">
-          <figure class="detail-shot a"><img src="Assets/Images/large-villa/35.webp" alt="Bright Main Villa living space with arches and timber details" loading="eager"><span class="detail-tag">01 · Light</span></figure>
-          <figure class="detail-shot b"><img src="Assets/Images/large-villa/21.webp" alt="Main Villa bathroom detail" loading="lazy"><span class="detail-tag">02 · Calm</span></figure>
-          <figure class="detail-shot c"><img src="Assets/Images/large-villa/42.webp" alt="Sunny Main Villa terrace detail" loading="lazy"><span class="detail-tag">03 · Open air</span></figure>
-          <figure class="detail-shot d"><img src="Assets/Images/large-villa/38.webp" alt="Architectural arch and workspace detail" loading="lazy"><span class="detail-tag">04 · Arches</span></figure>
-          <figure class="detail-shot e"><img src="Assets/Images/large-villa/37.webp" alt="Main Villa kitchen with warm natural finishes" loading="lazy"><span class="detail-tag">05 · Texture</span></figure>
-          <figure class="detail-shot f"><img src="Assets/Images/large-villa/74.webp" alt="Outdoor dining at M&M Villas after dark" loading="lazy"><span class="detail-tag">06 · Evenings</span></figure>
+          <figure class="detail-shot a"><img src="Assets/Images/large-villa/35.webp" alt="Bright Main Villa living space with arches and timber details" loading="eager"></figure>
+          <figure class="detail-shot b"><img src="Assets/Images/large-villa/21.webp" alt="Main Villa bathroom detail" loading="lazy"></figure>
+          <figure class="detail-shot c"><img src="Assets/Images/large-villa/42.webp" alt="Sunny Main Villa terrace detail" loading="lazy"></figure>
+          <figure class="detail-shot d"><img src="Assets/Images/large-villa/37.webp" alt="Main Villa kitchen with warm natural finishes" loading="lazy"></figure>
         </div>
       </div>
     </section>
@@ -1815,21 +1960,21 @@
       <div class="estate-cinema-grid">
         <figure class="reveal">
           <img src="Assets/Images/large-villa/80.webp" alt="M&M Villas and garden in daylight" loading="lazy">
-          <span class="cinema-caption">M&M Villas · daylight</span>
+          
         </figure>
         <figure class="reveal">
           <div class="stack-shot terrace-fit">
             <img src="Assets/Images/large-villa/40.webp" alt="Main Villa terrace detail" loading="lazy">
-            <span class="cinema-caption">Terrace</span>
+            
           </div>
           <div class="stack-shot">
             <img src="Assets/Images/large-villa/35.webp" alt="Main Villa interior living space" loading="lazy">
-            <span class="cinema-caption">Inside</span>
+            
           </div>
         </figure>
         <figure class="reveal">
           <img src="Assets/Images/large-villa/82.webp" alt="M&M Villas outdoor living and barbecue area" loading="lazy">
-          <span class="cinema-caption">Outdoor living · BBQ</span>
+          
         </figure>
       </div>
     </section>
@@ -2113,16 +2258,13 @@
     <section class="section gallery" id="gallery">
       <div class="shell">
         <div class="gallery-head reveal">
-          <div><p class="eyebrow" data-i18n="gallery.eyebrow">The property in detail</p><h2 data-i18n="gallery.title">Gallery</h2><p class="gallery-count" id="galleryCount">89 photos</p></div>
+          <div><p class="eyebrow" data-i18n="gallery.eyebrow">The property in detail</p><h2 data-i18n="gallery.title">Gallery</h2><p class="gallery-count" id="galleryCount">88 photos</p></div>
           <div class="gallery-filters" id="galleryFilters">
             <button class="filter-btn active" data-filter="all" data-i18n="gallery.all">All</button>
             <button class="filter-btn" data-filter="main" data-i18n="gallery.main">Main Villa</button>
             <button class="filter-btn" data-filter="garden" data-i18n="gallery.garden">Garden Villa</button>
-            <button class="filter-btn" data-filter="beach" data-i18n="gallery.beach">Karidi Beach</button>
-            <button class="filter-btn" data-filter="bedroom" data-i18n="gallery.bedrooms">Bedrooms</button>
-            <button class="filter-btn" data-filter="bathroom" data-i18n="gallery.bathrooms">Bathrooms</button>
             <button class="filter-btn" data-filter="outdoor" data-i18n="gallery.outdoors">Outdoors</button>
-            <button class="filter-btn" data-filter="night" data-i18n="gallery.evening">Evening</button>
+            <button class="filter-btn" data-filter="beach" data-i18n="gallery.beach">Karidi Beach</button>
           </div>
         </div>
         <div class="gallery-grid reveal" id="galleryGrid"></div>
@@ -2619,7 +2761,7 @@
 
     // MAIN VILLA — 53 photos: 1–44 and 74–82. The numbering intentionally skips 84.
     const largeNumbers=[...Array.from({length:44},(_,i)=>i+1),74,75,76,77,78,79,80,81,82];
-    const largeOutdoor=new Set([1,2,3,4,5,6,7,8,9,10,39,40,41,42,43,44,74,75,76,77,78,79,80,81,82]);
+    const largeOutdoor=new Set([74,75,76,77,78,79,80,81,82]);
     const largeNight=new Set([1,2,74,78,81]);
     const largeBedrooms=new Set([18,19,20,22,23,24,25,28,29,30,31,32]);
     const largeBathrooms=new Set([21,26,27]);
@@ -2635,12 +2777,12 @@
       addGallery(`Assets/Images/large-villa/${n}.webp`,cats,`Main Villa · ${n}`);
     });
 
-    // GARDEN VILLA — 29 photos: 45–73.
-    const smallNumbers=Array.from({length:29},(_,i)=>i+45);
+    // GARDEN VILLA — 28 photos: 45–73, excluding 58 by client request.
+    const smallNumbers=Array.from({length:29},(_,i)=>i+45).filter(n=>n!==58);
     const smallBedrooms=new Set([45,46,47,48,49,50,51,52,53]);
     const smallKitchens=new Set([51,52,54,55]);
     const smallBathrooms=new Set([56,57]);
-    const smallOutdoor=new Set([58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73]);
+    const smallOutdoor=new Set([60,61,62,63,64,65,66,67,68,69,70,71,72,73]);
     const smallNight=new Set([60,61,62,65,66,70,72]);
     smallNumbers.forEach(n=>{
       const cats=['garden'];
@@ -2665,6 +2807,7 @@
       const grid=document.getElementById('galleryGrid');
       if(!grid)return;
       const filtered=galleryImages.filter(x=>activeFilter==='all'||x.cats.includes(activeFilter));
+      grid.dataset.activeFilter=activeFilter;
       grid.innerHTML=filtered.map(x=>`<button class="gallery-item" data-src="${x.src}" data-label="${x.label}" aria-label="${x.label}"><img src="${x.src}" alt="${x.label}" loading="lazy"></button>`).join('');
       const more=document.getElementById('galleryMore');
       if(more)more.style.display='none';
