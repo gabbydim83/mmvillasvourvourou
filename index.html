@@ -2055,9 +2055,132 @@
       }
     }
 
+  
+
+    /* ===== V11 — MOBILE HERO ONLY ===== */
+    .hero-kicker-mobile{display:none;}
+
+    @media(max-width:720px){
+      /* 1. Menu bar stays fixed at the top. */
+      :root{--header-h:58px !important;}
+      .site-header,
+      .site-header.scrolled{
+        height:58px !important;
+        background:#0d0f0d !important;
+        color:#fff !important;
+        border-bottom:0 !important;
+        box-shadow:none !important;
+        backdrop-filter:none !important;
+        -webkit-backdrop-filter:none !important;
+      }
+      .header-inner{height:58px !important;}
+
+      /* 2. Carousel starts immediately under the menu and shows the whole photo. */
+      .hero-v4{
+        padding-top:58px !important;
+        margin:0 !important;
+        min-height:0 !important;
+        height:auto !important;
+        background:#090b09 !important;
+        overflow:visible !important;
+      }
+      .hero-v4 .hero-canvas{
+        position:relative !important;
+        inset:auto !important;
+        width:100% !important;
+        height:auto !important;
+        aspect-ratio:16 / 9 !important;
+        margin:0 !important;
+        background:#090b09 !important;
+        overflow:hidden !important;
+      }
+      .hero-v4 .hero-slide{
+        position:absolute !important;
+        inset:0 !important;
+        width:100% !important;
+        height:100% !important;
+        object-fit:contain !important;
+        object-position:center center !important;
+        transform:none !important;
+      }
+      .hero-v4 .hero-canvas::after{
+        display:block !important;
+        background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.36) 100%) !important;
+        pointer-events:none;
+      }
+
+      /* 3. Location text is now ON the lower-left edge of the carousel. */
+      .hero-kicker-mobile{
+        display:block !important;
+        position:absolute;
+        z-index:6;
+        left:13px;
+        bottom:10px;
+        max-width:calc(100% - 92px);
+        margin:0;
+        color:#fff;
+        font-size:.55rem;
+        line-height:1.25;
+        font-weight:700;
+        letter-spacing:.15em;
+        text-transform:uppercase;
+        text-shadow:0 2px 12px rgba(0,0,0,.75);
+        pointer-events:none;
+      }
+      .hero-slide-ui{
+        right:12px !important;
+        bottom:12px !important;
+        z-index:7 !important;
+      }
+
+      /* 4. The rest of the hero copy sits directly below the carousel on black. */
+      .hero-v4 .hero-content{
+        position:relative !important;
+        inset:auto !important;
+        width:100% !important;
+        min-height:0 !important;
+        margin:0 !important;
+        padding:18px 14px 24px !important;
+        display:block !important;
+        background:#090b09 !important;
+      }
+      .hero-v4 .hero-content .hero-kicker{
+        display:none !important;
+      }
+      .hero-v4 .hero-copy{
+        width:100% !important;
+        max-width:none !important;
+        margin:0 !important;
+        text-align:left !important;
+      }
+      .hero-v4 h1{
+        margin:0 0 10px !important;
+        max-width:100% !important;
+        white-space:normal !important;
+        font-size:clamp(2.15rem,10vw,3rem) !important;
+        line-height:.95 !important;
+      }
+      .hero-v4 .hero-sub{
+        margin:0 0 14px !important;
+        max-width:100% !important;
+        font-size:.84rem !important;
+        line-height:1.45 !important;
+        color:rgba(255,255,255,.78) !important;
+      }
+      .hero-v4 .hero-cta{
+        display:grid !important;
+        grid-template-columns:1fr 1fr !important;
+        gap:7px !important;
+        margin:0 !important;
+      }
+      .hero-v4 .hero-facts{
+        margin-top:14px !important;
+      }
+    }
+
   </style>
 </head>
-<body data-build="v10-hero-position-2026-10-05">
+<body data-build="v11-mobile-hero-2026-10-06">
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <a href="#top" class="brand" aria-label="M&M Villas Vourvourou">
@@ -2095,6 +2218,7 @@
           <button type="button" class="hero-dot" data-slide="1" aria-label="View image 2"></button>
           <button type="button" class="hero-dot" data-slide="2" aria-label="View image 3"></button>
         </div>
+        <div class="hero-kicker-mobile" data-i18n="hero.kicker">Vourvourou · Halkidiki · Greece</div>
       </div>
       <div class="hero-content">
         <div class="hero-copy">
