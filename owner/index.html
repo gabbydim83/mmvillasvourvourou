@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>M&M Villas — Owner Panel</title>
+  <meta name="mm-owner-build" content="v5-analytics-2026-10-06">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#111310">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root{--bg:#f4f1ea;--paper:#fffdf8;--ink:#171916;--muted:#6e7068;--line:#ded8ca;--olive:#5f6d58;--green:#65a765;--green-soft:#e8f4e6;--red:#c65353;--red-soft:#fae9e8;--shadow:0 18px 50px rgba(24,28,22,.10);--serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope",system-ui,sans-serif}
+    *{box-sizing:border-box}html{background:var(--bg)}body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);min-height:100vh}button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+    .topbar{position:sticky;top:0;z-index:50;height:72px;background:#10120f;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 24px}
+    .brand{display:flex;align-items:center;gap:12px}.brand-mark{width:44px;height:44px;border-radius:12px;background:#fff;color:#111;display:grid;place-items:center;font-family:var(--serif);font-weight:700}.brand strong{display:block}.brand span{display:block;font-size:.68rem;color:rgba(255,255,255,.6)}
+    .top-actions{display:flex;gap:8px}.lang-btn,.ghost-btn{min-height:40px;border-radius:999px;padding:0 14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#fff;font-weight:700;font-size:.75rem}
+    .page{width:min(1220px,calc(100% - 34px));margin:auto;padding:34px 0 70px}.hero-panel{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-bottom:26px}
+    .eyebrow{margin:0 0 7px;font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--olive)}h1,h2,h3{font-family:var(--serif);margin:0;line-height:.95}h1{font-size:clamp(2.8rem,6vw,5.2rem)}h2{font-size:clamp(2rem,3.5vw,3.4rem)}h3{font-size:1.45rem}.subtitle{margin:12px 0 0;color:var(--muted);max-width:700px}
+    .status-pill{display:inline-flex;align-items:center;gap:8px;padding:10px 13px;border-radius:999px;background:var(--paper);border:1px solid var(--line);font-size:.72rem;font-weight:700}.status-dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:26px}.stat{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px}.stat span{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}.stat strong{font-family:var(--serif);font-size:2rem}
+    .panel{background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:22px;margin-bottom:22px}.panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:18px}.panel-head p{margin:7px 0 0;color:var(--muted);font-size:.85rem}
+    .legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.72rem;color:var(--muted)}.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:10px;height:10px;border-radius:50%;display:inline-block}.legend .open{background:var(--green)}.legend .closed{background:var(--red)}
+    .calendar-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.calendar-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}.calendar-card-head{padding:16px 16px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);background:#fbf8f1}
+    .calendar-title strong{display:block;font-family:var(--serif);font-size:1.55rem}.calendar-title span{font-size:.7rem;color:var(--muted)}.calendar-nav{display:flex;gap:6px}.calendar-nav button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff}
+    .month-label{padding:14px 16px 8px;font-weight:800;text-transform:capitalize}.weekdays,.days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:0 12px}.weekdays{padding-bottom:6px}.weekdays span{text-align:center;font-size:.6rem;color:var(--muted);font-weight:800;text-transform:uppercase}.days{padding-bottom:14px}
+    .day{min-height:46px;border:1px solid transparent;border-radius:10px;background:var(--green-soft);color:#274e2c;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;position:relative}.day.blank{background:transparent;pointer-events:none}.day.past{opacity:.35;pointer-events:none}.day.closed{background:var(--red-soft);color:#7e2525;border-color:#efc9c6}.day.today:after{content:"";position:absolute;bottom:5px;width:4px;height:4px;border-radius:50%;background:currentColor}.day.selected{outline:2px solid #111;outline-offset:-2px}
+    .calendar-foot{border-top:1px solid var(--line);padding:14px 16px;display:flex;justify-content:space-between;gap:10px;align-items:center}.calendar-foot small{color:var(--muted)}
+    .action-btn{min-height:40px;border:0;border-radius:999px;padding:0 15px;background:var(--ink);color:#fff;font-size:.72rem;font-weight:800}.action-btn:disabled{opacity:.4;cursor:not-allowed}.action-btn.secondary{background:#fff;color:var(--ink);border:1px solid var(--line)}
+    .events-list{display:grid;gap:9px}.event-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}.event-row strong{font-size:.82rem}.event-row span{display:block;font-size:.72rem;color:var(--muted);margin-top:3px}.event-row button{border:1px solid #efc9c6;background:var(--red-soft);color:#842c2c;border-radius:999px;padding:7px 10px;font-size:.68rem;font-weight:800}.empty{padding:24px;text-align:center;color:var(--muted);font-size:.82rem}
+    .notice{padding:11px 13px;border-radius:10px;background:#edf2e9;color:#35503a;font-size:.78rem}
+    .login-screen{min-height:100vh;background:radial-gradient(circle at 75% 20%,rgba(102,113,90,.28),transparent 33%),#10120f;color:#fff;display:grid;place-items:center;padding:22px}.login-card{width:min(440px,100%);background:#f9f6ef;color:var(--ink);border-radius:24px;padding:30px;box-shadow:0 32px 90px rgba(0,0,0,.28)}.login-logo{width:64px;height:64px;border-radius:16px;background:#111;color:#fff;display:grid;place-items:center;font-family:var(--serif);font-size:1.3rem;margin-bottom:24px}.login-card h1{font-size:3.2rem}.login-card p{color:var(--muted)}.login-lang{display:flex;justify-content:flex-end;margin-bottom:14px}.login-lang button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 11px;font-weight:800}
+    .field{margin-top:14px}.field label{display:block;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}.field input{width:100%;min-height:48px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:0 13px;outline:none}.login-btn{width:100%;min-height:50px;margin-top:18px;border:0;border-radius:999px;background:#111;color:#fff;font-weight:800}.login-error{margin:12px 0 0;color:#a23636;font-size:.8rem;min-height:1.2em}
+    dialog{border:0;border-radius:18px;padding:0;width:min(460px,calc(100% - 24px));box-shadow:0 26px 90px rgba(0,0,0,.28)}dialog::backdrop{background:rgba(0,0,0,.48);backdrop-filter:blur(3px)}.dialog-body{padding:22px}.dialog-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+    .toast{position:fixed;right:16px;bottom:16px;z-index:100;padding:12px 15px;border-radius:12px;background:#111;color:#fff;box-shadow:var(--shadow);font-size:.78rem;opacity:0;transform:translateY(10px);pointer-events:none;transition:.22s}.toast.show{opacity:1;transform:none}
+    @media(max-width:900px){.calendar-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}@media(max-width:620px){.topbar{height:64px;padding:0 12px}.brand span{display:none}.page{width:calc(100% - 20px);padding-top:22px}.hero-panel{grid-template-columns:1fr;align-items:start}.stats{gap:8px}.stat{padding:14px}.panel{padding:14px;border-radius:16px}.panel-head{display:block}.legend{margin-top:12px}.day{min-height:42px}.dialog-grid{grid-template-columns:1fr}}
+  
+    .sync-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .sync-card{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}
+    .sync-card-head{padding:16px;border-bottom:1px solid var(--line);background:#fbf8f1}
+    .sync-card-head strong{display:block;font-family:var(--serif);font-size:1.55rem}
+    .sync-card-head span{font-size:.72rem;color:var(--muted)}
+    .sync-card-body{padding:16px}
+    .sync-field{margin-bottom:15px}
+    .sync-field label{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px}
+    .provider-badge{display:inline-flex;align-items:center;gap:6px;text-transform:none;letter-spacing:0;color:var(--muted);font-weight:700}
+    .provider-dot{width:8px;height:8px;border-radius:50%;background:#999}
+    .provider-dot.booking{background:#315fc4}
+    .provider-dot.airbnb{background:#df5267}
+    .sync-input-row{display:grid;grid-template-columns:1fr auto;gap:8px}
+    .sync-input-row input{width:100%;min-height:44px;border:1px solid var(--line);border-radius:11px;padding:0 12px;background:#fff;outline:none;font-size:.78rem}
+    .sync-input-row input:focus{border-color:var(--olive);box-shadow:0 0 0 4px rgba(95,109,88,.08)}
+    .sync-input-row button{min-width:74px;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--ink);font-weight:800;font-size:.7rem;padding:0 12px}
+    .export-box{border:1px dashed #cfc7b7;border-radius:12px;background:#f7f4ed;padding:12px}
+    .export-box small{display:block;color:var(--muted);font-size:.67rem;margin-bottom:7px}
+    .export-url{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.68rem;line-height:1.45;word-break:break-all;color:#41433e}
+    .sync-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px}
+    .sync-status{font-size:.7rem;color:var(--muted)}
+    .sync-status.saved{color:#357443}
+    .sync-status.error{color:#a23636}
+    .sync-help{margin-top:16px;padding:13px 14px;border-radius:12px;background:#eef1ea;color:#42503d;font-size:.76rem;line-height:1.55}
+    @media(max-width:900px){.sync-grid{grid-template-columns:1fr}}
+    @media(max-width:620px){
+      .sync-card-body{padding:13px}
+      .sync-input-row{grid-template-columns:1fr}
+      .sync-input-row button{min-height:40px}
+      .sync-actions{align-items:stretch;flex-direction:column}
+      .sync-actions .action-btn{width:100%}
+    }
+
+
+    /* ===== V5 — Analytics dashboard ===== */
+    .analytics-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .analytics-periods{display:flex;gap:6px;flex-wrap:wrap}
+    .period-btn{min-height:36px;padding:0 13px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font-size:.7rem;font-weight:800}
+    .period-btn.active{background:var(--ink);border-color:var(--ink);color:#fff}
+    .analytics-refresh{min-height:36px;padding:0 13px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font-size:.7rem;font-weight:800}
+    .analytics-status{display:flex;align-items:center;gap:7px;font-size:.7rem;color:var(--muted)}
+    .analytics-status i{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block}
+    .analytics-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}
+    .analytics-kpi{border:1px solid var(--line);background:#fff;border-radius:14px;padding:15px}
+    .analytics-kpi span{display:block;color:var(--muted);font-size:.64rem;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px}
+    .analytics-kpi strong{font-family:var(--serif);font-size:2rem;line-height:1}
+    .analytics-kpi small{display:block;color:var(--muted);font-size:.64rem;margin-top:6px}
+    .analytics-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,.8fr);gap:14px}
+    .analytics-card{border:1px solid var(--line);background:#fff;border-radius:14px;padding:16px;min-width:0}
+    .analytics-card h3{font-size:1.35rem;margin-bottom:4px}
+    .analytics-card>p{margin:0 0 14px;color:var(--muted);font-size:.72rem}
+    .traffic-chart{height:220px;display:flex;align-items:flex-end;gap:4px;border-bottom:1px solid var(--line);padding:14px 2px 0;overflow:hidden}
+    .traffic-bar-wrap{height:100%;flex:1;min-width:3px;display:flex;align-items:flex-end;position:relative}
+    .traffic-bar{width:100%;min-height:2px;background:linear-gradient(180deg,#7d9274,#526349);border-radius:5px 5px 0 0;transition:.2s}
+    .traffic-bar-wrap:hover .traffic-bar{filter:brightness(.9)}
+    .chart-foot{display:flex;justify-content:space-between;gap:10px;margin-top:8px;color:var(--muted);font-size:.62rem}
+    .breakdown-list{display:grid;gap:10px}
+    .breakdown-row{display:grid;grid-template-columns:minmax(80px,auto) 1fr auto;gap:10px;align-items:center}
+    .breakdown-label{font-size:.72rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .breakdown-track{height:8px;border-radius:999px;background:#ede9df;overflow:hidden}
+    .breakdown-fill{height:100%;border-radius:inherit;background:var(--olive)}
+    .breakdown-value{font-size:.7rem;font-weight:800;min-width:24px;text-align:right}
+    .analytics-lower{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
+    .analytics-empty{padding:26px 10px;text-align:center;color:var(--muted);font-size:.78rem}
+    .analytics-error{padding:12px 14px;border-radius:10px;background:var(--red-soft);color:#842c2c;font-size:.76rem}
+    .analytics-loading{opacity:.55;pointer-events:none}
+    @media(max-width:980px){
+      .analytics-kpis{grid-template-columns:repeat(2,1fr)}
+      .analytics-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:620px){
+      .analytics-kpis{grid-template-columns:1fr 1fr;gap:7px}
+      .analytics-kpi{padding:12px}
+      .analytics-kpi strong{font-size:1.7rem}
+      .analytics-lower{grid-template-columns:1fr}
+      .traffic-chart{height:180px;gap:3px}
+      .analytics-toolbar{align-items:flex-start}
+    }
+
+</style>
+</head>
+<body>
+<section class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="login-lang"><button type="button" id="loginLangBtn">EN / ΕΛ</button></div>
+    <div class="login-logo">M&M</div>
+    <p class="eyebrow" data-i18n="login.eyebrow">Owner access</p>
+    <h1 data-i18n="login.title">Owner Panel</h1>
+    <p data-i18n="login.text">Sign in to manage M&M and Garden Villa availability.</p>
+    <form id="loginForm">
+      <div class="field"><label for="email" data-i18n="login.email">Email</label><input id="email" type="email" autocomplete="username" required></div>
+      <div class="field"><label for="password" data-i18n="login.password">Password</label><input id="password" type="password" autocomplete="current-password" required></div>
+      <button class="login-btn" type="submit" data-i18n="login.button">Sign in</button>
+      <div class="login-error" id="loginError"></div>
+    </form>
+  </div>
+</section>
+
+<div class="hidden" id="appShell">
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark">M&M</div><div><strong>M&M Villas</strong><span>Vourvourou · Owner Panel</span></div></div>
+    <div class="top-actions"><button class="lang-btn" type="button" id="langBtn">EN / ΕΛ</button><button class="ghost-btn" type="button" id="logoutBtn" data-i18n="top.logout">Log out</button></div>
+  </header>
+  <main class="page">
+    <section class="hero-panel">
+      <div><p class="eyebrow" data-i18n="dashboard.eyebrow">Property management</p><h1 data-i18n="dashboard.title">Dashboard</h1><p class="subtitle" data-i18n="dashboard.subtitle">Manage availability for M&M and Garden Villa. Green dates are open; red dates are closed.</p></div>
+      <div class="status-pill"><span class="status-dot"></span><span data-i18n="dashboard.connected">Connected to Supabase</span></div>
+    </section>
+
+    <section class="stats">
+      <article class="stat"><span data-i18n="stats.units">Units</span><strong>2</strong></article>
+      <article class="stat"><span data-i18n="stats.closed">Closed periods</span><strong id="statClosed">0</strong></article>
+      <article class="stat"><span data-i18n="stats.mm">M&M closed</span><strong id="statMM">0</strong></article>
+      <article class="stat"><span data-i18n="stats.garden">Garden Villa closed</span><strong id="statGarden">0</strong></article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div><p class="eyebrow" data-i18n="calendar.eyebrow">Availability</p><h2 data-i18n="calendar.title">Calendars</h2><p data-i18n="calendar.subtitle">Choose a start and end date to close a period.</p></div>
+        <div class="legend"><span><i class="open"></i><b data-i18n="calendar.open">Open</b></span><span><i class="closed"></i><b data-i18n="calendar.closed">Closed</b></span></div>
+      </div>
+      <div class="calendar-grid">
+        <article class="calendar-card">
+          <div class="calendar-card-head"><div class="calendar-title"><strong>M&M</strong><span data-i18n="calendar.capacityMM">Up to 8 guests</span></div><div class="calendar-nav"><button type="button" data-cal-prev="mm">‹</button><button type="button" data-cal-next="mm">›</button></div></div>
+          <div class="month-label" id="month-mm"></div><div class="weekdays" id="weekdays-mm"></div><div class="days" id="days-mm"></div>
+          <div class="calendar-foot"><small id="hint-mm" data-i18n="calendar.select">Select two dates</small><button class="action-btn" type="button" data-close-unit="mm" disabled data-i18n="calendar.closeDates">Close dates</button></div>
+        </article>
+
+        <article class="calendar-card">
+          <div class="calendar-card-head"><div class="calendar-title"><strong>Garden Villa</strong><span data-i18n="calendar.capacityGarden">Up to 4 guests</span></div><div class="calendar-nav"><button type="button" data-cal-prev="garden_villa">‹</button><button type="button" data-cal-next="garden_villa">›</button></div></div>
+          <div class="month-label" id="month-garden_villa"></div><div class="weekdays" id="weekdays-garden_villa"></div><div class="days" id="days-garden_villa"></div>
+          <div class="calendar-foot"><small id="hint-garden_villa" data-i18n="calendar.select">Select two dates</small><button class="action-btn" type="button" data-close-unit="garden_villa" disabled data-i18n="calendar.closeDates">Close dates</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel"><div class="panel-head"><div><p class="eyebrow" data-i18n="events.eyebrow">Manual blocks</p><h2 data-i18n="events.title">Closed periods</h2><p data-i18n="events.subtitle">Periods created manually from this panel appear here.</p></div></div><div class="events-list" id="eventsList"></div></section>
+    <section class="panel" id="calendarSync">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow" data-i18n="sync.eyebrow">Calendar connections</p>
+          <h2 data-i18n="sync.title">Calendar Sync</h2>
+          <p data-i18n="sync.subtitle">Paste the Booking.com and Airbnb iCal export links for each villa. Your own export link is generated automatically.</p>
+        </div>
+      </div>
+
+      <div class="sync-grid">
+        <article class="sync-card" data-sync-unit="mm">
+          <div class="sync-card-head">
+            <strong>M&M</strong>
+            <span data-i18n="sync.mmSubtitle">Main villa · up to 8 guests</span>
+          </div>
+          <div class="sync-card-body">
+            <div class="sync-field">
+              <label>
+                <span data-i18n="sync.bookingImport">Booking.com import</span>
+                <span class="provider-badge"><i class="provider-dot booking"></i>Booking.com</span>
+              </label>
+              <div class="sync-input-row">
+                <input id="sync-mm-booking" type="url" placeholder="https://..." autocomplete="off">
+                <button type="button" data-clear-feed="mm|booking" data-i18n="sync.clear">Clear</button>
+              </div>
+            </div>
+
+            <div class="sync-field">
+              <label>
+                <span data-i18n="sync.airbnbImport">Airbnb import</span>
+                <span class="provider-badge"><i class="provider-dot airbnb"></i>Airbnb</span>
+              </label>
+              <div class="sync-input-row">
+                <input id="sync-mm-airbnb" type="url" placeholder="https://..." autocomplete="off">
+                <button type="button" data-clear-feed="mm|airbnb" data-i18n="sync.clear">Clear</button>
+              </div>
+            </div>
+
+            <div class="sync-field">
+              <label><span data-i18n="sync.ourExport">Our iCal export links</span></label>
+              <div class="export-box" style="margin-bottom:8px">
+                <small data-i18n="sync.exportBookingHelp">Use this link in Booking.com → Import calendar.</small>
+                <div class="sync-input-row">
+                  <div class="export-url" id="export-mm-booking">—</div>
+                  <button type="button" data-copy-export="mm|booking" data-i18n="sync.copy">Copy</button>
+                </div>
+              </div>
+              <div class="export-box">
+                <small data-i18n="sync.exportAirbnbHelp">Use this link in Airbnb → Import calendar.</small>
+                <div class="sync-input-row">
+                  <div class="export-url" id="export-mm-airbnb">—</div>
+                  <button type="button" data-copy-export="mm|airbnb" data-i18n="sync.copy">Copy</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="sync-actions">
+              <span class="sync-status" id="sync-status-mm" data-i18n="sync.notSaved">No changes</span>
+              <button class="action-btn" type="button" data-save-sync="mm" data-i18n="sync.save">Save calendar links</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="sync-card" data-sync-unit="garden_villa">
+          <div class="sync-card-head">
+            <strong>Garden Villa</strong>
+            <span data-i18n="sync.gardenSubtitle">Garden villa · up to 4 guests</span>
+          </div>
+          <div class="sync-card-body">
+            <div class="sync-field">
+              <label>
+                <span data-i18n="sync.bookingImport">Booking.com import</span>
+                <span class="provider-badge"><i class="provider-dot booking"></i>Booking.com</span>
+              </label>
+              <div class="sync-input-row">
+                <input id="sync-garden_villa-booking" type="url" placeholder="https://..." autocomplete="off">
+                <button type="button" data-clear-feed="garden_villa|booking" data-i18n="sync.clear">Clear</button>
+              </div>
+            </div>
+
+            <div class="sync-field">
+              <label>
+                <span data-i18n="sync.airbnbImport">Airbnb import</span>
+                <span class="provider-badge"><i class="provider-dot airbnb"></i>Airbnb</span>
+              </label>
+              <div class="sync-input-row">
+                <input id="sync-garden_villa-airbnb" type="url" placeholder="https://..." autocomplete="off">
+                <button type="button" data-clear-feed="garden_villa|airbnb" data-i18n="sync.clear">Clear</button>
+              </div>
+            </div>
+
+            <div class="sync-field">
+              <label><span data-i18n="sync.ourExport">Our iCal export links</span></label>
+              <div class="export-box" style="margin-bottom:8px">
+                <small data-i18n="sync.exportBookingHelp">Use this link in Booking.com → Import calendar.</small>
+                <div class="sync-input-row">
+                  <div class="export-url" id="export-garden_villa-booking">—</div>
+                  <button type="button" data-copy-export="garden_villa|booking" data-i18n="sync.copy">Copy</button>
+                </div>
+              </div>
+              <div class="export-box">
+                <small data-i18n="sync.exportAirbnbHelp">Use this link in Airbnb → Import calendar.</small>
+                <div class="sync-input-row">
+                  <div class="export-url" id="export-garden_villa-airbnb">—</div>
+                  <button type="button" data-copy-export="garden_villa|airbnb" data-i18n="sync.copy">Copy</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="sync-actions">
+              <span class="sync-status" id="sync-status-garden_villa" data-i18n="sync.notSaved">No changes</span>
+              <button class="action-btn" type="button" data-save-sync="garden_villa" data-i18n="sync.save">Save calendar links</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="sync-help" data-i18n="sync.note">The owner only has to paste the export links from Booking.com / Airbnb once. In the next step we activate automatic imports and the public iCal export endpoints.</div>
+    </section>
+
+    <section class="panel" id="analyticsPanel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow" data-i18n="analytics.eyebrow">Website performance</p>
+          <h2 data-i18n="analytics.title">Analytics</h2>
+          <p data-i18n="analytics.subtitle">Live website traffic and the actions that matter most.</p>
+        </div>
+        <div class="analytics-status"><i></i><span data-i18n="analytics.liveOnly">Live website data</span></div>
+      </div>
+
+      <div class="analytics-toolbar">
+        <div class="analytics-periods" aria-label="Analytics period">
+          <button class="period-btn" type="button" data-analytics-days="7">7 <span data-i18n="analytics.days">days</span></button>
+          <button class="period-btn active" type="button" data-analytics-days="30">30 <span data-i18n="analytics.days">days</span></button>
+          <button class="period-btn" type="button" data-analytics-days="90">90 <span data-i18n="analytics.days">days</span></button>
+        </div>
+        <button class="analytics-refresh" type="button" id="analyticsRefresh" data-i18n="analytics.refresh">Refresh data</button>
+      </div>
+
+      <div id="analyticsError" class="analytics-error hidden"></div>
+
+      <div class="analytics-kpis" id="analyticsKpis">
+        <article class="analytics-kpi"><span data-i18n="analytics.visitors">Visitors</span><strong id="aVisitors">0</strong><small data-i18n="analytics.uniqueVisitors">Unique visitors</small></article>
+        <article class="analytics-kpi"><span data-i18n="analytics.sessions">Sessions</span><strong id="aSessions">0</strong><small data-i18n="analytics.visitSessions">Website visits</small></article>
+        <article class="analytics-kpi"><span data-i18n="analytics.pageViews">Page views</span><strong id="aPageViews">0</strong><small data-i18n="analytics.pagesViewed">Pages viewed</small></article>
+        <article class="analytics-kpi"><span data-i18n="analytics.conversion">Conversion</span><strong id="aConversion">0%</strong><small data-i18n="analytics.requestsPerSession">Requests / sessions</small></article>
+        <article class="analytics-kpi"><span data-i18n="analytics.bookNow">Book Now clicks</span><strong id="aBookNow">0</strong><small data-i18n="analytics.bookingInterest">Booking interest</small></article>
+        <article class="analytics-kpi"><span data-i18n="analytics.whatsapp">WhatsApp clicks</span><strong id="aWhatsapp">0</strong><small data-i18n="analytics.contactIntent">Contact intent</small></article>
+        <article class="analytics-kpi"><span data-i18n="analytics.requests">Booking requests</span><strong id="aRequests">0</strong><small data-i18n="analytics.formsSent">Forms sent to WhatsApp</small></article>
+        <article class="analytics-kpi"><span data-i18n="analytics.directions">Directions</span><strong id="aDirections">0</strong><small data-i18n="analytics.mapIntent">Map / route clicks</small></article>
+      </div>
+
+      <div class="analytics-grid">
+        <article class="analytics-card">
+          <h3 data-i18n="analytics.trafficTitle">Traffic over time</h3>
+          <p data-i18n="analytics.trafficSubtitle">Page views by day.</p>
+          <div class="traffic-chart" id="trafficChart"></div>
+          <div class="chart-foot"><span id="trafficStart">—</span><span id="trafficEnd">—</span></div>
+        </article>
+
+        <article class="analytics-card">
+          <h3 data-i18n="analytics.actionsTitle">Important actions</h3>
+          <p data-i18n="analytics.actionsSubtitle">What visitors do after arriving.</p>
+          <div class="breakdown-list" id="actionsList"></div>
+        </article>
+      </div>
+
+      <div class="analytics-lower">
+        <article class="analytics-card">
+          <h3 data-i18n="analytics.devicesTitle">Devices</h3>
+          <p data-i18n="analytics.devicesSubtitle">Desktop, mobile and tablet traffic.</p>
+          <div class="breakdown-list" id="devicesList"></div>
+        </article>
+
+        <article class="analytics-card">
+          <h3 data-i18n="analytics.languagesTitle">Languages</h3>
+          <p data-i18n="analytics.languagesSubtitle">Languages used on the website.</p>
+          <div class="breakdown-list" id="languagesList"></div>
+        </article>
+
+        <article class="analytics-card">
+          <h3 data-i18n="analytics.sourcesTitle">Traffic sources</h3>
+          <p data-i18n="analytics.sourcesSubtitle">Where website sessions came from.</p>
+          <div class="breakdown-list" id="sourcesList"></div>
+        </article>
+
+        <article class="analytics-card">
+          <h3 data-i18n="analytics.funnelTitle">Booking funnel</h3>
+          <p data-i18n="analytics.funnelSubtitle">From visit to booking request.</p>
+          <div class="breakdown-list" id="funnelList"></div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<dialog id="closeDialog">
+  <form method="dialog" class="dialog-body" id="closeForm">
+    <p class="eyebrow" data-i18n="dialog.eyebrow">Close availability</p><h3 id="dialogUnitName">M&M</h3>
+    <div class="dialog-grid">
+      <div class="field"><label for="dialogStart" data-i18n="dialog.start">Start date</label><input id="dialogStart" type="date" required></div>
+      <div class="field"><label for="dialogEnd" data-i18n="dialog.end">End date</label><input id="dialogEnd" type="date" required></div>
+    </div>
+    <div class="field"><label for="dialogNote" data-i18n="dialog.note">Note</label><input id="dialogNote" type="text" data-i18n-placeholder="dialog.placeholder" placeholder="Booking, personal use, maintenance..."></div>
+    <div class="dialog-actions"><button class="action-btn secondary" type="button" id="dialogCancel" data-i18n="dialog.cancel">Cancel</button><button class="action-btn" type="submit" data-i18n="dialog.save">Close dates</button></div>
+  </form>
+</dialog>
+<div class="toast" id="toast"></div>
+
+<script>
+const SUPABASE_URL='https://cimdefypgbkfizyykhkm.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_Ps8bDeuKhgf2NY4lNdGoOA_fQP15uAD';
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+
+const I18N={
+en:{
+login:{eyebrow:'Owner access',title:'Owner Panel',text:'Sign in to manage M&M and Garden Villa availability.',email:'Email',password:'Password',button:'Sign in',invalid:'Invalid email or password.',unauthorized:'This account is not authorized for the M&M owner panel.'},
+top:{logout:'Log out'},dashboard:{eyebrow:'Property management',title:'Dashboard',subtitle:'Manage availability for M&M and Garden Villa. Green dates are open; red dates are closed.',connected:'Connected to Supabase'},
+stats:{units:'Units',closed:'Closed periods',mm:'M&M closed',garden:'Garden Villa closed'},
+calendar:{eyebrow:'Availability',title:'Calendars',subtitle:'Choose a start and end date to close a period.',open:'Open',closed:'Closed',capacityMM:'Up to 8 guests',capacityGarden:'Up to 4 guests',select:'Select two dates',closeDates:'Close dates',startSelected:'Start selected — choose the end date'},
+events:{eyebrow:'Manual blocks',title:'Closed periods',subtitle:'Periods created manually from this panel appear here.',empty:'No closed periods yet.',remove:'Open again'},
+sync:{eyebrow:'Calendar connections',title:'Calendar Sync',subtitle:'Paste the Booking.com and Airbnb iCal export links for each villa. Your own export link is generated automatically.',mmSubtitle:'Main villa · up to 8 guests',gardenSubtitle:'Garden villa · up to 4 guests',bookingImport:'Booking.com import',airbnbImport:'Airbnb import',ourExport:'Our iCal export links',exportBookingHelp:'Use this link in Booking.com → Import calendar.',exportAirbnbHelp:'Use this link in Airbnb → Import calendar.',copy:'Copy',clear:'Clear',save:'Save calendar links',notSaved:'No changes',saved:'Saved',saveError:'Could not save',note:'Paste each Booking.com / Airbnb export link once. Automatic synchronization runs every 15 minutes.'},
+analytics:{eyebrow:'Website performance',title:'Analytics',subtitle:'Live website traffic and the actions that matter most.',liveOnly:'Live website data',days:'days',refresh:'Refresh data',visitors:'Visitors',uniqueVisitors:'Unique visitors',sessions:'Sessions',visitSessions:'Website visits',pageViews:'Page views',pagesViewed:'Pages viewed',conversion:'Conversion',requestsPerSession:'Requests / sessions',bookNow:'Book Now clicks',bookingInterest:'Booking interest',whatsapp:'WhatsApp clicks',contactIntent:'Contact intent',requests:'Booking requests',formsSent:'Forms sent to WhatsApp',directions:'Directions',mapIntent:'Map / route clicks',trafficTitle:'Traffic over time',trafficSubtitle:'Page views by day.',actionsTitle:'Important actions',actionsSubtitle:'What visitors do after arriving.',devicesTitle:'Devices',devicesSubtitle:'Desktop, mobile and tablet traffic.',languagesTitle:'Languages',languagesSubtitle:'Languages used on the website.',sourcesTitle:'Traffic sources',sourcesSubtitle:'Where website sessions came from.',funnelTitle:'Booking funnel',funnelSubtitle:'From visit to booking request.',noData:'No data for this period yet.',loadError:'Analytics could not be loaded.',action_book_now_click:'Book Now',action_whatsapp_click:'WhatsApp',action_booking_request:'Booking request',action_directions_click:'Directions',action_gallery_open:'Gallery opened',action_gallery_filter:'Gallery filter',action_language_change:'Language changed',action_stay_selector:'Stay selector',device_mobile:'Mobile',device_desktop:'Desktop',device_tablet:'Tablet',device_unknown:'Unknown',funnelSessions:'Sessions',funnelBook:'Book Now',funnelWhatsapp:'WhatsApp',funnelRequests:'Requests'},
+dialog:{eyebrow:'Close availability',start:'Start date',end:'End date',note:'Note',placeholder:'Booking, personal use, maintenance...',cancel:'Cancel',save:'Close dates'},
+toast:{saved:'Dates closed successfully.',deleted:'Dates opened again.',error:'Something went wrong. Please try again.'}
+},
+el:{
+login:{eyebrow:'Πρόσβαση ιδιοκτήτη',title:'Πίνακας Ιδιοκτήτη',text:'Συνδεθείτε για να διαχειριστείτε τη διαθεσιμότητα των M&M και Garden Villa.',email:'Email',password:'Κωδικός πρόσβασης',button:'Σύνδεση',invalid:'Λάθος email ή κωδικός πρόσβασης.',unauthorized:'Αυτός ο λογαριασμός δεν έχει πρόσβαση στον πίνακα M&M.'},
+top:{logout:'Αποσύνδεση'},dashboard:{eyebrow:'Διαχείριση καταλύματος',title:'Πίνακας ελέγχου',subtitle:'Διαχειριστείτε τη διαθεσιμότητα για M&M και Garden Villa. Οι πράσινες ημερομηνίες είναι διαθέσιμες και οι κόκκινες κλειστές.',connected:'Σύνδεση με Supabase'},
+stats:{units:'Μονάδες',closed:'Κλειστές περίοδοι',mm:'M&M κλειστό',garden:'Garden Villa κλειστό'},
+calendar:{eyebrow:'Διαθεσιμότητα',title:'Ημερολόγια',subtitle:'Επιλέξτε ημερομηνία έναρξης και λήξης για να κλείσετε μια περίοδο.',open:'Διαθέσιμο',closed:'Κλειστό',capacityMM:'Έως 8 επισκέπτες',capacityGarden:'Έως 4 επισκέπτες',select:'Επιλέξτε δύο ημερομηνίες',closeDates:'Κλείσιμο ημερομηνιών',startSelected:'Επιλέχθηκε η έναρξη — επιλέξτε ημερομηνία λήξης'},
+events:{eyebrow:'Χειροκίνητα κλεισίματα',title:'Κλειστές περίοδοι',subtitle:'Οι περίοδοι που δημιουργούνται χειροκίνητα εμφανίζονται εδώ.',empty:'Δεν υπάρχουν κλειστές περίοδοι ακόμη.',remove:'Άνοιγμα ξανά'},
+sync:{eyebrow:'Συνδέσεις ημερολογίου',title:'Συγχρονισμός ημερολογίου',subtitle:'Επικολλήστε τους συνδέσμους εξαγωγής iCal από Booking.com και Airbnb για κάθε βίλα. Ο δικός μας σύνδεσμος εξαγωγής δημιουργείται αυτόματα.',mmSubtitle:'Κύρια βίλα · έως 8 επισκέπτες',gardenSubtitle:'Garden Villa · έως 4 επισκέπτες',bookingImport:'Εισαγωγή από Booking.com',airbnbImport:'Εισαγωγή από Airbnb',ourExport:'Οι δικοί μας σύνδεσμοι εξαγωγής iCal',exportBookingHelp:'Χρησιμοποιήστε αυτόν τον σύνδεσμο στο Booking.com → Εισαγωγή ημερολογίου.',exportAirbnbHelp:'Χρησιμοποιήστε αυτόν τον σύνδεσμο στο Airbnb → Εισαγωγή ημερολογίου.',copy:'Αντιγραφή',clear:'Καθαρισμός',save:'Αποθήκευση συνδέσμων',notSaved:'Χωρίς αλλαγές',saved:'Αποθηκεύτηκε',saveError:'Η αποθήκευση απέτυχε',note:'Επικολλήστε μία φορά τους συνδέσμους εξαγωγής από Booking.com / Airbnb. Ο αυτόματος συγχρονισμός εκτελείται κάθε 15 λεπτά.'},
+analytics:{eyebrow:'Απόδοση ιστοσελίδας',title:'Στατιστικά',subtitle:'Ζωντανή κίνηση της ιστοσελίδας και οι σημαντικότερες ενέργειες.',liveOnly:'Δεδομένα ζωντανής ιστοσελίδας',days:'ημέρες',refresh:'Ανανέωση δεδομένων',visitors:'Επισκέπτες',uniqueVisitors:'Μοναδικοί επισκέπτες',sessions:'Συνεδρίες',visitSessions:'Επισκέψεις στην ιστοσελίδα',pageViews:'Προβολές σελίδας',pagesViewed:'Προβολές σελίδων',conversion:'Μετατροπή',requestsPerSession:'Αιτήματα / συνεδρίες',bookNow:'Κλικ στο Book Now',bookingInterest:'Ενδιαφέρον κράτησης',whatsapp:'Κλικ στο WhatsApp',contactIntent:'Πρόθεση επικοινωνίας',requests:'Αιτήματα κράτησης',formsSent:'Φόρμες που στάλθηκαν στο WhatsApp',directions:'Οδηγίες',mapIntent:'Κλικ σε χάρτη / διαδρομή',trafficTitle:'Κίνηση με την πάροδο του χρόνου',trafficSubtitle:'Προβολές σελίδας ανά ημέρα.',actionsTitle:'Σημαντικές ενέργειες',actionsSubtitle:'Τι κάνουν οι επισκέπτες μετά την άφιξη.',devicesTitle:'Συσκευές',devicesSubtitle:'Κίνηση από υπολογιστή, κινητό και tablet.',languagesTitle:'Γλώσσες',languagesSubtitle:'Γλώσσες που χρησιμοποιούνται στην ιστοσελίδα.',sourcesTitle:'Πηγές επισκεψιμότητας',sourcesSubtitle:'Από πού προήλθαν οι συνεδρίες.',funnelTitle:'Διαδρομή κράτησης',funnelSubtitle:'Από την επίσκεψη έως το αίτημα κράτησης.',noData:'Δεν υπάρχουν ακόμη δεδομένα για αυτή την περίοδο.',loadError:'Δεν ήταν δυνατή η φόρτωση των στατιστικών.',action_book_now_click:'Book Now',action_whatsapp_click:'WhatsApp',action_booking_request:'Αίτημα κράτησης',action_directions_click:'Οδηγίες',action_gallery_open:'Άνοιγμα gallery',action_gallery_filter:'Φίλτρο gallery',action_language_change:'Αλλαγή γλώσσας',action_stay_selector:'Επιλογή διαμονής',device_mobile:'Κινητό',device_desktop:'Υπολογιστής',device_tablet:'Tablet',device_unknown:'Άγνωστο',funnelSessions:'Συνεδρίες',funnelBook:'Book Now',funnelWhatsapp:'WhatsApp',funnelRequests:'Αιτήματα'},
+dialog:{eyebrow:'Κλείσιμο διαθεσιμότητας',start:'Ημερομηνία έναρξης',end:'Ημερομηνία λήξης',note:'Σημείωση',placeholder:'Booking, προσωπική χρήση, συντήρηση...',cancel:'Ακύρωση',save:'Κλείσιμο ημερομηνιών'},
+toast:{saved:'Οι ημερομηνίες έκλεισαν επιτυχώς.',deleted:'Οι ημερομηνίες άνοιξαν ξανά.',error:'Κάτι πήγε στραβά. Δοκιμάστε ξανά.'}
+}};
+
+const state={lang:localStorage.getItem('mm_owner_lang')||'en',units:[],events:[],icalImports:[],calendarSync:[],analytics:null,analyticsDays:30,analyticsLoading:false,monthByUnit:{mm:startOfMonth(new Date()),garden_villa:startOfMonth(new Date())},selected:{mm:[],garden_villa:[]},dialogUnitCode:null};
+function t(path){const get=(o)=>path.split('.').reduce((a,k)=>a&&a[k],o);return get(I18N[state.lang])??get(I18N.en)??path}
+function startOfMonth(d){return new Date(d.getFullYear(),d.getMonth(),1)}
+function addMonths(d,n){return new Date(d.getFullYear(),d.getMonth()+n,1)}
+function dateISO(d){const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${day}`}
+function fromISO(s){const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)}
+function addDays(d,n){const x=new Date(d);x.setDate(x.getDate()+n);return x}
+function escapeHtml(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+
+function applyLanguage(){
+document.documentElement.lang=state.lang;
+document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n));
+document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>el.placeholder=t(el.dataset.i18nPlaceholder));
+localStorage.setItem('mm_owner_lang',state.lang);
+renderAll();
+}
+function toggleLanguage(){state.lang=state.lang==='en'?'el':'en';applyLanguage()}
+document.getElementById('langBtn').addEventListener('click',toggleLanguage);
+document.getElementById('loginLangBtn').addEventListener('click',toggleLanguage);
+
+async function verifyAdmin(){
+  const {data,error}=await sb.rpc('is_mm_admin');
+  if(error) {
+    console.error('Admin check failed:', error);
+    return false;
+  }
+  return data === true;
+}
+async function loadData(){
+const [u,e,i,s]=await Promise.all([
+sb.from('mm_units').select('id,code,name,capacity,sort_order').order('sort_order'),
+sb.from('mm_calendar_events').select('id,unit_id,start_date,end_date,status,source,note').order('start_date'),
+sb.from('mm_ical_imports').select('id,unit_id,provider,feed_url,active,last_sync_at,last_sync_status,last_sync_message'),
+sb.from('mm_calendar_sync').select('id,unit_id,export_token,active,last_import_at,last_import_status,last_import_message')
+]);
+if(u.error)throw u.error;if(e.error)throw e.error;if(i.error)throw i.error;if(s.error)throw s.error;
+state.units=u.data||[];state.events=e.data||[];state.icalImports=i.data||[];state.calendarSync=s.data||[];renderAll();await loadAnalytics();
+}
+function eventForDate(unitId,iso){return state.events.find(ev=>ev.unit_id===unitId&&iso>=ev.start_date&&iso<ev.end_date)}
+function renderCalendar(code){
+const unit=state.units.find(u=>u.code===code);if(!unit)return;
+const month=state.monthByUnit[code],locale=state.lang==='el'?'el-GR':'en-GB';
+document.getElementById(`month-${code}`).textContent=new Intl.DateTimeFormat(locale,{month:'long',year:'numeric'}).format(month);
+const weekdays=state.lang==='el'?['Δε','Τρ','Τε','Πε','Πα','Σα','Κυ']:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+document.getElementById(`weekdays-${code}`).innerHTML=weekdays.map(x=>`<span>${x}</span>`).join('');
+const first=new Date(month.getFullYear(),month.getMonth(),1),last=new Date(month.getFullYear(),month.getMonth()+1,0),lead=(first.getDay()+6)%7,today=dateISO(new Date()),sel=state.selected[code];
+let html='';for(let i=0;i<lead;i++)html+='<button class="day blank" tabindex="-1"></button>';
+for(let d=1;d<=last.getDate();d++){const dt=new Date(month.getFullYear(),month.getMonth(),d),iso=dateISO(dt),ev=eventForDate(unit.id,iso),cls=['day'];if(ev)cls.push('closed');if(iso<today)cls.push('past');if(iso===today)cls.push('today');if(sel.includes(iso))cls.push('selected');html+=`<button type="button" class="${cls.join(' ')}" data-date="${iso}" title="${escapeHtml(ev?(ev.note||ev.source):t('calendar.open'))}">${d}</button>`}
+const days=document.getElementById(`days-${code}`);days.innerHTML=html;days.querySelectorAll('[data-date]').forEach(b=>b.addEventListener('click',()=>selectDate(code,b.dataset.date)));
+const hint=document.getElementById(`hint-${code}`),btn=document.querySelector(`[data-close-unit="${code}"]`);
+if(sel.length===0){hint.textContent=t('calendar.select');btn.disabled=true}else if(sel.length===1){hint.textContent=t('calendar.startSelected');btn.disabled=true}else{hint.textContent=`${sel[0]} → ${sel[1]}`;btn.disabled=false}
+}
+function selectDate(code,iso){
+const a=state.selected[code];if(a.length===0)state.selected[code]=[iso];else if(a.length===1){if(iso===a[0])state.selected[code]=[];else state.selected[code]=[a[0],iso].sort()}else state.selected[code]=[iso];renderCalendar(code)
+}
+function renderStats(){
+const mm=state.units.find(u=>u.code==='mm'),g=state.units.find(u=>u.code==='garden_villa'),future=state.events.filter(e=>e.end_date>=dateISO(new Date()));
+statClosed.textContent=future.length;statMM.textContent=future.filter(e=>mm&&e.unit_id===mm.id).length;statGarden.textContent=future.filter(e=>g&&e.unit_id===g.id).length
+}
+function renderEvents(){
+const box=document.getElementById('eventsList'),future=state.events.filter(e=>e.end_date>=dateISO(new Date())).sort((a,b)=>a.start_date.localeCompare(b.start_date));
+if(!future.length){box.innerHTML=`<div class="empty">${t('events.empty')}</div>`;return}
+box.innerHTML=future.map(ev=>{const u=state.units.find(x=>x.id===ev.unit_id);return `<div class="event-row"><div><strong>${escapeHtml(u?.name||'Unit')} · ${ev.start_date} → ${ev.end_date}</strong><span>${escapeHtml(ev.note||ev.source||'manual')}</span></div>${ev.source==='manual'?`<button type="button" data-delete="${ev.id}">${t('events.remove')}</button>`:''}</div>`}).join('');
+box.querySelectorAll('[data-delete]').forEach(b=>b.addEventListener('click',()=>deleteEvent(b.dataset.delete)));
+}
+
+function exportUrlFor(code,target){
+  const unit=state.units.find(u=>u.code===code);
+  const row=unit&&state.calendarSync.find(x=>x.unit_id===unit.id);
+  if(!row?.export_token)return '—';
+  return `${SUPABASE_URL}/functions/v1/mm-ical-export?token=${encodeURIComponent(row.export_token)}&target=${encodeURIComponent(target)}`;
+}
+function renderSync(){
+  ['mm','garden_villa'].forEach(code=>{
+    const unit=state.units.find(u=>u.code===code); if(!unit)return;
+    ['booking','airbnb'].forEach(provider=>{
+      const row=state.icalImports.find(x=>x.unit_id===unit.id&&x.provider===provider);
+      const input=document.getElementById(`sync-${code}-${provider}`);
+      if(input && document.activeElement!==input) input.value=row?.feed_url||'';
+      const exp=document.getElementById(`export-${code}-${provider}`);
+      if(exp) exp.textContent=exportUrlFor(code,provider);
+    });
+  });
+}
+async function saveSync(code){
+  const unit=state.units.find(u=>u.code===code); if(!unit)return;
+  const status=document.getElementById(`sync-status-${code}`);
+  const rows=['booking','airbnb'].map(provider=>({
+    unit_id:unit.id,
+    provider,
+    feed_url:(document.getElementById(`sync-${code}-${provider}`).value.trim()||null),
+    active:true,
+    updated_at:new Date().toISOString()
+  }));
+  const {error}=await sb.from('mm_ical_imports').upsert(rows,{onConflict:'unit_id,provider'});
+  if(error){
+    status.textContent=t('sync.saveError'); status.className='sync-status error'; return;
+  }
+  status.textContent=t('sync.saved'); status.className='sync-status saved';
+  await loadData();
+  setTimeout(()=>{status.textContent=t('sync.notSaved');status.className='sync-status'},1800);
+}
+
+function analyticsNumber(value){
+  return new Intl.NumberFormat(state.lang==='el'?'el-GR':'en-GB').format(Number(value||0));
+}
+function analyticsDateLabel(value){
+  if(!value)return '—';
+  const d=new Date(`${value}T12:00:00`);
+  return new Intl.DateTimeFormat(state.lang==='el'?'el-GR':'en-GB',{day:'2-digit',month:'short'}).format(d);
+}
+function analyticsActionLabel(name){
+  const key=`analytics.action_${name}`;
+  const translated=t(key);
+  if(translated!==key)return translated;
+  return String(name||'').replaceAll('_',' ');
+}
+function analyticsDeviceLabel(name){
+  const key=`analytics.device_${name||'unknown'}`;
+  const translated=t(key);
+  return translated!==key?translated:(name||t('analytics.device_unknown'));
+}
+function renderBreakdown(id,items,labelFn=(x)=>x){
+  const box=document.getElementById(id);
+  if(!box)return;
+  const rows=(items||[]).filter(x=>Number(x.count)>0);
+  if(!rows.length){
+    box.innerHTML=`<div class="analytics-empty">${t('analytics.noData')}</div>`;
+    return;
+  }
+  const max=Math.max(...rows.map(x=>Number(x.count)||0),1);
+  box.innerHTML=rows.map(x=>{
+    const count=Number(x.count)||0;
+    const width=Math.max(4,(count/max)*100);
+    return `<div class="breakdown-row">
+      <div class="breakdown-label" title="${escapeHtml(labelFn(x.label))}">${escapeHtml(labelFn(x.label))}</div>
+      <div class="breakdown-track"><div class="breakdown-fill" style="width:${width}%"></div></div>
+      <div class="breakdown-value">${analyticsNumber(count)}</div>
+    </div>`;
+  }).join('');
+}
+function renderAnalytics(){
+  const a=state.analytics;
+  document.querySelectorAll('[data-analytics-days]').forEach(btn=>btn.classList.toggle('active',Number(btn.dataset.analyticsDays)===state.analyticsDays));
+  if(!a)return;
+
+  document.getElementById('aVisitors').textContent=analyticsNumber(a.visitors);
+  document.getElementById('aSessions').textContent=analyticsNumber(a.sessions);
+  document.getElementById('aPageViews').textContent=analyticsNumber(a.page_views);
+  document.getElementById('aBookNow').textContent=analyticsNumber(a.book_now_clicks);
+  document.getElementById('aWhatsapp').textContent=analyticsNumber(a.whatsapp_clicks);
+  document.getElementById('aRequests').textContent=analyticsNumber(a.booking_requests);
+  document.getElementById('aDirections').textContent=analyticsNumber(a.directions_clicks);
+  document.getElementById('aConversion').textContent=`${Number(a.conversion_rate||0).toFixed(1)}%`;
+
+  const daily=a.daily||[];
+  const chart=document.getElementById('trafficChart');
+  if(!daily.length){
+    chart.innerHTML=`<div class="analytics-empty" style="width:100%;align-self:center">${t('analytics.noData')}</div>`;
+    document.getElementById('trafficStart').textContent='—';
+    document.getElementById('trafficEnd').textContent='—';
+  }else{
+    const max=Math.max(...daily.map(x=>Number(x.page_views)||0),1);
+    chart.innerHTML=daily.map(x=>{
+      const views=Number(x.page_views)||0;
+      const height=Math.max(2,(views/max)*100);
+      return `<div class="traffic-bar-wrap" title="${escapeHtml(analyticsDateLabel(x.date))}: ${views}">
+        <div class="traffic-bar" style="height:${height}%"></div>
+      </div>`;
+    }).join('');
+    document.getElementById('trafficStart').textContent=analyticsDateLabel(daily[0].date);
+    document.getElementById('trafficEnd').textContent=analyticsDateLabel(daily[daily.length-1].date);
+  }
+
+  renderBreakdown('actionsList',a.actions||[],analyticsActionLabel);
+  renderBreakdown('devicesList',a.devices||[],analyticsDeviceLabel);
+  renderBreakdown('languagesList',a.languages||[],x=>String(x||'').toUpperCase());
+  renderBreakdown('sourcesList',a.sources||[],x=>x||'Direct');
+
+  const funnel=[
+    {label:t('analytics.funnelSessions'),count:Number(a.sessions)||0},
+    {label:t('analytics.funnelBook'),count:Number(a.book_now_clicks)||0},
+    {label:t('analytics.funnelWhatsapp'),count:Number(a.whatsapp_clicks)||0},
+    {label:t('analytics.funnelRequests'),count:Number(a.booking_requests)||0}
+  ];
+  renderBreakdown('funnelList',funnel,x=>x);
+}
+async function loadAnalytics(){
+  const panel=document.getElementById('analyticsPanel');
+  const errorBox=document.getElementById('analyticsError');
+  state.analyticsLoading=true;
+  panel?.classList.add('analytics-loading');
+  errorBox?.classList.add('hidden');
+
+  const {data,error}=await sb.rpc('mm_analytics_summary',{
+    p_days:state.analyticsDays,
+    p_environment:'live'
+  });
+
+  state.analyticsLoading=false;
+  panel?.classList.remove('analytics-loading');
+
+  if(error){
+    console.error('Analytics load failed:',error);
+    state.analytics=null;
+    if(errorBox){
+      errorBox.textContent=t('analytics.loadError');
+      errorBox.classList.remove('hidden');
+    }
+    renderAnalytics();
+    return;
+  }
+
+  state.analytics=data||{};
+  renderAnalytics();
+}
+
+function renderAll(){if(!state.units.length)return;renderStats();renderCalendar('mm');renderCalendar('garden_villa');renderEvents();renderSync();renderAnalytics()}
+
+document.querySelectorAll('[data-cal-prev]').forEach(b=>b.addEventListener('click',()=>{const c=b.dataset.calPrev;state.monthByUnit[c]=addMonths(state.monthByUnit[c],-1);renderCalendar(c)}));
+document.querySelectorAll('[data-cal-next]').forEach(b=>b.addEventListener('click',()=>{const c=b.dataset.calNext;state.monthByUnit[c]=addMonths(state.monthByUnit[c],1);renderCalendar(c)}));
+document.querySelectorAll('[data-close-unit]').forEach(b=>b.addEventListener('click',()=>{const code=b.dataset.closeUnit,u=state.units.find(x=>x.code===code),dates=state.selected[code];if(!u||dates.length!==2)return;state.dialogUnitCode=code;dialogUnitName.textContent=u.name;dialogStart.value=dates[0];dialogEnd.value=dateISO(addDays(fromISO(dates[1]),1));dialogNote.value='';closeDialog.showModal()}));
+dialogCancel.addEventListener('click',()=>closeDialog.close());
+closeForm.addEventListener('submit',async e=>{
+e.preventDefault();const code=state.dialogUnitCode,u=state.units.find(x=>x.code===code),start=dialogStart.value,end=dialogEnd.value,note=dialogNote.value.trim();if(!u||!start||!end||end<=start)return;
+const {error}=await sb.from('mm_calendar_events').insert({unit_id:u.id,start_date:start,end_date:end,status:'closed',source:'manual',note:note||null});if(error)return toast(t('toast.error'));
+state.selected[code]=[];closeDialog.close();await loadData();toast(t('toast.saved'));
+});
+async function deleteEvent(id){const {error}=await sb.from('mm_calendar_events').delete().eq('id',id);if(error)return toast(t('toast.error'));await loadData();toast(t('toast.deleted'))}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>el.classList.remove('show'),2200)}
+
+document.querySelectorAll('[data-copy-export]').forEach(btn=>{
+  btn.addEventListener('click',async()=>{
+    const [code,target]=btn.dataset.copyExport.split('|');
+    const value=exportUrlFor(code,target);
+    if(!value || value==='—') return;
+    try{
+      await navigator.clipboard.writeText(value);
+      btn.textContent=state.lang==='el'?'Αντιγράφηκε':'Copied';
+      setTimeout(()=>btn.textContent=t('sync.copy'),1400);
+    }catch(_){
+      window.prompt(state.lang==='el'?'Αντιγράψτε τον σύνδεσμο:':'Copy the link:',value);
+    }
+  });
+});
+
+document.querySelectorAll('[data-save-sync]').forEach(btn=>{
+  btn.addEventListener('click',()=>saveSync(btn.dataset.saveSync));
+});
+document.querySelectorAll('[data-clear-feed]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const [code,provider]=btn.dataset.clearFeed.split('|');
+    const input=document.getElementById(`sync-${code}-${provider}`);
+    if(input) input.value='';
+    const status=document.getElementById(`sync-status-${code}`);
+    if(status){status.textContent=t('sync.notSaved');status.className='sync-status';}
+  });
+});
+
+
+document.querySelectorAll('[data-analytics-days]').forEach(btn=>{
+  btn.addEventListener('click',async()=>{
+    const days=Number(btn.dataset.analyticsDays);
+    if(![7,30,90].includes(days) || days===state.analyticsDays)return;
+    state.analyticsDays=days;
+    await loadAnalytics();
+  });
+});
+document.getElementById('analyticsRefresh').addEventListener('click',()=>loadAnalytics());
+
+loginForm.addEventListener('submit',async e=>{
+e.preventDefault();loginError.textContent='';
+const {data,error}=await sb.auth.signInWithPassword({email:email.value.trim(),password:password.value});
+if(error){loginError.textContent=t('login.invalid');return}
+const adminOk=await verifyAdmin();if(!adminOk){await sb.auth.signOut();loginError.textContent=t('login.unauthorized');return}
+loginScreen.classList.add('hidden');appShell.classList.remove('hidden');applyLanguage();await loadData();
+});
+logoutBtn.addEventListener('click',async()=>{await sb.auth.signOut();location.reload()});
+async function boot(){
+applyLanguage();
+const {data:{session}}=await sb.auth.getSession();if(!session)return;
+const adminOk=await verifyAdmin();if(!adminOk){await sb.auth.signOut();return}
+loginScreen.classList.add('hidden');appShell.classList.remove('hidden');applyLanguage();await loadData();
+}
+boot().catch(()=>toast(t('toast.error')));
+</script>
+</body>
+</html>
