@@ -2178,9 +2178,133 @@
       }
     }
 
-  </style>
+  
+    /* ===== V12 — MOBILE HERO: image directly under menu, no empty black gap ===== */
+    @media(max-width:720px){
+
+      .site-header,
+      .site-header.scrolled{
+        position:sticky !important;
+        top:0 !important;
+        height:58px !important;
+        background:#0d0f0d !important;
+        color:#fff !important;
+        border-bottom:0 !important;
+        box-shadow:none !important;
+        backdrop-filter:none !important;
+        -webkit-backdrop-filter:none !important;
+      }
+
+      .header-inner{
+        height:58px !important;
+      }
+
+      .hero-v4{
+        padding-top:0 !important;
+        margin-top:0 !important;
+        min-height:0 !important;
+        height:auto !important;
+        background:#090b09 !important;
+        overflow:visible !important;
+      }
+
+      .hero-v4 .hero-canvas{
+        position:relative !important;
+        inset:auto !important;
+        width:100% !important;
+        aspect-ratio:16 / 9 !important;
+        height:auto !important;
+        min-height:0 !important;
+        margin:0 !important;
+        padding:0 !important;
+        overflow:hidden !important;
+        background:#090b09 !important;
+      }
+
+      .hero-v4 .hero-slide{
+        position:absolute !important;
+        inset:0 !important;
+        width:100% !important;
+        height:100% !important;
+        object-fit:contain !important;
+        object-position:center center !important;
+        margin:0 !important;
+        transform:none !important;
+      }
+
+      .hero-v4 .hero-canvas::after{
+        display:block !important;
+        content:"" !important;
+        position:absolute !important;
+        inset:0 !important;
+        z-index:2 !important;
+        background:linear-gradient(
+          180deg,
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0) 72%,
+          rgba(0,0,0,.36) 100%
+        ) !important;
+        pointer-events:none !important;
+      }
+
+      .hero-kicker-mobile{
+        display:block !important;
+        position:absolute !important;
+        left:14px !important;
+        bottom:12px !important;
+        z-index:8 !important;
+        margin:0 !important;
+        padding:0 !important;
+        color:#fff !important;
+        font-size:.54rem !important;
+        line-height:1.2 !important;
+        font-weight:700 !important;
+        letter-spacing:.14em !important;
+        text-transform:uppercase !important;
+        text-shadow:0 2px 10px rgba(0,0,0,.8) !important;
+      }
+
+      .hero-slide-ui{
+        position:absolute !important;
+        right:13px !important;
+        bottom:12px !important;
+        z-index:8 !important;
+      }
+
+      .hero-v4 .hero-content{
+        position:relative !important;
+        inset:auto !important;
+        width:100% !important;
+        min-height:0 !important;
+        margin:0 !important;
+        padding:18px 14px 24px !important;
+        background:#090b09 !important;
+        display:block !important;
+      }
+
+      .hero-v4 .hero-content .hero-kicker{
+        display:none !important;
+      }
+
+      .nav.mobile-open{
+        position:fixed !important;
+        top:58px !important;
+        left:0 !important;
+        right:0 !important;
+        bottom:0 !important;
+        background:#0d0f0d !important;
+        color:#fff !important;
+        z-index:59 !important;
+      }
+
+      .nav.mobile-open a{
+        color:#fff !important;
+      }
+    }
+
+</style>
 </head>
-<body data-build="v11-mobile-hero-2026-10-06">
+<body data-build="v12-mobile-hero-no-gap-2026-10-06">
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <a href="#top" class="brand" aria-label="M&M Villas Vourvourou">
