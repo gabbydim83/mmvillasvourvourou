@@ -2302,9 +2302,96 @@
       }
     }
 
+
+
+    /* ===== V13 — estate image + Main Villa collage mobile refinement ===== */
+
+    /* Estate image: wider, lower, fully visible, rounded on every screen. */
+    .estate-media{
+      min-height:0 !important;
+      height:auto !important;
+      aspect-ratio:auto !important;
+      background:transparent !important;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .estate-media img{
+      position:static !important;
+      inset:auto !important;
+      width:100% !important;
+      height:auto !important;
+      max-height:520px;
+      object-fit:contain !important;
+      object-position:center center !important;
+      border-radius:28px !important;
+      background:transparent !important;
+      box-shadow:0 22px 52px rgba(17,19,15,.16);
+    }
+
+    /* Main Villa photo essay: on phones keep the same editorial composition as desktop,
+       only scaled down — no swipe rail. */
+    @media(max-width:720px){
+      .estate-grid{gap:24px !important;}
+      .estate-media{
+        order:-1 !important;
+        width:100% !important;
+        margin:0 auto !important;
+        padding:0 !important;
+      }
+      .estate-media img{
+        width:100% !important;
+        max-height:none !important;
+        border-radius:20px !important;
+      }
+
+      .visual-chapter-main{
+        padding:3px 0 3px !important;
+        background:#000 !important;
+      }
+      .visual-chapter-main .visual-chapter-grid{
+        display:grid !important;
+        width:100% !important;
+        max-width:none !important;
+        margin:0 !important;
+        padding:3px !important;
+        overflow:visible !important;
+        grid-auto-flow:row !important;
+        grid-auto-columns:auto !important;
+        grid-template-columns:1.16fr .62fr .82fr !important;
+        grid-template-rows:112px 90px 102px !important;
+        gap:3px !important;
+        background:#000 !important;
+        scroll-snap-type:none !important;
+      }
+      .visual-chapter-main .vc-shot{
+        display:block !important;
+        min-width:0 !important;
+        width:auto !important;
+        margin:0 !important;
+        border-radius:0 !important;
+        overflow:hidden !important;
+        scroll-snap-align:none !important;
+      }
+      .visual-chapter-main .vc-shot:nth-child(1){grid-column:1 !important;grid-row:1 / span 2 !important;}
+      .visual-chapter-main .vc-shot:nth-child(2){grid-column:3 !important;grid-row:1 / span 2 !important;}
+      .visual-chapter-main .vc-shot:nth-child(3){grid-column:2 !important;grid-row:1 !important;}
+      .visual-chapter-main .vc-shot:nth-child(4){grid-column:2 !important;grid-row:2 !important;}
+      .visual-chapter-main .vc-shot:nth-child(5){grid-column:1 !important;grid-row:3 !important;}
+      .visual-chapter-main .vc-shot:nth-child(6){grid-column:2 !important;grid-row:3 !important;}
+      .visual-chapter-main .vc-shot:nth-child(7){grid-column:3 !important;grid-row:3 !important;display:block !important;}
+      .visual-chapter-main .vc-shot img{
+        width:100% !important;
+        height:100% !important;
+        object-fit:cover !important;
+        object-position:center center !important;
+        border-radius:0 !important;
+      }
+    }
+
 </style>
 </head>
-<body data-build="v12-mobile-hero-no-gap-2026-10-06">
+<body data-build="v13-estate-main-collage-2026-10-06">
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <a href="#top" class="brand" aria-label="M&M Villas Vourvourou">
@@ -2374,7 +2461,7 @@
         <div class="detail-mosaic reveal">
           <figure class="detail-shot a"><img src="Assets/Images/large-villa/35.webp" alt="Bright Main Villa living space with arches and timber details" loading="eager"></figure>
           <figure class="detail-shot b"><img src="Assets/Images/large-villa/21.webp" alt="Main Villa bathroom detail" loading="lazy"></figure>
-          <figure class="detail-shot c"><img src="Assets/Images/large-villa/42.webp" alt="Sunny Main Villa terrace detail" loading="lazy"></figure>
+          <figure class="detail-shot c"><img src="Assets/Images/large-villa/7.webp" alt="Main Villa terrace and outdoor detail" loading="lazy"></figure>
           <figure class="detail-shot d"><img src="Assets/Images/large-villa/39.webp" alt="Main Villa warm interior detail" loading="lazy"></figure>
         </div>
       </div>
