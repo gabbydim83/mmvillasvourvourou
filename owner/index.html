@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>M&M Villas — Owner Panel</title>
-  <meta name="mm-owner-build" content="v5-analytics-2026-10-06">
+  <meta name="mm-owner-build" content="v10-editable-direct-bookings-2026-10-06">
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#111310">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    :root{--bg:#f4f1ea;--paper:#fffdf8;--ink:#171916;--muted:#6e7068;--line:#ded8ca;--olive:#5f6d58;--green:#65a765;--green-soft:#e8f4e6;--red:#c65353;--red-soft:#fae9e8;--shadow:0 18px 50px rgba(24,28,22,.10);--serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope",system-ui,sans-serif}
+    :root{--bg:#f4f1ea;--paper:#fffdf8;--ink:#171916;--muted:#6e7068;--line:#ded8ca;--olive:#5f6d58;--green:#2f9b4a;--green-soft:#dff2e3;--red:#df3f52;--red-soft:#fde3e7;--shadow:0 18px 50px rgba(24,28,22,.10);--serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope",system-ui,sans-serif}
     *{box-sizing:border-box}html{background:var(--bg)}body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);min-height:100vh}button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}
     .topbar{position:sticky;top:0;z-index:50;height:72px;background:#10120f;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 24px}
     .brand{display:flex;align-items:center;gap:12px}.brand-mark{width:44px;height:44px;border-radius:12px;background:#fff;color:#111;display:grid;place-items:center;font-family:var(--serif);font-weight:700}.brand strong{display:block}.brand span{display:block;font-size:.68rem;color:rgba(255,255,255,.6)}
@@ -22,18 +22,40 @@
     .status-pill{display:inline-flex;align-items:center;gap:8px;padding:10px 13px;border-radius:999px;background:var(--paper);border:1px solid var(--line);font-size:.72rem;font-weight:700}.status-dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
     .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:26px}.stat{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px}.stat span{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}.stat strong{font-family:var(--serif);font-size:2rem}
     .panel{background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:22px;margin-bottom:22px}.panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:18px}.panel-head p{margin:7px 0 0;color:var(--muted);font-size:.85rem}
-    .legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.72rem;color:var(--muted)}.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:10px;height:10px;border-radius:50%;display:inline-block}.legend .open{background:var(--green)}.legend .closed{background:var(--red)}
+    .legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.72rem;color:var(--muted)}.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid #d8d1c1}.legend .free{background:#fff}.legend .booking{background:#1769e0;border-color:#0d4fb1}.legend .airbnb{background:#e33b4f;border-color:#b92136}.legend .platforms{background:linear-gradient(135deg,#1769e0 0 38%,#fff 38% 62%,#e33b4f 62% 100%);border-color:#8f8783}.legend .owner{background:#2f9b4a;border-color:#217337}
     .calendar-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.calendar-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}.calendar-card-head{padding:16px 16px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);background:#fbf8f1}
     .calendar-title strong{display:block;font-family:var(--serif);font-size:1.55rem}.calendar-title span{font-size:.7rem;color:var(--muted)}.calendar-nav{display:flex;gap:6px}.calendar-nav button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff}
     .month-label{padding:14px 16px 8px;font-weight:800;text-transform:capitalize}.weekdays,.days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:0 12px}.weekdays{padding-bottom:6px}.weekdays span{text-align:center;font-size:.6rem;color:var(--muted);font-weight:800;text-transform:uppercase}.days{padding-bottom:14px}
-    .day{min-height:46px;border:1px solid transparent;border-radius:10px;background:var(--green-soft);color:#274e2c;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;position:relative}.day.blank{background:transparent;pointer-events:none}.day.past{opacity:.35;pointer-events:none}.day.closed{background:var(--red-soft);color:#7e2525;border-color:#efc9c6}.day.today:after{content:"";position:absolute;bottom:5px;width:4px;height:4px;border-radius:50%;background:currentColor}.day.selected{outline:2px solid #111;outline-offset:-2px}
+    .day{min-height:46px;border:1px solid #e3ddd1;border-radius:10px;background:#fff;color:#31352f;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;position:relative;overflow:hidden}.day-num{position:relative;z-index:2}.day.blank{background:transparent;pointer-events:none;border-color:transparent}.day.past{opacity:.35;pointer-events:none}.day.booking{background:#6e9ff0;color:#0b356f;border-color:#2f73d6}.day.airbnb{background:#f07f90;color:#6f1426;border-color:#db4e64}.day.booking-airbnb{background:linear-gradient(135deg,#4f8fe8 0 50%,#eb667a 50% 100%);color:#151515;border-color:#8b6893}.day.platforms{background:linear-gradient(135deg,#4f8fe8 0 36%,#fff 36% 64%,#eb667a 64% 100%);color:#111;border-color:#8f8783}.day.owner{background:#74c77f;color:#123d1a;border-color:#3a9b48}.day.today:after{content:"";position:absolute;bottom:5px;width:4px;height:4px;border-radius:50%;background:currentColor;z-index:3}.day.selected{outline:2px solid #111;outline-offset:-2px}
     .calendar-foot{border-top:1px solid var(--line);padding:14px 16px;display:flex;justify-content:space-between;gap:10px;align-items:center}.calendar-foot small{color:var(--muted)}
     .action-btn{min-height:40px;border:0;border-radius:999px;padding:0 15px;background:var(--ink);color:#fff;font-size:.72rem;font-weight:800}.action-btn:disabled{opacity:.4;cursor:not-allowed}.action-btn.secondary{background:#fff;color:var(--ink);border:1px solid var(--line)}
     .events-list{display:grid;gap:9px}.event-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}.event-row strong{font-size:.82rem}.event-row span{display:block;font-size:.72rem;color:var(--muted);margin-top:3px}.event-row button{border:1px solid #efc9c6;background:var(--red-soft);color:#842c2c;border-radius:999px;padding:7px 10px;font-size:.68rem;font-weight:800}.empty{padding:24px;text-align:center;color:var(--muted);font-size:.82rem}
+    .management-split{display:grid;grid-template-columns:1fr 1fr;gap:16px}.management-card{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden;box-shadow:0 8px 24px rgba(24,28,22,.05)}.management-card-head{padding:15px 16px;border-bottom:1px solid var(--line);background:#f7f3ea}.management-card-head strong{display:block;font-family:var(--serif);font-size:1.45rem}.management-card-head span{display:block;margin-top:4px;color:var(--muted);font-size:.7rem}.booking-source{display:inline-flex!important;align-items:center;gap:6px;font-size:.67rem!important;font-weight:800!important;margin-top:5px!important}.booking-source:before{content:"";width:8px;height:8px;border-radius:50%;background:#777}.booking-source.booking:before{background:#2f6fe4}.booking-source.airbnb:before{background:#e4485d}.booking-source.direct:before{background:#59a45d}.event-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}.event-chip{display:inline-flex!important;width:auto!important;padding:4px 7px;border-radius:999px;background:#f3f0e8;color:#555!important;font-size:.64rem!important;margin:0!important}.event-row .danger-btn{border-color:#efc9c6;background:var(--red-soft);color:#842c2c}.event-row .open-btn{border-color:#bcd7b8;background:#edf6eb;color:#35633a}@media(max-width:900px){.management-split{grid-template-columns:1fr}}
+    .guest-fields{margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:14px;background:#fbf8f1}.guest-fields-title{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}.guest-fields-help{font-size:.7rem;color:var(--muted);line-height:1.45;margin:0 0 10px}.guest-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:10px}.guest-grid .field{margin-top:0}.guest-grid input{min-height:44px}.scope-btn:disabled{opacity:.38;cursor:not-allowed;transform:none!important}@media(max-width:620px){.guest-grid{grid-template-columns:1fr}}
+    .event-row-actions{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap}
+    .event-row .edit-btn{border-color:#c9d7c3;background:#eef4eb;color:#35503a}
+    .edit-booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .edit-booking-grid .field{margin-top:0}
+    .edit-booking-grid .field.full{grid-column:1/-1}
+    .edit-booking-grid input,.edit-booking-grid select{width:100%;min-height:44px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:0 12px;outline:none}
+    .edit-booking-grid input:focus,.edit-booking-grid select:focus{border-color:var(--olive);box-shadow:0 0 0 4px rgba(95,109,88,.08)}
+    .edit-dialog-note{margin:8px 0 15px;color:var(--muted);font-size:.72rem;line-height:1.5}
+    .edit-dialog-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+    .edit-dialog-actions .save-edit{background:var(--green)}
+    .edit-dialog-actions .delete-edit{background:var(--red);color:#fff}
+    .edit-dialog-actions .cancel-edit{grid-column:1/-1}
+    @media(max-width:620px){
+      .event-row{grid-template-columns:1fr}
+      .event-row-actions{justify-content:flex-start}
+      .edit-booking-grid{grid-template-columns:1fr}
+      .edit-booking-grid .field.full{grid-column:auto}
+    }
     .notice{padding:11px 13px;border-radius:10px;background:#edf2e9;color:#35503a;font-size:.78rem}
     .login-screen{min-height:100vh;background:radial-gradient(circle at 75% 20%,rgba(102,113,90,.28),transparent 33%),#10120f;color:#fff;display:grid;place-items:center;padding:22px}.login-card{width:min(440px,100%);background:#f9f6ef;color:var(--ink);border-radius:24px;padding:30px;box-shadow:0 32px 90px rgba(0,0,0,.28)}.login-logo{width:64px;height:64px;border-radius:16px;background:#111;color:#fff;display:grid;place-items:center;font-family:var(--serif);font-size:1.3rem;margin-bottom:24px}.login-card h1{font-size:3.2rem}.login-card p{color:var(--muted)}.login-lang{display:flex;justify-content:flex-end;margin-bottom:14px}.login-lang button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 11px;font-weight:800}
     .field{margin-top:14px}.field label{display:block;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}.field input{width:100%;min-height:48px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:0 13px;outline:none}.login-btn{width:100%;min-height:50px;margin-top:18px;border:0;border-radius:999px;background:#111;color:#fff;font-weight:800}.login-error{margin:12px 0 0;color:#a23636;font-size:.8rem;min-height:1.2em}
     dialog{border:0;border-radius:18px;padding:0;width:min(460px,calc(100% - 24px));box-shadow:0 26px 90px rgba(0,0,0,.28)}dialog::backdrop{background:rgba(0,0,0,.48);backdrop-filter:blur(3px)}.dialog-body{padding:22px}.dialog-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+    .scope-copy{margin:10px 0 14px;color:var(--muted);font-size:.78rem;line-height:1.5}.scope-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.scope-btn{border:1px solid var(--line);border-radius:14px;background:#fff;padding:14px;text-align:left;cursor:pointer;transition:.18s}.scope-btn:hover{border-color:#a9a093;transform:translateY(-1px)}.scope-btn strong{display:block;font-size:.8rem;margin-bottom:5px}.scope-btn span{display:block;font-size:.69rem;line-height:1.45;color:var(--muted)}.scope-btn.platforms{background:linear-gradient(135deg,rgba(23,105,224,.10) 0 42%,#fff 42% 58%,rgba(227,59,79,.10) 58% 100%);border-color:#b9ada8}.scope-btn.platforms strong{color:#7d3345}.scope-btn.everywhere{background:#e2f3e4;border-color:#9bcfa1}.scope-btn.everywhere strong{color:#225e2d}.date-summary{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0 4px}.date-pill{padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:#fbf8f1;font-size:.72rem;font-weight:800}.scope-cancel{margin-top:12px;width:100%}
+    @media(max-width:620px){.scope-actions{grid-template-columns:1fr}}
     .toast{position:fixed;right:16px;bottom:16px;z-index:100;padding:12px 15px;border-radius:12px;background:#111;color:#fff;box-shadow:var(--shadow);font-size:.78rem;opacity:0;transform:translateY(10px);pointer-events:none;transition:.22s}.toast.show{opacity:1;transform:none}
     @media(max-width:900px){.calendar-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}@media(max-width:620px){.topbar{height:64px;padding:0 12px}.brand span{display:none}.page{width:calc(100% - 20px);padding-top:22px}.hero-panel{grid-template-columns:1fr;align-items:start}.stats{gap:8px}.stat{padding:14px}.panel{padding:14px;border-radius:16px}.panel-head{display:block}.legend{margin-top:12px}.day{min-height:42px}.dialog-grid{grid-template-columns:1fr}}
   
@@ -156,7 +178,13 @@
     <section class="panel">
       <div class="panel-head">
         <div><p class="eyebrow" data-i18n="calendar.eyebrow">Availability</p><h2 data-i18n="calendar.title">Calendars</h2><p data-i18n="calendar.subtitle">Choose a start and end date to close a period.</p></div>
-        <div class="legend"><span><i class="open"></i><b data-i18n="calendar.open">Open</b></span><span><i class="closed"></i><b data-i18n="calendar.closed">Closed</b></span></div>
+        <div class="legend">
+          <span><i class="free"></i><b data-i18n="calendar.free">Free</b></span>
+          <span><i class="booking"></i><b data-i18n="calendar.booking">Booking.com</b></span>
+          <span><i class="airbnb"></i><b data-i18n="calendar.airbnb">Airbnb</b></span>
+          <span><i class="platforms"></i><b data-i18n="calendar.platforms">Platforms closed · website open</b></span>
+          <span><i class="owner"></i><b data-i18n="calendar.owner">Closed everywhere</b></span>
+        </div>
       </div>
       <div class="calendar-grid">
         <article class="calendar-card">
@@ -173,7 +201,13 @@
       </div>
     </section>
 
-    <section class="panel"><div class="panel-head"><div><p class="eyebrow" data-i18n="events.eyebrow">Manual blocks</p><h2 data-i18n="events.title">Closed periods</h2><p data-i18n="events.subtitle">Periods created manually from this panel appear here.</p></div></div><div class="events-list" id="eventsList"></div></section>
+    <section class="panel">
+      <div class="panel-head"><div><p class="eyebrow" data-i18n="events.eyebrow">Stay management</p><h2 data-i18n="events.title">Bookings & availability</h2><p data-i18n="events.subtitle">See confirmed stays separately from manual availability blocks.</p></div></div>
+      <div class="management-split">
+        <article class="management-card"><div class="management-card-head"><strong data-i18n="events.bookingsTitle">Booked stays</strong><span data-i18n="events.bookingsSubtitle">Booking.com, Airbnb and direct reservations.</span></div><div class="events-list" id="bookingsList" style="padding:12px"></div></article>
+        <article class="management-card"><div class="management-card-head"><strong data-i18n="events.blocksTitle">Blocked periods</strong><span data-i18n="events.blocksSubtitle">Owner rules used to close platforms or all calendars.</span></div><div class="events-list" id="blocksList" style="padding:12px"></div></article>
+      </div>
+    </section>
     <section class="panel" id="calendarSync">
       <div class="panel-head">
         <div>
@@ -372,16 +406,59 @@
 </div>
 
 <dialog id="closeDialog">
-  <form method="dialog" class="dialog-body" id="closeForm">
-    <p class="eyebrow" data-i18n="dialog.eyebrow">Close availability</p><h3 id="dialogUnitName">M&M</h3>
-    <div class="dialog-grid">
-      <div class="field"><label for="dialogStart" data-i18n="dialog.start">Start date</label><input id="dialogStart" type="date" required></div>
-      <div class="field"><label for="dialogEnd" data-i18n="dialog.end">End date</label><input id="dialogEnd" type="date" required></div>
+  <div class="dialog-body">
+    <p class="eyebrow" data-i18n="dialog.eyebrow">Set availability</p>
+    <h3 id="dialogUnitName">M&M</h3>
+    <div class="date-summary"><span class="date-pill" id="dialogStartText">—</span><span>→</span><span class="date-pill" id="dialogEndText">—</span></div>
+    <p class="scope-copy" data-i18n="dialog.help">Choose where this period should be unavailable.</p>
+    <div class="guest-fields"><div class="guest-fields-title" data-i18n="dialog.guestTitle">Direct booking details</div><p class="guest-fields-help" data-i18n="dialog.guestHelp">Optional. Add a guest name to save this period as a direct booking. Direct bookings close all calendars.</p><div class="guest-grid"><div class="field"><label for="dialogGuestName" data-i18n="dialog.guestName">Guest name</label><input id="dialogGuestName" type="text" data-i18n-placeholder="dialog.guestPlaceholder" placeholder="Guest name"></div><div class="field"><label for="dialogAmountPaid" data-i18n="dialog.amountPaid">Amount paid (€)</label><input id="dialogAmountPaid" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00"></div></div></div><div class="field"><label for="dialogNote" data-i18n="dialog.note">Note</label><input id="dialogNote" type="text" data-i18n-placeholder="dialog.placeholder" placeholder="Personal use, maintenance..."></div>
+    <div class="scope-actions">
+      <button class="scope-btn platforms" type="button" id="closePlatformsBtn"><strong data-i18n="dialog.platformsTitle">Close on Booking & Airbnb</strong><span data-i18n="dialog.platformsText">The website stays open for direct bookings.</span></button>
+      <button class="scope-btn everywhere" type="button" id="closeEverywhereBtn"><strong data-i18n="dialog.everywhereTitle">Close everywhere</strong><span data-i18n="dialog.everywhereText">Website, Booking.com and Airbnb are all closed.</span></button>
     </div>
-    <div class="field"><label for="dialogNote" data-i18n="dialog.note">Note</label><input id="dialogNote" type="text" data-i18n-placeholder="dialog.placeholder" placeholder="Booking, personal use, maintenance..."></div>
-    <div class="dialog-actions"><button class="action-btn secondary" type="button" id="dialogCancel" data-i18n="dialog.cancel">Cancel</button><button class="action-btn" type="submit" data-i18n="dialog.save">Close dates</button></div>
-  </form>
+    <button class="action-btn secondary scope-cancel" type="button" id="dialogCancel" data-i18n="dialog.cancel">Cancel</button>
+  </div>
 </dialog>
+
+<dialog id="editBookingDialog">
+  <div class="dialog-body">
+    <p class="eyebrow" data-i18n="editBooking.eyebrow">Direct booking</p>
+    <h3 data-i18n="editBooking.title">Edit reservation</h3>
+    <p class="edit-dialog-note" data-i18n="editBooking.help">You can change the villa, dates, guest details, amount paid and notes. Changes are applied immediately to all calendars.</p>
+    <div class="edit-booking-grid">
+      <div class="field full">
+        <label for="editBookingUnit" data-i18n="editBooking.unit">Villa</label>
+        <select id="editBookingUnit"></select>
+      </div>
+      <div class="field">
+        <label for="editBookingStart" data-i18n="editBooking.start">Check-in</label>
+        <input id="editBookingStart" type="date">
+      </div>
+      <div class="field">
+        <label for="editBookingEnd" data-i18n="editBooking.end">Last booked day</label>
+        <input id="editBookingEnd" type="date">
+      </div>
+      <div class="field">
+        <label for="editBookingGuest" data-i18n="editBooking.guest">Guest name</label>
+        <input id="editBookingGuest" type="text" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="editBookingAmount" data-i18n="editBooking.amount">Deposit / amount paid (€)</label>
+        <input id="editBookingAmount" type="number" min="0" step="0.01" inputmode="decimal">
+      </div>
+      <div class="field full">
+        <label for="editBookingNote" data-i18n="editBooking.note">Note</label>
+        <input id="editBookingNote" type="text" autocomplete="off">
+      </div>
+    </div>
+    <div class="edit-dialog-actions">
+      <button class="action-btn save-edit" type="button" id="saveBookingEditBtn" data-i18n="editBooking.save">Save changes</button>
+      <button class="action-btn delete-edit" type="button" id="deleteBookingEditBtn" data-i18n="editBooking.delete">Delete booking</button>
+      <button class="action-btn secondary cancel-edit" type="button" id="cancelBookingEditBtn" data-i18n="editBooking.cancel">Cancel</button>
+    </div>
+  </div>
+</dialog>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -392,28 +469,30 @@ const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
 const I18N={
 en:{
 login:{eyebrow:'Owner access',title:'Owner Panel',text:'Sign in to manage M&M and Garden Villa availability.',email:'Email',password:'Password',button:'Sign in',invalid:'Invalid email or password.',unauthorized:'This account is not authorized for the M&M owner panel.'},
-top:{logout:'Log out'},dashboard:{eyebrow:'Property management',title:'Dashboard',subtitle:'Manage availability for M&M and Garden Villa. Green dates are open; red dates are closed.',connected:'Connected to Supabase'},
+top:{logout:'Log out'},dashboard:{eyebrow:'Property management',title:'Dashboard',subtitle:'White is free. Blue comes from Booking.com, red from Airbnb, blue/white/red means platforms are closed but the website is open, and green means closed everywhere.',connected:'Connected to Supabase'},
 stats:{units:'Units',closed:'Closed periods',mm:'M&M closed',garden:'Garden Villa closed'},
-calendar:{eyebrow:'Availability',title:'Calendars',subtitle:'Choose a start and end date to close a period.',open:'Open',closed:'Closed',capacityMM:'Up to 8 guests',capacityGarden:'Up to 4 guests',select:'Select two dates',closeDates:'Close dates',startSelected:'Start selected — choose the end date'},
-events:{eyebrow:'Manual blocks',title:'Closed periods',subtitle:'Periods created manually from this panel appear here.',empty:'No closed periods yet.',remove:'Open again'},
+calendar:{eyebrow:'Availability',title:'Calendars',subtitle:'Select the first and last day, then choose whether to close only the platforms or close everywhere.',free:'Free',booking:'Booking.com',airbnb:'Airbnb',platforms:'Platforms closed · website open',owner:'Closed everywhere',open:'Free',closed:'Closed',capacityMM:'Up to 8 guests',capacityGarden:'Up to 4 guests',select:'Select two dates',closeDates:'Set availability',startSelected:'Start selected — choose the last day'},
+events:{eyebrow:'Stay management',title:'Bookings & availability',subtitle:'See confirmed stays separately from manual availability blocks.',bookingsTitle:'Booked stays',bookingsSubtitle:'Booking.com, Airbnb and direct reservations.',blocksTitle:'Blocked periods',blocksSubtitle:'Owner rules used to close platforms or all calendars.',emptyBookings:'No booked stays in the upcoming period.',emptyBlocks:'No manual availability rules yet.',remove:'Open again',editBooking:'Edit',removeBooking:'Remove booking',platforms:'Booking & Airbnb closed · website open',all:'Closed everywhere',guest:'Guest',paid:'Paid'},
 sync:{eyebrow:'Calendar connections',title:'Calendar Sync',subtitle:'Paste the Booking.com and Airbnb iCal export links for each villa. Your own export link is generated automatically.',mmSubtitle:'Main villa · up to 8 guests',gardenSubtitle:'Garden villa · up to 4 guests',bookingImport:'Booking.com import',airbnbImport:'Airbnb import',ourExport:'Our iCal export links',exportBookingHelp:'Use this link in Booking.com → Import calendar.',exportAirbnbHelp:'Use this link in Airbnb → Import calendar.',copy:'Copy',clear:'Clear',save:'Save calendar links',notSaved:'No changes',saved:'Saved',saveError:'Could not save',note:'Paste each Booking.com / Airbnb export link once. Automatic synchronization runs every 15 minutes.'},
 analytics:{eyebrow:'Website performance',title:'Analytics',subtitle:'Live website traffic and the actions that matter most.',liveOnly:'Live website data',days:'days',refresh:'Refresh data',visitors:'Visitors',uniqueVisitors:'Unique visitors',sessions:'Sessions',visitSessions:'Website visits',pageViews:'Page views',pagesViewed:'Pages viewed',conversion:'Conversion',requestsPerSession:'Requests / sessions',bookNow:'Book Now clicks',bookingInterest:'Booking interest',whatsapp:'WhatsApp clicks',contactIntent:'Contact intent',requests:'Booking requests',formsSent:'Forms sent to WhatsApp',directions:'Directions',mapIntent:'Map / route clicks',trafficTitle:'Traffic over time',trafficSubtitle:'Page views by day.',actionsTitle:'Important actions',actionsSubtitle:'What visitors do after arriving.',devicesTitle:'Devices',devicesSubtitle:'Desktop, mobile and tablet traffic.',languagesTitle:'Languages',languagesSubtitle:'Languages used on the website.',sourcesTitle:'Traffic sources',sourcesSubtitle:'Where website sessions came from.',funnelTitle:'Booking funnel',funnelSubtitle:'From visit to booking request.',noData:'No data for this period yet.',loadError:'Analytics could not be loaded.',action_book_now_click:'Book Now',action_whatsapp_click:'WhatsApp',action_booking_request:'Booking request',action_directions_click:'Directions',action_gallery_open:'Gallery opened',action_gallery_filter:'Gallery filter',action_language_change:'Language changed',action_stay_selector:'Stay selector',device_mobile:'Mobile',device_desktop:'Desktop',device_tablet:'Tablet',device_unknown:'Unknown',funnelSessions:'Sessions',funnelBook:'Book Now',funnelWhatsapp:'WhatsApp',funnelRequests:'Requests'},
-dialog:{eyebrow:'Close availability',start:'Start date',end:'End date',note:'Note',placeholder:'Booking, personal use, maintenance...',cancel:'Cancel',save:'Close dates'},
-toast:{saved:'Dates closed successfully.',deleted:'Dates opened again.',error:'Something went wrong. Please try again.'}
+dialog:{eyebrow:'Set availability',start:'Start date',end:'End date',note:'Note',placeholder:'Personal use, maintenance...',guestTitle:'Reservation details',guestHelp:'Optional. Add the guest name, deposit / amount paid and a note. When a guest name is entered, the green action becomes a direct booking and closes all calendars.',guestName:'Guest name',guestPlaceholder:'Guest name',amountPaid:'Deposit / amount paid (€)',cancel:'Cancel',help:'Choose how this period should be handled.',platformsTitle:'Close Booking & Airbnb',platformsText:'The website stays open for direct bookings.',everywhereTitle:'Close everywhere',everywhereText:'Use for owner blocks. Website, Booking.com and Airbnb are all closed.',saveBookingTitle:'Save direct booking',saveBookingText:'Creates a direct reservation and closes Website, Booking.com and Airbnb.'},
+editBooking:{eyebrow:'Direct booking',title:'Edit reservation',help:'You can change the villa, dates, guest details, amount paid and notes. Changes are applied immediately to all calendars.',unit:'Villa',start:'Check-in',end:'Last booked day',guest:'Guest name',amount:'Deposit / amount paid (€)',note:'Note',save:'Save changes',delete:'Delete booking',cancel:'Cancel',invalidDates:'Please choose a valid date range.',guestRequired:'Please enter the guest name.',confirmDelete:'Delete this direct booking?'},
+toast:{savedPlatforms:'Platforms closed. Website remains open.',savedAll:'Dates closed everywhere.',savedBooking:'Direct booking saved and all calendars are closed.',bookingUpdated:'Direct booking updated.',deleted:'Dates opened again.',bookingDeleted:'Direct booking removed.',error:'Something went wrong. Please try again.'}
 },
 el:{
 login:{eyebrow:'Πρόσβαση ιδιοκτήτη',title:'Πίνακας Ιδιοκτήτη',text:'Συνδεθείτε για να διαχειριστείτε τη διαθεσιμότητα των M&M και Garden Villa.',email:'Email',password:'Κωδικός πρόσβασης',button:'Σύνδεση',invalid:'Λάθος email ή κωδικός πρόσβασης.',unauthorized:'Αυτός ο λογαριασμός δεν έχει πρόσβαση στον πίνακα M&M.'},
-top:{logout:'Αποσύνδεση'},dashboard:{eyebrow:'Διαχείριση καταλύματος',title:'Πίνακας ελέγχου',subtitle:'Διαχειριστείτε τη διαθεσιμότητα για M&M και Garden Villa. Οι πράσινες ημερομηνίες είναι διαθέσιμες και οι κόκκινες κλειστές.',connected:'Σύνδεση με Supabase'},
+top:{logout:'Αποσύνδεση'},dashboard:{eyebrow:'Διαχείριση καταλύματος',title:'Πίνακας ελέγχου',subtitle:'Λευκό = ελεύθερο. Μπλε = Booking.com, κόκκινο = Airbnb, μπλε/λευκό/κόκκινο = οι πλατφόρμες είναι κλειστές αλλά το website παραμένει ανοιχτό, πράσινο = κλειστό παντού.',connected:'Σύνδεση με Supabase'},
 stats:{units:'Μονάδες',closed:'Κλειστές περίοδοι',mm:'M&M κλειστό',garden:'Garden Villa κλειστό'},
-calendar:{eyebrow:'Διαθεσιμότητα',title:'Ημερολόγια',subtitle:'Επιλέξτε ημερομηνία έναρξης και λήξης για να κλείσετε μια περίοδο.',open:'Διαθέσιμο',closed:'Κλειστό',capacityMM:'Έως 8 επισκέπτες',capacityGarden:'Έως 4 επισκέπτες',select:'Επιλέξτε δύο ημερομηνίες',closeDates:'Κλείσιμο ημερομηνιών',startSelected:'Επιλέχθηκε η έναρξη — επιλέξτε ημερομηνία λήξης'},
-events:{eyebrow:'Χειροκίνητα κλεισίματα',title:'Κλειστές περίοδοι',subtitle:'Οι περίοδοι που δημιουργούνται χειροκίνητα εμφανίζονται εδώ.',empty:'Δεν υπάρχουν κλειστές περίοδοι ακόμη.',remove:'Άνοιγμα ξανά'},
+calendar:{eyebrow:'Διαθεσιμότητα',title:'Ημερολόγια',subtitle:'Επιλέξτε την πρώτη και την τελευταία ημέρα και μετά επιλέξτε αν θα κλείσουν μόνο οι πλατφόρμες ή όλα τα κανάλια.',free:'Ελεύθερο',booking:'Booking.com',airbnb:'Airbnb',platforms:'Πλατφόρμες κλειστές · website ανοιχτό',owner:'Κλειστό παντού',open:'Ελεύθερο',closed:'Κλειστό',capacityMM:'Έως 8 επισκέπτες',capacityGarden:'Έως 4 επισκέπτες',select:'Επιλέξτε δύο ημερομηνίες',closeDates:'Ρύθμιση διαθεσιμότητας',startSelected:'Επιλέχθηκε η πρώτη ημέρα — επιλέξτε την τελευταία'},
+events:{eyebrow:'Διαχείριση διαμονών',title:'Κρατήσεις & διαθεσιμότητα',subtitle:'Δείτε ξεχωριστά τις επιβεβαιωμένες διαμονές και τα χειροκίνητα μπλοκαρίσματα.',bookingsTitle:'Κρατημένες διαμονές',bookingsSubtitle:'Booking.com, Airbnb και απευθείας κρατήσεις.',blocksTitle:'Μπλοκαρισμένες περίοδοι',blocksSubtitle:'Κανόνες ιδιοκτήτη για κλείσιμο πλατφορμών ή όλων των ημερολογίων.',emptyBookings:'Δεν υπάρχουν επερχόμενες κρατήσεις.',emptyBlocks:'Δεν υπάρχουν χειροκίνητοι κανόνες διαθεσιμότητας.',remove:'Άνοιγμα ξανά',editBooking:'Επεξεργασία',removeBooking:'Αφαίρεση κράτησης',platforms:'Booking & Airbnb κλειστά · website ανοιχτό',all:'Κλειστό παντού',guest:'Επισκέπτης',paid:'Πληρώθηκε'},
 sync:{eyebrow:'Συνδέσεις ημερολογίου',title:'Συγχρονισμός ημερολογίου',subtitle:'Επικολλήστε τους συνδέσμους εξαγωγής iCal από Booking.com και Airbnb για κάθε βίλα. Ο δικός μας σύνδεσμος εξαγωγής δημιουργείται αυτόματα.',mmSubtitle:'Κύρια βίλα · έως 8 επισκέπτες',gardenSubtitle:'Garden Villa · έως 4 επισκέπτες',bookingImport:'Εισαγωγή από Booking.com',airbnbImport:'Εισαγωγή από Airbnb',ourExport:'Οι δικοί μας σύνδεσμοι εξαγωγής iCal',exportBookingHelp:'Χρησιμοποιήστε αυτόν τον σύνδεσμο στο Booking.com → Εισαγωγή ημερολογίου.',exportAirbnbHelp:'Χρησιμοποιήστε αυτόν τον σύνδεσμο στο Airbnb → Εισαγωγή ημερολογίου.',copy:'Αντιγραφή',clear:'Καθαρισμός',save:'Αποθήκευση συνδέσμων',notSaved:'Χωρίς αλλαγές',saved:'Αποθηκεύτηκε',saveError:'Η αποθήκευση απέτυχε',note:'Επικολλήστε μία φορά τους συνδέσμους εξαγωγής από Booking.com / Airbnb. Ο αυτόματος συγχρονισμός εκτελείται κάθε 15 λεπτά.'},
 analytics:{eyebrow:'Απόδοση ιστοσελίδας',title:'Στατιστικά',subtitle:'Ζωντανή κίνηση της ιστοσελίδας και οι σημαντικότερες ενέργειες.',liveOnly:'Δεδομένα ζωντανής ιστοσελίδας',days:'ημέρες',refresh:'Ανανέωση δεδομένων',visitors:'Επισκέπτες',uniqueVisitors:'Μοναδικοί επισκέπτες',sessions:'Συνεδρίες',visitSessions:'Επισκέψεις στην ιστοσελίδα',pageViews:'Προβολές σελίδας',pagesViewed:'Προβολές σελίδων',conversion:'Μετατροπή',requestsPerSession:'Αιτήματα / συνεδρίες',bookNow:'Κλικ στο Book Now',bookingInterest:'Ενδιαφέρον κράτησης',whatsapp:'Κλικ στο WhatsApp',contactIntent:'Πρόθεση επικοινωνίας',requests:'Αιτήματα κράτησης',formsSent:'Φόρμες που στάλθηκαν στο WhatsApp',directions:'Οδηγίες',mapIntent:'Κλικ σε χάρτη / διαδρομή',trafficTitle:'Κίνηση με την πάροδο του χρόνου',trafficSubtitle:'Προβολές σελίδας ανά ημέρα.',actionsTitle:'Σημαντικές ενέργειες',actionsSubtitle:'Τι κάνουν οι επισκέπτες μετά την άφιξη.',devicesTitle:'Συσκευές',devicesSubtitle:'Κίνηση από υπολογιστή, κινητό και tablet.',languagesTitle:'Γλώσσες',languagesSubtitle:'Γλώσσες που χρησιμοποιούνται στην ιστοσελίδα.',sourcesTitle:'Πηγές επισκεψιμότητας',sourcesSubtitle:'Από πού προήλθαν οι συνεδρίες.',funnelTitle:'Διαδρομή κράτησης',funnelSubtitle:'Από την επίσκεψη έως το αίτημα κράτησης.',noData:'Δεν υπάρχουν ακόμη δεδομένα για αυτή την περίοδο.',loadError:'Δεν ήταν δυνατή η φόρτωση των στατιστικών.',action_book_now_click:'Book Now',action_whatsapp_click:'WhatsApp',action_booking_request:'Αίτημα κράτησης',action_directions_click:'Οδηγίες',action_gallery_open:'Άνοιγμα gallery',action_gallery_filter:'Φίλτρο gallery',action_language_change:'Αλλαγή γλώσσας',action_stay_selector:'Επιλογή διαμονής',device_mobile:'Κινητό',device_desktop:'Υπολογιστής',device_tablet:'Tablet',device_unknown:'Άγνωστο',funnelSessions:'Συνεδρίες',funnelBook:'Book Now',funnelWhatsapp:'WhatsApp',funnelRequests:'Αιτήματα'},
-dialog:{eyebrow:'Κλείσιμο διαθεσιμότητας',start:'Ημερομηνία έναρξης',end:'Ημερομηνία λήξης',note:'Σημείωση',placeholder:'Booking, προσωπική χρήση, συντήρηση...',cancel:'Ακύρωση',save:'Κλείσιμο ημερομηνιών'},
-toast:{saved:'Οι ημερομηνίες έκλεισαν επιτυχώς.',deleted:'Οι ημερομηνίες άνοιξαν ξανά.',error:'Κάτι πήγε στραβά. Δοκιμάστε ξανά.'}
+dialog:{eyebrow:'Ρύθμιση διαθεσιμότητας',start:'Ημερομηνία έναρξης',end:'Ημερομηνία λήξης',note:'Σημείωση',placeholder:'Προσωπική χρήση, συντήρηση...',guestTitle:'Στοιχεία κράτησης',guestHelp:'Προαιρετικό. Προσθέστε όνομα επισκέπτη, προκαταβολή / ποσό που πληρώθηκε και σημείωση. Όταν υπάρχει όνομα επισκέπτη, η πράσινη ενέργεια αποθηκεύει απευθείας κράτηση και κλείνει όλα τα ημερολόγια.',guestName:'Όνομα επισκέπτη',guestPlaceholder:'Όνομα επισκέπτη',amountPaid:'Προκαταβολή / πληρωμένο ποσό (€)',cancel:'Ακύρωση',help:'Επιλέξτε πώς θα χρησιμοποιηθεί αυτή η περίοδος.',platformsTitle:'Κλείσιμο Booking & Airbnb',platformsText:'Το website παραμένει ανοιχτό για απευθείας κρατήσεις.',everywhereTitle:'Κλείσιμο παντού',everywhereText:'Για μπλοκάρισμα ιδιοκτήτη. Website, Booking.com και Airbnb κλείνουν όλα.',saveBookingTitle:'Αποθήκευση απευθείας κράτησης',saveBookingText:'Δημιουργεί απευθείας κράτηση και κλείνει Website, Booking.com και Airbnb.'},
+editBooking:{eyebrow:'Απευθείας κράτηση',title:'Επεξεργασία κράτησης',help:'Μπορείτε να αλλάξετε βίλα, ημερομηνίες, στοιχεία επισκέπτη, ποσό πληρωμής και σημειώσεις. Οι αλλαγές εφαρμόζονται αμέσως σε όλα τα ημερολόγια.',unit:'Βίλα',start:'Άφιξη',end:'Τελευταία δεσμευμένη ημέρα',guest:'Όνομα επισκέπτη',amount:'Προκαταβολή / πληρωμένο ποσό (€)',note:'Σημείωση',save:'Αποθήκευση αλλαγών',delete:'Διαγραφή κράτησης',cancel:'Ακύρωση',invalidDates:'Επιλέξτε έγκυρο εύρος ημερομηνιών.',guestRequired:'Προσθέστε το όνομα του επισκέπτη.',confirmDelete:'Να διαγραφεί αυτή η απευθείας κράτηση;'},
+toast:{savedPlatforms:'Οι πλατφόρμες έκλεισαν. Το website παραμένει ανοιχτό.',savedAll:'Οι ημερομηνίες έκλεισαν παντού.',savedBooking:'Η απευθείας κράτηση αποθηκεύτηκε και όλα τα ημερολόγια έκλεισαν.',bookingUpdated:'Η απευθείας κράτηση ενημερώθηκε.',deleted:'Οι ημερομηνίες άνοιξαν ξανά.',bookingDeleted:'Η απευθείας κράτηση αφαιρέθηκε.',error:'Κάτι πήγε στραβά. Δοκιμάστε ξανά.'}
 }};
 
-const state={lang:localStorage.getItem('mm_owner_lang')||'en',units:[],events:[],icalImports:[],calendarSync:[],analytics:null,analyticsDays:30,analyticsLoading:false,monthByUnit:{mm:startOfMonth(new Date()),garden_villa:startOfMonth(new Date())},selected:{mm:[],garden_villa:[]},dialogUnitCode:null};
+const state={lang:localStorage.getItem('mm_owner_lang')||'en',units:[],events:[],icalImports:[],calendarSync:[],analytics:null,analyticsDays:30,analyticsLoading:false,monthByUnit:{mm:startOfMonth(new Date()),garden_villa:startOfMonth(new Date())},selected:{mm:[],garden_villa:[]},dialogUnitCode:null,editingBookingId:null};
 function t(path){const get=(o)=>path.split('.').reduce((a,k)=>a&&a[k],o);return get(I18N[state.lang])??get(I18N.en)??path}
 function startOfMonth(d){return new Date(d.getFullYear(),d.getMonth(),1)}
 function addMonths(d,n){return new Date(d.getFullYear(),d.getMonth()+n,1)}
@@ -441,17 +520,54 @@ async function verifyAdmin(){
   }
   return data === true;
 }
+async function loadCalendarEvents(){
+  let result=await sb.from('mm_calendar_events').select('id,unit_id,start_date,end_date,status,source,note,block_scope,guest_name,amount_paid').order('start_date');
+  if(!result.error)return result;
+  console.warn('Extended calendar fields unavailable, using compatibility mode:',result.error);
+  const fallback=await sb.from('mm_calendar_events').select('id,unit_id,start_date,end_date,status,source,note,block_scope').order('start_date');
+  if(!fallback.error)fallback.data=(fallback.data||[]).map(ev=>({...ev,guest_name:null,amount_paid:null}));
+  return fallback;
+}
 async function loadData(){
 const [u,e,i,s]=await Promise.all([
 sb.from('mm_units').select('id,code,name,capacity,sort_order').order('sort_order'),
-sb.from('mm_calendar_events').select('id,unit_id,start_date,end_date,status,source,note').order('start_date'),
+loadCalendarEvents(),
 sb.from('mm_ical_imports').select('id,unit_id,provider,feed_url,active,last_sync_at,last_sync_status,last_sync_message'),
 sb.from('mm_calendar_sync').select('id,unit_id,export_token,active,last_import_at,last_import_status,last_import_message')
 ]);
-if(u.error)throw u.error;if(e.error)throw e.error;if(i.error)throw i.error;if(s.error)throw s.error;
-state.units=u.data||[];state.events=e.data||[];state.icalImports=i.data||[];state.calendarSync=s.data||[];renderAll();await loadAnalytics();
+if(u.error)throw u.error;
+state.units=u.data||[];
+state.events=e.error?[]:(e.data||[]);
+state.icalImports=i.error?[]:(i.data||[]);
+state.calendarSync=s.error?[]:(s.data||[]);
+if(e.error)console.error('Calendar events load failed:',e.error);
+if(i.error)console.error('iCal imports load failed:',i.error);
+if(s.error)console.error('Calendar sync load failed:',s.error);
+renderAll();await loadAnalytics();
 }
-function eventForDate(unitId,iso){return state.events.find(ev=>ev.unit_id===unitId&&iso>=ev.start_date&&iso<ev.end_date)}
+function eventsForDate(unitId,iso){return state.events.filter(ev=>ev.unit_id===unitId&&iso>=ev.start_date&&iso<ev.end_date)}
+function calendarStateForDate(events){
+  const manualAll=events.some(ev=>ev.source==='manual'&&ev.block_scope==='all');
+  const manualPlatforms=events.some(ev=>ev.source==='manual'&&ev.block_scope==='platforms');
+  const booking=events.some(ev=>String(ev.source||'').toLowerCase().includes('booking'));
+  const airbnb=events.some(ev=>String(ev.source||'').toLowerCase().includes('airbnb'));
+  if(manualAll)return 'owner';
+  if(manualPlatforms)return 'platforms';
+  if(booking&&airbnb)return 'booking-airbnb';
+  if(booking)return 'booking';
+  if(airbnb)return 'airbnb';
+  return 'free';
+}
+function calendarTitleForDate(events){
+  if(!events.length)return t('calendar.free');
+  const stateName=calendarStateForDate(events);
+  if(stateName==='owner')return t('calendar.owner');
+  if(stateName==='platforms')return t('calendar.platforms');
+  if(stateName==='booking-airbnb')return 'Booking.com + Airbnb';
+  if(stateName==='booking')return 'Booking.com';
+  if(stateName==='airbnb')return 'Airbnb';
+  return t('calendar.free');
+}
 function renderCalendar(code){
 const unit=state.units.find(u=>u.code===code);if(!unit)return;
 const month=state.monthByUnit[code],locale=state.lang==='el'?'el-GR':'en-GB';
@@ -460,7 +576,12 @@ const weekdays=state.lang==='el'?['Δε','Τρ','Τε','Πε','Πα','Σα','Κ�
 document.getElementById(`weekdays-${code}`).innerHTML=weekdays.map(x=>`<span>${x}</span>`).join('');
 const first=new Date(month.getFullYear(),month.getMonth(),1),last=new Date(month.getFullYear(),month.getMonth()+1,0),lead=(first.getDay()+6)%7,today=dateISO(new Date()),sel=state.selected[code];
 let html='';for(let i=0;i<lead;i++)html+='<button class="day blank" tabindex="-1"></button>';
-for(let d=1;d<=last.getDate();d++){const dt=new Date(month.getFullYear(),month.getMonth(),d),iso=dateISO(dt),ev=eventForDate(unit.id,iso),cls=['day'];if(ev)cls.push('closed');if(iso<today)cls.push('past');if(iso===today)cls.push('today');if(sel.includes(iso))cls.push('selected');html+=`<button type="button" class="${cls.join(' ')}" data-date="${iso}" title="${escapeHtml(ev?(ev.note||ev.source):t('calendar.open'))}">${d}</button>`}
+for(let d=1;d<=last.getDate();d++){
+  const dt=new Date(month.getFullYear(),month.getMonth(),d),iso=dateISO(dt),events=eventsForDate(unit.id,iso),dayState=calendarStateForDate(events),cls=['day'];
+  if(dayState!=='free')cls.push(dayState);
+  if(iso<today)cls.push('past');if(iso===today)cls.push('today');if(sel.includes(iso))cls.push('selected');
+  html+=`<button type="button" class="${cls.join(' ')}" data-date="${iso}" title="${escapeHtml(calendarTitleForDate(events))}"><span class="day-num">${d}</span></button>`
+}
 const days=document.getElementById(`days-${code}`);days.innerHTML=html;days.querySelectorAll('[data-date]').forEach(b=>b.addEventListener('click',()=>selectDate(code,b.dataset.date)));
 const hint=document.getElementById(`hint-${code}`),btn=document.querySelector(`[data-close-unit="${code}"]`);
 if(sel.length===0){hint.textContent=t('calendar.select');btn.disabled=true}else if(sel.length===1){hint.textContent=t('calendar.startSelected');btn.disabled=true}else{hint.textContent=`${sel[0]} → ${sel[1]}`;btn.disabled=false}
@@ -472,12 +593,116 @@ function renderStats(){
 const mm=state.units.find(u=>u.code==='mm'),g=state.units.find(u=>u.code==='garden_villa'),future=state.events.filter(e=>e.end_date>=dateISO(new Date()));
 statClosed.textContent=future.length;statMM.textContent=future.filter(e=>mm&&e.unit_id===mm.id).length;statGarden.textContent=future.filter(e=>g&&e.unit_id===g.id).length
 }
-function renderEvents(){
-const box=document.getElementById('eventsList'),future=state.events.filter(e=>e.end_date>=dateISO(new Date())).sort((a,b)=>a.start_date.localeCompare(b.start_date));
-if(!future.length){box.innerHTML=`<div class="empty">${t('events.empty')}</div>`;return}
-box.innerHTML=future.map(ev=>{const u=state.units.find(x=>x.id===ev.unit_id);return `<div class="event-row"><div><strong>${escapeHtml(u?.name||'Unit')} · ${ev.start_date} → ${ev.end_date}</strong><span>${escapeHtml(ev.note||ev.source||'manual')}</span></div>${ev.source==='manual'?`<button type="button" data-delete="${ev.id}">${t('events.remove')}</button>`:''}</div>`}).join('');
-box.querySelectorAll('[data-delete]').forEach(b=>b.addEventListener('click',()=>deleteEvent(b.dataset.delete)));
+function isDirectBookingEvent(e){
+  if(!e||e.source!=='manual')return false;
+  const status=String(e.status||'').toLowerCase();
+  return ['booked','reserved'].includes(status)||String(e.guest_name||'').trim().length>0;
 }
+
+function renderEvents(){
+const today=dateISO(new Date()),bookingsBox=document.getElementById('bookingsList'),blocksBox=document.getElementById('blocksList');
+const upcoming=state.events.filter(e=>e.end_date>=today).sort((a,b)=>a.start_date.localeCompare(b.start_date));
+const isExplicitBooking=e=>['booked','reserved'].includes(String(e.status||'').toLowerCase());
+const bookings=upcoming.filter(e=>isDirectBookingEvent(e)||isExplicitBooking(e));
+const blocks=upcoming.filter(e=>!isDirectBookingEvent(e)&&!isExplicitBooking(e));
+if(!bookings.length){bookingsBox.innerHTML=`<div class="empty">${t('events.emptyBookings')}</div>`}else{
+bookingsBox.innerHTML=bookings.map(ev=>{
+  const u=state.units.find(x=>x.id===ev.unit_id),
+        inclusiveEnd=dateISO(addDays(fromISO(ev.end_date),-1)),
+        src=String(ev.source||'').toLowerCase(),
+        direct=isDirectBookingEvent(ev),
+        displaySrc=direct?'direct':src,
+        srcLabel=displaySrc==='booking'?'Booking.com':displaySrc==='airbnb'?'Airbnb':(state.lang==='el'?'Απευθείας':'Direct'),
+        chips=[];
+  if(ev.guest_name)chips.push(`<span class="event-chip">${escapeHtml(t('events.guest'))}: ${escapeHtml(ev.guest_name)}</span>`);
+  if(ev.amount_paid!==null&&ev.amount_paid!==undefined&&ev.amount_paid!=='')chips.push(`<span class="event-chip">${escapeHtml(t('events.paid'))}: €${Number(ev.amount_paid).toFixed(2)}</span>`);
+  if(ev.note)chips.push(`<span class="event-chip">${escapeHtml(ev.note)}</span>`);
+  const actions=direct?`<div class="event-row-actions"><button class="edit-btn" type="button" data-edit-booking="${ev.id}">${t('events.editBooking')}</button><button class="danger-btn" type="button" data-delete-booking="${ev.id}">${t('events.removeBooking')}</button></div>`:'';
+  return `<div class="event-row"><div><strong>${escapeHtml(u?.name||'Unit')} · ${ev.start_date} → ${inclusiveEnd}</strong><span class="booking-source ${displaySrc}">${escapeHtml(srcLabel)}</span>${chips.length?`<div class="event-meta">${chips.join('')}</div>`:''}</div>${actions}</div>`
+}).join('')}
+if(!blocks.length){blocksBox.innerHTML=`<div class="empty">${t('events.emptyBlocks')}</div>`}else{
+blocksBox.innerHTML=blocks.map(ev=>{const u=state.units.find(x=>x.id===ev.unit_id),inclusiveEnd=dateISO(addDays(fromISO(ev.end_date),-1)),src=String(ev.source||'').toLowerCase();let scopeLabel;if(src==='booking')scopeLabel='Booking.com';else if(src==='airbnb')scopeLabel='Airbnb';else scopeLabel=ev.block_scope==='platforms'?t('events.platforms'):t('events.all');const canOpen=ev.source==='manual';return `<div class="event-row"><div><strong>${escapeHtml(u?.name||'Unit')} · ${ev.start_date} → ${inclusiveEnd}</strong><span class="booking-source ${src==='booking'?'booking':src==='airbnb'?'airbnb':'direct'}">${escapeHtml(scopeLabel)}</span>${ev.note?`<div class="event-meta"><span class="event-chip">${escapeHtml(ev.note)}</span></div>`:''}</div>${canOpen?`<button class="open-btn" type="button" data-delete="${ev.id}">${t('events.remove')}</button>`:''}</div>`}).join('')}
+blocksBox.querySelectorAll('[data-delete]').forEach(b=>b.addEventListener('click',()=>deleteEvent(b.dataset.delete,false)));
+bookingsBox.querySelectorAll('[data-edit-booking]').forEach(b=>b.addEventListener('click',()=>openBookingEditor(b.dataset.editBooking)));
+bookingsBox.querySelectorAll('[data-delete-booking]').forEach(b=>b.addEventListener('click',()=>deleteDirectBookingWithConfirm(b.dataset.deleteBooking)));
+}
+
+
+function openBookingEditor(id){
+  const ev=state.events.find(x=>String(x.id)===String(id));
+  if(!isDirectBookingEvent(ev))return;
+  state.editingBookingId=ev.id;
+  editBookingUnit.innerHTML=state.units.map(u=>`<option value="${escapeHtml(u.id)}">${escapeHtml(u.name)}</option>`).join('');
+  editBookingUnit.value=ev.unit_id;
+  editBookingStart.value=ev.start_date;
+  editBookingEnd.value=dateISO(addDays(fromISO(ev.end_date),-1));
+  editBookingGuest.value=ev.guest_name||'';
+  editBookingAmount.value=(ev.amount_paid===null||ev.amount_paid===undefined)?'':String(ev.amount_paid);
+  editBookingNote.value=ev.note||'';
+  editBookingDialog.showModal();
+}
+
+function closeBookingEditor(){
+  state.editingBookingId=null;
+  editBookingDialog.close();
+}
+
+async function saveBookingEdit(){
+  const ev=state.events.find(x=>String(x.id)===String(state.editingBookingId));
+  if(!isDirectBookingEvent(ev))return;
+  const unitId=editBookingUnit.value;
+  const start=editBookingStart.value;
+  const inclusiveEnd=editBookingEnd.value;
+  const guestName=editBookingGuest.value.trim();
+  const rawAmount=editBookingAmount.value.trim();
+  const amountPaid=rawAmount===''?null:Number(rawAmount);
+  const note=editBookingNote.value.trim();
+
+  if(!start||!inclusiveEnd||inclusiveEnd<start){
+    toast(t('editBooking.invalidDates'));
+    return;
+  }
+  if(!guestName){
+    toast(t('editBooking.guestRequired'));
+    return;
+  }
+
+  const payload={
+    unit_id:unitId,
+    start_date:start,
+    end_date:dateISO(addDays(fromISO(inclusiveEnd),1)),
+    status:'booked',
+    source:'manual',
+    block_scope:'all',
+    guest_name:guestName,
+    amount_paid:Number.isFinite(amountPaid)?amountPaid:null,
+    note:note||null
+  };
+
+  const {error}=await sb.from('mm_calendar_events').update(payload).eq('id',ev.id);
+  if(error){
+    console.error('Direct booking update failed:',error);
+    toast(t('toast.error'));
+    return;
+  }
+
+  closeBookingEditor();
+  await loadData();
+  toast(t('toast.bookingUpdated'));
+}
+
+async function deleteDirectBookingWithConfirm(id){
+  const ev=state.events.find(x=>String(x.id)===String(id));
+  if(!isDirectBookingEvent(ev))return;
+  if(!window.confirm(t('editBooking.confirmDelete')))return;
+  await deleteEvent(id,true);
+  if(String(state.editingBookingId)===String(id) && editBookingDialog.open)closeBookingEditor();
+}
+
+saveBookingEditBtn.addEventListener('click',saveBookingEdit);
+deleteBookingEditBtn.addEventListener('click',()=>{if(state.editingBookingId!==null)deleteDirectBookingWithConfirm(state.editingBookingId)});
+cancelBookingEditBtn.addEventListener('click',closeBookingEditor);
+editBookingDialog.addEventListener('cancel',e=>{e.preventDefault();closeBookingEditor()});
 
 function exportUrlFor(code,target){
   const unit=state.units.find(u=>u.code===code);
@@ -634,14 +859,44 @@ function renderAll(){if(!state.units.length)return;renderStats();renderCalendar(
 
 document.querySelectorAll('[data-cal-prev]').forEach(b=>b.addEventListener('click',()=>{const c=b.dataset.calPrev;state.monthByUnit[c]=addMonths(state.monthByUnit[c],-1);renderCalendar(c)}));
 document.querySelectorAll('[data-cal-next]').forEach(b=>b.addEventListener('click',()=>{const c=b.dataset.calNext;state.monthByUnit[c]=addMonths(state.monthByUnit[c],1);renderCalendar(c)}));
-document.querySelectorAll('[data-close-unit]').forEach(b=>b.addEventListener('click',()=>{const code=b.dataset.closeUnit,u=state.units.find(x=>x.code===code),dates=state.selected[code];if(!u||dates.length!==2)return;state.dialogUnitCode=code;dialogUnitName.textContent=u.name;dialogStart.value=dates[0];dialogEnd.value=dateISO(addDays(fromISO(dates[1]),1));dialogNote.value='';closeDialog.showModal()}));
+document.querySelectorAll('[data-close-unit]').forEach(b=>b.addEventListener('click',()=>{
+  const code=b.dataset.closeUnit,u=state.units.find(x=>x.code===code),dates=state.selected[code];
+  if(!u||dates.length!==2)return;
+  state.dialogUnitCode=code;
+  dialogUnitName.textContent=u.name;
+  dialogStartText.textContent=dates[0];
+  dialogEndText.textContent=dates[1];
+  dialogGuestName.value='';dialogAmountPaid.value='';dialogNote.value='';updateScopeButtons();
+  closeDialog.showModal();
+}));
 dialogCancel.addEventListener('click',()=>closeDialog.close());
-closeForm.addEventListener('submit',async e=>{
-e.preventDefault();const code=state.dialogUnitCode,u=state.units.find(x=>x.code===code),start=dialogStart.value,end=dialogEnd.value,note=dialogNote.value.trim();if(!u||!start||!end||end<=start)return;
-const {error}=await sb.from('mm_calendar_events').insert({unit_id:u.id,start_date:start,end_date:end,status:'closed',source:'manual',note:note||null});if(error)return toast(t('toast.error'));
-state.selected[code]=[];closeDialog.close();await loadData();toast(t('toast.saved'));
-});
-async function deleteEvent(id){const {error}=await sb.from('mm_calendar_events').delete().eq('id',id);if(error)return toast(t('toast.error'));await loadData();toast(t('toast.deleted'))}
+function updateScopeButtons(){
+  const hasGuest=dialogGuestName.value.trim().length>0;
+  closePlatformsBtn.disabled=hasGuest;
+  closePlatformsBtn.title=hasGuest?(state.lang==='el'?'Οι απευθείας κρατήσεις πρέπει να κλείνουν όλα τα ημερολόγια.':'Direct bookings must close all calendars.'):'';
+  const title=closeEverywhereBtn.querySelector('strong'),desc=closeEverywhereBtn.querySelector('span');
+  if(title)title.textContent=hasGuest?t('dialog.saveBookingTitle'):t('dialog.everywhereTitle');
+  if(desc)desc.textContent=hasGuest?t('dialog.saveBookingText'):t('dialog.everywhereText');
+}
+dialogGuestName.addEventListener('input',updateScopeButtons);
+async function saveAvailabilityRule(scope){
+  const code=state.dialogUnitCode,u=state.units.find(x=>x.code===code),dates=state.selected[code],note=dialogNote.value.trim();
+  if(!u||dates.length!==2)return;
+  const guestName=dialogGuestName.value.trim(),rawAmount=dialogAmountPaid.value.trim(),amountPaid=rawAmount===''?null:Number(rawAmount);
+  if(guestName&&scope==='platforms')return;
+  const start=dates[0],inclusiveEnd=dates[1],end=dateISO(addDays(fromISO(inclusiveEnd),1)),isDirect=scope==='all'&&guestName.length>0;
+  const payload={unit_id:u.id,start_date:start,end_date:end,status:isDirect?'booked':'closed',source:'manual',block_scope:scope,note:note||null,guest_name:isDirect?guestName:null,amount_paid:isDirect&&Number.isFinite(amountPaid)?amountPaid:null};
+  let {error}=await sb.from('mm_calendar_events').insert(payload);
+  if(error && /guest_name|amount_paid/i.test(String(error.message||''))){
+    const compatibilityNote=[guestName?`Guest: ${guestName}`:'',Number.isFinite(amountPaid)&&amountPaid!==null?`Paid: €${amountPaid.toFixed(2)}`:'',note].filter(Boolean).join(' · ');
+    const fallback={unit_id:u.id,start_date:start,end_date:end,status:isDirect?'booked':'closed',source:'manual',block_scope:scope,note:compatibilityNote||null};
+    ({error}=await sb.from('mm_calendar_events').insert(fallback));
+  }
+  if(error)return toast(t('toast.error'));
+  state.selected[code]=[];closeDialog.close();await loadData();toast(isDirect?t('toast.savedBooking'):(scope==='platforms'?t('toast.savedPlatforms'):t('toast.savedAll')));
+}
+closePlatformsBtn.addEventListener('click',()=>saveAvailabilityRule('platforms'));closeEverywhereBtn.addEventListener('click',()=>saveAvailabilityRule('all'));
+async function deleteEvent(id,isBooking=false){const {error}=await sb.from('mm_calendar_events').delete().eq('id',id);if(error)return toast(t('toast.error'));await loadData();toast(isBooking?t('toast.bookingDeleted'):t('toast.deleted'))}
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>el.classList.remove('show'),2200)}
 
 document.querySelectorAll('[data-copy-export]').forEach(btn=>{
@@ -690,7 +945,7 @@ if(error){loginError.textContent=t('login.invalid');return}
 const adminOk=await verifyAdmin();if(!adminOk){await sb.auth.signOut();loginError.textContent=t('login.unauthorized');return}
 loginScreen.classList.add('hidden');appShell.classList.remove('hidden');applyLanguage();await loadData();
 });
-logoutBtn.addEventListener('click',async()=>{await sb.auth.signOut();location.reload()});
+logoutBtn.addEventListener('click',async()=>{await sb.auth.signOut();window.location.href='/';});
 async function boot(){
 applyLanguage();
 const {data:{session}}=await sb.auth.getSession();if(!session)return;

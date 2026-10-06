@@ -279,7 +279,7 @@
     .footer-brand p{color:rgba(255,255,255,.63);max-width:430px}
     .footer-col h4{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin:0 0 17px}
     .footer-col a{display:block;margin:9px 0;color:rgba(255,255,255,.84)}
-    .footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:50px;padding-top:22px;display:flex;justify-content:space-between;gap:20px;color:rgba(255,255,255,.48);font-size:.76rem}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:50px;padding-top:22px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:rgba(255,255,255,.48);font-size:.76rem}
 
     /* sticky book */
     .sticky-book{position:fixed;z-index:55;bottom:14px;left:14px;right:14px;display:none}
@@ -2569,9 +2569,19 @@
       }
     }
 
+    /* ===== V19 — live availability + privacy controls ===== */
+    .calendar-day.unavailable{opacity:.18!important;cursor:not-allowed!important;text-decoration:line-through;background:rgba(29,29,27,.035)!important;color:var(--ink-soft)!important}
+    .calendar-day.availability-loading{opacity:.12!important;cursor:wait!important}
+    .booking-legal{margin:10px 0 12px;padding:10px 12px;border:1px solid rgba(29,29,27,.10);border-radius:10px;background:rgba(255,255,255,.52);font-size:.68rem;line-height:1.45;color:var(--ink-soft)}
+    .booking-legal a{text-decoration:underline;text-underline-offset:2px;font-weight:700}
+    .footer-link-button{display:block;margin:9px 0;padding:0;border:0;background:transparent;color:rgba(255,255,255,.84);font:inherit;cursor:pointer;text-align:left}html[dir="rtl"] .footer-link-button{text-align:right}
+    .cookie-banner{position:fixed;z-index:140;left:16px;right:16px;bottom:16px;margin:auto;max-width:980px;padding:18px 20px;border-radius:16px;background:#151613;color:#fff;border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 70px rgba(0,0,0,.28);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}.cookie-banner[hidden]{display:none!important}
+    .cookie-copy strong{display:block;font-family:var(--serif);font-size:1.35rem;margin-bottom:4px}.cookie-copy p{margin:0;color:rgba(255,255,255,.72);font-size:.78rem;line-height:1.55;max-width:660px}.cookie-copy a{text-decoration:underline;text-underline-offset:2px;color:#fff}.cookie-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.cookie-actions button{min-height:40px;border-radius:999px;padding:0 15px;font-size:.7rem;font-weight:800}.cookie-reject{border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff}.cookie-accept{border:1px solid #fff;background:#fff;color:#111}
+    @media(max-width:720px){.cookie-banner{left:8px;right:8px;bottom:8px;padding:15px;display:block;border-radius:14px}.cookie-actions{margin-top:12px;display:grid;grid-template-columns:1fr 1fr}.cookie-actions button{width:100%;padding:0 10px}.booking-legal{font-size:.63rem}}
+
 </style>
 </head>
-<body data-build="v18-owner-absolute-path-2026-10-06">
+<body data-build="v24-calendar-garden-2-4-2026-10-06">
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <a href="#top" class="brand" aria-label="M&M Villas Vourvourou">
@@ -2835,8 +2845,9 @@
               <strong id="bookingRecommendation">Main Villa</strong>
               <p id="bookingRecommendationNote"></p>
             </div>
+            <div class="booking-legal"><span id="bookingPrivacyText">Before sending your request, we recommend reading the <a href="/terms.html" target="_blank" rel="noopener">Booking Terms</a>. You can also review our <a href="/privacy.html" target="_blank" rel="noopener">Privacy & Cookies notice</a>.</span></div>
             <button class="btn btn-primary booking-request-btn" type="submit">
-              <span data-i18n="booking.cta">Book now on WhatsApp</span><span class="arrow">→</span>
+              <span data-i18n="booking.cta">Send request on WhatsApp</span><span class="arrow">→</span>
             </button>
           </form>
         </div>
@@ -3006,13 +3017,18 @@
         </div>
         <div class="footer-col"><h4 data-i18n="footer.explore">Explore</h4><a href="#estate" data-i18n="nav.estate">The Estate</a><a href="#main-villa" data-i18n="nav.main">Main Villa</a><a href="#garden-villa" data-i18n="nav.garden">Garden Villa</a><a href="#gallery" data-i18n="nav.gallery">Gallery</a></div>
         <div class="footer-col"><h4 data-i18n="footer.contact">Contact</h4><a href="tel:+306976717795">+30 697 671 7795</a><a href="https://wa.me/306976717795" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.google.com/maps/dir/?api=1&destination=40.187367911920354,23.77400227579507" target="_blank" rel="noopener" data-i18n="location.directions">Take me to the location</a><span class="footer-address">Vourvourou 630 78, Greece</span></div>
-        <div class="footer-col"><h4 data-i18n="footer.manage">Management</h4><a href="/owner/" rel="nofollow" data-i18n="nav.owner">Owner Panel</a><a href="#booking" data-i18n="nav.book">Book now</a><a href="https://www.mmvillasvourvourou.com/">mmvillasvourvourou.com</a></div>
+        <div class="footer-col"><h4 data-i18n="footer.manage">Management</h4><a href="/owner/" rel="nofollow" data-i18n="nav.owner">Owner Panel</a><a href="#booking" data-i18n="nav.book">Book now</a><a href="/privacy.html" id="footerPrivacy">Privacy & Cookies</a><a href="/terms.html" id="footerTerms">Booking Terms</a><button class="footer-link-button" id="cookieSettingsBtn" type="button">Cookie settings</button><a href="https://www.mmvillasvourvourou.com/">mmvillasvourvourou.com</a></div>
       </div>
-      <div class="footer-bottom"><span>© <span id="year"></span> M&M Villas Vourvourou</span><span data-i18n="footer.rights">All rights reserved.</span></div>
+      <div class="footer-bottom"><span>© <span id="year"></span> M&M Villas Vourvourou</span><span>License number: 00001135714</span><span data-i18n="footer.rights">All rights reserved.</span></div>
     </div>
   </footer>
 
   <div class="sticky-book"><a class="btn btn-primary" href="#booking" data-i18n="nav.book">Book now</a></div>
+
+  <aside class="cookie-banner" id="cookieBanner" hidden aria-live="polite">
+    <div class="cookie-copy"><strong id="cookieTitle">Your privacy choices</strong><p id="cookieText">We use necessary storage for language and privacy preferences. Optional first-party analytics are activated only if you accept them. <a href="/privacy.html">Privacy & Cookies</a></p></div>
+    <div class="cookie-actions"><button class="cookie-reject" id="cookieReject" type="button">Reject optional</button><button class="cookie-accept" id="cookieAccept" type="button">Accept analytics</button></div>
+  </aside>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
@@ -3179,7 +3195,7 @@
       "extra": "Anything we should know?",
       "placeholder": "Pets, separate family space, special request...",
       "recommended": "Recommended for your group",
-      "cta": "Book now on WhatsApp",
+      "cta": "Send request on WhatsApp",
       "chooseDatesFirst": "Please choose your arrival and departure dates first",
       "recMain": "Main Villa",
       "recEstate": "The Entire Estate",
@@ -3296,6 +3312,7 @@
       "title": "M&M Villas Vourvourou — booking request",
       "arrival": "Arrival",
       "departure": "Departure",
+      "nights": "Nights",
       "adults": "Adults",
       "children": "Children",
       "total": "Total guests",
@@ -3444,7 +3461,7 @@
       "extra": "Mai trebuie să știm ceva?",
       "placeholder": "Animale de companie, spațiu separat pentru o familie, cerere specială...",
       "recommended": "Recomandat pentru grupul vostru",
-      "cta": "Rezervă pe WhatsApp",
+      "cta": "Trimite cererea pe WhatsApp",
       "chooseDatesFirst": "Selectează mai întâi data sosirii și data plecării",
       "recMain": "Main Villa",
       "recEstate": "Întreaga proprietate",
@@ -3561,6 +3578,7 @@
       "title": "M&M Villas Vourvourou — cerere de rezervare",
       "arrival": "Sosire",
       "departure": "Plecare",
+      "nights": "Nopți",
       "adults": "Adulți",
       "children": "Copii",
       "total": "Total oaspeți",
@@ -3709,7 +3727,7 @@
       "extra": "Κάτι άλλο που πρέπει να γνωρίζουμε;",
       "placeholder": "Κατοικίδια, ξεχωριστός χώρος για οικογένεια, ειδικό αίτημα...",
       "recommended": "Προτεινόμενο για την παρέα σας",
-      "cta": "Κράτηση στο WhatsApp",
+      "cta": "Στείλτε αίτημα στο WhatsApp",
       "chooseDatesFirst": "Επιλέξτε πρώτα ημερομηνία άφιξης και αναχώρησης",
       "recMain": "Main Villa",
       "recEstate": "Ολόκληρο το κτήμα",
@@ -3826,6 +3844,7 @@
       "title": "M&M Villas Vourvourou — αίτημα κράτησης",
       "arrival": "Άφιξη",
       "departure": "Αναχώρηση",
+      "nights": "Νύχτες",
       "adults": "Ενήλικες",
       "children": "Παιδιά",
       "total": "Σύνολο ατόμων",
@@ -3974,7 +3993,7 @@
       "extra": "Noch etwas, das wir wissen sollten?",
       "placeholder": "Haustiere, separater Familienbereich, besonderer Wunsch...",
       "recommended": "Für Ihre Gruppe empfohlen",
-      "cta": "Über WhatsApp buchen",
+      "cta": "Anfrage über WhatsApp senden",
       "chooseDatesFirst": "Bitte wählen Sie zuerst Anreise und Abreise",
       "recMain": "Main Villa",
       "recEstate": "Das gesamte Anwesen",
@@ -4091,6 +4110,7 @@
       "title": "M&M Villas Vourvourou — Buchungsanfrage",
       "arrival": "Anreise",
       "departure": "Abreise",
+      "nights": "Nächte",
       "adults": "Erwachsene",
       "children": "Kinder",
       "total": "Gäste gesamt",
@@ -4239,7 +4259,7 @@
       "extra": "Има ли нещо друго?",
       "placeholder": "Домашни любимци, отделно семейно пространство, специална заявка...",
       "recommended": "Препоръчано за вашата група",
-      "cta": "Резервирай в WhatsApp",
+      "cta": "Изпрати запитване в WhatsApp",
       "chooseDatesFirst": "Първо изберете дата на пристигане и заминаване",
       "recMain": "Main Villa",
       "recEstate": "Цялото имение",
@@ -4356,6 +4376,7 @@
       "title": "M&M Villas Vourvourou — запитване за резервация",
       "arrival": "Пристигане",
       "departure": "Заминаване",
+      "nights": "Нощувки",
       "adults": "Възрастни",
       "children": "Деца",
       "total": "Общо гости",
@@ -4504,7 +4525,7 @@
       "extra": "Još nešto što treba da znamo?",
       "placeholder": "Kućni ljubimci, odvojeni porodični prostor, poseban zahtev...",
       "recommended": "Preporučeno za vašu grupu",
-      "cta": "Rezerviši preko WhatsApp-a",
+      "cta": "Pošalji upit preko WhatsApp-a",
       "chooseDatesFirst": "Prvo izaberite datum dolaska i odlaska",
       "recMain": "Main Villa",
       "recEstate": "Celo imanje",
@@ -4621,6 +4642,7 @@
       "title": "M&M Villas Vourvourou — upit za rezervaciju",
       "arrival": "Dolazak",
       "departure": "Odlazak",
+      "nights": "Noći",
       "adults": "Odrasli",
       "children": "Deca",
       "total": "Ukupno gostiju",
@@ -4769,7 +4791,7 @@
       "extra": "יש משהו שכדאי שנדע?",
       "placeholder": "חיות מחמד, מרחב נפרד למשפחה, בקשה מיוחדת...",
       "recommended": "מומלץ לקבוצה שלכם",
-      "cta": "הזמינו עכשיו ב-WhatsApp",
+      "cta": "שלחו בקשה ב-WhatsApp",
       "chooseDatesFirst": "אנא בחרו תחילה תאריך הגעה ותאריך עזיבה",
       "recMain": "Main Villa",
       "recEstate": "האחוזה כולה",
@@ -4886,6 +4908,7 @@
       "title": "M&M Villas Vourvourou — בקשת הזמנה",
       "arrival": "הגעה",
       "departure": "עזיבה",
+      "nights": "לילות",
       "adults": "מבוגרים",
       "children": "ילדים",
       "total": "סה״כ אורחים",
@@ -5034,7 +5057,7 @@
       "extra": "Є щось, що нам варто знати?",
       "placeholder": "Домашні тварини, окремий сімейний простір, особливе прохання...",
       "recommended": "Рекомендовано для вашої групи",
-      "cta": "Забронювати через WhatsApp",
+      "cta": "Надіслати запит через WhatsApp",
       "chooseDatesFirst": "Спочатку оберіть дати заїзду та виїзду",
       "recMain": "Main Villa",
       "recEstate": "Увесь комплекс",
@@ -5151,6 +5174,7 @@
       "title": "M&M Villas Vourvourou — запит на бронювання",
       "arrival": "Заїзд",
       "departure": "Виїзд",
+      "nights": "Ночі",
       "adults": "Дорослі",
       "children": "Діти",
       "total": "Усього гостей",
@@ -5299,7 +5323,7 @@
       "extra": "Bilmemiz gereken bir şey var mı?",
       "placeholder": "Evcil hayvanlar, ayrı aile alanı, özel istek...",
       "recommended": "Grubunuz için önerilen",
-      "cta": "WhatsApp üzerinden rezervasyon yap",
+      "cta": "WhatsApp üzerinden talep gönder",
       "chooseDatesFirst": "Lütfen önce giriş ve çıkış tarihlerinizi seçin",
       "recMain": "Main Villa",
       "recEstate": "Tesisin Tamamı",
@@ -5416,6 +5440,7 @@
       "title": "M&M Villas Vourvourou — rezervasyon talebi",
       "arrival": "Giriş",
       "departure": "Çıkış",
+      "nights": "Gece",
       "adults": "Yetişkinler",
       "children": "Çocuklar",
       "total": "Toplam misafir",
@@ -5424,6 +5449,20 @@
     }
   }
 };
+
+
+    const LEGAL_UI={
+      en:{privacyAck:'Before sending your request, we recommend reading the <a href="/terms.html" target="_blank" rel="noopener">Booking Terms</a>. You can also review our <a href="/privacy.html" target="_blank" rel="noopener">Privacy & Cookies notice</a>.',privacy:'Privacy & Cookies',terms:'Booking Terms',settings:'Cookie settings',cookieTitle:'Your privacy choices',cookieText:'We use necessary storage for language and privacy preferences. Optional first-party analytics are activated only if you accept them. <a href="/privacy.html">Privacy & Cookies</a>',reject:'Reject optional',accept:'Accept analytics'},
+      ro:{privacyAck:'Înainte de a trimite cererea, îți recomandăm să citești <a href="/terms.html" target="_blank" rel="noopener">Termenii de rezervare</a>. Poți consulta și <a href="/privacy.html" target="_blank" rel="noopener">Politica de confidențialitate & cookies</a>.',privacy:'Confidențialitate & Cookies',terms:'Termeni de rezervare',settings:'Setări cookies',cookieTitle:'Alegerile tale de confidențialitate',cookieText:'Folosim stocare necesară pentru limbă și preferințele de confidențialitate. Analizele first-party opționale sunt activate numai dacă le accepți. <a href="/privacy.html">Confidențialitate & Cookies</a>',reject:'Refuză opționalele',accept:'Acceptă analytics'},
+      el:{privacyAck:'Πριν στείλετε το αίτημά σας, σας προτείνουμε να διαβάσετε τους <a href="/terms.html" target="_blank" rel="noopener">Όρους Κράτησης</a>. Μπορείτε επίσης να δείτε την <a href="/privacy.html" target="_blank" rel="noopener">Ενημέρωση Απορρήτου & Cookies</a>.',privacy:'Απόρρητο & Cookies',terms:'Όροι Κράτησης',settings:'Ρυθμίσεις cookies',cookieTitle:'Οι επιλογές απορρήτου σας',cookieText:'Χρησιμοποιούμε απαραίτητη αποθήκευση για τη γλώσσα και τις προτιμήσεις απορρήτου. Τα προαιρετικά first-party analytics ενεργοποιούνται μόνο αν τα αποδεχθείτε. <a href="/privacy.html">Απόρρητο & Cookies</a>',reject:'Απόρριψη προαιρετικών',accept:'Αποδοχή analytics'},
+      de:{privacyAck:'Bevor Sie Ihre Anfrage senden, empfehlen wir, die <a href="/terms.html" target="_blank" rel="noopener">Buchungsbedingungen</a> zu lesen. Sie können auch unsere <a href="/privacy.html" target="_blank" rel="noopener">Datenschutz- & Cookie-Hinweise</a> einsehen.',privacy:'Datenschutz & Cookies',terms:'Buchungsbedingungen',settings:'Cookie-Einstellungen',cookieTitle:'Ihre Datenschutzauswahl',cookieText:'Wir verwenden notwendige Speicherung für Sprache und Datenschutzeinstellungen. Optionale First-Party-Analysen werden nur nach Ihrer Zustimmung aktiviert. <a href="/privacy.html">Datenschutz & Cookies</a>',reject:'Optionale ablehnen',accept:'Analytics akzeptieren'},
+      bg:{privacyAck:'Преди да изпратите запитването, препоръчваме да прочетете <a href="/terms.html" target="_blank" rel="noopener">Условията за резервация</a>. Можете да прегледате и <a href="/privacy.html" target="_blank" rel="noopener">Политиката за поверителност и cookies</a>.',privacy:'Поверителност & Cookies',terms:'Условия за резервация',settings:'Настройки за cookies',cookieTitle:'Вашият избор за поверителност',cookieText:'Използваме необходимото локално съхранение за езика и предпочитанията за поверителност. Незадължителните first-party анализи се активират само ако ги приемете. <a href="/privacy.html">Поверителност & Cookies</a>',reject:'Откажи незадължителните',accept:'Приеми analytics'},
+      sr:{privacyAck:'Pre slanja upita preporučujemo da pročitate <a href="/terms.html" target="_blank" rel="noopener">Uslove rezervacije</a>. Možete pogledati i <a href="/privacy.html" target="_blank" rel="noopener">Obaveštenje o privatnosti i kolačićima</a>.',privacy:'Privatnost & Cookies',terms:'Uslovi rezervacije',settings:'Podešavanja kolačića',cookieTitle:'Vaš izbor privatnosti',cookieText:'Koristimo neophodno skladištenje za jezik i postavke privatnosti. Opciona first-party analitika aktivira se samo ako je prihvatite. <a href="/privacy.html">Privatnost & Cookies</a>',reject:'Odbij opciono',accept:'Prihvati analytics'},
+      he:{privacyAck:'לפני שליחת הבקשה, מומלץ לקרוא את <a href="/terms.html" target="_blank" rel="noopener">תנאי ההזמנה</a>. ניתן לעיין גם ב<a href="/privacy.html" target="_blank" rel="noopener">הודעת הפרטיות והעוגיות</a>.',privacy:'פרטיות ועוגיות',terms:'תנאי הזמנה',settings:'הגדרות עוגיות',cookieTitle:'בחירות הפרטיות שלכם',cookieText:'אנו משתמשים באחסון הכרחי עבור שפה והעדפות פרטיות. אנליטיקה אופציונלית של צד ראשון מופעלת רק אם תאשרו אותה. <a href="/privacy.html">פרטיות ועוגיות</a>',reject:'דחיית אופציונלי',accept:'אישור אנליטיקה'},
+      uk:{privacyAck:'Перед надсиланням запиту рекомендуємо прочитати <a href="/terms.html" target="_blank" rel="noopener">Умови бронювання</a>. Також можна переглянути <a href="/privacy.html" target="_blank" rel="noopener">Повідомлення про конфіденційність і cookies</a>.',privacy:'Конфіденційність & Cookies',terms:'Умови бронювання',settings:'Налаштування cookies',cookieTitle:'Ваш вибір конфіденційності',cookieText:'Ми використовуємо необхідне локальне сховище для мови та налаштувань конфіденційності. Необов’язкова first-party аналітика вмикається лише після вашої згоди. <a href="/privacy.html">Конфіденційність & Cookies</a>',reject:'Відхилити необов’язкове',accept:'Прийняти analytics'},
+      tr:{privacyAck:'Talebinizi göndermeden önce <a href="/terms.html" target="_blank" rel="noopener">Rezervasyon Koşullarını</a> okumanızı öneririz. <a href="/privacy.html" target="_blank" rel="noopener">Gizlilik ve Çerez Bildirimimizi</a> de inceleyebilirsiniz.',privacy:'Gizlilik & Çerezler',terms:'Rezervasyon Koşulları',settings:'Çerez ayarları',cookieTitle:'Gizlilik tercihleriniz',cookieText:'Dil ve gizlilik tercihleri için gerekli depolamayı kullanıyoruz. İsteğe bağlı birinci taraf analizleri yalnızca kabul ederseniz etkinleştirilir. <a href="/privacy.html">Gizlilik & Çerezler</a>',reject:'İsteğe bağlıları reddet',accept:'Analytics kabul et'}
+    };
+    function applyLegalLanguage(){const c=LEGAL_UI[currentLang]||LEGAL_UI.en;const p=document.getElementById('bookingPrivacyText');if(p)p.innerHTML=c.privacyAck;const fp=document.getElementById('footerPrivacy');if(fp)fp.textContent=c.privacy;const ft=document.getElementById('footerTerms');if(ft)ft.textContent=c.terms;const cs=document.getElementById('cookieSettingsBtn');if(cs)cs.textContent=c.settings;const ct=document.getElementById('cookieTitle');if(ct)ct.textContent=c.cookieTitle;const cx=document.getElementById('cookieText');if(cx)cx.innerHTML=c.cookieText;const cr=document.getElementById('cookieReject');if(cr)cr.textContent=c.reject;const ca=document.getElementById('cookieAccept');if(ca)ca.textContent=c.accept;}
 
     // Fallback any missing translation key to English.
     function getPath(obj,path){return path.split('.').reduce((a,k)=>a && a[k],obj)}
@@ -5457,6 +5496,7 @@
       document.getElementById('amenitiesToggle').textContent=t(document.getElementById('amenitiesExtra').classList.contains('open')?'amenities.less':'amenities.more');
       document.getElementById('galleryMore').textContent=t(galleryExpanded?'gallery.less':'gallery.more');
       if(document.getElementById('reviewStage')) renderGuestReviews();
+      applyLegalLanguage();
       const u=new URL(location.href);u.searchParams.set('lang',currentLang);history.replaceState({},'',u);
     }
 
@@ -5503,15 +5543,15 @@
 
 
     const CALENDAR_TEXT={
-      en:{choose:'Choose your dates',checkin:'Check-in',checkout:'Check-out',nights:'Nights',hint:'Select arrival and departure directly in the calendar or use the fields in the form.'},
-      ro:{choose:'Alege datele sejurului',checkin:'Sosire',checkout:'Plecare',nights:'Nopți',hint:'Selectează sosirea și plecarea direct în calendar sau folosește câmpurile din formular.'},
-      el:{choose:'Επιλέξτε ημερομηνίες',checkin:'Άφιξη',checkout:'Αναχώρηση',nights:'Νύχτες',hint:'Επιλέξτε άφιξη και αναχώρηση απευθείας στο ημερολόγιο ή χρησιμοποιήστε τα πεδία της φόρμας.'},
-      de:{choose:'Reisedaten wählen',checkin:'Anreise',checkout:'Abreise',nights:'Nächte',hint:'Wählen Sie An- und Abreise direkt im Kalender oder verwenden Sie die Felder im Formular.'},
-      bg:{choose:'Изберете дати',checkin:'Пристигане',checkout:'Заминаване',nights:'Нощувки',hint:'Изберете пристигане и заминаване директно от календара или използвайте полетата във формата.'},
-      sr:{choose:'Izaberite datume',checkin:'Dolazak',checkout:'Odlazak',nights:'Noći',hint:'Izaberite dolazak i odlazak direktno u kalendaru ili koristite polja u formularu.'},
-      he:{choose:'בחרו תאריכים',checkin:'הגעה',checkout:'עזיבה',nights:'לילות',hint:'בחרו הגעה ועזיבה ישירות בלוח השנה.'},
-      uk:{choose:'Оберіть дати',checkin:'Заїзд',checkout:'Виїзд',nights:'Ночі',hint:'Оберіть заїзд і виїзд безпосередньо в календарі.'},
-      tr:{choose:'Tarihlerinizi seçin',checkin:'Giriş',checkout:'Çıkış',nights:'Gece',hint:'Giriş ve çıkış tarihlerini doğrudan takvimden seçin.'}
+      en:{choose:'Available dates',checkin:'Check-in',checkout:'Check-out',nights:'Nights',hint:'Only dates available for your group can be selected.',loading:'Checking live availability…',error:'Live availability could not be loaded. Please contact us on WhatsApp.',unavailable:'Unavailable',rangeUnavailable:'That stay crosses unavailable dates. Please choose another period.'},
+      ro:{choose:'Date disponibile',checkin:'Sosire',checkout:'Plecare',nights:'Nopți',hint:'Pot fi selectate doar datele disponibile pentru grupul tău.',loading:'Verificăm disponibilitatea live…',error:'Disponibilitatea live nu a putut fi încărcată. Te rugăm să ne contactezi pe WhatsApp.',unavailable:'Indisponibil',rangeUnavailable:'Perioada aleasă include date indisponibile. Alege alt interval.'},
+      el:{choose:'Διαθέσιμες ημερομηνίες',checkin:'Άφιξη',checkout:'Αναχώρηση',nights:'Νύχτες',hint:'Μπορούν να επιλεγούν μόνο οι διαθέσιμες ημερομηνίες για την ομάδα σας.',loading:'Έλεγχος ζωντανής διαθεσιμότητας…',error:'Η ζωντανή διαθεσιμότητα δεν φορτώθηκε. Επικοινωνήστε μαζί μας στο WhatsApp.',unavailable:'Μη διαθέσιμο',rangeUnavailable:'Η επιλεγμένη διαμονή περιλαμβάνει μη διαθέσιμες ημερομηνίες. Επιλέξτε άλλη περίοδο.'},
+      de:{choose:'Verfügbare Daten',checkin:'Anreise',checkout:'Abreise',nights:'Nächte',hint:'Es können nur für Ihre Gruppe verfügbare Daten gewählt werden.',loading:'Live-Verfügbarkeit wird geprüft…',error:'Die Live-Verfügbarkeit konnte nicht geladen werden. Bitte kontaktieren Sie uns über WhatsApp.',unavailable:'Nicht verfügbar',rangeUnavailable:'Der gewählte Aufenthalt enthält nicht verfügbare Daten. Bitte wählen Sie einen anderen Zeitraum.'},
+      bg:{choose:'Свободни дати',checkin:'Пристигане',checkout:'Заминаване',nights:'Нощувки',hint:'Могат да се избират само свободните дати за вашата група.',loading:'Проверяваме наличността на живо…',error:'Наличността на живо не можа да бъде заредена. Свържете се с нас чрез WhatsApp.',unavailable:'Няма наличност',rangeUnavailable:'Избраният престой включва заети дати. Моля, изберете друг период.'},
+      sr:{choose:'Dostupni datumi',checkin:'Dolazak',checkout:'Odlazak',nights:'Noći',hint:'Mogu se izabrati samo datumi dostupni za vašu grupu.',loading:'Proveravamo dostupnost uživo…',error:'Dostupnost uživo nije mogla da se učita. Kontaktirajte nas preko WhatsApp-a.',unavailable:'Nedostupno',rangeUnavailable:'Izabrani boravak prelazi preko nedostupnih datuma. Izaberite drugi period.'},
+      he:{choose:'תאריכים זמינים',checkin:'הגעה',checkout:'עזיבה',nights:'לילות',hint:'ניתן לבחור רק תאריכים הזמינים לקבוצה שלכם.',loading:'בודקים זמינות בזמן אמת…',error:'לא ניתן לטעון את הזמינות בזמן אמת. אנא פנו אלינו ב-WhatsApp.',unavailable:'לא זמין',rangeUnavailable:'השהייה שנבחרה כוללת תאריכים שאינם זמינים. בחרו תקופה אחרת.'},
+      uk:{choose:'Доступні дати',checkin:'Заїзд',checkout:'Виїзд',nights:'Ночі',hint:'Можна вибрати лише дати, доступні для вашої групи.',loading:'Перевіряємо доступність у реальному часі…',error:'Не вдалося завантажити актуальну доступність. Зв’яжіться з нами через WhatsApp.',unavailable:'Недоступно',rangeUnavailable:'Обраний період містить недоступні дати. Будь ласка, виберіть інший період.'},
+      tr:{choose:'Müsait tarihler',checkin:'Giriş',checkout:'Çıkış',nights:'Gece',hint:'Yalnızca grubunuz için müsait olan tarihler seçilebilir.',loading:'Canlı müsaitlik kontrol ediliyor…',error:'Canlı müsaitlik yüklenemedi. Lütfen WhatsApp üzerinden bizimle iletişime geçin.',unavailable:'Müsait değil',rangeUnavailable:'Seçilen konaklama müsait olmayan tarihler içeriyor. Lütfen başka bir dönem seçin.'}
     };
     let calendarCursor=new Date();
     calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth(),1);
@@ -5520,6 +5560,15 @@
     const dayStart=d=>new Date(d.getFullYear(),d.getMonth(),d.getDate());
     const calendarLocale=()=>({en:'en-GB',ro:'ro-RO',el:'el-GR',de:'de-DE',bg:'bg-BG',sr:'sr-RS',he:'he-IL',uk:'uk-UA',tr:'tr-TR'}[currentLang]||'en-GB');
     function formatCalendarDate(d){return d?new Intl.DateTimeFormat(calendarLocale(),{day:'numeric',month:'short'}).format(d):'—'}
+
+    const PUBLIC_AVAILABILITY_URL='https://cimdefypgbkfizyykhkm.supabase.co/rest/v1/rpc/mm_public_unavailable_dates';
+    const PUBLIC_AVAILABILITY_KEY='sb_publishable_Ps8bDeuKhgf2NY4lNdGoOA_fQP15uAD';
+    const unavailableByUnit={mm:new Set(),garden_villa:new Set()};
+    let availabilityLoaded=false,availabilityError=false;
+    function dateAvailableForCurrentGroup(iso){if(!availabilityLoaded||availabilityError)return false;const mmFree=!unavailableByUnit.mm.has(iso),gardenFree=!unavailableByUnit.garden_villa.has(iso),guests=totalGuests();if(guests<=4)return gardenFree;if(guests<=8)return mmFree;if(guests<=12)return mmFree&&gardenFree;return false}
+    function selectedRangeIsAvailable(startDate,endDate){if(!startDate||!endDate)return false;const d=new Date(startDate);while(d<=endDate){if(!dateAvailableForCurrentGroup(localISO(d)))return false;d.setDate(d.getDate()+1)}return true}
+    function ensureCurrentSelectionAvailable(){const a=document.getElementById('arrival'),d=document.getElementById('departure'),ad=parseISO(a.value),dd=parseISO(d.value);if(ad&&!dateAvailableForCurrentGroup(localISO(ad))){a.value='';d.value='';return}if(ad&&dd&&!selectedRangeIsAvailable(ad,dd))d.value=''}
+    async function loadPublicAvailability(){availabilityLoaded=false;availabilityError=false;renderStayCalendar();try{const res=await fetch(PUBLIC_AVAILABILITY_URL,{method:'POST',headers:{apikey:PUBLIC_AVAILABILITY_KEY,Authorization:`Bearer ${PUBLIC_AVAILABILITY_KEY}`,'Content-Type':'application/json'},body:'{}'});if(!res.ok)throw new Error(`Availability HTTP ${res.status}`);const rows=await res.json();unavailableByUnit.mm.clear();unavailableByUnit.garden_villa.clear();(rows||[]).forEach(r=>{if(unavailableByUnit[r.unit_code])unavailableByUnit[r.unit_code].add(r.unavailable_date)});availabilityLoaded=true;availabilityError=false;ensureCurrentSelectionAvailable()}catch(err){console.error('Live availability load failed',err);availabilityLoaded=true;availabilityError=true;document.getElementById('arrival').value='';document.getElementById('departure').value=''}syncDateConstraints();renderStayCalendar()}
     function syncDateConstraints(){
       const arrival=document.getElementById('arrival'),departure=document.getElementById('departure');
       const tomorrow=dayStart(new Date());tomorrow.setDate(tomorrow.getDate()+1);
@@ -5551,7 +5600,9 @@
         const date=new Date(y,m,day),iso=localISO(date);
         const b=document.createElement('button');
         b.type='button';b.className='calendar-day';b.textContent=day;b.dataset.date=iso;
-        if(date<tomorrow)b.disabled=true;
+        const liveAvailable=dateAvailableForCurrentGroup(iso);
+        if(date<tomorrow||!liveAvailable)b.disabled=true;
+        if(date>=tomorrow&&!liveAvailable){b.classList.add(availabilityLoaded&&!availabilityError?'unavailable':'availability-loading');b.title=(CALENDAR_TEXT[currentLang]||CALENDAR_TEXT.en).unavailable;}
         if(date.getTime()===today.getTime())b.classList.add('today');
         if(arrival&&date.getTime()===arrival.getTime())b.classList.add('selected');
         if(departure&&date.getTime()===departure.getTime())b.classList.add('selected');
@@ -5572,7 +5623,7 @@
       document.getElementById('calendarCheckoutLabel').textContent=copy.checkout;
       document.getElementById('calendarNightsLabel').textContent=copy.nights;
       const hint=document.getElementById('calendarHint');
-      if(hint)hint.textContent=copy.hint;
+      if(hint)hint.textContent=!availabilityLoaded?copy.loading:(availabilityError?copy.error:copy.hint);
 
       const arrival=parseISO(document.getElementById('arrival').value);
       const departure=parseISO(document.getElementById('departure').value);
@@ -5607,16 +5658,11 @@
     }
 
     function chooseCalendarDate(date){
+      if(!dateAvailableForCurrentGroup(localISO(date)))return;
       const arrivalEl=document.getElementById('arrival'),departureEl=document.getElementById('departure');
       const arrival=parseISO(arrivalEl.value),departure=parseISO(departureEl.value);
-      if(!arrival || departure || date<=arrival){
-        arrivalEl.value=localISO(date);
-        departureEl.value='';
-      }else{
-        departureEl.value=localISO(date);
-      }
-      syncDateConstraints();
-      renderStayCalendar();
+      if(!arrival||departure||date<=arrival){arrivalEl.value=localISO(date);departureEl.value=''}else{if(!selectedRangeIsAvailable(arrival,date)){alert((CALENDAR_TEXT[currentLang]||CALENDAR_TEXT.en).rangeUnavailable);return}departureEl.value=localISO(date)}
+      syncDateConstraints();renderStayCalendar();
     }
 
 
@@ -5674,6 +5720,16 @@
         title:'Our perfect vocation 🏝️🌞',score:'10',
         text:`We stayed here for the first 6 days of our family vocation and we couldn't be more happy. Our stay was perfectly balanced between relaxing and heaving fun. The villa is sooo big, especially for me and my husband. We had so much room. The decoration was modern with some fun touches and beautiful summer colours,  plants and many windows that made the rooms very bright 🌞 Everything was perfectly clean and the guests really tried making us feel as comfy as back home. We absolutely loved the garden and we really hope having the chance to visit next year with some friends and our kids. We really enjoyed the view from all the deferment points of the villa. Watching the sunset from there was perfect after a long day at the beach. About the beaches, the location was perfect because it was both quite but also very close to some of the most beautiful beaches.`
       }
+      ,{author:'Ioana Lup',country:'Romania',flag:'🇷🇴',stay:'1 month ago',title:'',score:'5',scoreScale:5,text:`Am petrecut o vacanta grozava la vila m&m! Ne a placut faptul ca vila a fost foarte curata, moderna si dotata cu tot ce am avut nevoie! Kostas si soția lui sunt minunați, ne au primit cu multa căldură si ne au îndrumat cu informații si recomandări fiind întotdeauna foarte promti! Mulțumim si pentru dulciurile de bun venit, au fost delicioase si ne au prins foarte bine! Vom reveni întotdeauna cu plăcere aici si sperăm sa ne revedem!`}
+      ,{author:'Komninos Kyriazis',country:'Greece',flag:'🇬🇷',stay:'1 month ago',title:'',score:'5',scoreScale:5,text:`An absolutely wonderful place to stay! The villa is beautifully designed, spotlessly clean and full of charming, imaginative details. You can immediately see how much passion, creativity and care the owners have put into every corner of the property. They are incredibly warm, welcoming and hospitable, making us feel at home from the very first moment. A truly special accommodation that we would happily recommend to anyone. We would definitely love to return!`}
+      ,{author:'Tamara Manderi',country:'Greece',flag:'🇬🇷',stay:'1 month ago',title:'',score:'5',scoreScale:5,text:`An incredible accommodation that is unlike any other... it is located in an estate surrounded by greenery... there is peace....and its balcony is the protagonist....everything in the house is in order with beautiful decoration and the cleanliness is evident... Mr. Kostas welcomed us with a smile and a box of sweets and was present to answer any of our questions.....Also, the location of the estate is key as it is located a very short distance from the famous beaches of Vourvourou.....!!!`}
+      ,{author:'Oana',country:'Romania',flag:'🇷🇴',stay:'3 months ago',title:'',score:'5',scoreScale:5,text:`Am avut o experiență absolut minunată la Vila M&M, motiv pentru care am ales să revenim aici pentru al doilea an la rând! Vila rămâne la fel de modernă, curată și amenajată cu foarte mult bun gust. Camerele sunt spațioase și dotate cu absolut tot ce ai nevoie pentru un confort de top.Curtea imensă este un mare plus pentru relaxare în liniște, iar dușul exterior a fost din nou cireașa de pe tort după zilele petrecute la plajă. Gazdele ne-au primit cu aceeași căldură și amabilitate cu care ne-au obișnuit. Este locul nostru de suflet în Sithonia și cu siguranță vom reveni și în anii următori. Recomand din tot sufletul!`}
+      ,{author:'Dimitris Sopoglou',country:'Greece',flag:'🇬🇷',stay:'3 months ago',title:'',score:'5',scoreScale:5,text:`The villa is a little better when you visit it! Everything is much more beautiful when you see it up close! The garden, the trees, the house, the design is magical. Kostas recommended many beaches very close to the house, we booked the junior suite as it was me, my wife and our two children! Everything is magical, the decoration from another planet. When we asked which is the best tavern to eat something good, the owner's answer surprised me! The best restaurant with the best food is the barbecue that the villa has with the large round table on its paved patio with a view of the mountain from behind. I highly recommend it, hoping to meet again. Thank you very much for the wonderful stay!`}
+      ,{author:'Anastasios',country:'Greece',flag:'🇬🇷',stay:'3 months ago',title:'',score:'5',scoreScale:5,text:`We had a wonderful time at this villa! The outside area is simply magical, with a lush, well-kept garden and beautiful paved paths that offer you a sense of absolute tranquility and privacy. The inside of the house is spotless, spacious and very well-kept, combining comfort with tradition. We particularly liked the attention to detail, such as the wonderful outdoor shower which is just what you need after a day at the beach. The location in Sithonia is excellent for anyone who wants to relax and recharge their batteries. I highly recommend it and we will definitely choose it again!`}
+
+      ,{author:'Μαργαρίτα Μπογιατζή',country:'Greece',flag:'🇬🇷',stay:'5 months ago',title:'',score:'5',scoreScale:5,text:`I read somewhere that the villa is so beautiful up close! Well, we visited it too and it's a ton! I've never seen such designs on the walls and such showers anywhere and believe me, we travel often! The villa is very reminiscent of Cycladic summer style! The yard with the barbecue 🍖 we worked hard on it! Many congratulations to the Kostas-Niki family, you deserve the best, always be full 😍`}
+      ,{author:'Ελισαβετ Μαντζου',country:'Greece',flag:'🇬🇷',stay:'a year ago',title:'',score:'5',scoreScale:5,text:`Last month I visited this accommodation. Everything was really wonderful, the villa is quite large, it can accommodate around 10 people, it has a huge garden so if you have children they can play as much as they want with plenty of space but also for you if you want to enjoy the view of the sea and relax. The villa is just one street above the best beaches in Halkidiki, the owners are very kind with a smile on their faces all the time, we had everything we needed and whatever we needed from towels or sheets, they served us straight away! I will definitely go again without a second thought, it is the best if you want to go with friends or with your family, I recommend it to everyone, the best and most importantly what everyone is looking for, it was very clean!!!`}
+      ,{author:'Andra Manescu',country:'Romania',flag:'🇷🇴',stay:'a year ago',title:'',score:'5',scoreScale:5,text:`A perfect vacation at Vila M&M! We stayed here with the whole family, including our 4 children, and we had an amazing time. The villa is impeccable: clean, beautiful, very well organized, and tastefully decorated in a traditional Greek style. The location is excellent – very close to the beaches, in a quiet area. The yard is spacious and beautifully maintained, with a large green lawn and a perfect grill area where we enjoyed relaxing evenings with the kids. We loved that there was plenty of space for all of us, and the hosts were wonderful – attentive, welcoming, and always available when needed. I wholeheartedly recommend this place! We’ll definitely come back! 💙`}
     ];
 
 
@@ -5945,7 +6001,348 @@
       "text": "Aile tatilimizin ilk altı gününü burada geçirdik ve daha mutlu olamazdık. Konaklama, dinlenme ile eğlence arasında mükemmel bir dengeye sahipti. Villa çok genişti ve fazlasıyla alanımız vardı. Dekorasyon modern; eğlenceli detaylar, güzel yaz renkleri, bitkiler ve odaları çok aydınlık yapan pek çok pencere var. Her şey kusursuz temizdi ve ev sahipleri kendimizi evimizdeki kadar rahat hissetmemizi sağladı. Bahçeyi çok sevdik ve gelecek yıl arkadaşlarımız ve çocuklarımızla yeniden gelmeyi umuyoruz. Villanın farklı noktalarından manzaraların keyfini çıkardık; uzun bir plaj gününün ardından gün batımını izlemek mükemmeldi. Konum sakin ve aynı zamanda en güzel plajlardan bazılarına çok yakın."
     }
   }
-];
+,
+{
+  "en": {
+    "title": "",
+    "text": "We had a wonderful holiday at M&M Villa! We loved that the villa was very clean, modern and equipped with everything we needed. Kostas and his wife are wonderful; they welcomed us warmly and helped us with information and recommendations, always responding promptly. Thank you also for the welcome sweets — they were delicious and came at just the right time! We will always return with pleasure and hope to see you again!"
+  },
+  "ro": {
+    "title": "",
+    "text": "Am petrecut o vacanță grozavă la Vila M&M! Ne-a plăcut faptul că vila a fost foarte curată, modernă și dotată cu tot ce am avut nevoie. Kostas și soția lui sunt minunați, ne-au primit cu multă căldură și ne-au ajutat cu informații și recomandări, fiind întotdeauna foarte prompți. Mulțumim și pentru dulciurile de bun venit — au fost delicioase și ne-au prins foarte bine! Vom reveni mereu cu plăcere și sperăm să ne revedem!"
+  },
+  "el": {
+    "title": "",
+    "text": "Περάσαμε υπέροχες διακοπές στη Villa M&M! Μας άρεσε πολύ που η βίλα ήταν πεντακάθαρη, μοντέρνα και εξοπλισμένη με όλα όσα χρειαζόμασταν. Ο Κώστας και η σύζυγός του είναι υπέροχοι άνθρωποι· μας υποδέχθηκαν με μεγάλη ζεστασιά και μας βοήθησαν με πληροφορίες και προτάσεις, απαντώντας πάντα άμεσα. Ευχαριστούμε και για τα γλυκά καλωσορίσματος — ήταν πεντανόστιμα και μας έκαναν μεγάλη χαρά! Θα επιστρέψουμε πάντα με χαρά και ελπίζουμε να ξαναβρεθούμε!"
+  },
+  "de": {
+    "title": "",
+    "text": "Wir hatten einen großartigen Urlaub in der Villa M&M! Uns hat besonders gefallen, dass die Villa sehr sauber, modern und mit allem ausgestattet war, was wir brauchten. Kostas und seine Frau sind wundervolle Gastgeber; sie haben uns sehr herzlich empfangen und uns jederzeit schnell mit Informationen und Empfehlungen geholfen. Vielen Dank auch für die Willkommenssüßigkeiten — sie waren köstlich und genau das Richtige! Wir kommen jederzeit gerne wieder und hoffen, uns wiederzusehen!"
+  },
+  "bg": {
+    "title": "",
+    "text": "Прекарахме чудесна почивка във Villa M&M! Много ни хареса, че вилата беше изключително чиста, модерна и оборудвана с всичко необходимо. Костас и съпругата му са прекрасни домакини — посрещнаха ни много топло и винаги бързо ни помагаха с информация и препоръки. Благодарим и за сладките за добре дошли — бяха вкусни и много ни зарадваха! С удоволствие бихме се върнали отново и се надяваме пак да се видим!"
+  },
+  "sr": {
+    "title": "",
+    "text": "Proveli smo divan odmor u Vili M&M! Posebno nam se dopalo što je vila bila veoma čista, moderna i opremljena svime što nam je bilo potrebno. Kostas i njegova supruga su sjajni domaćini; dočekali su nas veoma srdačno i uvek brzo pomagali informacijama i preporukama. Hvala i na slatkišima dobrodošlice — bili su ukusni i baš su nam prijali! Uvek ćemo se rado vratiti i nadamo se da ćemo se ponovo videti!"
+  },
+  "he": {
+    "title": "",
+    "text": "הייתה לנו חופשה נהדרת בווילת M&M! אהבנו מאוד שהווילה הייתה נקייה מאוד, מודרנית ומצוידת בכל מה שהיינו צריכים. קוסטאס ואשתו מארחים נפלאים; הם קיבלו אותנו בחום רב ותמיד עזרו במהירות עם מידע והמלצות. תודה גם על ממתקי קבלת הפנים — הם היו טעימים ובדיוק במקום! נשמח תמיד לחזור ומקווים להיפגש שוב!"
+  },
+  "uk": {
+    "title": "",
+    "text": "Ми чудово провели відпустку у Villa M&M! Нам дуже сподобалося, що вілла була надзвичайно чистою, сучасною та обладнаною всім необхідним. Костас і його дружина — прекрасні господарі: вони дуже тепло нас зустріли й завжди оперативно допомагали інформацією та рекомендаціями. Дякуємо також за вітальні солодощі — вони були дуже смачні й чудово нас порадували! Ми із задоволенням повернемося знову й сподіваємося ще зустрітися!"
+  },
+  "tr": {
+    "title": "",
+    "text": "M&M Villa’da harika bir tatil geçirdik! Villanın çok temiz, modern ve ihtiyaç duyduğumuz her şeyle donatılmış olmasını çok sevdik. Kostas ve eşi harika ev sahipleri; bizi büyük bir sıcaklıkla karşıladılar ve bilgi ile öneriler konusunda her zaman hızlıca yardımcı oldular. Hoş geldiniz tatlıları için de teşekkür ederiz — çok lezzetliydi ve bizi çok mutlu etti! Her zaman memnuniyetle geri döneriz ve yeniden görüşmeyi umuyoruz!"
+  }
+},
+{
+  "en": {
+    "title": "",
+    "text": "An absolutely wonderful place to stay! The villa is beautifully designed, spotlessly clean and full of charming, imaginative details. You can immediately see how much passion, creativity and care the owners have put into every corner of the property. They are incredibly warm, welcoming and hospitable, making us feel at home from the very first moment. A truly special accommodation that we would happily recommend to anyone. We would definitely love to return!"
+  },
+  "ro": {
+    "title": "",
+    "text": "Un loc absolut minunat pentru cazare! Vila este superb amenajată, impecabil de curată și plină de detalii fermecătoare și creative. Se vede imediat câtă pasiune, imaginație și grijă au pus proprietarii în fiecare colț al proprietății. Sunt extrem de calzi, primitori și ospitalieri și ne-au făcut să ne simțim ca acasă din primul moment. O cazare cu adevărat specială, pe care am recomanda-o cu drag oricui. Cu siguranță ne-ar plăcea să revenim!"
+  },
+  "el": {
+    "title": "",
+    "text": "Ένα πραγματικά υπέροχο μέρος για διαμονή! Η βίλα είναι πανέμορφα σχεδιασμένη, πεντακάθαρη και γεμάτη γοητευτικές, ευφάνταστες λεπτομέρειες. Φαίνεται αμέσως πόσο πάθος, δημιουργικότητα και φροντίδα έχουν βάλει οι ιδιοκτήτες σε κάθε γωνιά του χώρου. Είναι εξαιρετικά ζεστοί, φιλόξενοι και εγκάρδιοι και μας έκαναν να νιώσουμε σαν στο σπίτι μας από την πρώτη στιγμή. Ένα πραγματικά ξεχωριστό κατάλυμα που θα προτείναμε ανεπιφύλακτα. Θα θέλαμε σίγουρα να επιστρέψουμε!"
+  },
+  "de": {
+    "title": "",
+    "text": "Ein absolut wunderbarer Ort zum Übernachten! Die Villa ist wunderschön gestaltet, makellos sauber und voller charmanter, fantasievoller Details. Man sieht sofort, wie viel Leidenschaft, Kreativität und Sorgfalt die Eigentümer in jeden Winkel des Anwesens gesteckt haben. Sie sind unglaublich herzlich, gastfreundlich und einladend und haben uns vom ersten Moment an wie zu Hause fühlen lassen. Eine wirklich besondere Unterkunft, die wir jedem gerne empfehlen würden. Wir würden sehr gerne wiederkommen!"
+  },
+  "bg": {
+    "title": "",
+    "text": "Абсолютно прекрасно място за престой! Вилата е красиво проектирана, безупречно чиста и изпълнена с очарователни и оригинални детайли. Веднага се усеща колко страст, творчество и грижа са вложили собствениците във всяко кътче на имота. Те са изключително топли, гостоприемни и приветливи и ни накараха да се почувстваме като у дома си още от първия момент. Наистина специално място, което с удоволствие бихме препоръчали на всеки. Определено бихме се върнали отново!"
+  },
+  "sr": {
+    "title": "",
+    "text": "Apsolutno divno mesto za boravak! Vila je prelepo uređena, besprekorno čista i puna šarmantnih, maštovitih detalja. Odmah se vidi koliko su strasti, kreativnosti i pažnje vlasnici uložili u svaki deo imanja. Izuzetno su srdačni, gostoljubivi i prijatni i učinili su da se od prvog trenutka osećamo kao kod kuće. Zaista posebno mesto koje bismo rado preporučili svakome. Definitivno bismo voleli da se vratimo!"
+  },
+  "he": {
+    "title": "",
+    "text": "מקום נפלא לחלוטין להתארח בו! הווילה מעוצבת בצורה יפהפייה, נקייה ללא רבב ומלאה בפרטים מקסימים ומלאי דמיון. מיד רואים כמה תשוקה, יצירתיות והשקעה הבעלים הקדישו לכל פינה בנכס. הם חמים, מסבירי פנים ומארחים בצורה יוצאת דופן, וגרמו לנו להרגיש בבית מהרגע הראשון. מקום לינה מיוחד באמת שנשמח להמליץ עליו לכל אחד. בהחלט נשמח לחזור!"
+  },
+  "uk": {
+    "title": "",
+    "text": "Абсолютно чудове місце для проживання! Вілла має прекрасний дизайн, бездоганно чиста й наповнена чарівними, творчими деталями. Одразу видно, скільки пристрасті, креативності та турботи власники вклали в кожен куточок помешкання. Вони неймовірно теплі, привітні та гостинні й від першої хвилини дали нам відчути себе як удома. Справді особливе місце, яке ми із задоволенням рекомендували б усім. Ми обов’язково хотіли б повернутися!"
+  },
+  "tr": {
+    "title": "",
+    "text": "Kalmak için gerçekten harika bir yer! Villa çok güzel tasarlanmış, tertemiz ve büyüleyici, yaratıcı detaylarla dolu. Ev sahiplerinin mülkün her köşesine ne kadar tutku, yaratıcılık ve özen kattığı hemen belli oluyor. Son derece sıcak, misafirperver ve içtenler; ilk andan itibaren kendimizi evimizde hissettirdiler. Herkese gönül rahatlığıyla önerebileceğimiz gerçekten özel bir konaklama. Kesinlikle tekrar gelmek isteriz!"
+  }
+},
+{
+  "en": {
+    "title": "",
+    "text": "An incredible accommodation unlike any other, set on an estate surrounded by greenery and complete peace. The balcony is the star of the place. Everything in the house is beautifully arranged, the decoration is lovely and the cleanliness is obvious. Mr. Kostas welcomed us with a smile and a box of sweets and was always available to answer our questions. The location is also excellent, just a very short distance from the famous beaches of Vourvourou!"
+  },
+  "ro": {
+    "title": "",
+    "text": "O cazare incredibilă, diferită de orice alt loc, într-o proprietate înconjurată de verdeață și multă liniște. Balconul este vedeta locului. Totul în casă este foarte bine pus la punct, decorul este frumos, iar curățenia se observă imediat. Domnul Kostas ne-a întâmpinat cu zâmbetul pe buze și cu o cutie de dulciuri și a fost mereu disponibil să răspundă întrebărilor noastre. Și poziția proprietății este excelentă, la foarte mică distanță de renumitele plaje din Vourvourou!"
+  },
+  "el": {
+    "title": "",
+    "text": "Ένα απίστευτο κατάλυμα, διαφορετικό από κάθε άλλο, μέσα σε ένα κτήμα γεμάτο πράσινο και απόλυτη ηρεμία. Το μπαλκόνι είναι ο πρωταγωνιστής του χώρου. Όλα στο σπίτι είναι τακτοποιημένα με προσοχή, η διακόσμηση είναι όμορφη και η καθαριότητα φαίνεται παντού. Ο κ. Κώστας μας υποδέχθηκε με χαμόγελο και ένα κουτί γλυκά και ήταν πάντα διαθέσιμος να απαντήσει σε κάθε μας ερώτηση. Εξαιρετική είναι και η τοποθεσία, πολύ κοντά στις γνωστές παραλίες της Βουρβουρούς!"
+  },
+  "de": {
+    "title": "",
+    "text": "Eine außergewöhnliche Unterkunft, die sich deutlich von anderen abhebt, auf einem Anwesen mitten im Grünen und in herrlicher Ruhe. Der Balkon ist das Highlight des Hauses. Alles ist liebevoll geordnet, die Dekoration wunderschön und die Sauberkeit überall sichtbar. Herr Kostas begrüßte uns mit einem Lächeln und einer Schachtel Süßigkeiten und war jederzeit da, um unsere Fragen zu beantworten. Auch die Lage ist hervorragend, nur eine sehr kurze Strecke von den berühmten Stränden von Vourvourou entfernt!"
+  },
+  "bg": {
+    "title": "",
+    "text": "Невероятно място за настаняване, различно от всичко останало, разположено сред зеленина и пълно спокойствие. Балконът е истинската звезда на мястото. Всичко в къщата е подредено с внимание, декорацията е красива, а чистотата се забелязва веднага. Г-н Костас ни посрещна с усмивка и кутия сладкиши и винаги беше на разположение да отговори на въпросите ни. Местоположението също е отлично — съвсем близо до известните плажове на Вурвуру!"
+  },
+  "sr": {
+    "title": "",
+    "text": "Neverovatan smeštaj, drugačiji od svega ostalog, na imanju okruženom zelenilom i potpunim mirom. Balkon je prava zvezda ovog mesta. Sve u kući je pažljivo uređeno, dekoracija je prelepa, a čistoća se odmah primećuje. Gospodin Kostas nas je dočekao sa osmehom i kutijom slatkiša i uvek je bio tu da odgovori na naša pitanja. Lokacija je takođe odlična, veoma blizu poznatih plaža Vurvurua!"
+  },
+  "he": {
+    "title": "",
+    "text": "מקום אירוח מדהים ושונה מכל מקום אחר, בתוך אחוזה מוקפת ירק ושקט מוחלט. המרפסת היא הכוכבת של המקום. הכול בבית מסודר בקפידה, העיצוב יפה והניקיון ניכר מיד. מר קוסטאס קיבל את פנינו בחיוך ובקופסת ממתקים ותמיד היה זמין לענות על כל שאלה. גם המיקום מצוין, במרחק קצר מאוד מהחופים המפורסמים של וורוורו!"
+  },
+  "uk": {
+    "title": "",
+    "text": "Неймовірне помешкання, не схоже на жодне інше, розташоване серед зелені та повного спокою. Балкон — справжня родзинка цього місця. У будинку все впорядковано з увагою до деталей, декор чудовий, а чистота помітна одразу. Пан Костас зустрів нас із усмішкою та коробкою солодощів і завжди був готовий відповісти на наші запитання. Розташування також чудове — зовсім недалеко від відомих пляжів Вурвуру!"
+  },
+  "tr": {
+    "title": "",
+    "text": "Yeşillikler içinde, tam bir huzur ortamında yer alan ve benzerlerinden çok farklı inanılmaz bir konaklama. Balkon buranın gerçek yıldızı. Evde her şey özenle düzenlenmiş, dekorasyon çok güzel ve temizlik hemen fark ediliyor. Bay Kostas bizi gülümseyerek ve bir kutu tatlıyla karşıladı; sorularımızı yanıtlamak için her zaman hazırdı. Konumu da çok iyi, Vourvourou’nun ünlü plajlarına çok kısa mesafede!"
+  }
+},
+{
+  "en": {
+    "title": "",
+    "text": "We had an absolutely wonderful experience at M&M Villa, which is why we chose to return for a second year in a row! The villa is still just as modern, clean and tastefully decorated. The rooms are spacious and equipped with everything you need for top-level comfort. The huge garden is a major plus for relaxing in peace, and the outdoor shower was once again the perfect finishing touch after days at the beach. The hosts welcomed us with the same warmth and kindness we remembered. This has become our special place in Sithonia and we will definitely return in the years to come. We wholeheartedly recommend it!"
+  },
+  "ro": {
+    "title": "",
+    "text": "Am avut o experiență absolut minunată la Vila M&M, motiv pentru care am ales să revenim aici pentru al doilea an la rând! Vila rămâne la fel de modernă, curată și amenajată cu foarte mult bun gust. Camerele sunt spațioase și dotate cu absolut tot ce ai nevoie pentru un confort de top. Curtea imensă este un mare plus pentru relaxare în liniște, iar dușul exterior a fost din nou cireașa de pe tort după zilele petrecute la plajă. Gazdele ne-au primit cu aceeași căldură și amabilitate cu care ne-au obișnuit. Este locul nostru de suflet în Sithonia și cu siguranță vom reveni și în anii următori. Recomand din tot sufletul!"
+  },
+  "el": {
+    "title": "",
+    "text": "Είχαμε μια απολύτως υπέροχη εμπειρία στη Villa M&M και γι’ αυτό επιλέξαμε να επιστρέψουμε για δεύτερη συνεχόμενη χρονιά! Η βίλα παραμένει μοντέρνα, πεντακάθαρη και διακοσμημένη με εξαιρετικό γούστο. Τα δωμάτια είναι ευρύχωρα και εξοπλισμένα με όλα όσα χρειάζεσαι για υψηλό επίπεδο άνεσης. Η τεράστια αυλή είναι μεγάλο πλεονέκτημα για ήρεμη χαλάρωση, ενώ το εξωτερικό ντους ήταν και πάλι η τέλεια πινελιά μετά τις ημέρες στην παραλία. Οι οικοδεσπότες μάς υποδέχθηκαν με την ίδια ζεστασιά και ευγένεια. Έχει γίνει το αγαπημένο μας μέρος στη Σιθωνία και σίγουρα θα επιστρέψουμε και τα επόμενα χρόνια. Το προτείνουμε με όλη μας την καρδιά!"
+  },
+  "de": {
+    "title": "",
+    "text": "Wir hatten einen absolut wunderbaren Aufenthalt in der Villa M&M und sind deshalb bereits im zweiten Jahr in Folge zurückgekehrt! Die Villa ist nach wie vor modern, sehr sauber und mit viel Geschmack eingerichtet. Die Zimmer sind großzügig und mit allem ausgestattet, was man für höchsten Komfort braucht. Der riesige Garten ist ein großer Pluspunkt für entspannte Ruhe, und die Außendusche war nach den Strandtagen wieder das i-Tüpfelchen. Die Gastgeber empfingen uns mit derselben Herzlichkeit und Freundlichkeit wie zuvor. Dieser Ort ist zu unserem Lieblingsplatz in Sithonia geworden, und wir werden in den kommenden Jahren ganz sicher wiederkommen. Eine uneingeschränkte Empfehlung!"
+  },
+  "bg": {
+    "title": "",
+    "text": "Имахме прекрасен престой във Villa M&M и именно затова избрахме да се върнем за втора поредна година! Вилата е все така модерна, чиста и обзаведена с много вкус. Стаите са просторни и разполагат с всичко необходимо за отличен комфорт. Огромният двор е голям плюс за спокойна почивка, а външният душ отново беше идеалният завършек след дните на плажа. Домакините ни посрещнаха със същата топлота и любезност, които помнехме. Това вече е нашето специално място в Ситония и със сигурност ще се връщаме и през следващите години. Препоръчваме го от сърце!"
+  },
+  "sr": {
+    "title": "",
+    "text": "Imali smo apsolutno divno iskustvo u Vili M&M i zato smo odlučili da se vratimo drugu godinu zaredom! Vila je i dalje moderna, izuzetno čista i uređena sa mnogo ukusa. Sobe su prostrane i imaju sve što je potrebno za vrhunski komfor. Ogromno dvorište je veliki plus za miran odmor, a spoljašnji tuš je ponovo bio savršen završetak posle dana na plaži. Domaćini su nas dočekali sa istom toplinom i ljubaznošću kao i ranije. Ovo je postalo naše posebno mesto u Sitoniji i sigurno ćemo se vraćati i narednih godina. Od srca preporučujemo!"
+  },
+  "he": {
+    "title": "",
+    "text": "הייתה לנו חוויה נהדרת לחלוטין בווילת M&M, ולכן בחרנו לחזור אליה שנה שנייה ברציפות! הווילה נשארה מודרנית, נקייה ומעוצבת בטעם מצוין. החדרים מרווחים ומצוידים בכל מה שצריך לנוחות ברמה גבוהה. החצר הענקית היא יתרון גדול למנוחה שקטה, והמקלחת החיצונית הייתה שוב התוספת המושלמת אחרי ימים בחוף. המארחים קיבלו אותנו באותה חמימות ואדיבות שזכרנו. זה הפך למקום האהוב שלנו בסיתוניה, ובהחלט נחזור גם בשנים הבאות. ממליצים מכל הלב!"
+  },
+  "uk": {
+    "title": "",
+    "text": "Ми отримали надзвичайно приємні враження від Villa M&M, тому вирішили повернутися сюди вже другий рік поспіль! Вілла й надалі сучасна, дуже чиста й оформлена зі смаком. Кімнати просторі та обладнані всім необхідним для максимального комфорту. Величезне подвір’я — великий плюс для спокійного відпочинку, а зовнішній душ знову став ідеальним завершенням днів на пляжі. Господарі зустріли нас із тією ж теплотою та доброзичливістю. Це стало нашим особливим місцем у Ситонії, і ми неодмінно повертатимемося сюди й надалі. Щиро рекомендуємо!"
+  },
+  "tr": {
+    "title": "",
+    "text": "M&M Villa’da gerçekten harika bir deneyim yaşadık; bu yüzden üst üste ikinci yıl yeniden gelmeyi seçtik! Villa hâlâ aynı derecede modern, temiz ve çok zevkli dekore edilmiş. Odalar geniş ve üst düzey konfor için ihtiyaç duyulan her şeyle donatılmış. Kocaman bahçe huzur içinde dinlenmek için büyük bir artı; dış duş da plaj günlerinden sonra yine mükemmel bir dokunuştu. Ev sahipleri bizi hatırladığımız aynı sıcaklık ve nezaketle karşıladı. Burası Sithonia’daki özel yerimiz oldu ve önümüzdeki yıllarda da kesinlikle geri döneceğiz. Gönülden tavsiye ederiz!"
+  }
+},
+{
+  "en": {
+    "title": "",
+    "text": "The villa is even better when you see it in person! Everything is much more beautiful up close: the garden, the trees, the house and the design all feel magical. Kostas recommended many beaches very close to the house. We booked the junior suite for me, my wife and our two children. The decoration feels like it is from another planet. When we asked which tavern was best for good food, the owner’s answer surprised us: the best restaurant is the villa’s own barbecue, with the large round table on the paved patio and a view of the mountain behind. I highly recommend it and hope we meet again. Thank you very much for the wonderful stay!"
+  },
+  "ro": {
+    "title": "",
+    "text": "Vila este chiar și mai frumoasă atunci când o vezi în realitate! Totul arată mult mai bine de aproape: grădina, copacii, casa și designul au ceva magic. Kostas ne-a recomandat multe plaje foarte aproape de proprietate. Am rezervat junior suite-ul pentru mine, soția mea și cei doi copii ai noștri. Decorul pare de pe altă planetă. Când am întrebat care este cea mai bună tavernă pentru o masă bună, răspunsul proprietarului ne-a surprins: cel mai bun restaurant este chiar grătarul vilei, cu masa rotundă mare de pe terasa pavată și priveliște spre muntele din spate. Recomand cu căldură și sper să ne revedem. Mulțumim mult pentru sejurul minunat!"
+  },
+  "el": {
+    "title": "",
+    "text": "Η βίλα είναι ακόμη καλύτερη όταν τη δεις από κοντά! Όλα είναι πολύ πιο όμορφα στην πραγματικότητα: ο κήπος, τα δέντρα, το σπίτι και ο σχεδιασμός έχουν κάτι μαγικό. Ο Κώστας μάς πρότεινε πολλές παραλίες πολύ κοντά στο σπίτι. Κλείσαμε τη junior suite για εμένα, τη σύζυγό μου και τα δύο παιδιά μας. Η διακόσμηση μοιάζει να είναι από άλλον πλανήτη. Όταν ρωτήσαμε ποια ταβέρνα είναι η καλύτερη για καλό φαγητό, η απάντηση του ιδιοκτήτη μάς εξέπληξε: το καλύτερο «εστιατόριο» είναι το μπάρμπεκιου της ίδιας της βίλας, με το μεγάλο στρογγυλό τραπέζι στην πλακόστρωτη αυλή και θέα στο βουνό πίσω. Το προτείνω ανεπιφύλακτα και ελπίζω να ξαναβρεθούμε. Ευχαριστούμε πολύ για την υπέροχη διαμονή!"
+  },
+  "de": {
+    "title": "",
+    "text": "Die Villa ist vor Ort sogar noch schöner! Aus der Nähe wirkt alles noch beeindruckender: der Garten, die Bäume, das Haus und das Design haben etwas Magisches. Kostas empfahl uns viele Strände ganz in der Nähe des Hauses. Wir buchten die Junior Suite für mich, meine Frau und unsere beiden Kinder. Die Dekoration wirkt wie von einem anderen Planeten. Als wir fragten, welche Taverne das beste Essen bietet, überraschte uns die Antwort des Eigentümers: Das beste Restaurant ist der eigene Grillplatz der Villa, mit dem großen runden Tisch auf dem gepflasterten Patio und Blick auf den Berg dahinter. Ich kann es sehr empfehlen und hoffe, dass wir uns wiedersehen. Vielen Dank für den wunderbaren Aufenthalt!"
+  },
+  "bg": {
+    "title": "",
+    "text": "Вилата е още по-хубава, когато я видите на живо! Отблизо всичко изглежда още по-красиво — градината, дърветата, къщата и дизайнът са наистина вълшебни. Костас ни препоръча много плажове съвсем близо до къщата. Резервирахме junior suite за мен, съпругата ми и двете ни деца. Декорацията сякаш е от друга планета. Когато попитахме коя е най-добрата таверна за хубава храна, отговорът на собственика ни изненада: най-добрият „ресторант“ е барбекюто на самата вила, с голямата кръгла маса на павирания двор и гледка към планината отзад. Горещо препоръчвам и се надявам да се видим отново. Благодарим много за прекрасния престой!"
+  },
+  "sr": {
+    "title": "",
+    "text": "Vila je još lepša kada je vidite uživo! Sve izgleda još bolje izbliza — bašta, drveće, kuća i dizajn deluju zaista čarobno. Kostas nam je preporučio mnogo plaža veoma blizu kuće. Rezervisali smo junior suite za mene, suprugu i naše dvoje dece. Dekoracija izgleda kao da je sa druge planete. Kada smo pitali koja je najbolja taverna za dobru hranu, odgovor vlasnika nas je iznenadio: najbolji „restoran“ je roštilj same vile, sa velikim okruglim stolom na popločanoj terasi i pogledom na planinu iza. Toplo preporučujem i nadam se da ćemo se ponovo sresti. Hvala mnogo na divnom boravku!"
+  },
+  "he": {
+    "title": "",
+    "text": "הווילה אפילו יפה יותר כשמגיעים ורואים אותה במציאות! הכול מרשים יותר מקרוב — הגינה, העצים, הבית והעיצוב מרגישים ממש קסומים. קוסטאס המליץ לנו על הרבה חופים קרובים מאוד לבית. הזמנו את ה-Junior Suite עבורי, אשתי ושני ילדינו. העיצוב מרגיש כאילו הגיע מכוכב אחר. כששאלנו איזו טברנה הכי טובה לאוכל טוב, תשובת הבעלים הפתיעה אותנו: ה״מסעדה״ הטובה ביותר היא אזור הברביקיו של הווילה עצמה, עם השולחן העגול הגדול בחצר המרוצפת ונוף להר שמאחור. ממליץ בחום ומקווה שניפגש שוב. תודה רבה על שהות נפלאה!"
+  },
+  "uk": {
+    "title": "",
+    "text": "Вілла ще краща, коли бачиш її наживо! Зблизька все виглядає ще красивіше — сад, дерева, будинок і дизайн справді мають щось магічне. Костас порадив нам багато пляжів зовсім поруч із будинком. Ми забронювали junior suite для мене, дружини та наших двох дітей. Декор ніби з іншої планети. Коли ми запитали, яка таверна найкраща для смачної їжі, відповідь власника нас здивувала: найкращий «ресторан» — це власне барбекю вілли з великим круглим столом на мощеному подвір’ї та видом на гору позаду. Дуже рекомендую й сподіваюся, що ми ще зустрінемося. Щиро дякуємо за чудове перебування!"
+  },
+  "tr": {
+    "title": "",
+    "text": "Villa, yerinde gördüğünüzde daha da güzel! Yakından bakınca bahçe, ağaçlar, ev ve tasarım çok daha etkileyici; her şey gerçekten büyülü hissettiriyor. Kostas bize eve çok yakın birçok plaj önerdi. Ben, eşim ve iki çocuğumuz için junior suite’i ayırttık. Dekorasyon başka bir gezegenden gelmiş gibi. İyi yemek için en iyi tavernayı sorduğumuzda ev sahibinin cevabı bizi şaşırttı: en iyi “restoran”, villanın kendi barbekü alanı; taş döşeli avludaki büyük yuvarlak masa ve arkadaki dağ manzarasıyla. Kesinlikle tavsiye ederim ve umarım yeniden görüşürüz. Harika konaklama için çok teşekkürler!"
+  }
+},
+{
+  "en": {
+    "title": "",
+    "text": "We had a wonderful time at this villa! The outdoor area is simply magical, with a lush, well-kept garden and beautiful paved paths that create a feeling of complete tranquility and privacy. The inside of the house is spotless, spacious and very well cared for, combining comfort with tradition. We especially appreciated details such as the wonderful outdoor shower, which is exactly what you need after a day at the beach. The location in Sithonia is excellent for anyone who wants to relax and recharge. I highly recommend it and we will definitely choose it again!"
+  },
+  "ro": {
+    "title": "",
+    "text": "Am petrecut un timp minunat la această vilă! Zona exterioară este pur și simplu magică, cu o grădină bogată și foarte bine îngrijită și alei pavate frumoase care oferă o senzație de liniște și intimitate deplină. Interiorul casei este impecabil, spațios și foarte bine întreținut, combinând confortul cu tradiția. Ne-au plăcut în mod special detaliile, cum ar fi minunatul duș exterior, exact ceea ce îți trebuie după o zi la plajă. Locația din Sithonia este excelentă pentru oricine vrea să se relaxeze și să-și încarce bateriile. Recomand cu căldură și cu siguranță vom alege din nou acest loc!"
+  },
+  "el": {
+    "title": "",
+    "text": "Περάσαμε υπέροχα σε αυτή τη βίλα! Ο εξωτερικός χώρος είναι πραγματικά μαγικός, με έναν καταπράσινο, προσεγμένο κήπο και όμορφα πλακόστρωτα μονοπάτια που προσφέρουν αίσθηση απόλυτης ηρεμίας και ιδιωτικότητας. Το εσωτερικό του σπιτιού είναι πεντακάθαρο, ευρύχωρο και πολύ καλά φροντισμένο, συνδυάζοντας άνεση και παράδοση. Μας άρεσε ιδιαίτερα η προσοχή στις λεπτομέρειες, όπως το υπέροχο εξωτερικό ντους, που είναι ακριβώς ό,τι χρειάζεσαι μετά από μια μέρα στην παραλία. Η τοποθεσία στη Σιθωνία είναι εξαιρετική για όποιον θέλει να χαλαρώσει και να γεμίσει ενέργεια. Το προτείνω ανεπιφύλακτα και σίγουρα θα το επιλέξουμε ξανά!"
+  },
+  "de": {
+    "title": "",
+    "text": "Wir hatten eine wunderbare Zeit in dieser Villa! Der Außenbereich ist einfach zauberhaft, mit einem üppigen, gepflegten Garten und schönen gepflasterten Wegen, die ein Gefühl völliger Ruhe und Privatsphäre vermitteln. Das Innere des Hauses ist makellos sauber, geräumig und sehr gepflegt und verbindet Komfort mit Tradition. Besonders gefallen haben uns Details wie die großartige Außendusche — genau das Richtige nach einem Tag am Strand. Die Lage in Sithonia ist ideal für alle, die entspannen und neue Energie tanken möchten. Ich kann die Villa sehr empfehlen, und wir werden sie definitiv wieder wählen!"
+  },
+  "bg": {
+    "title": "",
+    "text": "Прекарахме чудесно във вилата! Външната част е просто вълшебна, с богата и отлично поддържана градина и красиви павирани алеи, които създават усещане за пълно спокойствие и уединение. Интериорът е безупречно чист, просторен и много добре поддържан, като съчетава комфорт и традиция. Особено ни харесаха детайлите, например прекрасният външен душ — точно това, от което имаш нужда след ден на плажа. Местоположението в Ситония е отлично за всеки, който иска да си почине и да презареди. Горещо препоръчвам и със сигурност бихме избрали това място отново!"
+  },
+  "sr": {
+    "title": "",
+    "text": "Proveli smo divno vreme u ovoj vili! Spoljašnji prostor je jednostavno čaroban, sa bujnom i pažljivo održavanom baštom i lepim popločanim stazama koje pružaju osećaj potpunog mira i privatnosti. Unutrašnjost kuće je besprekorno čista, prostrana i veoma negovana, uz lep spoj udobnosti i tradicije. Posebno su nam se dopali detalji poput odličnog spoljašnjeg tuša — upravo ono što vam treba posle dana na plaži. Lokacija u Sitoniji je odlična za svakoga ko želi da se opusti i napuni baterije. Toplo preporučujem i sigurno ćemo ponovo izabrati ovo mesto!"
+  },
+  "he": {
+    "title": "",
+    "text": "היה לנו זמן נפלא בווילה הזו! האזור החיצוני פשוט קסום, עם גינה ירוקה ומטופחת ושבילים מרוצפים יפים שיוצרים תחושה של שלווה ופרטיות מוחלטות. פנים הבית נקי ללא רבב, מרווח ומתוחזק היטב, ומשלב נוחות עם מסורת. אהבנו במיוחד את תשומת הלב לפרטים, כמו המקלחת החיצונית הנהדרת — בדיוק מה שצריך אחרי יום בחוף. המיקום בסיתוניה מצוין למי שרוצה להירגע ולהיטען מחדש. ממליץ בחום ובהחלט נבחר במקום הזה שוב!"
+  },
+  "uk": {
+    "title": "",
+    "text": "Ми чудово провели час у цій віллі! Зовнішня територія просто чарівна: пишний, доглянутий сад і красиві мощені доріжки створюють відчуття повного спокою та приватності. Усередині будинок бездоганно чистий, просторий і дуже добре доглянутий, поєднуючи комфорт із традиційними елементами. Нам особливо сподобалася увага до деталей, наприклад чудовий зовнішній душ — саме те, що потрібно після дня на пляжі. Розташування в Ситонії відмінне для тих, хто хоче розслабитися й відновити сили. Дуже рекомендую, і ми точно оберемо це місце знову!"
+  },
+  "tr": {
+    "title": "",
+    "text": "Bu villada harika vakit geçirdik! Dış alan, yemyeşil ve çok iyi bakılmış bahçesi ile güzel taş döşeli yolları sayesinde gerçekten büyülü; tam bir huzur ve mahremiyet hissi veriyor. Evin içi tertemiz, geniş ve çok bakımlı; konfor ile geleneksel dokuyu güzel bir şekilde birleştiriyor. Özellikle plajda geçen bir günün ardından tam ihtiyacınız olan harika dış duş gibi detayları çok sevdik. Sithonia’daki konumu dinlenmek ve enerji toplamak isteyenler için mükemmel. Kesinlikle tavsiye ederim ve burayı yeniden tercih ederiz!"
+  }
+},{
+  "en": {
+    "title": "",
+    "text": "I read somewhere that the villa is so beautiful up close! Well, we visited it too and it's a ton! I've never seen such designs on the walls and such showers anywhere and believe me, we travel often! The villa is very reminiscent of Cycladic summer style! The yard with the barbecue 🍖 we worked hard on it! Many congratulations to the Kostas-Niki family, you deserve the best, always be full 😍"
+  },
+  "ro": {
+    "title": "",
+    "text": "Am citit undeva că vila este și mai frumoasă când o vezi de aproape! Ei bine, am vizitat-o și noi și ne-a impresionat enorm! Nu am mai văzut nicăieri asemenea modele pe pereți și asemenea dușuri, iar noi călătorim des. Vila amintește foarte mult de stilul de vară cicladic. Curtea cu grătarul 🍖 ne-a cucerit și ea! Multe felicitări familiei Kostas–Niki, meritați tot ce este mai bun și vă dorim să aveți mereu casa plină 😍"
+  },
+  "el": {
+    "title": "",
+    "text": "Είχα διαβάσει κάπου ότι η βίλα είναι ακόμη πιο όμορφη από κοντά! Τελικά την επισκεφθήκαμε κι εμείς και πραγματικά μας εντυπωσίασε! Δεν έχω ξαναδεί τέτοια σχέδια στους τοίχους και τέτοια ντους πουθενά, και πιστέψτε με, ταξιδεύουμε συχνά. Η βίλα θυμίζει έντονα κυκλαδίτικο καλοκαιρινό στυλ. Και η αυλή με το μπάρμπεκιου 🍖 ήταν υπέροχη! Πολλά συγχαρητήρια στην οικογένεια Κώστα–Νίκη, σας αξίζουν τα καλύτερα και να είστε πάντα γεμάτοι 😍"
+  },
+  "de": {
+    "title": "",
+    "text": "Ich hatte irgendwo gelesen, dass die Villa aus der Nähe noch schöner ist! Nun, wir haben sie ebenfalls besucht und waren wirklich beeindruckt! Solche Wandgestaltungen und solche Duschen habe ich noch nirgendwo gesehen – und glauben Sie mir, wir reisen oft. Die Villa erinnert stark an den sommerlichen Stil der Kykladen. Auch der Hof mit dem Grill 🍖 hat uns begeistert! Herzlichen Glückwunsch an die Familie Kostas–Niki, ihr verdient nur das Beste und möge euer Haus immer voller Gäste sein 😍"
+  },
+  "bg": {
+    "title": "",
+    "text": "Бях прочела някъде, че вилата е още по-красива на живо! Е, посетихме я и ние и наистина останахме впечатлени! Никъде не съм виждала такива дизайни по стените и такива душове, а повярвайте ми, пътуваме често. Вилата много напомня на цикладски летен стил. Дворът с барбекюто 🍖 също ни очарова! Поздравления за семейство Костас–Ники, заслужавате най-доброто и ви пожелаваме винаги да сте пълни с гости 😍"
+  },
+  "sr": {
+    "title": "",
+    "text": "Negde sam pročitala da je vila još lepša uživo! Posetili smo je i mi i zaista smo bili oduševljeni! Nikada nigde nisam videla takve detalje na zidovima i takve tuševe, a verujte mi, često putujemo. Vila veoma podseća na letnji kikladski stil. Oduševilo nas je i dvorište sa roštiljem 🍖! Sve čestitke porodici Kostas–Niki, zaslužujete najbolje i želimo vam da uvek budete puni gostiju 😍"
+  },
+  "he": {
+    "title": "",
+    "text": "קראתי איפשהו שהווילה אפילו יפה יותר כשרואים אותה מקרוב! ובכן, גם אנחנו ביקרנו בה והתרשמנו מאוד! מעולם לא ראיתי עיצובים כאלה על הקירות ומקלחות כאלה בשום מקום, ותאמינו לי — אנחנו מטיילים הרבה. הווילה מזכירה מאוד סגנון קיצי של האיים הקיקלאדיים. גם החצר עם הברביקיו 🍖 כבשה אותנו! כל הכבוד למשפחת קוסטאס–ניקי, מגיע לכם הטוב ביותר ושיהיה תמיד מלא באורחים 😍"
+  },
+  "uk": {
+    "title": "",
+    "text": "Я десь читала, що вілла ще красивіша, коли бачиш її зблизька! Ми теж її відвідали й справді були вражені! Ніде раніше не бачила таких оформлень стін і таких душів, а повірте, ми часто подорожуємо. Вілла дуже нагадує літній кікладський стиль. Двір із барбекю 🍖 також нас підкорив! Щирі вітання родині Костаса й Нікі — ви заслуговуєте на найкраще, і нехай у вас завжди буде багато гостей 😍"
+  },
+  "tr": {
+    "title": "",
+    "text": "Bir yerde villanın yakından çok daha güzel olduğunu okumuştum! Biz de gidip gördük ve gerçekten çok etkilendik! Duvarlarda böyle tasarımları ve böyle duşları daha önce hiçbir yerde görmedim; üstelik sık seyahat ederiz. Villa, Kiklad Adaları'nın yaz stilini çok güçlü biçimde hatırlatıyor. Barbekülü avlu 🍖 da bizi çok etkiledi! Kostas–Niki ailesini gönülden tebrik ederiz; en iyisini hak ediyorsunuz, eviniz hep dolu olsun 😍"
+  }
+},
+{
+  "en": {
+    "title": "",
+    "text": "Last month I visited this accommodation. Everything was really wonderful, the villa is quite large, it can accommodate around 10 people, it has a huge garden so if you have children they can play as much as they want with plenty of space but also for you if you want to enjoy the view of the sea and relax. The villa is just one street above the best beaches in Halkidiki, the owners are very kind with a smile on their faces all the time, we had everything we needed and whatever we needed from towels or sheets, they served us straight away! I will definitely go again without a second thought, it is the best if you want to go with friends or with your family, I recommend it to everyone, the best and most importantly what everyone is looking for, it was very clean!!!"
+  },
+  "ro": {
+    "title": "",
+    "text": "Luna trecută am vizitat această cazare și totul a fost cu adevărat minunat. Vila este foarte spațioasă și poate găzdui în jur de 10 persoane. Are o grădină uriașă, astfel încât copiii au mult spațiu de joacă, iar adulții se pot relaxa și bucura de priveliștea spre mare. Vila se află la doar o stradă mai sus de unele dintre cele mai frumoase plaje din Halkidiki. Proprietarii sunt foarte amabili și mereu zâmbitori. Am avut tot ce ne-a trebuit, iar când am avut nevoie de prosoape sau lenjerie, ne-au ajutat imediat. Aș reveni fără să stau pe gânduri. Este o alegere excelentă atât pentru prieteni, cât și pentru familii și o recomand tuturor. Iar cel mai important: a fost foarte curat!!!"
+  },
+  "el": {
+    "title": "",
+    "text": "Τον περασμένο μήνα επισκέφθηκα αυτό το κατάλυμα και όλα ήταν πραγματικά υπέροχα. Η βίλα είναι αρκετά μεγάλη και μπορεί να φιλοξενήσει περίπου 10 άτομα. Έχει έναν τεράστιο κήπο, οπότε αν έχετε παιδιά μπορούν να παίζουν όσο θέλουν με άφθονο χώρο, ενώ κι εσείς μπορείτε να χαλαρώνετε απολαμβάνοντας τη θέα προς τη θάλασσα. Η βίλα βρίσκεται μόλις έναν δρόμο πάνω από μερικές από τις καλύτερες παραλίες της Χαλκιδικής. Οι ιδιοκτήτες είναι πολύ ευγενικοί και πάντα χαμογελαστοί. Είχαμε όλα όσα χρειαζόμασταν και όταν ζητήσαμε πετσέτες ή σεντόνια, μας εξυπηρέτησαν αμέσως. Θα ξαναπήγαινα χωρίς δεύτερη σκέψη. Είναι ιδανικό μέρος είτε με φίλους είτε με την οικογένεια και το προτείνω σε όλους. Και το πιο σημαντικό: ήταν πολύ καθαρό!!!"
+  },
+  "de": {
+    "title": "",
+    "text": "Letzten Monat habe ich diese Unterkunft besucht, und alles war wirklich wunderbar. Die Villa ist sehr groß und bietet Platz für ungefähr 10 Personen. Sie hat einen riesigen Garten, sodass Kinder viel Platz zum Spielen haben, während Erwachsene entspannen und den Meerblick genießen können. Die Villa liegt nur eine Straße oberhalb einiger der schönsten Strände von Chalkidiki. Die Eigentümer sind sehr freundlich und immer mit einem Lächeln da. Wir hatten alles, was wir brauchten, und wenn wir zusätzliche Handtücher oder Bettwäsche benötigten, wurde uns sofort geholfen. Ich würde ohne zu zögern wiederkommen. Die Unterkunft eignet sich hervorragend für Freunde oder Familien und ich kann sie jedem empfehlen. Und das Wichtigste: Es war sehr sauber!!!"
+  },
+  "bg": {
+    "title": "",
+    "text": "Миналия месец посетих това място и всичко беше наистина прекрасно. Вилата е доста голяма и може да настани около 10 души. Има огромна градина, така че децата могат да играят на воля, а възрастните да се отпуснат и да се наслаждават на гледката към морето. Вилата е само на една улица над някои от най-хубавите плажове в Халкидики. Собствениците са много любезни и винаги усмихнати. Имахме всичко необходимо, а когато ни потрябваха кърпи или чаршафи, ни помогнаха веднага. Бих се върнала отново без никакво колебание. Мястото е чудесно както за приятели, така и за семейства и го препоръчвам на всички. А най-важното — беше много чисто!!!"
+  },
+  "sr": {
+    "title": "",
+    "text": "Prošlog meseca sam posetila ovaj smeštaj i sve je bilo zaista divno. Vila je prilično velika i može da primi oko 10 osoba. Ima ogromnu baštu, pa deca imaju mnogo prostora za igru, dok odrasli mogu da se opuste i uživaju u pogledu na more. Vila se nalazi samo jednu ulicu iznad nekih od najboljih plaža na Halkidikiju. Vlasnici su veoma ljubazni i stalno nasmejani. Imali smo sve što nam je bilo potrebno, a kada su nam zatrebali peškiri ili posteljina, odmah su nam pomogli. Vratila bih se bez razmišljanja. Odlično je mesto i za prijatelje i za porodice i preporučujem ga svima. A najvažnije — bilo je veoma čisto!!!"
+  },
+  "he": {
+    "title": "",
+    "text": "בחודש שעבר ביקרתי במקום האירוח הזה והכול היה באמת נהדר. הווילה גדולה למדי ויכולה לארח בערך 10 אנשים. יש בה גינה ענקית, כך שלילדים יש שפע של מקום לשחק, והמבוגרים יכולים להירגע וליהנות מהנוף לים. הווילה נמצאת רק רחוב אחד מעל כמה מהחופים היפים ביותר בחלקידיקי. הבעלים אדיבים מאוד ותמיד עם חיוך. היה לנו כל מה שהיינו צריכים, וכאשר נזקקנו למגבות או למצעים נוספים קיבלנו אותם מיד. בהחלט אחזור בלי לחשוב פעמיים. זה מקום מצוין לחופשה עם חברים או עם המשפחה ואני ממליצה עליו לכולם. והכי חשוב — היה נקי מאוד!!!"
+  },
+  "uk": {
+    "title": "",
+    "text": "Минулого місяця я відвідала це помешкання, і все було справді чудово. Вілла досить велика й може розмістити приблизно 10 осіб. Тут величезний сад, тому діти мають багато місця для ігор, а дорослі можуть відпочивати й насолоджуватися видом на море. Вілла розташована лише на одну вулицю вище від деяких із найкращих пляжів Халкідікі. Власники дуже привітні й завжди усміхнені. У нас було все необхідне, а коли нам були потрібні рушники чи постільна білизна, нам одразу допомагали. Я б без вагань повернулася сюди знову. Це чудове місце і для компанії друзів, і для сім’ї, тож рекомендую всім. І найголовніше — тут було дуже чисто!!!"
+  },
+  "tr": {
+    "title": "",
+    "text": "Geçen ay bu konaklama yerini ziyaret ettim ve her şey gerçekten harikaydı. Villa oldukça büyük ve yaklaşık 10 kişiyi ağırlayabiliyor. Kocaman bir bahçesi var; çocuklar bol bol oynayabilir, yetişkinler ise deniz manzarasının keyfini çıkarıp dinlenebilir. Villa, Halkidiki'nin en güzel plajlarından bazılarının sadece bir sokak yukarısında. Ev sahipleri çok nazik ve her zaman güler yüzlüydü. İhtiyacımız olan her şey vardı; havlu veya çarşaf istediğimizde hemen yardımcı oldular. Hiç düşünmeden tekrar gelirim. Arkadaşlarla ya da aileyle tatil için çok iyi bir yer ve herkese tavsiye ederim. En önemlisi de çok temizdi!!!"
+  }
+},
+{
+  "en": {
+    "title": "",
+    "text": "A perfect vacation at Vila M&M! We stayed here with the whole family, including our 4 children, and we had an amazing time. The villa is impeccable: clean, beautiful, very well organized, and tastefully decorated in a traditional Greek style. The location is excellent – very close to the beaches, in a quiet area. The yard is spacious and beautifully maintained, with a large green lawn and a perfect grill area where we enjoyed relaxing evenings with the kids. We loved that there was plenty of space for all of us, and the hosts were wonderful – attentive, welcoming, and always available when needed. I wholeheartedly recommend this place! We’ll definitely come back! 💙"
+  },
+  "ro": {
+    "title": "",
+    "text": "O vacanță perfectă la Vila M&M! Am stat aici cu întreaga familie, inclusiv cei 4 copii ai noștri, și ne-am simțit extraordinar. Vila este impecabilă: curată, frumoasă, foarte bine organizată și amenajată cu mult bun gust, într-un stil tradițional grecesc. Locația este excelentă — foarte aproape de plaje, într-o zonă liniștită. Curtea este spațioasă și foarte bine întreținută, cu un gazon verde generos și o zonă de grătar perfectă, unde am petrecut seri relaxante alături de copii. Ne-a plăcut mult faptul că am avut suficient spațiu pentru toată familia, iar gazdele au fost minunate — atente, primitoare și mereu disponibile când am avut nevoie. Recomand din tot sufletul acest loc! Cu siguranță vom reveni! 💙"
+  },
+  "el": {
+    "title": "",
+    "text": "Τέλειες διακοπές στη Villa M&M! Μείναμε εδώ με όλη την οικογένεια, μαζί με τα 4 παιδιά μας, και περάσαμε υπέροχα. Η βίλα είναι άψογη: καθαρή, όμορφη, πολύ καλά οργανωμένη και διακοσμημένη με εξαιρετικό γούστο σε παραδοσιακό ελληνικό στυλ. Η τοποθεσία είναι εξαιρετική — πολύ κοντά στις παραλίες και σε ήσυχη περιοχή. Η αυλή είναι ευρύχωρη και πολύ περιποιημένη, με μεγάλο πράσινο γκαζόν και ιδανικό χώρο για μπάρμπεκιου, όπου απολαύσαμε χαλαρά βράδια με τα παιδιά. Μας άρεσε πολύ που υπήρχε άφθονος χώρος για όλους μας και οι οικοδεσπότες ήταν υπέροχοι — προσεκτικοί, φιλόξενοι και πάντα διαθέσιμοι όταν τους χρειαζόμασταν. Το προτείνω με όλη μου την καρδιά! Σίγουρα θα επιστρέψουμε! 💙"
+  },
+  "de": {
+    "title": "",
+    "text": "Ein perfekter Urlaub in der Villa M&M! Wir waren mit der ganzen Familie hier, einschließlich unserer vier Kinder, und hatten eine großartige Zeit. Die Villa ist makellos: sauber, wunderschön, sehr gut organisiert und geschmackvoll im traditionellen griechischen Stil eingerichtet. Die Lage ist ausgezeichnet — sehr nah an den Stränden und dennoch in einer ruhigen Gegend. Der Garten ist großzügig und sehr gepflegt, mit einer großen grünen Rasenfläche und einem perfekten Grillbereich, in dem wir entspannte Abende mit den Kindern verbracht haben. Wir fanden es großartig, dass für uns alle so viel Platz vorhanden war, und die Gastgeber waren wunderbar — aufmerksam, herzlich und immer erreichbar, wenn wir etwas brauchten. Ich kann diesen Ort von Herzen empfehlen! Wir kommen auf jeden Fall wieder! 💙"
+  },
+  "bg": {
+    "title": "",
+    "text": "Перфектна ваканция във Villa M&M! Бяхме тук с цялото семейство, включително четирите ни деца, и прекарахме невероятно. Вилата е безупречна — чиста, красива, много добре организирана и обзаведена с вкус в традиционен гръцки стил. Местоположението е отлично — съвсем близо до плажовете, но в спокойна зона. Дворът е просторен и прекрасно поддържан, с голяма зелена морава и чудесна зона за барбекю, където прекарвахме спокойни вечери с децата. Много ни хареса, че имаше достатъчно място за всички, а домакините бяха прекрасни — внимателни, гостоприемни и винаги на разположение, когато имахме нужда. Препоръчвам това място от сърце! Със сигурност ще се върнем! 💙"
+  },
+  "sr": {
+    "title": "",
+    "text": "Savršen odmor u Vili M&M! Boravili smo ovde sa celom porodicom, uključujući naše četvoro dece, i proveli smo se fantastično. Vila je besprekorno čista, lepa, veoma dobro organizovana i ukusno uređena u tradicionalnom grčkom stilu. Lokacija je odlična — veoma blizu plaža, a ipak u mirnom kraju. Dvorište je prostrano i prelepo održavano, sa velikim zelenim travnjakom i odličnim prostorom za roštilj gde smo uživali u opuštenim večerima sa decom. Posebno nam se dopalo što je bilo dovoljno prostora za sve nas, a domaćini su bili sjajni — pažljivi, gostoljubivi i uvek dostupni kada je bilo potrebno. Od srca preporučujem ovo mesto! Sigurno ćemo se vratiti! 💙"
+  },
+  "he": {
+    "title": "",
+    "text": "חופשה מושלמת ב-Vila M&M! התארחנו כאן עם כל המשפחה, כולל ארבעת הילדים שלנו, והיה לנו פשוט נהדר. הווילה ללא דופי: נקייה, יפה, מאורגנת היטב ומעוצבת בטעם בסגנון יווני מסורתי. המיקום מצוין — קרוב מאוד לחופים ובאזור שקט. החצר מרווחת ומטופחת להפליא, עם מדשאה ירוקה גדולה ואזור ברביקיו מושלם שבו בילינו ערבים רגועים עם הילדים. אהבנו שהיה שפע של מקום לכולנו, והמארחים היו נהדרים — קשובים, מסבירי פנים ותמיד זמינים כשנזקקנו להם. אני ממליצה על המקום מכל הלב! בהחלט נחזור! 💙"
+  },
+  "uk": {
+    "title": "",
+    "text": "Ідеальна відпустка у Vila M&M! Ми зупинялися тут усією родиною, включно з нашими чотирма дітьми, і провели чудовий час. Вілла бездоганна: чиста, красива, дуже добре організована й зі смаком оформлена в традиційному грецькому стилі. Розташування чудове — зовсім близько до пляжів і водночас у тихому районі. Подвір’я просторе й чудово доглянуте, з великим зеленим газоном та ідеальною зоною для барбекю, де ми проводили спокійні вечори з дітьми. Нам дуже сподобалося, що місця вистачало для всіх, а господарі були чудові — уважні, гостинні й завжди доступні, коли це було потрібно. Щиро рекомендую це місце! Ми обов’язково повернемося! 💙"
+  },
+  "tr": {
+    "title": "",
+    "text": "Vila M&M'de mükemmel bir tatil! Dört çocuğumuz da dahil olmak üzere tüm aile burada kaldık ve harika vakit geçirdik. Villa kusursuzdu: temiz, güzel, çok iyi düzenlenmiş ve geleneksel Yunan tarzında zevkli bir şekilde dekore edilmişti. Konumu mükemmel — plajlara çok yakın ama sakin bir bölgede. Bahçe geniş ve çok bakımlı; büyük yeşil çim alanı ve çocuklarla rahat akşamlar geçirdiğimiz harika bir barbekü bölümü var. Hepimiz için bolca alan olması çok hoşumuza gitti. Ev sahipleri de harikaydı — ilgili, misafirperver ve ihtiyaç duyduğumuzda her zaman ulaşılabilirdi. Burayı gönülden tavsiye ediyorum! Kesinlikle yeniden geleceğiz! 💙"
+  }
+}];
     function reviewLocalized(index,r){
       const pack=REVIEW_TRANSLATIONS[index]||{};
       return pack[currentLang]||pack.en||{title:r.title,text:r.text};
@@ -5958,11 +6355,25 @@
         'Austria':{en:'Austria',ro:'Austria',el:'Αυστρία',de:'Österreich',bg:'Австрия',sr:'Austrija',he:'אוסטריה',uk:'Австрія',tr:'Avusturya'},
         'Australia':{en:'Australia',ro:'Australia',el:'Αυστραλία',de:'Australien',bg:'Австралия',sr:'Australija',he:'אוסטרליה',uk:'Австралія',tr:'Avustralya'},
         'Ucraina':{en:'Ukraine',ro:'Ucraina',el:'Ουκρανία',de:'Ukraine',bg:'Украйна',sr:'Ukrajina',he:'אוקראינה',uk:'Україна',tr:'Ukrayna'},
-        'Ukraine':{en:'Ukraine',ro:'Ucraina',el:'Ουκρανία',de:'Ukraine',bg:'Украйна',sr:'Ukrajina',he:'אוקראינה',uk:'Україна',tr:'Ukrayna'}
+        'Ukraine':{en:'Ukraine',ro:'Ucraina',el:'Ουκρανία',de:'Ukraine',bg:'Украйна',sr:'Ukrajina',he:'אוקראינה',uk:'Україна',tr:'Ukrayna'},
+        'Romania':{en:'Romania',ro:'România',el:'Ρουμανία',de:'Rumänien',bg:'Румъния',sr:'Rumunija',he:'רומניה',uk:'Румунія',tr:'Romanya'},
+        'Greece':{en:'Greece',ro:'Grecia',el:'Ελλάδα',de:'Griechenland',bg:'Гърция',sr:'Grčka',he:'יוון',uk:'Греція',tr:'Yunanistan'}
       };
       return (map[name] && (map[name][currentLang] || map[name].en)) || name;
     }
     function reviewMetaText(text){
+      const relativeTime={
+        en:{'1 month ago':'1 month ago','3 months ago':'3 months ago','5 months ago':'5 months ago','a year ago':'a year ago'},
+        ro:{'1 month ago':'acum o lună','3 months ago':'acum 3 luni','5 months ago':'acum 5 luni','a year ago':'acum un an'},
+        de:{'1 month ago':'vor 1 Monat','3 months ago':'vor 3 Monaten','5 months ago':'vor 5 Monaten','a year ago':'vor einem Jahr'},
+        el:{'1 month ago':'πριν από 1 μήνα','3 months ago':'πριν από 3 μήνες','5 months ago':'πριν από 5 μήνες','a year ago':'πριν από έναν χρόνο'},
+        bg:{'1 month ago':'преди 1 месец','3 months ago':'преди 3 месеца','5 months ago':'преди 5 месеца','a year ago':'преди година'},
+        sr:{'1 month ago':'pre 1 mesec','3 months ago':'pre 3 meseca','5 months ago':'pre 5 meseci','a year ago':'pre godinu dana'},
+        he:{'1 month ago':'לפני חודש','3 months ago':'לפני 3 חודשים','5 months ago':'לפני 5 חודשים','a year ago':'לפני שנה'},
+        uk:{'1 month ago':'1 місяць тому','3 months ago':'3 місяці тому','5 months ago':'5 місяців тому','a year ago':'рік тому'},
+        tr:{'1 month ago':'1 ay önce','3 months ago':'3 ay önce','5 months ago':'5 ay önce','a year ago':'1 yıl önce'}
+      };
+      if(relativeTime[currentLang] && relativeTime[currentLang][text]) return relativeTime[currentLang][text];
       const maps={
         en:{'Vilă Deluxe':'Deluxe Villa','Vilă cu vedere la mare':'Sea View Villa','nopți':'nights','iulie':'July','aprilie':'April','octombrie':'October','august':'August','iunie':'June','Familie':'Family','Grup':'Group','Călător neînsoțit':'Solo traveller'},
         ro:{},
@@ -5995,10 +6406,10 @@
         <div class="review-meta">
           <span class="review-author">${r.author}</span>
           <span class="review-country">${r.flag} ${reviewCountryLabel(r.country)}</span>
-          <span>★ ${r.score}/10</span>
+          <span>★ ${r.score}/${r.scoreScale||10}</span>
           <span>${reviewMetaText(r.stay)}</span>
         </div>
-        <div class="review-title">${localized.title}</div>
+        ${localized.title ? `<div class="review-title">${localized.title}</div>` : ''}
         <p class="review-text">${localized.text}</p>
       </article>`;
     }
@@ -6140,9 +6551,18 @@
 
     const WHATSAPP_NUMBER='306976717795';
 
+    function bookingNightCount(){
+      const arrival=document.getElementById('arrival').value;
+      const departure=document.getElementById('departure').value;
+      if(!arrival||!departure)return 0;
+      const [ay,am,ad]=arrival.split('-').map(Number);
+      const [dy,dm,dd]=departure.split('-').map(Number);
+      return Math.max(0,Math.round((Date.UTC(dy,dm-1,dd)-Date.UTC(ay,am-1,ad))/86400000));
+    }
+
     function buildRequestText(){
       const r=bookingRecData(),extra=document.getElementById('extra').value.trim();
-      return `${t('request.title')}\n\n${t('request.arrival')}: ${document.getElementById('arrival').value||'-'}\n${t('request.departure')}: ${document.getElementById('departure').value||'-'}\n${t('request.adults')}: ${document.getElementById('adults').value}\n${t('request.children')}: ${document.getElementById('children').value}\n${t('request.total')}: ${totalGuests()}\n${t('request.recommended')}: ${r.title}\n${t('request.message')}: ${extra||'-'}`;
+      return `${t('request.title')}\n\n${t('request.arrival')}: ${document.getElementById('arrival').value||'-'}\n${t('request.departure')}: ${document.getElementById('departure').value||'-'}\n${t('request.nights')}: ${bookingNightCount()}\n${t('request.adults')}: ${document.getElementById('adults').value}\n${t('request.children')}: ${document.getElementById('children').value}\n${t('request.total')}: ${totalGuests()}\n${t('request.recommended')}: ${r.title}\n${t('request.message')}: ${extra||'-'}`;
     }
 
     function initReveal(){
@@ -6200,8 +6620,13 @@
       }
     }
 
-    const analyticsVisitorId=analyticsId(localStorage,'mmv_visitor_id');
-    const analyticsSessionId=analyticsId(sessionStorage,'mmv_session_id');
+    let analyticsVisitorId=null,analyticsSessionId=null,analyticsEnabled=false,analyticsInitialized=false;
+    const ANALYTICS_CONSENT_KEY='mmv_analytics_consent';
+    function analyticsConsent(){try{return localStorage.getItem(ANALYTICS_CONSENT_KEY)}catch(_){return null}}
+    function setAnalyticsConsent(v){try{localStorage.setItem(ANALYTICS_CONSENT_KEY,v)}catch(_){}if(v==='accepted')enableAnalytics();else disableAnalytics();const b=document.getElementById('cookieBanner');if(b)b.hidden=true}
+    function enableAnalytics(){analyticsEnabled=true;analyticsVisitorId=analyticsId(localStorage,'mmv_visitor_id');analyticsSessionId=analyticsId(sessionStorage,'mmv_session_id');initAnalytics()}
+    function disableAnalytics(){analyticsEnabled=false;analyticsVisitorId=null;analyticsSessionId=null;try{localStorage.removeItem('mmv_visitor_id');sessionStorage.removeItem('mmv_session_id')}catch(_){}}
+    function initPrivacyControls(){const b=document.getElementById('cookieBanner'),choice=analyticsConsent(),dnt=navigator.doNotTrack==='1'||window.doNotTrack==='1';if(dnt&&!choice){setAnalyticsConsent('rejected')}else if(choice==='accepted')enableAnalytics();else if(choice==='rejected')disableAnalytics();else if(b)b.hidden=false;document.getElementById('cookieAccept')?.addEventListener('click',()=>setAnalyticsConsent('accepted'));document.getElementById('cookieReject')?.addEventListener('click',()=>setAnalyticsConsent('rejected'));document.getElementById('cookieSettingsBtn')?.addEventListener('click',()=>{if(b)b.hidden=false})}
 
     function analyticsDevice(){
       const ua=navigator.userAgent||'';
@@ -6230,6 +6655,7 @@
     }
 
     function trackEvent(eventName,metadata={}){
+      if(!analyticsEnabled||!analyticsVisitorId||!analyticsSessionId)return;
       const utm=analyticsUtm();
       const payload={
         event_name:eventName,
@@ -6262,6 +6688,7 @@
     }
 
     function initAnalytics(){
+      if(!analyticsEnabled||analyticsInitialized)return;analyticsInitialized=true;
       trackEvent('page_view');
 
       document.addEventListener('click',e=>{
@@ -6313,7 +6740,7 @@
       document.getElementById('year').textContent=new Date().getFullYear();
       initHeroSlideshow();
       fillSelects();renderLanguageMenu();applyLanguage(currentLang);renderGallery();initReveal();updateBookingRecommendation();
-      initAnalytics();
+      initPrivacyControls();
 
       const header=document.getElementById('siteHeader');
       const heroEl=document.querySelector('.hero-v4');
@@ -6335,7 +6762,8 @@
       document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('mainNav').classList.remove('mobile-open');document.body.classList.remove('menu-open')}));
 
       document.querySelectorAll('.guest-tab').forEach(b=>b.addEventListener('click',()=>updateStay(b.dataset.range)));
-      document.getElementById('adults').addEventListener('change',updateBookingRecommendation);document.getElementById('children').addEventListener('change',updateBookingRecommendation);
+      const onGuestCountChange=()=>{updateBookingRecommendation();ensureCurrentSelectionAvailable();renderStayCalendar()};
+      document.getElementById('adults').addEventListener('change',onGuestCountChange);document.getElementById('children').addEventListener('change',onGuestCountChange);
 
       document.querySelectorAll('[data-gallery-filter]').forEach(link=>link.addEventListener('click',()=>{
         activeFilter=link.dataset.galleryFilter||'all';
@@ -6363,18 +6791,23 @@
       document.getElementById('calendarPrev').addEventListener('click',()=>{calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth()-1,1);renderStayCalendar()});
       document.getElementById('calendarNext').addEventListener('click',()=>{calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth()+1,1);renderStayCalendar()});
       renderStayCalendar();
+      loadPublicAvailability();
 
-      document.getElementById('bookingForm').addEventListener('submit',e=>{
+      document.getElementById('bookingForm').addEventListener('submit',async e=>{
         e.preventDefault();
         const arrival=document.getElementById('arrival').value;
         const departure=document.getElementById('departure').value;
         if(!arrival||!departure){alert(t('booking.chooseDatesFirst'));document.getElementById('stayCalendar').scrollIntoView({behavior:'smooth',block:'center'});return}
+        await loadPublicAvailability();
+        const liveArrival=parseISO(arrival),liveDeparture=parseISO(departure);
+        if(!liveArrival||!liveDeparture||!selectedRangeIsAvailable(liveArrival,liveDeparture)){alert((CALENDAR_TEXT[currentLang]||CALENDAR_TEXT.en).rangeUnavailable);document.getElementById('stayCalendar').scrollIntoView({behavior:'smooth',block:'center'});return}
         trackEvent('booking_request',{
           arrival,
           departure,
           adults:Number(document.getElementById('adults').value||0),
           children:Number(document.getElementById('children').value||0),
           total_guests:totalGuests(),
+          nights:bookingNightCount(),
           recommended_stay:bookingRecData().title
         });
         trackEvent('whatsapp_click',{placement:'booking_form'});
